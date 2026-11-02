@@ -3,42 +3,144 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111827">
-  <title>Deutsch-Challenge – Test</title>
-  <style>
-    :root { color-scheme: dark; font-family: system-ui, sans-serif; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh; display: grid; place-items: center;
-      padding: 24px; color: #f8fafc;
-      background: radial-gradient(circle at top left, #312e81 0, transparent 42%),
-                  radial-gradient(circle at bottom right, #1d4ed8 0, transparent 40%), #0b1020;
-    }
-    main {
-      width: min(100%, 620px); padding: clamp(24px, 5vw, 44px);
-      border: 1px solid #ffffff24; border-radius: 24px;
-      background: #111827d9; box-shadow: 0 24px 80px #0005; text-align: center;
-    }
-    .tag { color: #a5b4fc; text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; font-weight: 700; }
-    h1 { font-size: clamp(2rem, 7vw, 3.5rem); margin: 14px 0; }
-    p { color: #cbd5e1; line-height: 1.6; }
-    button { border: 0; border-radius: 12px; padding: 14px 22px; margin-top: 12px; color: white; font: inherit; font-weight: 700; background: linear-gradient(100deg,#6366f1,#2563eb); cursor: pointer; }
-    #status { min-height: 1.5em; color: #a5f3fc; font-weight: 600; }
-  </style>
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Ein interaktives Deutsch-Quiz für die 5. Klasse.">
+  <title>Deutsch-Challenge</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <main>
-    <div class="tag">Technischer Test</div>
-    <h1>Deutsch-Challenge</h1>
-    <p>Wenn du diese Seite siehst, funktioniert die Testseite im Browser.</p>
-    <button id="testButton" type="button">Funktion testen</button>
-    <p id="status" role="status" aria-live="polite">Noch nicht getestet.</p>
-    <p>Als Nächstes prüfen wir die Veröffentlichung und den Zugriff über das Schul-WLAN.</p>
-  </main>
-  <script>
-    document.getElementById("testButton").addEventListener("click", () => {
-      document.getElementById("status").textContent = "JavaScript funktioniert!";
-    });
-  </script>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" id="brand-home" aria-label="Zur Startseite">
+        <span class="brand-mark">D</span>
+        <span>Deutsch<span class="brand-accent">Challenge</span></span>
+      </a>
+      <span class="topbar-note">DEUTSCH · KLASSE 5</span>
+    </header>
+
+    <main id="app">
+      <section class="screen start-screen" id="start-screen">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> BEREIT FÜR DIE HERAUSFORDERUNG?</span>
+          <h1>Zeig, was du<br><span class="gradient-text">in Deutsch kannst.</span></h1>
+          <p class="hero-description">Übe Grammatik, Rechtschreibung und Textverständnis. Wähle dein Level und sammle Punkte!</p>
+        </div>
+
+        <div class="quick-stats" aria-label="Quiz-Informationen">
+          <div class="quick-stat"><strong>30</strong><span>Fragen</span></div>
+          <div class="quick-stat"><strong>3</strong><span>Level</span></div>
+          <div class="quick-stat"><strong>5.</strong><span>Klasse</span></div>
+        </div>
+
+        <div class="level-heading">
+          <div>
+            <span class="section-kicker">WÄHLE DEINEN MODUS</span>
+            <h2>Wo möchtest du starten?</h2>
+          </div>
+          <span class="choose-hint">Du kannst jederzeit neu starten.</span>
+        </div>
+
+        <div class="level-grid">
+          <button class="level-card level-easy" data-mode="Leicht" type="button">
+            <span class="level-icon">01</span>
+            <span class="level-name">Leicht</span>
+            <span class="level-tag">WISSEN</span>
+            <span class="level-description">Grundlagen erkennen und verstehen.</span>
+            <span class="level-bottom"><span>10 Fragen</span><span class="level-arrow">↗</span></span>
+          </button>
+          <button class="level-card level-medium" data-mode="Mittel" type="button">
+            <span class="level-icon">02</span>
+            <span class="level-name">Mittel</span>
+            <span class="level-tag">ANWENDEN</span>
+            <span class="level-description">Regeln in Sätzen richtig anwenden.</span>
+            <span class="level-bottom"><span>10 Fragen</span><span class="level-arrow">↗</span></span>
+          </button>
+          <button class="level-card level-hard" data-mode="Schwer" type="button">
+            <span class="level-icon">03</span>
+            <span class="level-name">Schwer</span>
+            <span class="level-tag">ANALYSIEREN</span>
+            <span class="level-description">Texte untersuchen und Zusammenhänge erkennen.</span>
+            <span class="level-bottom"><span>10 Fragen</span><span class="level-arrow">↗</span></span>
+          </button>
+        </div>
+
+        <button class="all-levels-button" data-mode="Alle" type="button">
+          <span class="all-button-icon">✦</span>
+          <span><strong>Alle Level spielen</strong><small>Die komplette Challenge mit 30 Fragen</small></span>
+          <span class="all-button-arrow">→</span>
+        </button>
+        <p class="start-footnote">Keine Anmeldung nötig · Dein Ergebnis wird nicht gespeichert</p>
+      </section>
+
+      <section class="screen quiz-screen" id="quiz-screen" hidden>
+        <div class="quiz-toolbar">
+          <button class="text-button" id="back-to-menu" type="button">← Menü</button>
+          <span class="quiz-mode-label" id="quiz-mode-label">ALLE LEVEL</span>
+          <span class="question-counter" id="question-counter">1 / 30</span>
+        </div>
+
+        <div class="progress-area">
+          <div class="progress-labels"><span id="progress-level">LEVEL 01 · LEICHT</span><span id="progress-percent">3 %</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        </div>
+
+        <div class="question-panel">
+          <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
+          <h2 id="question-text">Welches Wort ist ein Nomen?</h2>
+          <p class="question-instruction">Wähle eine richtige Antwort.</p>
+          <div class="answer-grid" id="answer-grid"></div>
+          <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
+            <div class="feedback-title" id="feedback-title"></div>
+            <p id="feedback-text"></p>
+          </div>
+          <div class="question-actions">
+            <span class="score-live" id="score-live">✦ 0 Punkte</span>
+            <button class="primary-button" id="next-button" type="button" disabled>Weiter <span>→</span></button>
+          </div>
+        </div>
+        <p class="quiz-footnote">Nimm dir Zeit. Lies jede Frage genau durch.</p>
+      </section>
+
+      <section class="screen result-screen" id="result-screen" hidden>
+        <div class="result-header">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> CHALLENGE BEENDET</span>
+          <div class="result-medal" id="result-medal">★</div>
+          <h1 id="result-heading">Gut gemacht!</h1>
+          <p id="result-subheading">Du hast die Challenge abgeschlossen.</p>
+        </div>
+
+        <div class="result-score-card">
+          <div class="result-score-main">
+            <span class="section-kicker">DEIN ERGEBNIS</span>
+            <div class="score-line"><strong id="score-fraction">0/10</strong><span id="score-percent">0 %</span></div>
+            <div class="result-progress-track"><div class="result-progress-fill" id="result-progress-fill"></div></div>
+          </div>
+          <div class="result-score-side"><span id="result-correct">0</span><small>Richtig</small></div>
+          <div class="result-score-side"><span id="result-wrong">0</span><small>Falsch</small></div>
+        </div>
+
+        <div class="level-results" id="level-results"></div>
+        <div class="recommendation-card">
+          <span class="section-kicker">DEIN NÄCHSTER SCHRITT</span>
+          <h2 id="recommendation-title">Weiter so!</h2>
+          <p id="recommendation-text"></p>
+        </div>
+
+        <div class="mistakes-section" id="mistakes-section" hidden>
+          <h2>Das kannst du noch üben</h2>
+          <div id="mistakes-list"></div>
+        </div>
+
+        <div class="result-actions">
+          <button class="primary-button" id="retry-button" type="button">Noch einmal spielen <span>↻</span></button>
+          <button class="secondary-button" id="result-menu-button" type="button">Zurück zum Menü</button>
+        </div>
+        <p class="start-footnote">Dein Ergebnis wird nur auf diesem Gerät und nur während dieser Sitzung angezeigt.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>DEUTSCH-CHALLENGE</span><span>LERNE · ÜBE · WERDE BESSER</span></footer>
+  </div>
 </body>
 </html>
