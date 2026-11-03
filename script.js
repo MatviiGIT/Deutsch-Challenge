@@ -222,15 +222,15 @@ const questions = [
     explanation: "„Groß“ schreibt man mit ß. Nach dem langen betonten Vokal o steht in diesem Wort ß."
   },
   {
-    level: "Schwer", category: "WORTSCHATZ",
-    prompt: "Lies: „Der Weg war rutschig, deshalb ging Amir vorsichtig.“ Was bedeutet „rutschig“ hier?",
+    level: "Schwer", category: "LESEVERSTEHEN",
+    prompt: "Nach dem Regen glänzten die Steine auf dem Weg. Amir ging langsam und hielt sich am Geländer fest. Was lässt sich daraus am besten schließen?",
     choices: [
-      "Man kann leicht ausrutschen.",
-      "Der Weg ist besonders breit.",
-      "Der Weg ist sehr laut."
+      "Der Weg könnte glatt sein.",
+      "Amir hat es besonders eilig.",
+      "Die Steine sind sehr warm."
     ],
     answer: 0,
-    explanation: "Ein rutschiger Weg bietet wenig Halt. Man kann darauf leicht ausrutschen."
+    explanation: "Nasse Steine können glatt sein. Amirs vorsichtige Bewegung ist ein Hinweis darauf, dass er nicht ausrutschen möchte."
   },
   {
     level: "Schwer", category: "TEXTVERSTÄNDNIS",
