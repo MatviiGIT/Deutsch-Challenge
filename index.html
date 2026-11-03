@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f5f2e9">
   <meta name="description" content="Ein interaktives Deutsch-Quiz für die 5. Klasse.">
   <title>Deutsch-Challenge — Zeig, was du kannst</title>
-  <link rel="stylesheet" href="style.css?v=4">
-  <script src="script.js?v=4" defer></script>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="script.js?v=5" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -112,7 +112,7 @@
             <p id="feedback-text"></p>
           </div>
           <div class="question-actions">
-            <span class="score-live" id="score-live"><span aria-hidden="true">✳</span> 0 Punkte</span>
+            <span class="score-live" id="score-live"><span aria-hidden="true">✳</span><span id="score-value">0 Punkte</span></span>
             <button class="primary-button" id="next-button" type="button" disabled>Weiter <span aria-hidden="true">→</span></button>
           </div>
         </div>
@@ -131,13 +131,13 @@
           <div class="result-score-main">
             <span class="section-kicker">DEIN ERGEBNIS</span>
             <div class="score-line"><strong id="score-fraction">0/10</strong><span id="score-percent">0 %</span></div>
-            <div class="result-progress-track"><div class="result-progress-fill" id="result-progress-fill"></div></div>
+            <div class="result-progress-track" id="result-progress-track" role="progressbar" aria-label="Richtige Antworten" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div class="result-progress-fill" id="result-progress-fill"></div></div>
           </div>
           <div class="result-score-side"><span id="result-correct">0</span><small>Richtig</small></div>
           <div class="result-score-side"><span id="result-wrong">0</span><small>Noch üben</small></div>
         </div>
 
-        <div class="level-results" id="level-results"></div>
+        <div class="level-results-heading"><span class="section-kicker">DEINE ERGEBNISSE</span><h2>So lief es pro Level</h2></div>\n        <div class="level-results" id="level-results"></div>
         <div class="recommendation-card">
           <span class="section-kicker">DEIN NÄCHSTER SCHRITT</span>
           <h2 id="recommendation-title">Weiter so!</h2>
@@ -145,7 +145,7 @@
         </div>
 
         <div class="mistakes-section" id="mistakes-section" hidden>
-          <h2>Das kannst du noch üben</h2>
+          <h2>Fragen zum Wiederholen</h2>
           <div id="mistakes-list"></div>
         </div>
 
