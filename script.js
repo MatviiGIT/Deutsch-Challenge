@@ -49,9 +49,9 @@ const questions = [
   {
     level: "Leicht", category: "RECHTSCHREIBUNG",
     prompt: "Welches Wort ist richtig geschrieben?",
-    choices: ["Bine", "Biehne", "Biene"],
-    answer: 2,
-    explanation: "Richtig ist „Biene“. Das lange i wird in diesem Wort mit „ie“ geschrieben."
+    choices: ["Sone", "Sonne", "Sohne"],
+    answer: 1,
+    explanation: "„Sonne“ schreibt man mit doppeltem n. Der betonte Vokal o wird kurz gesprochen; das doppelte n zeigt die Kürze an."
   },
   {
     level: "Leicht", category: "SATZZEICHEN",
@@ -106,10 +106,10 @@ const questions = [
   },
   {
     level: "Mittel", category: "ADJEKTIVE",
-    prompt: "Wie heißt die höchste Steigerungsform von „warm“?",
-    choices: ["wärmer", "am wärmsten", "wärmste"],
-    answer: 1,
-    explanation: "Die drei Formen lauten: warm – wärmer – am wärmsten."
+    prompt: "Welche Form ergänzt die Steigerungsreihe richtig? „warm – wärmer – ___“",
+    choices: ["am wärmsten", "wärmste", "wärmer"],
+    answer: 0,
+    explanation: "Die drei Steigerungsstufen lauten: warm (Grundform), wärmer (Vergleichsform), am wärmsten (Höchstform)."
   },
   {
     level: "Mittel", category: "WORTSCHATZ",
@@ -140,86 +140,86 @@ const questions = [
     explanation: "Das Prädikat sagt, was jemand tut oder was geschieht. Hier ist es „spielen“."
   },
   {
-    level: "Mittel", category: "RECHTSCHREIBUNG",
-    prompt: "Welcher Satz ist grammatisch richtig?",
+    level: "Mittel", category: "SATZZEICHEN",
+    prompt: "Welcher Satz setzt die Satzzeichen der wörtlichen Rede richtig?",
     choices: [
-      "Die Kinder spielt draußen.",
-      "Die Kinder spielen draußen.",
-      "Die Kinder spielst draußen."
+      "Mia sagt: „Ich bin fertig.“",
+      "Mia sagt „Ich bin fertig.“",
+      "Mia sagt: „Ich bin fertig“."
     ],
-    answer: 1,
-    explanation: "„Die Kinder“ steht in der Mehrzahl. Deshalb passt die Verbform „spielen“."
+    answer: 0,
+    explanation: "Vor der wörtlichen Rede steht hier ein Doppelpunkt. Der Punkt am Ende des gesprochenen Satzes steht innerhalb der schließenden Anführungszeichen."
   },
 
   // SCHWER — ANALYSIEREN
   {
     level: "Schwer", category: "LESEVERSTEHEN",
-    prompt: "Lies den Text: „Seit zwei Wochen kommt Mia jeden Morgen früher in die Schule. Sie gießt die Pflanzen im Klassenraum. Als eine Blume neue Blätter bekommt, freut sie sich besonders.“ Was ist die Hauptaussage?",
+    prompt: "Lies den Text: „Lena leiht sich jede Woche ein Buch aus der Schulbibliothek. Zu Hause liest sie jeden Abend ein paar Seiten. Am Monatsende hat sie drei Bücher beendet.“ Welche Aussage fasst den Text am besten zusammen?",
     choices: [
-      "Mia kümmert sich regelmäßig um die Pflanzen.",
-      "Mia kommt zu spät zum Unterricht.",
-      "Mia möchte die Pflanzen aus dem Klassenraum mitnehmen."
+      "Lena liest regelmäßig und beendet mehrere Bücher.",
+      "Lena sammelt Bücher, ohne sie zu lesen.",
+      "Lena liest nur in der Schule."
     ],
     answer: 0,
-    explanation: "Alle wichtigen Informationen zeigen, dass Mia sich um die Pflanzen kümmert. Das ist die Hauptaussage des Textes."
+    explanation: "Die drei Sätze zeigen gemeinsam, dass Lena regelmäßig liest und mehrere Bücher schafft. Eine Hauptaussage fasst die wichtigsten Informationen zusammen."
   },
   {
     level: "Schwer", category: "SATZBAU",
-    prompt: "Welche Satzstellung ist richtig?",
+    prompt: "Welche Satzstellung ist in einem Aussagesatz richtig?",
     choices: [
       "Am frühen Morgen Sara kontrolliert ihren Stundenplan.",
       "Sara ihren Stundenplan kontrolliert am frühen Morgen.",
       "Am frühen Morgen kontrolliert Sara ihren Stundenplan."
     ],
     answer: 2,
-    explanation: "Im Aussagesatz steht das gebeugte Verb normalerweise an zweiter Stelle. Hier steht „kontrolliert“ an zweiter Stelle."
+    explanation: "In einem Aussagesatz steht das gebeugte Verb an zweiter Stelle. „Am frühen Morgen“ steht hier im Vorfeld, danach folgt das Verb „kontrolliert“."
   },
   {
-    level: "Schwer", category: "LESEVERSTEHEN",
-    prompt: "„Der Hund bellte laut, weil jemand an der Tür stand.“ Warum bellte der Hund?",
+    level: "Schwer", category: "NEBENSÄTZE",
+    prompt: "Welche Aussage zum Satz „Der Hund bellte laut, weil jemand an der Tür stand.“ ist richtig?",
     choices: [
-      "Weil er schlafen wollte.",
-      "Weil jemand an der Tür stand.",
-      "Weil er draußen spielen wollte."
+      "Der Nebensatz beginnt mit „weil“ und das Verb „stand“ steht am Ende.",
+      "Im Nebensatz muss das Verb an erster Stelle stehen.",
+      "Ein Nebensatz hat kein Verb."
     ],
-    answer: 1,
-    explanation: "Der Nebensatz mit „weil“ nennt den Grund: Jemand stand an der Tür."
+    answer: 0,
+    explanation: "„Weil jemand an der Tür stand“ ist ein Nebensatz. Das Wort „weil“ leitet ihn ein; das gebeugte Verb „stand“ steht am Ende."
   },
   {
     level: "Schwer", category: "SATZGLIEDER",
-    prompt: "Bestimme das Subjekt: „Nach dem Training brachte der Vater die Kinder nach Hause.“",
-    choices: ["Nach dem Training", "der Vater", "die Kinder"],
+    prompt: "Bestimme das Subjekt: „Die Kinder brachte der Vater nach Hause.“",
+    choices: ["Die Kinder", "der Vater", "nach Hause"],
     answer: 1,
-    explanation: "Wer brachte die Kinder nach Hause? Der Vater. Deshalb ist „der Vater“ das Subjekt."
+    explanation: "Wer brachte die Kinder nach Hause? Der Vater. „Die Kinder“ steht zwar am Satzanfang, ist hier aber das Akkusativobjekt."
   },
   {
-    level: "Schwer", category: "LESEVERSTEHEN",
-    prompt: "Ben legt den Schlüssel auf den Tisch. Danach steckt er ihn in seine Tasche. Worauf bezieht sich „ihn“?",
-    choices: ["auf den Tisch", "auf Ben", "auf den Schlüssel"],
-    answer: 2,
-    explanation: "Das Wort „ihn“ ersetzt hier „den Schlüssel“. So muss das Nomen nicht wiederholt werden."
+    level: "Schwer", category: "PRONOMEN",
+    prompt: "Lena legt das Heft auf den Tisch. Danach öffnet sie es. Worauf bezieht sich „es“?",
+    choices: ["auf Lena", "auf das Heft", "auf den Tisch"],
+    answer: 1,
+    explanation: "„Es“ bezieht sich auf „das Heft“. Das erkennt man am grammatischen Geschlecht: „das Heft“ ist sächlich. „Lena“ ist weiblich und „der Tisch“ männlich."
   },
   {
-    level: "Schwer", category: "SPRACHVERSTÄNDNIS",
-    prompt: "„Nora nimmt eine Trinkflasche mit, denn es ist sehr warm.“ Welche Aussage beschreibt den Zusammenhang richtig?",
+    level: "Schwer", category: "KONJUNKTIONEN",
+    prompt: "Welche Umformung gibt denselben Grund wieder? „Nora nimmt eine Trinkflasche mit, denn es ist sehr warm.“",
     choices: [
-      "Nora nimmt die Flasche mit, obwohl es warm ist.",
-      "Nora nimmt die Flasche mit, weil es warm ist.",
-      "Nora nimmt die Flasche mit, bevor es warm wird."
+      "Weil es sehr warm ist, nimmt Nora eine Trinkflasche mit.",
+      "Obwohl es sehr warm ist, nimmt Nora eine Trinkflasche mit.",
+      "Bevor es sehr warm wird, nimmt Nora eine Trinkflasche mit."
     ],
-    answer: 1,
-    explanation: "„Denn“ leitet einen Grund ein. Die Wärme ist der Grund dafür, dass Nora eine Trinkflasche mitnimmt."
+    answer: 0,
+    explanation: "„Denn“ und „weil“ drücken einen Grund aus. Im Nebensatz mit „weil“ steht das gebeugte Verb am Ende: „ist“."
   },
   {
     level: "Schwer", category: "RECHTSCHREIBUNG",
-    prompt: "In welchem Satz sind alle Wörter richtig geschrieben?",
+    prompt: "Welcher Satz ist richtig geschrieben?",
     choices: [
-      "Am Mittwoch treffen wir uns im Park.",
-      "Am mittwoch treffen wir uns im Park.",
-      "Am Mittwoch treffen wir uns im park."
+      "Das Haus ist gros.",
+      "Das Haus ist groß.",
+      "Das Haus ist grooss."
     ],
-    answer: 0,
-    explanation: "„Mittwoch“ und „Park“ sind Nomen und werden großgeschrieben. Auch der Satzanfang beginnt mit einem Großbuchstaben."
+    answer: 1,
+    explanation: "„Groß“ schreibt man mit ß. Nach dem langen betonten Vokal o steht in diesem Wort ß."
   },
   {
     level: "Schwer", category: "WORTSCHATZ",
@@ -244,15 +244,15 @@ const questions = [
     explanation: "Lea liest genau und markiert wichtige Wörter. So findet sie Informationen, die ihr beim Beantworten helfen."
   },
   {
-    level: "Schwer", category: "TEXTVERSTÄNDNIS",
-    prompt: "Lies: „Am Samstag wollte Emil Fußball spielen. Weil es stark regnete, blieb er zu Hause und las ein Buch.“ Welche Aussage stimmt?",
+    level: "Schwer", category: "INFORMATIONEN AUSWERTEN",
+    prompt: "Im Aushang steht: Montag 8–12 Uhr, Dienstag 8–16 Uhr, Mittwoch 8–12 Uhr. Ben kann nur nach 13 Uhr in die Schulbibliothek. An welchem Tag kann er sie besuchen?",
     choices: [
-      "Emil spielte trotz des Regens draußen Fußball.",
-      "Emil blieb wegen des Regens zu Hause.",
-      "Emil ging in die Bibliothek."
+      "Am Montag.",
+      "Am Dienstag.",
+      "Am Mittwoch."
     ],
     answer: 1,
-    explanation: "Im Text steht, dass Emil wegen des starken Regens zu Hause blieb. Die anderen Aussagen werden nicht durch den Text bestätigt."
+    explanation: "Nur am Dienstag ist die Bibliothek nach 13 Uhr noch geöffnet. Der Aushang nennt dafür die Öffnungszeit bis 16 Uhr."
   }
 ];
 
