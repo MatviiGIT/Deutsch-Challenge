@@ -49,7 +49,7 @@ const questions = [
   {
     level: "Leicht", category: "RECHTSCHREIBUNG",
     prompt: "Welches Wort ist richtig geschrieben?",
-    choices: ["Sone", "Sonne", "Sohne"],
+    choices: ["Sone", "Sonne", "Sonnee"],
     answer: 1,
     explanation: "„Sonne“ schreibt man mit doppeltem n. Der betonte Vokal o wird kurz gesprochen; das doppelte n zeigt die Kürze an."
   },
