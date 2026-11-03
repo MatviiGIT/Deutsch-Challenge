@@ -3,9 +3,9 @@ const questions = [
   {
     level: "Leicht", category: "WORTARTEN",
     prompt: "Welches Wort ist ein Nomen?",
-    choices: ["springen", "der Freund", "freundlich"],
+    choices: ["springen", "Freund", "freundlich"],
     answer: 1,
-    explanation: "„Der Freund“ ist ein Nomen. Nomen bezeichnen zum Beispiel Menschen, Tiere, Dinge oder Gefühle und werden großgeschrieben."
+    explanation: "„Freund“ ist ein Nomen. Nomen bezeichnen zum Beispiel Menschen, Tiere, Dinge oder Gefühle und werden großgeschrieben."
   },
   {
     level: "Leicht", category: "WORTARTEN",
