@@ -36,8 +36,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
 .hero-note::before { content: ""; position: absolute; width: 190px; height: 190px; right: -82px; top: 60px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; }
 .hero-note::after { content: ""; position: absolute; width: 125px; height: 125px; right: -49px; top: 92px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; }
 .hero-note-top { display: flex; justify-content: space-between; color: #d8e5d8; font-size: .57rem; letter-spacing: .14em; }
-.hero-number { position: relative; z-index: 1; margin: 28px 0 -7px -5px; color: var(--yellow); font: 700 6.4rem/.95 Georgia, "Times New Roman", serif; letter-spacing: -.08em; }
-.hero-note-label { color: #f6f4e8; font-size: .65rem; }
+.hero-number { position: relative; z-index: 1; display: block; margin: 25px 0 4px -4px; color: var(--yellow); font: 700 6.4rem/1 Georgia, "Times New Roman", serif; letter-spacing: -.08em; }
+.hero-note-label { position: relative; z-index: 1; display: block; padding-top: 2px; color: #f6f4e8; font-size: .65rem; line-height: 1.35; }
 .hero-rule { height: 1px; margin: 22px 0 14px; background: rgba(255,255,255,.28); }
 .hero-note-bottom { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 9px 16px; color: #d9e6d8; font-size: .55rem; }
 .hero-scribble { position: absolute; right: 19px; bottom: 39px; color: rgba(255,255,255,.13); font: italic 2.4rem Georgia, serif; letter-spacing: .02em; }
