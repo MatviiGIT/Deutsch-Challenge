@@ -76,6 +76,38 @@ Die drei Stufen orientieren sich an drei Arten des Lernens:
 - Satzzeichen
 - Lese- und Textverständnis
 
+### Bezug zum Bildungsplan Baden-Württemberg
+
+Die Themenauswahl wurde am **3. November 2026** mit dem offiziellen Bildungsplan Deutsch für die Sekundarstufe I, **3.1 Klassen 5/6**, in der Fassung vom 29. Februar 2024 (V2) abgeglichen.
+
+Offizielle Grundlagen:
+- [Deutsch — Bildungsplan Sekundarstufe I, Klassen 5/6](https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_SEK1_D.V2_IK_5-6)
+- [3.1.2.1 Struktur von Äußerungen](https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_SEK1_D.V2_IK_5-6_02_01)
+- [3.1.1.2 Sach- und Gebrauchstexte](https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_SEK1_D.V2_IK_5-6_01_02)
+
+Der Bildungsplan für die Sekundarstufe I beschreibt Kompetenzen für **Klassen 5/6**. Er ist daher eine passende fachliche Orientierung, bestätigt aber nicht automatisch, dass jedes einzelne Thema an jeder Schule bereits in Klasse 5 behandelt wurde. Die konkrete Unterrichtsreihenfolge und der Lernstand müssen mit einer Deutschlehrkraft abgestimmt werden.
+
+| Aufgaben | Geprüfter Themenbereich | Bezug zum Kompetenzbereich |
+|---|---|---|
+| 1–3, 5–6, 9, 11, 15–17 | Wortarten, Numerus, Genus, Verbformen, Adjektivsteigerung, Wortbedeutung und Wortfelder | Sprachgebrauch und Sprachreflexion |
+| 12–14, 19, 22–26 | Kasus, Subjekt und Prädikat, Zusammensetzungen, Satzstellung, Nebensatz, Pronomen und Konjunktionen | Struktur von Äußerungen |
+| 4, 7–8, 10, 20, 27 | Großschreibung, kurze und lange Vokale, Doppelkonsonanten, Satzschlusszeichen, wörtliche Rede und ß | Rechtschreibung und Zeichensetzung |
+| 18, 21, 28–30 | Hinweise erschließen, Hauptaussagen finden, Schlussfolgerungen ziehen und Informationen aus einem Aushang entnehmen | Lesen sowie Sach- und Gebrauchstexte |
+
+Die Zuordnung zeigt eine **inhaltliche Orientierung**, keine vollständige Abdeckung des gesamten Bildungsplans. Beispielsweise sind weitere Themen wie Präpositionen, verschiedene Satzarten, Kommas bei Nebensätzen, Silbierung und das Auswerten von Tabellen noch nicht oder nur teilweise enthalten.
+
+### Inhaltliche Prüfung der 30 Aufgaben
+
+Bei der Überarbeitung wurden insbesondere diese Punkte berücksichtigt:
+
+- Eine mehrdeutige Aufgabe zur höchsten Steigerungsform von „warm“ wurde in eine eindeutige Ergänzungsaufgabe umformuliert.
+- Die Aufgaben der Stufe „Schwer“ verlangen jetzt häufiger, mehrere Hinweise miteinander zu verbinden oder Satzstrukturen zu untersuchen.
+- Die wörtliche Rede, die Verbposition im Nebensatz, die Unterscheidung von Subjekt und Objekt sowie die Schreibung von „ß“ wurden gezielter einbezogen.
+- Eine Aufgabe zur Informationsentnahme verwendet nun die Öffnungszeiten einer Schulbibliothek.
+- Die Erklärungen nennen möglichst auch die Regel oder den sprachlichen Hinweis, mit dem die Lösung gefunden werden kann.
+
+Diese Prüfung ist eine interne fachliche Überarbeitung anhand des Bildungsplans. Sie ersetzt **nicht** die abschließende Prüfung der Fragen durch eine Deutschlehrkraft.
+
 ### Lernablauf
 
 1. Das Kind wählt ein Level oder die gesamte Challenge.
@@ -277,10 +309,21 @@ Am 3. November 2026 wurden die Quelldateien zusätzlich technisch geprüft:
 - Jede Frage hat genau drei Antwortmöglichkeiten.
 - Alle Antwortindizes liegen im gültigen Bereich von 0 bis 2.
 - Alle Fragen haben eine Aufgabenstellung und eine Erklärung.
+- Die Fragen sind nach dem aktuellen Stand auf zehn pro Level verteilt.
+- Bei der inhaltlichen Durchsicht wurde die Mehrdeutigkeit der Steigerungsfrage beseitigt und die Differenzierung der schweren Aufgaben verbessert.
 - Die von JavaScript verwendeten HTML-IDs sind vorhanden und nicht doppelt vergeben.
 - CSS- und JavaScript-Dateien sind in der HTML-Datei eingebunden.
 
 Diese Prüfungen kontrollieren den Quellcode. Sie ersetzen keinen vollständigen manuellen Test im Browser und auf echten Schulgeräten.
+
+### Inhaltlicher Qualitätstest
+
+- [ ] Alle 30 Fragen sind sprachlich klar und altersgerecht.
+- [ ] Jede Aufgabe hat genau eine fachlich richtige Antwort.
+- [ ] Die Erklärung erklärt auch den entscheidenden sprachlichen Hinweis oder die Regel.
+- [ ] Die Fragen passen zu den im Unterricht bereits behandelten Themen.
+- [ ] Die Schwierigkeit steigt nachvollziehbar von Wiedererkennen über Anwenden bis zum Erschließen von Zusammenhängen.
+- [ ] Eine Deutschlehrkraft hat die Aufgaben fachlich geprüft.
 
 ### Darstellungstest
 
@@ -411,6 +454,9 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [x] Ergebnisansicht mit Trefferbalken für jedes gespielte Level
 - [x] Fortschrittswerte in der Ergebnisansicht mit ARIA-Attributen
 - [x] Falsch beantwortete Fragen zeigen gewählte Antwort, richtige Lösung und Erklärung
+- [x] Erste inhaltliche Prüfung der 30 Fragen anhand des Bildungsplans Deutsch Klassen 5/6 durchgeführt
+- [x] Mehrdeutige Steigerungsfrage überarbeitet
+- [x] Schwierige Aufgaben stärker auf Satzanalyse und Textschlussfolgerungen ausgerichtet
 
 **Noch offen**
 
@@ -474,6 +520,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 03.11.2026 | Visuelle Gestaltung auf ein helles, redaktionelles Layout umgestellt. |
 | 03.11.2026 | Hero-Abstand korrigiert, Fortschrittsanzeige zugänglicher gemacht und Dokumentation erweitert. |
 | 03.11.2026 | Fragebildschirm und Ergebnisansicht verfeinert; Level-Trefferbalken und ausführliche Fehlerwiederholung ergänzt. |
+| 03.11.2026 | Erste fachliche Prüfung der 30 Aufgaben anhand des Bildungsplans Deutsch Klassen 5/6; mehrdeutige Aufgabe korrigiert und schwere Aufgaben anspruchsvoller gestaltet. |
 
 ---
 
