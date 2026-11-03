@@ -144,11 +144,11 @@ const questions = [
     prompt: "Welcher Satz setzt die Satzzeichen der wörtlichen Rede richtig?",
     choices: [
       "Mia sagt: „Ich bin fertig.“",
-      "Mia sagt „Ich bin fertig.“",
+      "Mia sagt: Ich bin fertig.“",
       "Mia sagt: „Ich bin fertig“."
     ],
     answer: 0,
-    explanation: "Vor der wörtlichen Rede steht hier ein Doppelpunkt. Der Punkt am Ende des gesprochenen Satzes steht innerhalb der schließenden Anführungszeichen."
+    explanation: "Vor der wörtlichen Rede steht hier ein Doppelpunkt. Der gesprochene Satz wird von Anführungszeichen eingerahmt; sein Punkt steht innerhalb des schließenden Anführungszeichens."
   },
 
   // SCHWER — ANALYSIEREN
