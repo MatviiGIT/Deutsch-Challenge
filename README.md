@@ -101,10 +101,39 @@ Die Zuordnung zeigt eine **inhaltliche Orientierung**, keine vollständige Abdec
 Bei der Überarbeitung wurden insbesondere diese Punkte berücksichtigt:
 
 - Eine mehrdeutige Aufgabe zur höchsten Steigerungsform von „warm“ wurde in eine eindeutige Ergänzungsaufgabe umformuliert.
-- Die Aufgaben der Stufe „Schwer“ verlangen jetzt häufiger, mehrere Hinweise miteinander zu verbinden oder Satzstrukturen zu untersuchen.
+- Eine Frage nach einem einzelnen Nomen enthält jetzt auch nur einzelne Wörter als Antwortmöglichkeiten.
+- Die Aufgaben der Stufe „Schwer“ verlangen häufiger, mehrere Hinweise miteinander zu verbinden oder Satzstrukturen zu untersuchen.
 - Die wörtliche Rede, die Verbposition im Nebensatz, die Unterscheidung von Subjekt und Objekt sowie die Schreibung von „ß“ wurden gezielter einbezogen.
 - Eine Aufgabe zur Informationsentnahme verwendet nun die Öffnungszeiten einer Schulbibliothek.
 - Die Erklärungen nennen möglichst auch die Regel oder den sprachlichen Hinweis, mit dem die Lösung gefunden werden kann.
+
+#### Überblick über die geprüften Aufgaben
+
+| Nummer | Inhalt / Fähigkeit |
+|---|---|
+| 1–3 | Nomen, Verb und Adjektiv erkennen |
+| 4, 10 | Großschreibung am Satzanfang und bei Nomen |
+| 5–6 | Plural und Artikel / Genus |
+| 7 | Kurz gesprochener Vokal und Doppelkonsonant |
+| 8 | Fragezeichen bei einer direkten Frage |
+| 9 | Wortbedeutung und sinnverwandte Wörter |
+| 11 | Verbform passend zur Person bilden |
+| 12 | Akkusativ in einem einfachen Satz verwenden |
+| 13, 19 | Subjekt und Prädikat erkennen |
+| 14 | Zusammengesetzte Nomen bilden |
+| 15 | Adjektive steigern |
+| 16 | Wortfeld erkennen |
+| 17 | Präteritum in einem Satz verwenden |
+| 18, 21, 28 | Hinweise verbinden und Schlussfolgerungen aus kurzen Texten ziehen |
+| 20 | Satzzeichen bei wörtlicher Rede |
+| 22 | Verbzweitstellung im Aussagesatz |
+| 23 | Nebensatz mit „weil“ und Verbendstellung erkennen |
+| 24 | Subjekt trotz vorangestelltem Objekt bestimmen |
+| 25 | Bezug eines Pronomens erkennen |
+| 26 | Begründung mit „denn“ in einen „weil“-Nebensatz umformen |
+| 27 | ß nach langem betontem Vokal |
+| 29 | Markieren wichtiger Wörter als Lesestrategie |
+| 30 | Öffnungszeiten aus einem Aushang entnehmen |
 
 Diese Prüfung ist eine interne fachliche Überarbeitung anhand des Bildungsplans. Sie ersetzt **nicht** die abschließende Prüfung der Fragen durch eine Deutschlehrkraft.
 
@@ -301,6 +330,8 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] „Zurück zum Menü“ führt zur Startseite.
 
 ### Automatische Codeprüfung
+
+Die inhaltliche Prüfung ist von der technischen Codeprüfung getrennt. Die folgenden Prüfungen kontrollieren die Datenstruktur der Fragensammlung, nicht die pädagogische Qualität jeder Formulierung.
 
 Am 3. November 2026 wurden die Quelldateien zusätzlich technisch geprüft:
 
@@ -520,7 +551,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 03.11.2026 | Visuelle Gestaltung auf ein helles, redaktionelles Layout umgestellt. |
 | 03.11.2026 | Hero-Abstand korrigiert, Fortschrittsanzeige zugänglicher gemacht und Dokumentation erweitert. |
 | 03.11.2026 | Fragebildschirm und Ergebnisansicht verfeinert; Level-Trefferbalken und ausführliche Fehlerwiederholung ergänzt. |
-| 03.11.2026 | Erste fachliche Prüfung der 30 Aufgaben anhand des Bildungsplans Deutsch Klassen 5/6; mehrdeutige Aufgabe korrigiert und schwere Aufgaben anspruchsvoller gestaltet. |
+| 03.11.2026 | Erste fachliche Prüfung der 30 Aufgaben anhand des Bildungsplans Deutsch Klassen 5/6; mehrdeutige Aufgabe korrigiert, Rechtschreib- und Leseschlussfolgerungsaufgaben verbessert und Kompetenzzuordnung dokumentiert. |
 
 ---
 
