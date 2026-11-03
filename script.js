@@ -335,7 +335,7 @@ function renderQuestion() {
   document.getElementById("question-number").textContent = "FRAGE " + String(number).padStart(2, "0");
   document.getElementById("question-category").textContent = question.category;
   document.getElementById("question-text").textContent = question.prompt;
-  document.getElementById("score-live").textContent = "✦ " + score + " Punkte";
+  document.getElementById("score-value").textContent = score + " Punkte";
 
   answerGrid.replaceChildren();
   question.choices.forEach((choice, index) => {
@@ -378,7 +378,7 @@ function selectAnswer(selectedIndex) {
     feedbackPanel.classList.add("feedback-good");
     document.getElementById("feedback-title").textContent = "Richtig! +1 Punkt";
   } else {
-    wrongAnswers.push(question);
+    wrongAnswers.push({ question, selectedIndex });
     feedbackPanel.classList.add("feedback-bad");
     document.getElementById("feedback-title").textContent =
       "Noch nicht ganz. Richtig ist: " + question.choices[question.answer];
@@ -386,7 +386,7 @@ function selectAnswer(selectedIndex) {
 
   document.getElementById("feedback-text").textContent = question.explanation;
   feedbackPanel.hidden = false;
-  document.getElementById("score-live").textContent = "✦ " + score + " Punkte";
+  document.getElementById("score-value").textContent = score + " Punkte";
   nextButton.disabled = false;
 }
 
@@ -424,13 +424,39 @@ function renderResults() {
   levelResults.replaceChildren();
   levelOrder.filter((level) => levelStats[level]).forEach((level) => {
     const stats = levelStats[level];
+    const levelPercent = Math.round((stats.correct / stats.total) * 100);
     const card = document.createElement("div");
     card.className = "level-result";
+
+    const header = document.createElement("div");
+    header.className = "level-result-head";
+
     const label = document.createElement("span");
     label.textContent = level;
+
     const value = document.createElement("strong");
     value.textContent = stats.correct + " / " + stats.total;
-    card.append(label, value);
+
+    const percent = document.createElement("span");
+    percent.className = "level-result-percent";
+    percent.textContent = levelPercent + " %";
+
+    header.append(label, value, percent);
+
+    const track = document.createElement("div");
+    track.className = "level-result-track";
+    track.setAttribute("role", "progressbar");
+    track.setAttribute("aria-label", level + ": " + stats.correct + " von " + stats.total + " richtig");
+    track.setAttribute("aria-valuemin", "0");
+    track.setAttribute("aria-valuemax", String(stats.total));
+    track.setAttribute("aria-valuenow", String(stats.correct));
+
+    const fill = document.createElement("span");
+    fill.className = "level-result-fill";
+    fill.style.width = levelPercent + "%";
+    track.appendChild(fill);
+
+    card.append(header, track);
     levelResults.appendChild(card);
   });
 
@@ -450,21 +476,44 @@ function renderResults() {
     recommendationText.textContent = "Jeder Versuch hilft dir beim Lernen. Starte mit dem leichten Level und achte besonders auf die Erklärungen nach jeder Antwort.";
   }
 
+  const weakestLevel = Object.entries(levelStats)
+    .filter(([, stats]) => stats.correct < stats.total)
+    .sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total))[0];
+
+  if (weakestLevel) {
+    recommendationText.textContent += " Dein nächster Übungsschwerpunkt: " + weakestLevel[0] + ".";
+  }
+
   const mistakesSection = document.getElementById("mistakes-section");
   const mistakesList = document.getElementById("mistakes-list");
   mistakesList.replaceChildren();
   mistakesSection.hidden = wrongAnswers.length === 0;
 
-  wrongAnswers.forEach((question) => {
-    const item = document.createElement("div");
+  wrongAnswers.forEach(({ question, selectedIndex }) => {
+    const item = document.createElement("article");
     item.className = "mistake-item";
-    const prompt = document.createElement("div");
+
+    const meta = document.createElement("div");
+    meta.className = "mistake-meta";
+    meta.textContent = question.level + " · " + question.category;
+
+    const prompt = document.createElement("h3");
     prompt.className = "mistake-question";
     prompt.textContent = question.prompt;
-    const answer = document.createElement("div");
+
+    const selected = document.createElement("p");
+    selected.className = "mistake-selected";
+    selected.textContent = "Deine Antwort: " + question.choices[selectedIndex];
+
+    const answer = document.createElement("p");
     answer.className = "mistake-answer";
     answer.textContent = "Richtige Antwort: " + question.choices[question.answer];
-    item.append(prompt, answer);
+
+    const explanation = document.createElement("p");
+    explanation.className = "mistake-explanation";
+    explanation.textContent = question.explanation;
+
+    item.append(meta, prompt, selected, answer, explanation);
     mistakesList.appendChild(item);
   });
 }
