@@ -329,6 +329,9 @@ function renderQuestion() {
   document.getElementById("progress-level").textContent = "LEVEL " + levelNumber + " · " + question.level.toUpperCase();
   document.getElementById("progress-percent").textContent = percent + " %";
   document.getElementById("progress-fill").style.width = percent + "%";
+  const progressBar = document.getElementById("quiz-progress");
+  progressBar.setAttribute("aria-valuemax", String(questionQueue.length));
+  progressBar.setAttribute("aria-valuenow", String(number));
   document.getElementById("question-number").textContent = "FRAGE " + String(number).padStart(2, "0");
   document.getElementById("question-category").textContent = question.category;
   document.getElementById("question-text").textContent = question.prompt;
