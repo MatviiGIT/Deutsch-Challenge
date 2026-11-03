@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f5f2e9">
   <meta name="description" content="Ein interaktives Deutsch-Quiz für die 5. Klasse.">
   <title>Deutsch-Challenge — Zeig, was du kannst</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <script src="script.js?v=3" defer></script>
 </head>
 <body>
@@ -87,7 +87,7 @@
           <span class="all-button-copy"><strong>Die ganze Challenge</strong><small>Alle drei Level spielen · 30 Fragen</small></span>
           <span class="all-button-arrow" aria-hidden="true">→</span>
         </button>
-        <p class="start-footnote">Dein Ergebnis bleibt auf diesem Gerät und wird nicht online gespeichert.</p>
+        <p class="start-footnote">Deine Antworten werden nicht gespeichert.</p>
       </section>
 
       <section class="screen quiz-screen" id="quiz-screen" hidden>
@@ -99,12 +99,12 @@
 
         <div class="progress-area">
           <div class="progress-labels"><span id="progress-level">LEVEL 01 · LEICHT</span><span id="progress-percent">3 %</span></div>
-          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="progress-track" id="quiz-progress" role="progressbar" aria-label="Fortschritt im Quiz" aria-valuemin="0" aria-valuemax="30" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
         </div>
 
         <div class="question-panel">
           <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
-          <h2 id="question-text">Welches Wort ist ein Nomen?</h2>
+          <h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2>
           <p class="question-instruction">Wähle eine richtige Antwort.</p>
           <div class="answer-grid" id="answer-grid"></div>
           <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
