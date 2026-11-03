@@ -100,8 +100,8 @@ Die aktuelle Fragensammlung enthält **30 Aufgaben: zehn pro Level**.
 | Kurze Erklärung der richtigen Lösung | Vorhanden |
 | Fortschrittsanzeige | Vorhanden |
 | Punkte und Prozentwert | Vorhanden |
-| Auswertung nach Level | Vorhanden |
-| Liste falsch beantworteter Fragen | Vorhanden |
+| Auswertung nach Level mit Trefferbalken und Prozentwert | Vorhanden |
+| Liste falsch beantworteter Fragen mit eigener Antwort, richtiger Lösung und Erklärung | Vorhanden |
 | Wiederholung eines Levels | Vorhanden |
 | Rückkehr zum Menü | Vorhanden |
 | Registrierung oder Login | Nicht erforderlich |
@@ -263,9 +263,24 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Der Fortschritt wird nach jeder Frage aktualisiert.
 - [ ] Die Punkte stimmen mit den richtigen Antworten überein.
 - [ ] Die Ergebnisansicht zeigt korrekte Zahlen und Prozentwerte.
-- [ ] Die Liste der falsch beantworteten Fragen ist korrekt.
+- [ ] Die Liste der falsch beantworteten Fragen zeigt die gewählte Antwort, die richtige Lösung und die Erklärung.
+- [ ] Die Auswertung zeigt pro gespieltem Level den richtigen Punktestand und einen Fortschrittsbalken.
 - [ ] „Noch einmal spielen“ startet das gewählte Level erneut.
 - [ ] „Zurück zum Menü“ führt zur Startseite.
+
+### Automatische Codeprüfung
+
+Am 3. November 2026 wurden die Quelldateien zusätzlich technisch geprüft:
+
+- JavaScript-Syntaxprüfung erfolgreich.
+- 30 Fragen gefunden, davon zehn pro Level.
+- Jede Frage hat genau drei Antwortmöglichkeiten.
+- Alle Antwortindizes liegen im gültigen Bereich von 0 bis 2.
+- Alle Fragen haben eine Aufgabenstellung und eine Erklärung.
+- Die von JavaScript verwendeten HTML-IDs sind vorhanden und nicht doppelt vergeben.
+- CSS- und JavaScript-Dateien sind in der HTML-Datei eingebunden.
+
+Diese Prüfungen kontrollieren den Quellcode. Sie ersetzen keinen vollständigen manuellen Test im Browser und auf echten Schulgeräten.
 
 ### Darstellungstest
 
@@ -391,6 +406,11 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [x] Überarbeitung in einem ruhigen, redaktionellen Gestaltungsstil
 - [x] Fortschrittsanzeige mit ARIA-Attributen
 - [x] Korrektur des Abstands zwischen „30“ und der Beschriftung im Titelbereich
+- [x] Fragebildschirm optisch und strukturell überarbeitet
+- [x] Punktestand im Fragebildschirm mit stabiler eigener Textanzeige
+- [x] Ergebnisansicht mit Trefferbalken für jedes gespielte Level
+- [x] Fortschrittswerte in der Ergebnisansicht mit ARIA-Attributen
+- [x] Falsch beantwortete Fragen zeigen gewählte Antwort, richtige Lösung und Erklärung
 
 **Noch offen**
 
@@ -453,6 +473,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 02.11.2026 | Erste Quiz-Version mit 30 Fragen, drei Levels, Rückmeldungen und Auswertung erstellt. |
 | 03.11.2026 | Visuelle Gestaltung auf ein helles, redaktionelles Layout umgestellt. |
 | 03.11.2026 | Hero-Abstand korrigiert, Fortschrittsanzeige zugänglicher gemacht und Dokumentation erweitert. |
+| 03.11.2026 | Fragebildschirm und Ergebnisansicht verfeinert; Level-Trefferbalken und ausführliche Fehlerwiederholung ergänzt. |
 
 ---
 
