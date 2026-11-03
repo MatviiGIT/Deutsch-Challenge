@@ -3,79 +3,96 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#f5f2e9">
   <meta name="description" content="Ein interaktives Deutsch-Quiz für die 5. Klasse.">
-  <title>Deutsch-Challenge</title>
-  <link rel="stylesheet" href="style.css?v=2">
-  <script src="script.js?v=2" defer></script>
+  <title>Deutsch-Challenge — Zeig, was du kannst</title>
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="script.js?v=3" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="#" id="brand-home" aria-label="Zur Startseite">
-        <span class="brand-mark">D</span>
-        <span>Deutsch<span class="brand-accent">Challenge</span></span>
+        <span class="brand-mark">d.</span>
+        <span class="brand-words">Deutsch<span class="brand-accent">Challenge</span></span>
       </a>
-      <span class="topbar-note">DEUTSCH · KLASSE 5</span>
+      <div class="topbar-meta">
+        <span class="topbar-note">EIN LERNQUIZ</span>
+        <span class="topbar-divider" aria-hidden="true"></span>
+        <span class="topbar-grade">FÜR KLASSE 5</span>
+      </div>
     </header>
 
     <main id="app">
       <section class="screen start-screen" id="start-screen">
-        <div class="hero-copy">
-          <span class="eyebrow"><span class="eyebrow-dot"></span> BEREIT FÜR DIE HERAUSFORDERUNG?</span>
-          <h1>Zeig, was du<br><span class="gradient-text">in Deutsch kannst.</span></h1>
-          <p class="hero-description">Übe Grammatik, Rechtschreibung und Textverständnis. Wähle dein Level und sammle Punkte!</p>
-        </div>
+        <section class="home-intro" aria-labelledby="home-title">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="eyebrow-line"></span> DEUTSCH ÜBEN. SICHERER WERDEN.</span>
+            <h1 id="home-title">Zeig, was du<br><em>kannst.</em></h1>
+            <p class="hero-description">Wörter verstehen, Sätze knacken und Regeln anwenden. Such dir ein Level aus und finde heraus, was du schon draufhast.</p>
+            <div class="hero-footnote"><span class="tiny-star">✳</span> Ohne Anmeldung · Direkt loslegen</div>
+          </div>
+
+          <aside class="hero-note" aria-label="Informationen zum Quiz">
+            <div class="hero-note-top"><span>DEUTSCH-CHALLENGE</span><span>NO. 01</span></div>
+            <div class="hero-number">30</div>
+            <div class="hero-note-label">FRAGEN ZUM KNOBELN</div>
+            <div class="hero-rule"></div>
+            <div class="hero-note-bottom">
+              <span>WISSEN</span><span>ANWENDEN</span><span>ANALYSIEREN</span>
+            </div>
+            <div class="hero-scribble" aria-hidden="true">ä ö ü ß</div>
+          </aside>
+        </section>
 
         <div class="quick-stats" aria-label="Quiz-Informationen">
-          <div class="quick-stat"><strong>30</strong><span>Fragen</span></div>
-          <div class="quick-stat"><strong>3</strong><span>Level</span></div>
-          <div class="quick-stat"><strong>5.</strong><span>Klasse</span></div>
+          <div class="quick-stat"><strong>03</strong><span>Schwierigkeitsstufen</span></div>
+          <div class="quick-stat"><strong>10</strong><span>Fragen pro Level</span></div>
+          <div class="quick-stat"><strong>0 €</strong><span>Kostenlos spielen</span></div>
         </div>
 
-        <div class="level-heading">
-          <div>
-            <span class="section-kicker">WÄHLE DEINEN MODUS</span>
-            <h2>Wo möchtest du starten?</h2>
+        <section class="level-section" aria-labelledby="level-title">
+          <div class="level-heading">
+            <div>
+              <span class="section-kicker">SUCH DIR DEIN LEVEL AUS</span>
+              <h2 id="level-title">Womit fangen wir an?</h2>
+            </div>
+            <span class="choose-hint">Jede Runde bringt dich weiter.</span>
           </div>
-          <span class="choose-hint">Du kannst jederzeit neu starten.</span>
-        </div>
 
-        <div class="level-grid">
-          <button class="level-card level-easy" data-mode="Leicht" type="button">
-            <span class="level-icon">01</span>
-            <span class="level-name">Leicht</span>
-            <span class="level-tag">WISSEN</span>
-            <span class="level-description">Grundlagen erkennen und verstehen.</span>
-            <span class="level-bottom"><span>10 Fragen</span><span class="level-arrow">↗</span></span>
-          </button>
-          <button class="level-card level-medium" data-mode="Mittel" type="button">
-            <span class="level-icon">02</span>
-            <span class="level-name">Mittel</span>
-            <span class="level-tag">ANWENDEN</span>
-            <span class="level-description">Regeln in Sätzen richtig anwenden.</span>
-            <span class="level-bottom"><span>10 Fragen</span><span class="level-arrow">↗</span></span>
-          </button>
-          <button class="level-card level-hard" data-mode="Schwer" type="button">
-            <span class="level-icon">03</span>
-            <span class="level-name">Schwer</span>
-            <span class="level-tag">ANALYSIEREN</span>
-            <span class="level-description">Texte untersuchen und Zusammenhänge erkennen.</span>
-            <span class="level-bottom"><span>10 Fragen</span><span class="level-arrow">↗</span></span>
-          </button>
-        </div>
+          <div class="level-grid">
+            <button class="level-card level-easy" data-mode="Leicht" type="button">
+              <span class="level-icon">01</span>
+              <span class="level-copy"><span class="level-name">Leicht</span><span class="level-tag">WISSEN</span></span>
+              <span class="level-description">Grundlagen erkennen und verstehen.</span>
+              <span class="level-bottom"><span>10 FRAGEN</span><span class="level-arrow" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="level-card level-medium" data-mode="Mittel" type="button">
+              <span class="level-icon">02</span>
+              <span class="level-copy"><span class="level-name">Mittel</span><span class="level-tag">ANWENDEN</span></span>
+              <span class="level-description">Regeln in Sätzen richtig anwenden.</span>
+              <span class="level-bottom"><span>10 FRAGEN</span><span class="level-arrow" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="level-card level-hard" data-mode="Schwer" type="button">
+              <span class="level-icon">03</span>
+              <span class="level-copy"><span class="level-name">Schwer</span><span class="level-tag">ANALYSIEREN</span></span>
+              <span class="level-description">Texte untersuchen und Zusammenhänge erkennen.</span>
+              <span class="level-bottom"><span>10 FRAGEN</span><span class="level-arrow" aria-hidden="true">↗</span></span>
+            </button>
+          </div>
+        </section>
 
         <button class="all-levels-button" data-mode="Alle" type="button">
-          <span class="all-button-icon">✦</span>
-          <span><strong>Alle Level spielen</strong><small>Die komplette Challenge mit 30 Fragen</small></span>
-          <span class="all-button-arrow">→</span>
+          <span class="all-button-icon" aria-hidden="true">＋</span>
+          <span class="all-button-copy"><strong>Die ganze Challenge</strong><small>Alle drei Level spielen · 30 Fragen</small></span>
+          <span class="all-button-arrow" aria-hidden="true">→</span>
         </button>
-        <p class="start-footnote">Keine Anmeldung nötig · Dein Ergebnis wird nicht gespeichert</p>
+        <p class="start-footnote">Dein Ergebnis bleibt auf diesem Gerät und wird nicht online gespeichert.</p>
       </section>
 
       <section class="screen quiz-screen" id="quiz-screen" hidden>
         <div class="quiz-toolbar">
-          <button class="text-button" id="back-to-menu" type="button">← Menü</button>
+          <button class="text-button" id="back-to-menu" type="button">← Zurück</button>
           <span class="quiz-mode-label" id="quiz-mode-label">ALLE LEVEL</span>
           <span class="question-counter" id="question-counter">1 / 30</span>
         </div>
@@ -95,16 +112,16 @@
             <p id="feedback-text"></p>
           </div>
           <div class="question-actions">
-            <span class="score-live" id="score-live">✦ 0 Punkte</span>
-            <button class="primary-button" id="next-button" type="button" disabled>Weiter <span>→</span></button>
+            <span class="score-live" id="score-live"><span aria-hidden="true">✳</span> 0 Punkte</span>
+            <button class="primary-button" id="next-button" type="button" disabled>Weiter <span aria-hidden="true">→</span></button>
           </div>
         </div>
-        <p class="quiz-footnote">Nimm dir Zeit. Lies jede Frage genau durch.</p>
+        <p class="quiz-footnote">Lies genau. Du schaffst das Schritt für Schritt.</p>
       </section>
 
       <section class="screen result-screen" id="result-screen" hidden>
         <div class="result-header">
-          <span class="eyebrow"><span class="eyebrow-dot"></span> CHALLENGE BEENDET</span>
+          <span class="eyebrow"><span class="eyebrow-line"></span> RUNDE ABGESCHLOSSEN</span>
           <div class="result-medal" id="result-medal">★</div>
           <h1 id="result-heading">Gut gemacht!</h1>
           <p id="result-subheading">Du hast die Challenge abgeschlossen.</p>
@@ -117,7 +134,7 @@
             <div class="result-progress-track"><div class="result-progress-fill" id="result-progress-fill"></div></div>
           </div>
           <div class="result-score-side"><span id="result-correct">0</span><small>Richtig</small></div>
-          <div class="result-score-side"><span id="result-wrong">0</span><small>Falsch</small></div>
+          <div class="result-score-side"><span id="result-wrong">0</span><small>Noch üben</small></div>
         </div>
 
         <div class="level-results" id="level-results"></div>
@@ -133,14 +150,14 @@
         </div>
 
         <div class="result-actions">
-          <button class="primary-button" id="retry-button" type="button">Noch einmal spielen <span>↻</span></button>
+          <button class="primary-button" id="retry-button" type="button">Noch einmal spielen <span aria-hidden="true">↻</span></button>
           <button class="secondary-button" id="result-menu-button" type="button">Zurück zum Menü</button>
         </div>
-        <p class="start-footnote">Dein Ergebnis wird nur auf diesem Gerät und nur während dieser Sitzung angezeigt.</p>
+        <p class="start-footnote">Dein Ergebnis wird nur während dieser Sitzung angezeigt.</p>
       </section>
     </main>
 
-    <footer class="site-footer"><span>DEUTSCH-CHALLENGE</span><span>LERNE · ÜBE · WERDE BESSER</span></footer>
+    <footer class="site-footer"><span>DEUTSCH-CHALLENGE <span class="footer-dot">/</span> ZEIG, WAS DU KANNST</span><span>ÜBEN HILFT. JEDER VERSUCH ZÄHLT.</span></footer>
   </div>
 </body>
 </html>
