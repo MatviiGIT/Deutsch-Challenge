@@ -319,7 +319,7 @@ function renderPath() {
     const topicUnits=units.filter(u=>u.topic.id===topic.id);
     const topicDone=topicUnits.filter(u=>completed.has(u.id)).reduce((n,u)=>n+u.questions.length,0);
     const topicTotal=topicUnits.reduce((n,u)=>n+u.questions.length,0);
-    const section=document.createElement("section"); section.className="topic-section";
+    const section=document.createElement("section"); section.className="topic-section"; section.dataset.topic=topic.id;
     const head=document.createElement("div"); head.className="topic-header";
     const icon=document.createElement("div"); icon.className="topic-icon"; icon.textContent=topic.icon;
     const copy=document.createElement("div"); copy.className="topic-copy";
@@ -352,6 +352,11 @@ function renderPath() {
   document.getElementById("next-meta").textContent=next
     ?levelLabels[next.level].short+" · "+next.questions.length+(next.questions.length===1?" FRAGE":" FRAGEN")
     :"30 / 30 ÜBUNGEN";
+  const nextButton=document.getElementById("next-unit-button");
+  nextButton.disabled=!next;
+  nextButton.innerHTML=next
+    ?'Weiterlernen <span aria-hidden="true">→</span>'
+    :'Kurs geschafft <span aria-hidden="true">✓</span>';
 }
 
 function prepare(items, unit=null) {
@@ -485,6 +490,7 @@ function renderResults() {
 }
 
 document.getElementById("free-practice-button").addEventListener("click",startFree);
+document.getElementById("next-unit-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
 document.getElementById("next-level-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
 nextButton.addEventListener("click",()=>{
   if(!answered)return;
