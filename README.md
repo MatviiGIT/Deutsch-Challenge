@@ -12,7 +12,7 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 | Hosting | GitHub Pages |
 | Repository | [MatviiGIT/Deutsch-Challenge](https://github.com/MatviiGIT/Deutsch-Challenge) |
 | Öffentliche Website | [matviigit.github.io/Deutsch-Challenge](https://matviigit.github.io/Deutsch-Challenge/) |
-| Dokumentationsstand | 3. November 2026 |
+| Dokumentationsstand | 4. November 2026 |
 
 ---
 
@@ -552,6 +552,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 03.11.2026 | Hero-Abstand korrigiert, Fortschrittsanzeige zugänglicher gemacht und Dokumentation erweitert. |
 | 03.11.2026 | Fragebildschirm und Ergebnisansicht verfeinert; Level-Trefferbalken und ausführliche Fehlerwiederholung ergänzt. |
 | 03.11.2026 | Erste fachliche Prüfung der 30 Aufgaben anhand des Bildungsplans Deutsch Klassen 5/6; mehrdeutige Aufgabe korrigiert, Rechtschreib- und Leseschlussfolgerungsaufgaben verbessert und Kompetenzzuordnung dokumentiert. |
+| 04.11.2026 | Technische Kontrollrunde: HTML-ID-Verweise und Fragenverteilung geprüft; einen versehentlich als Text ausgegebenen `\\n`-Ausdruck vor der Level-Auswertung in `index.html` korrigiert. |
 
 ---
 
