@@ -3,110 +3,113 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f2e9">
-  <meta name="description" content="Ein interaktives Deutsch-Quiz für die 5. Klasse.">
-  <title>Deutsch-Challenge — Zeig, was du kannst</title>
-  <link rel="stylesheet" href="style.css?v=7">
-  <script src="script.js?v=8" defer></script>
+  <meta name="theme-color" content="#f7f8f3">
+  <meta name="description" content="Ein spielerischer Lernpfad für Deutsch in der 5. Klasse.">
+  <title>Deutsch-Challenge — Dein Lernpfad</title>
+  <link rel="stylesheet" href="style.css?v=9">
+  <script src="script.js?v=9" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#" id="brand-home" aria-label="Zur Startseite">
-        <span class="brand-mark">d.</span>
-        <span class="brand-words">Deutsch<span class="brand-accent">Challenge</span></span>
+      <a class="brand" href="#" id="brand-home" aria-label="Zur Kursübersicht">
+        <span class="brand-mark" aria-hidden="true">ä!</span>
+        <span class="brand-words">Deutsch<span>Challenge</span></span>
       </a>
-      <div class="topbar-meta">
-        <span class="topbar-note">EIN LERNQUIZ</span>
-        <span class="topbar-divider" aria-hidden="true"></span>
-        <span class="topbar-grade">FÜR KLASSE 5</span>
+      <div class="topbar-right">
+        <span class="course-chip"><span class="chip-dot"></span> DEUTSCH · KLASSE 5</span>
+        <span class="topbar-progress" id="topbar-progress">0 / 30 <span>ÜBUNGEN</span></span>
       </div>
     </header>
 
     <main id="app">
       <section class="screen start-screen" id="start-screen">
-        <section class="home-intro" aria-labelledby="home-title">
-          <div class="hero-copy">
-            <span class="eyebrow"><span class="eyebrow-line"></span> DEUTSCH ÜBEN. SICHERER WERDEN.</span>
-            <h1 id="home-title">Zeig, was du<br><em>kannst.</em></h1>
-            <p class="hero-description">Wörter verstehen, Sätze knacken und Regeln anwenden. Such dir ein Level aus und finde heraus, was du schon draufhast.</p>
-            <div class="hero-footnote"><span class="tiny-star">✳</span> Ohne Anmeldung · Direkt loslegen</div>
-          </div>
-
-          <aside class="hero-note" aria-label="Informationen zum Quiz">
-            <div class="hero-note-top"><span>DEUTSCH-CHALLENGE</span><span>NO. 01</span></div>
-            <div class="hero-number">30</div>
-            <div class="hero-note-label">FRAGEN ZUM KNOBELN</div>
-            <div class="hero-rule"></div>
-            <div class="hero-note-bottom">
-              <span>WISSEN</span><span>ANWENDEN</span><span>ANALYSIEREN</span>
+        <section class="welcome-card" aria-labelledby="home-title">
+          <div class="welcome-copy">
+            <span class="eyebrow">DEIN DEUTSCHKURS</span>
+            <h1 id="home-title">Lernen. Üben.<br><em>Weiterkommen.</em></h1>
+            <p>Folge deinem Lernpfad durch sieben Themen. Jede Etappe bringt dich ein Stück weiter — mit kurzen Aufgaben und verständlichen Erklärungen.</p>
+            <div class="welcome-facts">
+              <span><strong>7</strong> Themen</span>
+              <span><strong>30</strong> Übungen</span>
+              <span><strong>3</strong> Schwierigkeitsstufen</span>
             </div>
-            <div class="hero-scribble" aria-hidden="true">ä ö ü ß</div>
-          </aside>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="art-sun"></div>
+            <div class="art-card art-card-back">WÖRTER</div>
+            <div class="art-card art-card-front"><span>ä</span><small>ABC</small></div>
+            <div class="art-spark spark-one">✳</div>
+            <div class="art-spark spark-two">✦</div>
+            <div class="art-caption">SCHRITT FÜR SCHRITT</div>
+          </div>
         </section>
 
-        <div class="quick-stats" aria-label="Quiz-Informationen">
-          <div class="quick-stat"><strong>03</strong><span>Schwierigkeitsstufen</span></div>
-          <div class="quick-stat"><strong>10</strong><span>Fragen pro Level</span></div>
-          <div class="quick-stat"><strong>0 €</strong><span>Kostenlos spielen</span></div>
+        <section class="course-progress-card" aria-label="Dein Lernfortschritt">
+          <div class="course-progress-copy">
+            <div>
+              <span class="section-kicker">DEIN FORTSCHRITT</span>
+              <h2 id="course-progress-title">Dein Kurs beginnt hier</h2>
+            </div>
+            <strong id="course-progress-count">0 / 30</strong>
+          </div>
+          <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0">
+            <span id="course-progress-fill"></span>
+          </div>
+          <p id="course-progress-note">Schließe deine erste Einheit ab, um den Weg freizuschalten.</p>
+        </section>
+
+        <div class="course-layout">
+          <section class="path-column" aria-labelledby="path-title">
+            <div class="path-heading">
+              <div>
+                <span class="section-kicker">DEINE LERNREISE</span>
+                <h2 id="path-title">Der Lernpfad</h2>
+                <p>Wähle den nächsten freien Kreis und starte deine Einheit.</p>
+              </div>
+              <span class="path-total">01 — 07</span>
+            </div>
+            <div class="learning-path" id="learning-path" aria-label="Themen und freigeschaltete Einheiten"></div>
+          </section>
+
+          <aside class="course-sidebar">
+            <div class="sidebar-card next-card">
+              <span class="sidebar-label">ALS NÄCHSTES</span>
+              <div class="next-icon" id="next-icon">Aa</div>
+              <h3 id="next-title">Wortarten entdecken</h3>
+              <p id="next-description">Lerne, Wörter zu erkennen und zu unterscheiden.</p>
+              <span class="next-meta" id="next-meta">GRUNDLAGEN · 3 FRAGEN</span>
+            </div>
+            <div class="sidebar-card guide-card">
+              <span class="sidebar-label">SO FUNKTIONIERT'S</span>
+              <div class="guide-row"><span class="guide-symbol guide-open">●</span><span><strong>Offen</strong><small>Diese Einheit kannst du starten.</small></span></div>
+              <div class="guide-row"><span class="guide-symbol guide-done">✓</span><span><strong>Geschafft</strong><small>Du kannst sie jederzeit wiederholen.</small></span></div>
+              <div class="guide-row"><span class="guide-symbol guide-locked">⌑</span><span><strong>Gesperrt</strong><small>Wird nach der vorherigen Einheit geöffnet.</small></span></div>
+            </div>
+            <div class="sidebar-note">
+              <span aria-hidden="true">✦</span>
+              <p>Fehler gehören zum Lernen. Lies die Erklärung und probiere es weiter.</p>
+            </div>
+          </aside>
         </div>
 
-        <section class="level-section" aria-labelledby="level-title">
-          <div class="level-heading">
-            <div>
-              <span class="section-kicker">SUCH DIR DEIN LEVEL AUS</span>
-              <h2 id="level-title">Womit fangen wir an?</h2>
-            </div>
-            <span class="choose-hint">Jede Runde bringt dich weiter.</span>
-          </div>
-
-          <div class="level-grid">
-            <button class="level-card level-easy" data-mode="Leicht" type="button">
-              <span class="level-icon">01</span>
-              <span class="level-copy"><span class="level-name">Leicht</span><span class="level-tag">WISSEN</span></span>
-              <span class="level-description">Grundlagen erkennen und verstehen.</span>
-              <span class="level-bottom"><span>10 FRAGEN</span><span class="level-arrow" aria-hidden="true">↗</span></span>
-            </button>
-            <button class="level-card level-medium" data-mode="Mittel" type="button">
-              <span class="level-icon">02</span>
-              <span class="level-copy"><span class="level-name">Mittel</span><span class="level-tag">ANWENDEN</span></span>
-              <span class="level-description">Regeln in Sätzen richtig anwenden.</span>
-              <span class="level-bottom"><span>10 FRAGEN</span><span class="level-arrow" aria-hidden="true">↗</span></span>
-            </button>
-            <button class="level-card level-hard" data-mode="Schwer" type="button">
-              <span class="level-icon">03</span>
-              <span class="level-copy"><span class="level-name">Schwer</span><span class="level-tag">ANALYSIEREN</span></span>
-              <span class="level-description">Texte untersuchen und Zusammenhänge erkennen.</span>
-              <span class="level-bottom"><span>10 FRAGEN</span><span class="level-arrow" aria-hidden="true">↗</span></span>
-            </button>
-          </div>
-        </section>
-
-        <button class="all-levels-button" data-mode="Alle" type="button">
-          <span class="all-button-icon" aria-hidden="true">＋</span>
-          <span class="all-button-copy"><strong>Die ganze Challenge</strong><small>Alle drei Level spielen · 30 Fragen</small></span>
-          <span class="all-button-arrow" aria-hidden="true">→</span>
-        </button>
-        <button class="path-start-button" id="path-start-button" type="button">
-          <span class="path-start-mark" aria-hidden="true">01–03</span>
-          <span class="path-start-copy"><strong>Den Lernpfad starten</strong><small>Spiele alle drei Level nacheinander · 30 Fragen</small></span>
-          <span class="path-start-arrow" aria-hidden="true">→</span>
-        </button>
-        <p class="start-footnote">Deine Antworten werden nicht gespeichert.</p>
+        <div class="free-practice">
+          <div><strong>Lieber frei üben?</strong><span>Alle 30 Fragen gemischt — ohne Reihenfolge.</span></div>
+          <button class="text-button" id="free-practice-button" type="button">Freies Training starten <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="start-footnote">Dein Lernfortschritt bleibt in dieser Sitzung. Ohne Anmeldung und ohne persönliche Daten.</p>
       </section>
 
       <section class="screen quiz-screen" id="quiz-screen" hidden>
         <div class="quiz-toolbar">
-          <button class="text-button" id="back-to-menu" type="button">← Zurück</button>
-          <span class="quiz-mode-label" id="quiz-mode-label">ALLE LEVEL</span>
-          <span class="question-counter" id="question-counter">1 / 30</span>
+          <button class="text-button" id="back-to-menu" type="button">← Lernpfad</button>
+          <div class="quiz-topic" id="quiz-topic">WORTARTEN</div>
+          <span class="question-counter" id="question-counter">1 / 3</span>
         </div>
-
         <div class="progress-area">
-          <div class="progress-labels"><span id="progress-level">LEVEL 01 · LEICHT</span><span id="progress-percent">3 %</span></div>
-          <div class="progress-track" id="quiz-progress" role="progressbar" aria-label="Fortschritt im Quiz" aria-valuemin="0" aria-valuemax="30" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="progress-labels"><span id="progress-level">GRUNDLAGEN · WORTARTEN</span><span id="progress-percent">33 %</span></div>
+          <div class="progress-track" id="quiz-progress" role="progressbar" aria-label="Fortschritt in dieser Einheit" aria-valuemin="0" aria-valuemax="3" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
         </div>
-
         <div class="question-panel">
           <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
           <h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2>
@@ -117,54 +120,50 @@
             <p id="feedback-text"></p>
           </div>
           <div class="question-actions">
-            <span class="score-live" id="score-live"><span aria-hidden="true">✳</span><span id="score-value">0 Punkte</span></span>
+            <span class="score-live"><span aria-hidden="true">✦</span><span id="score-value">0 Punkte</span></span>
             <button class="primary-button" id="next-button" type="button" disabled>Weiter <span aria-hidden="true">→</span></button>
           </div>
         </div>
-        <p class="quiz-footnote">Lies genau. Du schaffst das Schritt für Schritt.</p>
+        <p class="quiz-footnote">Eine Frage nach der anderen. Du schaffst das.</p>
       </section>
 
       <section class="screen result-screen" id="result-screen" hidden>
         <div class="result-header">
-          <span class="eyebrow"><span class="eyebrow-line"></span> RUNDE ABGESCHLOSSEN</span>
-          <div class="result-medal" id="result-medal">★</div>
+          <span class="eyebrow"><span class="eyebrow-line"></span> EINHEIT ABGESCHLOSSEN</span>
+          <div class="result-medal" id="result-medal">✦</div>
           <h1 id="result-heading">Gut gemacht!</h1>
-          <p id="result-subheading">Du hast die Challenge abgeschlossen.</p>
+          <p id="result-subheading">Du hast diese Einheit abgeschlossen.</p>
         </div>
-
         <div class="result-score-card">
           <div class="result-score-main">
             <span class="section-kicker">DEIN ERGEBNIS</span>
-            <div class="score-line"><strong id="score-fraction">0/10</strong><span id="score-percent">0 %</span></div>
-            <div class="result-progress-track" id="result-progress-track" role="progressbar" aria-label="Richtige Antworten" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div class="result-progress-fill" id="result-progress-fill"></div></div>
+            <div class="score-line"><strong id="score-fraction">0/3</strong><span id="score-percent">0 %</span></div>
+            <div class="result-progress-track" id="result-progress-track" role="progressbar" aria-label="Richtige Antworten" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><div class="result-progress-fill" id="result-progress-fill"></div></div>
           </div>
           <div class="result-score-side"><span id="result-correct">0</span><small>Richtig</small></div>
           <div class="result-score-side"><span id="result-wrong">0</span><small>Noch üben</small></div>
         </div>
-
-        <div class="level-results-heading"><span class="section-kicker">DEINE ERGEBNISSE</span><h2>So lief es pro Level</h2></div>
+        <div class="level-results-heading"><span class="section-kicker">DEINE ERGEBNISSE</span><h2>So lief es in dieser Einheit</h2></div>
         <div class="level-results" id="level-results"></div>
         <div class="recommendation-card">
           <span class="section-kicker">DEIN NÄCHSTER SCHRITT</span>
           <h2 id="recommendation-title">Weiter so!</h2>
           <p id="recommendation-text"></p>
         </div>
-
         <div class="mistakes-section" id="mistakes-section" hidden>
           <h2>Fragen zum Wiederholen</h2>
           <div id="mistakes-list"></div>
         </div>
-
         <div class="result-actions">
-          <button class="primary-button" id="next-level-button" type="button" hidden>Nächstes Level starten <span aria-hidden="true">→</span></button>
-          <button class="primary-button" id="retry-button" type="button">Noch einmal spielen <span aria-hidden="true">↻</span></button>
-          <button class="secondary-button" id="result-menu-button" type="button">Zurück zum Menü</button>
+          <button class="primary-button" id="next-level-button" type="button" hidden>Nächste Einheit starten <span aria-hidden="true">→</span></button>
+          <button class="secondary-button" id="retry-button" type="button">Einheit wiederholen <span aria-hidden="true">↻</span></button>
+          <button class="secondary-button" id="result-menu-button" type="button">Zurück zum Lernpfad</button>
         </div>
-        <p class="start-footnote">Dein Ergebnis wird nur während dieser Sitzung angezeigt.</p>
+        <p class="start-footnote">Du kannst abgeschlossene Einheiten jederzeit wiederholen.</p>
       </section>
     </main>
 
-    <footer class="site-footer"><span>DEUTSCH-CHALLENGE <span class="footer-dot">/</span> ZEIG, WAS DU KANNST</span><span>ÜBEN HILFT. JEDER VERSUCH ZÄHLT.</span></footer>
+    <footer class="site-footer"><span>DEUTSCH-CHALLENGE <span class="footer-dot">/</span> ZEIG, WAS DU KANNST</span><span>JEDER SCHRITT ZÄHLT.</span></footer>
   </div>
 </body>
 </html>
