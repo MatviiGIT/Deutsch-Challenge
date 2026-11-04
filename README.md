@@ -191,6 +191,9 @@ Die Gestaltung soll wie ein eigenständiges Lernprodukt wirken und nicht wie ein
 - heller, freundlicher Hintergrund;
 - kräftiges Grün als Hauptfarbe, helles Mint für Themenflächen, Gelb für abgeschlossene Lernknoten und Terrakotta für kleine Akzente;
 - abgerundete Themenkarten und klar erkennbare Lernknoten;
+- eine eigene, CSS-gezeichnete kleine Eulenfigur als ruhiger Lernbegleiter;
+- dezente Farbcodierung der sieben Themen und eine direkte Schaltfläche zum nächsten offenen Lernschritt;
+- zurückhaltende Hover- und Fokuszustände statt dauernder Animationen;
 - deutliche Fortschrittsanzeige und große, gut erreichbare Schaltflächen;
 - eine vertikale Kursübersicht, die an bekannte Lernpfad-Apps erinnert, aber eine eigene Gestaltung besitzt;
 - sichtbare Rückmeldung bei richtigen und falschen Antworten;
@@ -564,6 +567,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 04.11.2026 | Erste Version mit geführtem Lernpfad ergänzt. |
 | 04.11.2026 | Oberfläche und Navigation neu aufgebaut: sieben Themenwelten, 15 thematische Lektionen, schrittweise Freischaltung, sitzungsbasierter Fortschritt und wiederholbare Lektionen. |
 | 04.11.2026 | Visuelles Redesign mit spielerischer Kursübersicht, Lernknoten, deutlicher Fortschrittsanzeige und angepasster Quiz- und Ergebnisansicht umgesetzt. |
+| 04.11.2026 | Moderates Duolingo-inspiriertes Feintuning: eigener CSS-Maskottchen-Entwurf, dezente Themenfarben, verbesserte Karten-Rückmeldung und direkter „Weiterlernen“-Einstieg zur nächsten offenen Einheit. |
 
 ---
 
