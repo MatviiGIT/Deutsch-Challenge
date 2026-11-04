@@ -146,6 +146,10 @@ Diese Prüfung ist eine interne fachliche Überarbeitung anhand des Bildungsplan
 5. Das Kind geht zur nächsten Frage.
 6. Am Ende sieht es Punkte, Prozentwert, Ergebnisse nach Level und eine Liste der falsch beantworteten Fragen.
 
+### Lernpfad
+
+Zusätzlich zur freien Level-Auswahl gibt es einen geführten Lernpfad. Er führt in dieser Reihenfolge durch Leicht → Mittel → Schwer. Nach jeder Etappe erscheint die Auswertung; von dort kann direkt die nächste Etappe gestartet oder die aktuelle wiederholt werden. Fehler beenden den Lernpfad nicht und ziehen keine Leben ab. Der Lernfortschritt gilt nur während der aktuellen Browser-Sitzung und wird nicht dauerhaft gespeichert.
+
 Die Fragen werden innerhalb des ausgewählten Levels zufällig sortiert. Bei „Alle Level“ bleibt die Reihenfolge der Level Leicht → Mittel → Schwer erhalten; die Fragen innerhalb jedes Levels werden gemischt.
 
 ## 5. Aktueller Funktionsumfang
@@ -164,6 +168,10 @@ Die aktuelle Fragensammlung enthält **30 Aufgaben: zehn pro Level**.
 | Auswertung nach Level mit Trefferbalken und Prozentwert | Vorhanden |
 | Liste falsch beantworteter Fragen mit eigener Antwort, richtiger Lösung und Erklärung | Vorhanden |
 | Wiederholung eines Levels | Vorhanden |
+| Geführter Lernpfad (Leicht → Mittel → Schwer) | Vorhanden |
+| Direkter Übergang zur nächsten Etappe nach der Auswertung | Vorhanden |
+| Zeit-Challenge | Noch nicht implementiert |
+| Leben / Strafversuche | Bewusst nicht im Lernmodus vorgesehen |
 | Rückkehr zum Menü | Vorhanden |
 | Registrierung oder Login | Nicht erforderlich |
 | Speicherung eines persönlichen Ergebnisses | Nicht implementiert |
@@ -324,6 +332,11 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Der Fortschritt wird nach jeder Frage aktualisiert.
 - [ ] Die Punkte stimmen mit den richtigen Antworten überein.
 - [ ] Die Ergebnisansicht zeigt korrekte Zahlen und Prozentwerte.
+- [ ] Der Lernpfad startet mit „Leicht“ und führt anschließend zu „Mittel“ und „Schwer“.
+- [ ] Nach „Leicht“ und „Mittel“ wird die passende nächste Etappe angeboten.
+- [ ] Nach „Schwer“ erscheint der Abschluss des Lernpfads und keine weitere Etappe.
+- [ ] Eine falsche Antwort verhindert den Übergang zur nächsten Etappe nicht.
+- [ ] „Etappe wiederholen“ startet das aktuelle Level erneut.
 - [ ] Die Liste der falsch beantworteten Fragen zeigt die gewählte Antwort, die richtige Lösung und die Erklärung.
 - [ ] Die Auswertung zeigt pro gespieltem Level den richtigen Punktestand und einen Fortschrittsbalken.
 - [ ] „Noch einmal spielen“ startet das gewählte Level erneut.
@@ -485,6 +498,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [x] Ergebnisansicht mit Trefferbalken für jedes gespielte Level
 - [x] Fortschrittswerte in der Ergebnisansicht mit ARIA-Attributen
 - [x] Falsch beantwortete Fragen zeigen gewählte Antwort, richtige Lösung und Erklärung
+- [x] Geführter Lernpfad mit drei aufeinanderfolgenden Etappen und direktem Übergang zur nächsten Stufe
 - [x] Erste inhaltliche Prüfung der 30 Fragen anhand des Bildungsplans Deutsch Klassen 5/6 durchgeführt
 - [x] Mehrdeutige Steigerungsfrage überarbeitet
 - [x] Schwierige Aufgaben stärker auf Satzanalyse und Textschlussfolgerungen ausgerichtet
