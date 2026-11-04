@@ -260,6 +260,7 @@ const levelOrder = ["Leicht", "Mittel", "Schwer"];
 const letters = ["A", "B", "C"];
 
 let currentMode = "Alle";
+let pathMode = false;
 let questionQueue = [];
 let currentIndex = 0;
 let score = 0;
@@ -293,8 +294,9 @@ function showMenu() {
   showScreen("start");
 }
 
-function startQuiz(mode) {
+function startQuiz(mode, usePath = false) {
   currentMode = mode;
+  pathMode = usePath;
   currentIndex = 0;
   score = 0;
   answered = false;
@@ -310,8 +312,9 @@ function startQuiz(mode) {
     levelStats[level] = { correct: 0, total: questions.filter((question) => question.level === level).length };
   });
 
-  document.getElementById("quiz-mode-label").textContent =
-    mode === "Alle" ? "ALLE LEVEL" : mode.toUpperCase() + " LEVEL";
+  document.getElementById("quiz-mode-label").textContent = pathMode
+    ? "LERNPFAD"
+    : mode === "Alle" ? "ALLE LEVEL" : mode.toUpperCase() + " LEVEL";
 
   showScreen("quiz");
   renderQuestion();
@@ -326,7 +329,9 @@ function renderQuestion() {
   const levelNumber = String(levelOrder.indexOf(question.level) + 1).padStart(2, "0");
 
   document.getElementById("question-counter").textContent = number + " / " + questionQueue.length;
-  document.getElementById("progress-level").textContent = "LEVEL " + levelNumber + " · " + question.level.toUpperCase();
+  document.getElementById("progress-level").textContent = pathMode
+    ? "ETAPPE " + levelNumber + " VON 3 · " + question.level.toUpperCase()
+    : "LEVEL " + levelNumber + " · " + question.level.toUpperCase();
   document.getElementById("progress-percent").textContent = percent + " %";
   document.getElementById("progress-fill").style.width = percent + "%";
   const progressBar = document.getElementById("quiz-progress");
@@ -405,6 +410,9 @@ function renderResults() {
   document.getElementById("result-subheading").textContent =
     "Du hast " + score + " von " + total + " Fragen richtig beantwortet.";
 
+  document.querySelector(".result-header .eyebrow").textContent =
+    pathMode ? "ETAPPE ABGESCHLOSSEN" : "RUNDE ABGESCHLOSSEN";
+
   let heading = "Guter Anfang!";
   let medal = "✦";
   if (percentage >= 90) {
@@ -417,8 +425,16 @@ function renderResults() {
     heading = "Weiter so!";
     medal = "◆";
   }
+  if (pathMode && currentMode === "Schwer") {
+    heading = "Lernpfad geschafft!";
+  }
   document.getElementById("result-heading").textContent = heading;
   document.getElementById("result-medal").textContent = medal;
+
+  if (pathMode && currentMode === "Schwer") {
+    document.getElementById("result-subheading").textContent =
+      "Du hast alle drei Etappen des Lernpfads abgeschlossen.";
+  }
 
   const levelResults = document.getElementById("level-results");
   levelResults.replaceChildren();
@@ -516,10 +532,31 @@ function renderResults() {
     item.append(meta, prompt, selected, answer, explanation);
     mistakesList.appendChild(item);
   });
+
+  const nextLevelButton = document.getElementById("next-level-button");
+  const nextLevel = levelOrder[levelOrder.indexOf(currentMode) + 1];
+  nextLevelButton.hidden = !pathMode || !nextLevel;
+  if (nextLevel) {
+    nextLevelButton.innerHTML = nextLevel + " starten <span aria-hidden=\"true\">→</span>";
+  }
+
+  document.getElementById("retry-button").innerHTML = pathMode
+    ? 'Etappe wiederholen <span aria-hidden="true">↻</span>'
+    : 'Noch einmal spielen <span aria-hidden="true">↻</span>';
+
 }
 
 document.querySelectorAll("[data-mode]").forEach((button) => {
   button.addEventListener("click", () => startQuiz(button.dataset.mode));
+});
+
+document.getElementById("path-start-button").addEventListener("click", () => {
+  startQuiz("Leicht", true);
+});
+
+document.getElementById("next-level-button").addEventListener("click", () => {
+  const nextLevel = levelOrder[levelOrder.indexOf(currentMode) + 1];
+  if (pathMode && nextLevel) startQuiz(nextLevel, true);
 });
 
 nextButton.addEventListener("click", () => {
@@ -534,7 +571,7 @@ nextButton.addEventListener("click", () => {
 
 document.getElementById("back-to-menu").addEventListener("click", showMenu);
 document.getElementById("result-menu-button").addEventListener("click", showMenu);
-document.getElementById("retry-button").addEventListener("click", () => startQuiz(currentMode));
+document.getElementById("retry-button").addEventListener("click", () => startQuiz(currentMode, pathMode));
 document.getElementById("brand-home").addEventListener("click", (event) => {
   event.preventDefault();
   showMenu();
