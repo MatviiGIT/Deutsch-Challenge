@@ -159,7 +159,7 @@ Der Fortschritt wird nur im Arbeitsspeicher der aktuellen Browser-Sitzung gehalt
 
 ## 5. Aktueller Funktionsumfang
 
-Die Fragensammlung enthält **30 Aufgaben: zehn pro Schwierigkeitsstufe**. Für die Lernkarte sind sie nach sieben Themen geordnet und in **15 kurze Lektionen** aufgeteilt.
+Die Fragensammlung enthält **30 Aufgaben: zehn pro Schwierigkeitsstufe**. Für die Lernkarte sind sie nach sieben Themen geordnet und in **15 kurze Lektionen** aufgeteilt: Wortarten, Wortschatz, Rechtschreibung, Satzzeichen, Grammatik, Satzbau sowie Lesen & Verstehen. Nicht jedes Thema enthält Aufgaben auf allen drei Stufen; angezeigt werden nur die tatsächlich vorhandenen Lektionen.
 
 | Funktion | Aktueller Stand |
 |---|---|
@@ -189,7 +189,7 @@ Die Gestaltung soll wie ein eigenständiges Lernprodukt wirken und nicht wie ein
 ### Gestaltungsprinzipien
 
 - heller, freundlicher Hintergrund;
-- sattes Grün als Hauptfarbe mit hellgrünen, gelben, blauen und violetten Akzenten für Lernstufen;
+- kräftiges Grün als Hauptfarbe, helles Mint für Themenflächen, Gelb für abgeschlossene Lernknoten und Terrakotta für kleine Akzente;
 - abgerundete Themenkarten und klar erkennbare Lernknoten;
 - deutliche Fortschrittsanzeige und große, gut erreichbare Schaltflächen;
 - eine vertikale Kursübersicht, die an bekannte Lernpfad-Apps erinnert, aber eine eigene Gestaltung besitzt;
@@ -341,6 +341,22 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Ein Neuladen setzt den nur sitzungsbasierten Fortschritt zurück.
 - [ ] Die Rückkehr zur Themenkarte funktioniert aus Quiz und Ergebnisansicht.
 
+### Automatische Code- und Datenprüfung (04.11.2026)
+
+Die aktualisierte Daten- und Verknüpfungsprüfung ergab:
+
+- JavaScript-Syntax: bestanden.
+- 30 Fragen insgesamt; genau zehn pro Schwierigkeitsstufe.
+- Sieben Themenwelten und 15 thematische Lektionen.
+- Alle 30 Fragen sind genau einer Themenwelt zugeordnet.
+- Jede Frage hat genau drei Antwortmöglichkeiten.
+- Alle Antwortindizes liegen zwischen 0 und 2.
+- Alle Fragen enthalten eine Aufgabenstellung und eine Erklärung.
+- 52 HTML-IDs, keine doppelten IDs.
+- Alle 57 direkten JavaScript-Verweise auf HTML-IDs wurden auf vorhandene Elemente geprüft.
+
+Diese Prüfung ist eine statische Code- und Datenkontrolle. Sie ersetzt keinen vollständigen Funktionstest im echten Browser oder die Darstellungskontrolle auf verschiedenen Geräten.
+
 ### Inhaltlicher Qualitätstest
 
 - [ ] Alle 30 Fragen sind sprachlich klar und altersgerecht.
@@ -478,7 +494,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 
 **Noch offen**
 
-- [ ] Automatische Code- und Datenprüfung nach der Neustrukturierung
+- [x] Automatische Code- und Datenprüfung nach der Neustrukturierung (Syntax, Fragenanzahl, Schwierigkeitsverteilung, Themenzuordnung, Antwortoptionen, Antwortindizes und HTML-ID-Verweise)
 - [ ] Visuelle Prüfung der veröffentlichten Version auf Desktop, Tablet und Smartphone
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
 - [ ] Vollständiger manueller Funktionstest
@@ -547,6 +563,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 04.11.2026 | Technische Kontrollrunde: HTML-ID-Verweise und Fragenverteilung geprüft; einen versehentlich als Text ausgegebenen `\n`-Ausdruck vor der Level-Auswertung in `index.html` korrigiert. |
 | 04.11.2026 | Erste Version mit geführtem Lernpfad ergänzt. |
 | 04.11.2026 | Oberfläche und Navigation neu aufgebaut: sieben Themenwelten, 15 thematische Lektionen, schrittweise Freischaltung, sitzungsbasierter Fortschritt und wiederholbare Lektionen. |
+| 04.11.2026 | Visuelles Redesign mit spielerischer Kursübersicht, Lernknoten, deutlicher Fortschrittsanzeige und angepasster Quiz- und Ergebnisansicht umgesetzt. |
 
 ---
 
