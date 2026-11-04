@@ -361,13 +361,19 @@ function prepare(items, unit=null) {
   document.getElementById("quiz-topic").textContent=unit?unit.topic.title.toUpperCase():"FREIES TRAINING";
   screen("quiz"); renderQuestion();
 }
+function shuffle(items) {
+  const copy=[...items];
+  for(let i=copy.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [copy[i],copy[j]]=[copy[j],copy[i]];
+  }
+  return copy;
+}
 function startUnit(unit) {
-  prepare([...unit.questions].sort(()=>Math.random()-.5),unit);
+  prepare(shuffle(unit.questions),unit);
 }
 function startFree() {
-  const all=["Leicht","Mittel","Schwer"].flatMap(level=>
-    questions.filter(q=>q.level===level).sort(()=>Math.random()-.5));
-  prepare(all,null);
+  prepare(shuffle(questions),null);
 }
 
 function renderQuestion() {
