@@ -137,48 +137,49 @@ Bei der Überarbeitung wurden insbesondere diese Punkte berücksichtigt:
 
 Diese Prüfung ist eine interne fachliche Überarbeitung anhand des Bildungsplans. Sie ersetzt **nicht** die abschließende Prüfung der Fragen durch eine Deutschlehrkraft.
 
-### Lernablauf
+### Themenkarte und Lernablauf
 
-1. Das Kind wählt ein Level oder die gesamte Challenge.
-2. Die Website zeigt eine Frage mit drei Antwortmöglichkeiten.
-3. Das Kind wählt eine Antwort.
-4. Die richtige Lösung wird markiert und kurz erklärt.
-5. Das Kind geht zur nächsten Frage.
-6. Am Ende sieht es Punkte, Prozentwert, Ergebnisse nach Level und eine Liste der falsch beantworteten Fragen.
+Die Startseite zeigt eine **Themenkarte mit sieben Themenwelten**. Jede Themenwelt enthält kurze Lektionen, die zu den vorhandenen Aufgaben passen:
 
-### Lernpfad
+1. Wortarten
+2. Artikel & Grammatik
+3. Wortschatz & Adjektive
+4. Rechtschreibung
+5. Satzzeichen
+6. Satzbau & Satzglieder
+7. Lesen & Verstehen
 
-Zusätzlich zur freien Level-Auswahl gibt es einen geführten Lernpfad. Er führt in dieser Reihenfolge durch Leicht → Mittel → Schwer. Nach jeder Etappe erscheint die Auswertung; von dort kann direkt die nächste Etappe gestartet oder die aktuelle wiederholt werden. Fehler beenden den Lernpfad nicht und ziehen keine Leben ab. Der Lernfortschritt gilt nur während der aktuellen Browser-Sitzung und wird nicht dauerhaft gespeichert.
+Innerhalb eines Themas werden nur die Schwierigkeitsstufen angezeigt, für die es tatsächlich Aufgaben gibt. Die Lernschritte heißen **Grundlagen (Leicht)**, **Anwenden (Mittel)** und **Knobeln (Schwer)**. Ein Schritt besteht aus den Fragen des jeweiligen Themas und Levels.
 
-Die Fragen werden innerhalb des ausgewählten Levels zufällig sortiert. Bei „Alle Level“ bleibt die Reihenfolge der Level Leicht → Mittel → Schwer erhalten; die Fragen innerhalb jedes Levels werden gemischt.
+Die Reihenfolge führt durch den gesamten Kurs. Zunächst ist der erste Lernschritt geöffnet. Nach Abschluss einer Lektion wird der nächste Schritt freigeschaltet. Bereits abgeschlossene Lektionen können erneut gespielt werden. Falsche Antworten kosten keine Leben und blockieren den Lernweg nicht.
+
+Nach jeder Antwort erscheinen die richtige Lösung und eine Erklärung. Am Ende einer Lektion sieht das Kind die Punktzahl und kann falsch beantwortete Fragen mit der eigenen Antwort, der richtigen Lösung und der Erklärung wiederholen.
+
+Der Fortschritt wird nur im Arbeitsspeicher der aktuellen Browser-Sitzung gehalten. Ein Neuladen oder Schließen der Seite setzt die Themenkarte zurück. Es gibt keine Konten, Ranglisten oder dauerhafte Speicherung.
 
 ## 5. Aktueller Funktionsumfang
 
-Die aktuelle Fragensammlung enthält **30 Aufgaben: zehn pro Level**.
+Die Fragensammlung enthält **30 Aufgaben: zehn pro Schwierigkeitsstufe**. Für die Lernkarte sind sie nach sieben Themen geordnet und in **15 kurze Lektionen** aufgeteilt.
 
 | Funktion | Aktueller Stand |
 |---|---|
-| Auswahl eines Levels | Vorhanden |
-| Gesamte Challenge mit 30 Fragen | Vorhanden |
-| Drei Antwortmöglichkeiten pro Frage | Vorhanden |
-| Rückmeldung nach der Antwort | Vorhanden |
-| Kurze Erklärung der richtigen Lösung | Vorhanden |
-| Fortschrittsanzeige | Vorhanden |
-| Punkte und Prozentwert | Vorhanden |
-| Auswertung nach Level mit Trefferbalken und Prozentwert | Vorhanden |
-| Liste falsch beantworteter Fragen mit eigener Antwort, richtiger Lösung und Erklärung | Vorhanden |
-| Wiederholung eines Levels | Vorhanden |
-| Geführter Lernpfad (Leicht → Mittel → Schwer) | Vorhanden |
-| Direkter Übergang zur nächsten Etappe nach der Auswertung | Vorhanden |
-| Zeit-Challenge | Noch nicht implementiert |
-| Leben / Strafversuche | Bewusst nicht im Lernmodus vorgesehen |
-| Rückkehr zum Menü | Vorhanden |
-| Registrierung oder Login | Nicht erforderlich |
-| Speicherung eines persönlichen Ergebnisses | Nicht implementiert |
-| Lehrer-Dashboard oder Klassenstatistik | Noch nicht implementiert |
-| Datenbank oder Benutzerkonten | Nicht vorhanden |
+| Themenkarte mit sieben Themenwelten | Vorhanden |
+| 15 thematische Lernschritte nach Schwierigkeit | Vorhanden |
+| Schrittweise Freischaltung der nächsten Lektion | Vorhanden |
+| Wiederholung bereits abgeschlossener Lektionen | Vorhanden |
+| 30 Fragen mit drei Antwortmöglichkeiten | Vorhanden |
+| Zufällige Reihenfolge innerhalb einer Lektion | Vorhanden |
+| Rückmeldung und Erklärung nach jeder Antwort | Vorhanden |
+| Fortschritt innerhalb der Lektion | Vorhanden |
+| Kursfortschritt während der Sitzung | Vorhanden |
+| Punktzahl und Prozentwert je Lektion | Vorhanden |
+| Fehlerübersicht mit eigener Antwort, Lösung und Erklärung | Vorhanden |
+| Leben / Strafversuche | Bewusst nicht vorgesehen |
+| Login oder Registrierung | Nicht erforderlich |
+| Dauerhafte Speicherung persönlicher Ergebnisse | Nicht implementiert |
+| Lehrer-Dashboard oder Klassenstatistik | Nicht implementiert |
 
-**Wichtige Einschränkung:** Die Website speichert die Ergebnisse nicht dauerhaft. Ein Neuladen oder Schließen der Seite beendet die aktuelle Sitzung und setzt den Quizstand zurück.
+**Wichtige Einschränkung:** Die Themenkarte merkt sich abgeschlossene Lektionen nur bis zum Neuladen oder Schließen der Seite. Danach beginnt der Lernweg erneut beim ersten Schritt.
 
 ## 6. Gestaltung und Bedienung
 
@@ -186,11 +187,11 @@ Die Gestaltung soll wie ein eigenständiges Lernprodukt wirken und nicht wie ein
 
 ### Gestaltungsprinzipien
 
-- ruhiger, heller Hintergrund;
-- dunkles Grün als Hauptfarbe;
-- Terrakotta und warmes Gelb als sparsame Akzentfarben;
-- gut lesbare Überschriften mit Serifenschrift;
-- klare, einfache Navigation;
+- heller, freundlicher Hintergrund;
+- sattes Grün als Hauptfarbe mit hellgrünen, gelben, blauen und violetten Akzenten für Lernstufen;
+- abgerundete Themenkarten und klar erkennbare Lernknoten;
+- deutliche Fortschrittsanzeige und große, gut erreichbare Schaltflächen;
+- eine vertikale Kursübersicht, die an bekannte Lernpfad-Apps erinnert, aber eine eigene Gestaltung besitzt;
 - sichtbare Rückmeldung bei richtigen und falschen Antworten;
 - keine unnötigen Animationen, Leuchteffekte oder dekorativen Verläufe.
 
@@ -322,43 +323,22 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 
 ### Funktionstest
 
-- [ ] Startseite wird ohne sichtbare Fehler geladen.
-- [ ] Level „Leicht“ startet mit zehn Fragen.
-- [ ] Level „Mittel“ startet mit zehn Fragen.
-- [ ] Level „Schwer“ startet mit zehn Fragen.
-- [ ] „Die ganze Challenge“ enthält 30 Fragen.
-- [ ] Bei einer richtigen Antwort wird die richtige Lösung angezeigt.
-- [ ] Bei einer falschen Antwort werden die richtige Lösung und eine Erklärung angezeigt.
-- [ ] Der Fortschritt wird nach jeder Frage aktualisiert.
-- [ ] Die Punkte stimmen mit den richtigen Antworten überein.
-- [ ] Die Ergebnisansicht zeigt korrekte Zahlen und Prozentwerte.
-- [ ] Der Lernpfad startet mit „Leicht“ und führt anschließend zu „Mittel“ und „Schwer“.
-- [ ] Nach „Leicht“ und „Mittel“ wird die passende nächste Etappe angeboten.
-- [ ] Nach „Schwer“ erscheint der Abschluss des Lernpfads und keine weitere Etappe.
-- [ ] Eine falsche Antwort verhindert den Übergang zur nächsten Etappe nicht.
-- [ ] „Etappe wiederholen“ startet das aktuelle Level erneut.
-- [ ] Die Liste der falsch beantworteten Fragen zeigt die gewählte Antwort, die richtige Lösung und die Erklärung.
-- [ ] Die Auswertung zeigt pro gespieltem Level den richtigen Punktestand und einen Fortschrittsbalken.
-- [ ] „Noch einmal spielen“ startet das gewählte Level erneut.
-- [ ] „Zurück zum Menü“ führt zur Startseite.
-
-### Automatische Codeprüfung
-
-Die inhaltliche Prüfung ist von der technischen Codeprüfung getrennt. Die folgenden Prüfungen kontrollieren die Datenstruktur der Fragensammlung, nicht die pädagogische Qualität jeder Formulierung.
-
-Am 3. November 2026 wurden die Quelldateien zusätzlich technisch geprüft:
-
-- JavaScript-Syntaxprüfung erfolgreich.
-- 30 Fragen gefunden, davon zehn pro Level.
-- Jede Frage hat genau drei Antwortmöglichkeiten.
-- Alle Antwortindizes liegen im gültigen Bereich von 0 bis 2.
-- Alle Fragen haben eine Aufgabenstellung und eine Erklärung.
-- Die Fragen sind nach dem aktuellen Stand auf zehn pro Level verteilt.
-- Bei der inhaltlichen Durchsicht wurde die Mehrdeutigkeit der Steigerungsfrage beseitigt und die Differenzierung der schweren Aufgaben verbessert.
-- Die von JavaScript verwendeten HTML-IDs sind vorhanden und nicht doppelt vergeben.
-- CSS- und JavaScript-Dateien sind in der HTML-Datei eingebunden.
-
-Diese Prüfungen kontrollieren den Quellcode. Sie ersetzen keinen vollständigen manuellen Test im Browser und auf echten Schulgeräten.
+- [ ] Die Themenkarte wird ohne sichtbare Fehler geladen.
+- [ ] Es werden genau sieben Themenwelten angezeigt.
+- [ ] Die Fragensammlung ist vollständig auf 15 Lektionen verteilt.
+- [ ] Der erste Lernschritt ist geöffnet; spätere Schritte sind zunächst gesperrt.
+- [ ] Nach Abschluss einer Lektion wird genau der nächste Lernschritt freigeschaltet.
+- [ ] Bereits abgeschlossene Lektionen können erneut gestartet werden.
+- [ ] Falsche Antworten verhindern den Abschluss der Lektion nicht.
+- [ ] Jede Aufgabe hat genau drei auswählbare Antworten.
+- [ ] Die richtige Lösung wird markiert.
+- [ ] Nach jeder Antwort erscheint eine verständliche Erklärung.
+- [ ] Der Fortschritt innerhalb der Lektion wird korrekt aktualisiert.
+- [ ] Punktestand und Prozentwert stimmen.
+- [ ] Die Fehlerübersicht zeigt eigene Antwort, richtige Lösung und Erklärung.
+- [ ] Nach Abschluss der letzten Lektion wird der gesamte Kursabschluss angezeigt.
+- [ ] Ein Neuladen setzt den nur sitzungsbasierten Fortschritt zurück.
+- [ ] Die Rückkehr zur Themenkarte funktioniert aus Quiz und Ergebnisansicht.
 
 ### Inhaltlicher Qualitätstest
 
@@ -482,31 +462,25 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 **Bereits umgesetzt**
 
 - [x] Öffentliches GitHub-Repository eingerichtet
-- [x] GitHub Pages veröffentlicht
-- [x] Startseite und drei Schwierigkeitsstufen
-- [x] 30 Fragen mit drei Antwortmöglichkeiten
-- [x] Zufällige Sortierung innerhalb der Level
-- [x] Erklärungen zu den Antworten
-- [x] Punkte, Fortschritt und Ergebnisansicht
-- [x] Wiederholung und Rückkehr zum Menü
-- [x] Responsive Grundgestaltung
-- [x] Überarbeitung in einem ruhigen, redaktionellen Gestaltungsstil
-- [x] Fortschrittsanzeige mit ARIA-Attributen
-- [x] Korrektur des Abstands zwischen „30“ und der Beschriftung im Titelbereich
-- [x] Fragebildschirm optisch und strukturell überarbeitet
-- [x] Punktestand im Fragebildschirm mit stabiler eigener Textanzeige
-- [x] Ergebnisansicht mit Trefferbalken für jedes gespielte Level
-- [x] Fortschrittswerte in der Ergebnisansicht mit ARIA-Attributen
-- [x] Falsch beantwortete Fragen zeigen gewählte Antwort, richtige Lösung und Erklärung
-- [x] Geführter Lernpfad mit drei aufeinanderfolgenden Etappen und direktem Übergang zur nächsten Stufe
-- [x] Erste inhaltliche Prüfung der 30 Fragen anhand des Bildungsplans Deutsch Klassen 5/6 durchgeführt
-- [x] Mehrdeutige Steigerungsfrage überarbeitet
-- [x] Schwierige Aufgaben stärker auf Satzanalyse und Textschlussfolgerungen ausgerichtet
+- [x] GitHub Pages als Hosting eingerichtet
+- [x] 30 Fragen mit drei Antwortmöglichkeiten und Erklärungen
+- [x] Fragen nach sieben Themenwelten geordnet
+- [x] 15 kurze Lernschritte nach den vorhandenen Schwierigkeitsstufen
+- [x] Themenkarte mit schrittweiser Freischaltung
+- [x] Wiederholung bereits abgeschlossener Lektionen
+- [x] Sofortige Rückmeldung und Erklärungen zu Antworten
+- [x] Fehlerübersicht mit eigener Antwort, richtiger Lösung und Erklärung
+- [x] Kursfortschritt während der Browser-Sitzung
+- [x] Responsive Gestaltung für verschiedene Bildschirmgrößen
+- [x] Tastatur-Fokus, ARIA-Fortschrittsanzeigen und Reduced-Motion-Unterstützung
+- [x] Erste inhaltliche Prüfung der 30 Fragen anhand des Bildungsplans Deutsch Klassen 5/6
 
 **Noch offen**
 
+- [ ] Automatische Code- und Datenprüfung nach der Neustrukturierung
+- [ ] Visuelle Prüfung der veröffentlichten Version auf Desktop, Tablet und Smartphone
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
-- [ ] Vollständiger manueller Test auf mehreren Geräten
+- [ ] Vollständiger manueller Funktionstest
 - [ ] Test über das Schul-WLAN
 - [ ] Praxistest mit einer Lerngruppe der 5. Klasse
 - [ ] Anonyme Auswertung des Feedbacks
@@ -525,14 +499,16 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 - Schulischer Rahmen: **„Zeig, was du kannst“**
 - Zielgruppe: **5. Klasse**
 - Inhalt: **Deutsch — Grammatik, Rechtschreibung, Wortschatz und Textverständnis**
-- Drei Level: **Leicht / Mittel / Schwer**
-- Zielumfang der aktuellen Version: **10 Fragen pro Level**
+- Drei Schwierigkeitsstufen innerhalb der Lernlektionen: **Leicht / Mittel / Schwer**
+- Kursstruktur: **7 Themenwelten und 15 Lektionen**
+- Zielumfang der aktuellen Version: **30 Fragen, zehn pro Schwierigkeitsstufe**
 - Kein Login und keine Registrierung
 - Keine Speicherung individueller Antworten oder Ergebnisse
 - Technische Basis bleibt zunächst HTML, CSS und JavaScript
 - Hosting bleibt GitHub Pages
-- Gestaltung: warmes Papierweiß, dunkles Grün, Terrakotta, gelbe Akzente und klare Typografie
-- Vorhandene Quiz-Funktionen sollen bei Designänderungen erhalten bleiben.
+- Gestaltung: freundliche Themenkarte mit Lernknoten, Grün als Hauptfarbe und hellen Akzenten
+- Lernfortschritt bleibt sitzungsbasiert; keine Konten, Ranglisten oder dauerhafte Speicherung.
+- Die Quiz-Erklärungen und die Fehlerübersicht müssen bei Designänderungen erhalten bleiben.
 
 ### Regeln für künftige Änderungen
 
@@ -549,6 +525,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 
 - [ ] README vollständig lesen.
 - [ ] Dateien aus `main` abrufen und den aktuellen Commit feststellen.
+- [ ] Bei Änderungen der Themenstruktur die Zuordnung aller 30 Fragen zu den Lektionen kontrollieren.
 - [ ] Ziel der nächsten Änderung festlegen.
 - [ ] Änderungen möglichst in kleinen, überprüfbaren Schritten vornehmen.
 - [ ] Funktion und Darstellung testen.
@@ -567,7 +544,8 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 03.11.2026 | Fragebildschirm und Ergebnisansicht verfeinert; Level-Trefferbalken und ausführliche Fehlerwiederholung ergänzt. |
 | 03.11.2026 | Erste fachliche Prüfung der 30 Aufgaben anhand des Bildungsplans Deutsch Klassen 5/6; mehrdeutige Aufgabe korrigiert, Rechtschreib- und Leseschlussfolgerungsaufgaben verbessert und Kompetenzzuordnung dokumentiert. |
 | 04.11.2026 | Technische Kontrollrunde: HTML-ID-Verweise und Fragenverteilung geprüft; einen versehentlich als Text ausgegebenen `\n`-Ausdruck vor der Level-Auswertung in `index.html` korrigiert. |
-| 04.11.2026 | Geführten Lernpfad ergänzt: Leicht → Mittel → Schwer, mit Auswertung und direktem Übergang zwischen den Etappen; Fehler kosten keine Leben. |
+| 04.11.2026 | Erste Version mit geführtem Lernpfad ergänzt. |
+| 04.11.2026 | Oberfläche und Navigation neu aufgebaut: sieben Themenwelten, 15 thematische Lektionen, schrittweise Freischaltung, sitzungsbasierter Fortschritt und wiederholbare Lektionen. |
 
 ---
 
