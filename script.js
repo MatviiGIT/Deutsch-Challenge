@@ -258,411 +258,237 @@ const questions = [
 
 
 
-const levelOrder = ["Leicht", "Mittel", "Schwer"];
-const levelInfo = {
-  Leicht: { label: "Grundlagen", short: "Wissen", symbol: "1" },
-  Mittel: { label: "Anwenden", short: "Üben", symbol: "2" },
-  Schwer: { label: "Knobeln", short: "Analysieren", symbol: "3" }
+
+const levelLabels = {
+  Leicht: {title:"Grundlagen", short:"LEICHT"},
+  Mittel: {title:"Anwenden", short:"MITTEL"},
+  Schwer: {title:"Knobeln", short:"SCHWER"}
 };
-
 const topics = [
-  {
-    id: "wortarten",
-    title: "Wortarten",
-    description: "Nomen, Verben und Adjektive erkennen.",
-    icon: "A·Z",
-    tint: "#e8f6df",
-    categories: ["WORTARTEN"]
-  },
-  {
-    id: "artikel-grammatik",
-    title: "Artikel & Grammatik",
-    description: "Artikel, Verbformen und Pronomen richtig verwenden.",
-    icon: "Aa",
-    tint: "#e4f2fb",
-    categories: ["GRAMMATIK", "PRONOMEN"]
-  },
-  {
-    id: "wortschatz",
-    title: "Wortschatz & Adjektive",
-    description: "Wörter verstehen, ordnen und treffend steigern.",
-    icon: "✎",
-    tint: "#fff1ce",
-    categories: ["WORTSCHATZ", "ADJEKTIVE"]
-  },
-  {
-    id: "rechtschreibung",
-    title: "Rechtschreibung",
-    description: "Wörter und Sätze sicher schreiben.",
-    icon: "Ü",
-    tint: "#fce9df",
-    categories: ["RECHTSCHREIBUNG"]
-  },
-  {
-    id: "satzzeichen",
-    title: "Satzzeichen",
-    description: "Fragen und wörtliche Rede richtig markieren.",
-    icon: "?!",
-    tint: "#f0eafb",
-    categories: ["SATZZEICHEN"]
-  },
-  {
-    id: "satzbau",
-    title: "Satzbau & Satzglieder",
-    description: "Sätze untersuchen und ihre Teile verstehen.",
-    icon: "☷",
-    tint: "#e1f2ee",
-    categories: ["SATZGLIEDER", "SATZBAU", "NEBENSÄTZE", "KONJUNKTIONEN"]
-  },
-  {
-    id: "lesen",
-    title: "Lesen & Verstehen",
-    description: "Hinweise finden und Texte erschließen.",
-    icon: "▤",
-    tint: "#fce9ed",
-    categories: ["LESEVERSTEHEN", "TEXTVERSTÄNDNIS", "INFORMATIONEN AUSWERTEN"]
-  }
+  {id:"wortarten",title:"Wortarten",subtitle:"Nomen, Verben und Adjektive",description:"Entdecke, welche Aufgaben Wörter in einem Satz haben.",icon:"Aa",cats:["WORTARTEN","ADJEKTIVE"]},
+  {id:"wortschatz",title:"Wortschatz",subtitle:"Bedeutung, Wortfelder und Mehrzahl",description:"Finde passende Wörter und erweitere deinen Wortschatz.",icon:"W",cats:["WORTSCHATZ"]},
+  {id:"rechtschreibung",title:"Rechtschreibung",subtitle:"Wörter richtig schreiben",description:"Trainiere Großschreibung, Doppelkonsonanten und Wortbildung.",icon:"✎",cats:["RECHTSCHREIBUNG"]},
+  {id:"satzzeichen",title:"Satzzeichen",subtitle:"Punkt, Fragezeichen und Redezeichen",description:"Setze Satzzeichen dort ein, wo sie hingehören.",icon:"?!",cats:["SATZZEICHEN"]},
+  {id:"grammatik",title:"Grammatik",subtitle:"Artikel, Fälle und Satzglieder",description:"Untersuche, wie Wörter und Satzteile zusammenpassen.",icon:"§",cats:["GRAMMATIK","SATZGLIEDER","PRONOMEN"]},
+  {id:"satzbau",title:"Satzbau",subtitle:"Satzstellung und Nebensätze",description:"Bringe Ordnung in Sätze und entdecke ihre Struktur.",icon:"↗",cats:["SATZBAU","NEBENSÄTZE","KONJUNKTIONEN"]},
+  {id:"lesen",title:"Lesen & Verstehen",subtitle:"Informationen finden und kombinieren",description:"Lies genau, erkenne Hinweise und ziehe Schlüsse.",icon:"▤",cats:["LESEVERSTEHEN","TEXTVERSTÄNDNIS","INFORMATIONEN AUSWERTEN"]}
 ];
-
-const lessons = topics.flatMap((topic) =>
-  levelOrder.flatMap((level) => {
-    const lessonQuestions = questions.filter(
-      (question) => topic.categories.includes(question.category) && question.level === level
-    );
-    if (lessonQuestions.length === 0) return [];
-    return [{
-      id: topic.id + "-" + level.toLowerCase(),
-      topic,
-      level,
-      questions: lessonQuestions
-    }];
-  })
-);
-
-const letters = ["A", "B", "C"];
-const completedLessons = new Set();
-let currentLesson = null;
-let questionQueue = [];
-let currentIndex = 0;
-let score = 0;
-let answered = false;
-let wrongAnswers = [];
-
-const mapScreen = document.getElementById("map-screen");
+const units = topics.flatMap(topic => ["Leicht","Mittel","Schwer"].flatMap(level => {
+  const qs = questions.filter(q => topic.cats.includes(q.category) && q.level===level);
+  return qs.length ? [{id:topic.id+"-"+level,topic,level,questions:qs}] : [];
+}));
+const totalQuestions = questions.length;
+const letters = ["A","B","C"];
+const completed = new Set();
+let currentUnit = null, queue = [], currentIndex = 0, score = 0, answered = false, wrongAnswers = [], stats = {};
+const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
 const answerGrid = document.getElementById("answer-grid");
 const feedbackPanel = document.getElementById("feedback-panel");
 const nextButton = document.getElementById("next-button");
 
-function shuffle(items) {
-  const copy = [...items];
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
+function screen(name) {
+  startScreen.hidden = name!=="start";
+  quizScreen.hidden = name!=="quiz";
+  resultScreen.hidden = name!=="result";
+  if(name==="start") renderPath();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
-
-function showScreen(name) {
-  mapScreen.hidden = name !== "map";
-  quizScreen.hidden = name !== "quiz";
-  resultScreen.hidden = name !== "result";
-  window.scrollTo({ top: 0, behavior: "auto" });
+function completedCount() {
+  return units.filter(u=>completed.has(u.id)).reduce((n,u)=>n+u.questions.length,0);
 }
+function nextUnit() { return units.find(u=>!completed.has(u.id)) || null; }
 
-function firstOpenLessonIndex() {
-  return lessons.findIndex((lesson) => !completedLessons.has(lesson.id));
-}
-
-function isLessonUnlocked(lesson) {
-  if (completedLessons.has(lesson.id)) return true;
-  const openIndex = firstOpenLessonIndex();
-  const lessonIndex = lessons.findIndex((item) => item.id === lesson.id);
-  return openIndex !== -1 && lessonIndex <= openIndex;
-}
-
-function addTextElement(parent, tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  element.textContent = text;
-  parent.appendChild(element);
-  return element;
-}
-
-function renderMap() {
-  const topicMap = document.getElementById("topic-map");
-  topicMap.replaceChildren();
-
-  const completedQuestionCount = lessons
-    .filter((lesson) => completedLessons.has(lesson.id))
-    .reduce((sum, lesson) => sum + lesson.questions.length, 0);
-  const completedCount = completedLessons.size;
-  const totalQuestions = questions.length;
-  const percentage = Math.round((completedQuestionCount / totalQuestions) * 100);
-
-  document.getElementById("overall-progress-number").textContent = percentage + "%";
-  document.getElementById("overall-progress-label").textContent =
-    completedCount + " von " + lessons.length + " Lektionen geschafft";
-  document.getElementById("overall-progress-fill").style.width = percentage + "%";
-  const progress = document.getElementById("overall-progress");
-  progress.setAttribute("aria-valuemax", String(lessons.length));
-  progress.setAttribute("aria-valuenow", String(completedCount));
-  document.getElementById("lesson-count-label").textContent =
-    completedCount + " / " + lessons.length + " abgeschlossen";
-
-  topics.forEach((topic, topicIndex) => {
-    const topicLessons = lessons.filter((lesson) => lesson.topic.id === topic.id);
-    const doneCount = topicLessons.filter((lesson) => completedLessons.has(lesson.id)).length;
-    const isComplete = doneCount === topicLessons.length;
-    const isCurrent = topicLessons.some((lesson) => isLessonUnlocked(lesson) && !completedLessons.has(lesson.id));
-    const isLocked = !isComplete && !isCurrent;
-
-    const card = document.createElement("article");
-    card.className = "topic-card" + (isComplete ? " is-complete" : "") +
-      (isCurrent ? " is-current" : "") + (isLocked ? " is-locked" : "");
-
-    const header = document.createElement("div");
-    header.className = "topic-header";
-
-    const icon = addTextElement(header, "span", "topic-icon", topic.icon);
-    icon.style.setProperty("--topic-tint", topic.tint);
-
-    const copy = document.createElement("div");
-    copy.className = "topic-head-copy";
-    addTextElement(copy, "span", "topic-index", "THEMA " + String(topicIndex + 1).padStart(2, "0"));
-    addTextElement(copy, "h3", "topic-title", topic.title);
-    addTextElement(copy, "p", "topic-description", topic.description);
-    header.appendChild(copy);
-
-    const progressText = isComplete ? "Abgeschlossen" : doneCount + " / " + topicLessons.length;
-    addTextElement(header, "span", "topic-progress", progressText);
-    card.appendChild(header);
-    addTextElement(card, "div", "topic-divider", "");
-
-    const track = document.createElement("div");
-    track.className = "lesson-track" + (topicLessons.length > 1 ? " has-connector" : "");
-    track.style.setProperty("--node-count", String(topicLessons.length));
-
-    topicLessons.forEach((lesson) => {
-      const isDone = completedLessons.has(lesson.id);
-      const unlocked = isLessonUnlocked(lesson);
-      const info = levelInfo[lesson.level];
-      const node = document.createElement("button");
-      node.type = "button";
-      node.className = "lesson-node node-" + lesson.level.toLowerCase() +
-        (isDone ? " is-done" : "") + (!unlocked ? " is-locked" : "");
-      node.disabled = !unlocked;
-      node.setAttribute("aria-label", topic.title + ", " + info.label + ", " +
-        lesson.questions.length + " Fragen" + (isDone ? ", abgeschlossen" : unlocked ? ", starten" : ", gesperrt"));
-
-      const ring = addTextElement(node, "span", "node-ring", isDone ? "✓" : unlocked ? info.symbol : "🔒");
-      ring.setAttribute("aria-hidden", "true");
-      addTextElement(node, "span", "node-title", info.label);
-      addTextElement(node, "span", "node-detail", lesson.questions.length + " " +
-        (lesson.questions.length === 1 ? "Frage" : "Fragen"));
-      addTextElement(node, "span", "node-status", isDone ? "Fertig" : unlocked ? "Starten" : "Gesperrt");
-
-      if (unlocked) node.addEventListener("click", () => startLesson(lesson.id));
-      track.appendChild(node);
+function renderPath() {
+  const done=completedCount(), pct=Math.round(done/totalQuestions*100), next=nextUnit();
+  const bar=document.getElementById("course-progress");
+  bar.setAttribute("aria-valuemax",String(totalQuestions));
+  bar.setAttribute("aria-valuenow",String(done));
+  document.getElementById("course-progress-fill").style.width=pct+"%";
+  document.getElementById("course-progress-count").textContent=done+" / "+totalQuestions;
+  document.getElementById("topbar-progress").innerHTML=done+" / "+totalQuestions+" <span>ÜBUNGEN</span>";
+  document.getElementById("course-progress-title").textContent=done===totalQuestions?"Du hast den Kurs geschafft!":done?"Du bist auf deinem Weg!":"Dein Kurs beginnt hier";
+  document.getElementById("course-progress-note").textContent=done===totalQuestions
+    ?"Alle 30 Übungen abgeschlossen. Du kannst jede Einheit erneut spielen."
+    :done?"Noch "+(totalQuestions-done)+" Übungen bis zum Kursabschluss."
+    :"Schließe deine erste Einheit ab, um den Weg freizuschalten.";
+  const path=document.getElementById("learning-path");
+  path.replaceChildren();
+  topics.forEach(topic=>{
+    const topicUnits=units.filter(u=>u.topic.id===topic.id);
+    const topicDone=topicUnits.filter(u=>completed.has(u.id)).reduce((n,u)=>n+u.questions.length,0);
+    const topicTotal=topicUnits.reduce((n,u)=>n+u.questions.length,0);
+    const section=document.createElement("section"); section.className="topic-section";
+    const head=document.createElement("div"); head.className="topic-header";
+    const icon=document.createElement("div"); icon.className="topic-icon"; icon.textContent=topic.icon;
+    const copy=document.createElement("div"); copy.className="topic-copy";
+    const title=document.createElement("h3"); title.textContent=topic.title;
+    const sub=document.createElement("p"); sub.textContent=topic.subtitle; copy.append(title,sub);
+    const count=document.createElement("span"); count.className="topic-count"; count.textContent=topicDone+"/"+topicTotal;
+    head.append(icon,copy,count);
+    const track=document.createElement("div"); track.className="topic-progress-track";
+    track.setAttribute("role","progressbar"); track.setAttribute("aria-label",topic.title+": "+topicDone+" von "+topicTotal);
+    track.setAttribute("aria-valuemin","0"); track.setAttribute("aria-valuemax",String(topicTotal)); track.setAttribute("aria-valuenow",String(topicDone));
+    const fill=document.createElement("span"); fill.style.width=Math.round(topicDone/topicTotal*100)+"%"; track.append(fill);
+    const nodes=document.createElement("div"); nodes.className="topic-nodes";
+    topicUnits.forEach((unit,i)=>{
+      const doneUnit=completed.has(unit.id), open=doneUnit || next?.id===unit.id;
+      const button=document.createElement("button"); button.type="button";
+      button.className="lesson-node "+(doneUnit?"is-done":open?"is-open":"is-locked")+" node-position-"+(i%3);
+      button.disabled=!open;
+      button.setAttribute("aria-label",topic.title+", "+levelLabels[unit.level].title+", "+(doneUnit?"abgeschlossen":open?"starten":"gesperrt"));
+      const orb=document.createElement("span"); orb.className="node-orb"; orb.textContent=doneUnit?"✓":open?"▶":"⌑";
+      const label=document.createElement("span"); label.className="node-label"; label.textContent=levelLabels[unit.level].title;
+      const meta=document.createElement("span"); meta.className="node-meta"; meta.textContent=unit.questions.length+(unit.questions.length===1?" Frage":" Fragen");
+      button.append(orb,label,meta); button.addEventListener("click",()=>startUnit(unit)); nodes.append(button);
     });
-
-    card.appendChild(track);
-    topicMap.appendChild(card);
+    const description=document.createElement("p"); description.className="topic-description"; description.textContent=topic.description;
+    section.append(head,track,nodes,description); path.append(section);
   });
+  document.getElementById("next-icon").textContent=next?next.topic.icon:"✓";
+  document.getElementById("next-title").textContent=next?next.topic.title+" · "+levelLabels[next.level].title:"Alles geschafft!";
+  document.getElementById("next-description").textContent=next?next.topic.description:"Der ganze Lernpfad ist abgeschlossen. Wiederhole eine Einheit oder starte das freie Training.";
+  document.getElementById("next-meta").textContent=next
+    ?levelLabels[next.level].short+" · "+next.questions.length+(next.questions.length===1?" FRAGE":" FRAGEN")
+    :"30 / 30 ÜBUNGEN";
 }
 
-function showMap() {
-  renderMap();
-  showScreen("map");
+function prepare(items, unit=null) {
+  currentUnit=unit; queue=items; currentIndex=0; score=0; answered=false; wrongAnswers=[]; stats={};
+  queue.forEach(q=>{ if(!stats[q.level]) stats[q.level]={correct:0,total:0}; stats[q.level].total++; });
+  document.getElementById("score-value").textContent="0 Punkte";
+  document.getElementById("quiz-topic").textContent=unit?unit.topic.title.toUpperCase():"FREIES TRAINING";
+  screen("quiz"); renderQuestion();
 }
-
-function startLesson(lessonId) {
-  const lesson = lessons.find((item) => item.id === lessonId);
-  if (!lesson || !isLessonUnlocked(lesson)) return;
-
-  currentLesson = lesson;
-  questionQueue = shuffle(lesson.questions);
-  currentIndex = 0;
-  score = 0;
-  answered = false;
-  wrongAnswers = [];
-
-  document.getElementById("quiz-topic-label").textContent = lesson.topic.title.toUpperCase();
-  showScreen("quiz");
-  renderQuestion();
+function startUnit(unit) {
+  prepare([...unit.questions].sort(()=>Math.random()-.5),unit);
+}
+function startFree() {
+  const all=["Leicht","Mittel","Schwer"].flatMap(level=>
+    questions.filter(q=>q.level===level).sort(()=>Math.random()-.5));
+  prepare(all,null);
 }
 
 function renderQuestion() {
-  const question = questionQueue[currentIndex];
-  answered = false;
-
-  const number = currentIndex + 1;
-  const percent = Math.round((number / questionQueue.length) * 100);
-  const levelNumber = levelOrder.indexOf(currentLesson.level) + 1;
-
-  document.getElementById("question-counter").textContent = number + " / " + questionQueue.length;
-  document.getElementById("progress-level").textContent =
-    "LEVEL " + levelNumber + " · " + levelInfo[currentLesson.level].short.toUpperCase();
-  document.getElementById("progress-percent").textContent = percent + " %";
-  document.getElementById("progress-fill").style.width = percent + "%";
-
-  const progressBar = document.getElementById("quiz-progress");
-  progressBar.setAttribute("aria-valuemax", String(questionQueue.length));
-  progressBar.setAttribute("aria-valuenow", String(number));
-
-  document.getElementById("question-number").textContent =
-    "FRAGE " + String(number).padStart(2, "0");
-  document.getElementById("question-category").textContent = question.category;
-  document.getElementById("question-text").textContent = question.prompt;
-  document.getElementById("score-value").textContent = score + " Punkte";
-
+  const q=queue[currentIndex], number=currentIndex+1, percent=Math.round(number/queue.length*100);
+  answered=false;
+  document.getElementById("question-counter").textContent=number+" / "+queue.length;
+  document.getElementById("progress-level").textContent=currentUnit
+    ?levelLabels[q.level].title.toUpperCase()+" · "+currentUnit.topic.title.toUpperCase()
+    :q.level.toUpperCase()+" · FREIES TRAINING";
+  document.getElementById("progress-percent").textContent=percent+" %";
+  document.getElementById("progress-fill").style.width=percent+"%";
+  const progress=document.getElementById("quiz-progress");
+  progress.setAttribute("aria-valuemax",String(queue.length)); progress.setAttribute("aria-valuenow",String(number));
+  document.getElementById("question-number").textContent="FRAGE "+String(number).padStart(2,"0");
+  document.getElementById("question-category").textContent=q.category;
+  document.getElementById("question-text").textContent=q.prompt;
+  document.getElementById("score-value").textContent=score+" Punkte";
   answerGrid.replaceChildren();
-  question.choices.forEach((choice, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "answer-option";
-    const letter = addTextElement(button, "span", "answer-letter", letters[index]);
-    letter.setAttribute("aria-hidden", "true");
-    addTextElement(button, "span", "", choice);
-    button.addEventListener("click", () => selectAnswer(index));
-    answerGrid.appendChild(button);
+  q.choices.forEach((choice,index)=>{
+    const button=document.createElement("button"); button.type="button"; button.className="answer-option";
+    const letter=document.createElement("span"); letter.className="answer-letter"; letter.textContent=letters[index];
+    const text=document.createElement("span"); text.textContent=choice;
+    button.append(letter,text); button.addEventListener("click",()=>selectAnswer(index)); answerGrid.append(button);
   });
-
-  feedbackPanel.hidden = true;
-  feedbackPanel.className = "feedback-panel";
-  document.getElementById("feedback-title").textContent = "";
-  document.getElementById("feedback-text").textContent = "";
-  nextButton.disabled = true;
-  nextButton.innerHTML = currentIndex === questionQueue.length - 1
-    ? 'Lektion abschließen <span aria-hidden="true">→</span>'
-    : 'Weiter <span aria-hidden="true">→</span>';
+  feedbackPanel.hidden=true; feedbackPanel.className="feedback-panel";
+  document.getElementById("feedback-title").textContent="";
+  document.getElementById("feedback-text").textContent="";
+  nextButton.disabled=true;
+  nextButton.innerHTML=currentIndex===queue.length-1
+    ?'Ergebnis ansehen <span aria-hidden="true">→</span>':'Weiter <span aria-hidden="true">→</span>';
 }
-
-function selectAnswer(selectedIndex) {
-  if (answered) return;
-  answered = true;
-
-  const question = questionQueue[currentIndex];
-  const isCorrect = selectedIndex === question.answer;
-  const buttons = [...answerGrid.querySelectorAll(".answer-option")];
-
-  buttons.forEach((button, index) => {
-    button.disabled = true;
-    if (index === question.answer) button.classList.add("is-correct");
-    if (index === selectedIndex && !isCorrect) button.classList.add("is-wrong");
+function selectAnswer(selected) {
+  if(answered) return; answered=true;
+  const q=queue[currentIndex], correct=selected===q.answer;
+  [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{
+    button.disabled=true;
+    if(index===q.answer) button.classList.add("is-correct");
+    if(index===selected&&!correct) button.classList.add("is-wrong");
   });
-
-  if (isCorrect) {
-    score += 1;
-    feedbackPanel.classList.add("feedback-good");
-    document.getElementById("feedback-title").textContent = "Richtig! +1 Punkt";
+  if(correct) {
+    score++; stats[q.level].correct++; feedbackPanel.classList.add("feedback-good");
+    document.getElementById("feedback-title").textContent="Richtig! +1 Punkt";
   } else {
-    wrongAnswers.push({ question, selectedIndex });
+    wrongAnswers.push({question:q,selectedIndex:selected});
     feedbackPanel.classList.add("feedback-bad");
-    document.getElementById("feedback-title").textContent =
-      "Noch nicht ganz. Richtig ist: " + question.choices[question.answer];
+    document.getElementById("feedback-title").textContent="Noch nicht ganz. Richtig ist: "+q.choices[q.answer];
   }
-
-  document.getElementById("feedback-text").textContent = question.explanation;
-  feedbackPanel.hidden = false;
-  document.getElementById("score-value").textContent = score + " Punkte";
-  nextButton.disabled = false;
+  document.getElementById("feedback-text").textContent=q.explanation;
+  feedbackPanel.hidden=false; document.getElementById("score-value").textContent=score+" Punkte";
+  nextButton.disabled=false;
 }
 
 function renderResults() {
-  completedLessons.add(currentLesson.id);
-  const total = questionQueue.length;
-  const percentage = Math.round((score / total) * 100);
-  const wrong = total - score;
-  const isCourseComplete = completedLessons.size === lessons.length;
-  const nextLesson = lessons.find((lesson) => !completedLessons.has(lesson.id));
-
-  showScreen("result");
-  document.getElementById("result-kicker").textContent =
-    isCourseComplete ? "KURS ABGESCHLOSSEN" : "LEKTION ABGESCHLOSSEN";
-  document.getElementById("result-medal").textContent = isCourseComplete ? "★" : "✦";
-  document.getElementById("result-heading").textContent = isCourseComplete
-    ? "Du hast es geschafft!"
-    : percentage >= 80 ? "Stark gemacht!" : percentage >= 50 ? "Guter Fortschritt!" : "Ein Schritt weiter!";
-  document.getElementById("result-subheading").textContent = isCourseComplete
-    ? "Du hast alle sieben Themenwelten erkundet."
-    : "Du hast " + score + " von " + total + " Fragen richtig beantwortet. Der nächste Lernschritt ist jetzt frei.";
-  document.getElementById("score-fraction").textContent = score + "/" + total;
-  document.getElementById("score-percent").textContent = percentage + " %";
-  document.getElementById("result-correct").textContent = score;
-  document.getElementById("result-wrong").textContent = wrong;
-  document.getElementById("result-progress-fill").style.width = percentage + "%";
-  const resultProgress = document.getElementById("result-progress-track");
-  resultProgress.setAttribute("aria-valuemax", String(total));
-  resultProgress.setAttribute("aria-valuenow", String(score));
-
-  const recommendationTitle = document.getElementById("recommendation-title");
-  const recommendationText = document.getElementById("recommendation-text");
-  recommendationTitle.textContent = percentage >= 80
-    ? "Das sitzt schon richtig gut!"
-    : percentage >= 50 ? "Du wirst Schritt für Schritt sicherer."
-      : "Übung macht den Unterschied.";
-  recommendationText.textContent = percentage >= 80
-    ? "Du hast viele Aufgaben richtig gelöst. Lies dir die Erklärungen trotzdem durch — so festigst du die Regeln."
-    : "Schau dir die Erklärungen zu den Fragen an. Du kannst jede Lektion wiederholen; falsche Antworten halten dich nicht auf.";
-  if (isCourseComplete) {
-    recommendationTitle.textContent = "Sieben Themenwelten geschafft!";
-    recommendationText.textContent = "Du hast den gesamten Lernweg abgeschlossen. Du kannst jede Lektion auf der Themenkarte noch einmal üben.";
-  }
-
-  const mistakesSection = document.getElementById("mistakes-section");
-  const mistakesList = document.getElementById("mistakes-list");
-  mistakesList.replaceChildren();
-  mistakesSection.hidden = wrongAnswers.length === 0;
-
-  wrongAnswers.forEach(({ question, selectedIndex }) => {
-    const item = document.createElement("article");
-    item.className = "mistake-item";
-    addTextElement(item, "div", "mistake-meta", currentLesson.topic.title + " · " + question.category);
-    addTextElement(item, "h3", "mistake-question", question.prompt);
-    addTextElement(item, "p", "mistake-selected", "Deine Antwort: " + question.choices[selectedIndex]);
-    addTextElement(item, "p", "mistake-answer", "Richtige Antwort: " + question.choices[question.answer]);
-    addTextElement(item, "p", "mistake-explanation", question.explanation);
-    mistakesList.appendChild(item);
+  screen("result");
+  const total=queue.length, pct=Math.round(score/total*100), wrong=total-score;
+  if(currentUnit) completed.add(currentUnit.id);
+  document.getElementById("score-fraction").textContent=score+"/"+total;
+  document.getElementById("score-percent").textContent=pct+" %";
+  document.getElementById("result-correct").textContent=score;
+  document.getElementById("result-wrong").textContent=wrong;
+  document.getElementById("result-progress-fill").style.width=pct+"%";
+  document.getElementById("result-progress-track").setAttribute("aria-valuemax",String(total));
+  document.getElementById("result-progress-track").setAttribute("aria-valuenow",String(score));
+  document.getElementById("result-subheading").textContent=currentUnit
+    ?currentUnit.topic.title+" · "+levelLabels[currentUnit.level].title+" abgeschlossen."
+    :"Du hast "+score+" von "+total+" Fragen richtig beantwortet.";
+  document.querySelector(".result-header .eyebrow").textContent=currentUnit?"EINHEIT ABGESCHLOSSEN":"FREIES TRAINING BEENDET";
+  let heading=pct>=90?"Hervorragend!":pct>=70?"Gut gemacht!":pct>=50?"Weiter so!":"Guter Anfang!";
+  if(currentUnit&&completedCount()===totalQuestions) heading="Lernpfad geschafft!";
+  document.getElementById("result-heading").textContent=heading;
+  document.getElementById("result-medal").textContent=pct>=90?"★":pct>=50?"✦":"◆";
+  const resultList=document.getElementById("level-results"); resultList.replaceChildren();
+  ["Leicht","Mittel","Schwer"].filter(level=>stats[level]).forEach(level=>{
+    const s=stats[level], ratio=Math.round(s.correct/s.total*100);
+    const card=document.createElement("div"); card.className="level-result";
+    const row=document.createElement("div"); row.className="level-result-head";
+    const name=document.createElement("span"); name.textContent=currentUnit?currentUnit.topic.title:level;
+    const value=document.createElement("strong"); value.textContent=s.correct+" / "+s.total;
+    const percent=document.createElement("span"); percent.className="level-result-percent"; percent.textContent=ratio+" %";
+    row.append(name,value,percent);
+    const track=document.createElement("div"); track.className="level-result-track";
+    track.setAttribute("role","progressbar"); track.setAttribute("aria-valuemin","0"); track.setAttribute("aria-valuemax",String(s.total)); track.setAttribute("aria-valuenow",String(s.correct));
+    const fill=document.createElement("span"); fill.className="level-result-fill"; fill.style.width=ratio+"%"; track.append(fill);
+    card.append(row,track); resultList.append(card);
   });
-
-  const continueButton = document.getElementById("continue-button");
-  continueButton.hidden = !nextLesson;
-  continueButton.textContent = nextLesson
-    ? nextLesson.topic.title + " starten →"
-    : "Themenkarte öffnen →";
-  renderMap();
+  document.getElementById("recommendation-title").textContent=pct>=90?"Das sitzt richtig gut!":pct>=70?"Eine starke Runde!":pct>=50?"Du bist auf dem Weg.":"Übung macht sicher.";
+  document.getElementById("recommendation-text").textContent=
+    (pct>=90?"Du hast fast alle Aufgaben richtig gelöst. "
+    :pct>=70?"Viele Antworten waren richtig. "
+    :pct>=50?"Lies die Erklärungen in Ruhe durch. "
+    :"Fehler sind Teil des Lernens. Lies die Erklärungen und probiere es weiter. ")+
+    (currentUnit?"Thema: "+currentUnit.topic.title+".":"Du kannst jetzt ein Thema wiederholen oder eine Einheit im Lernpfad starten.");
+  const list=document.getElementById("mistakes-list"); list.replaceChildren();
+  document.getElementById("mistakes-section").hidden=wrongAnswers.length===0;
+  wrongAnswers.forEach(({question:q,selectedIndex})=>{
+    const item=document.createElement("article"); item.className="mistake-item";
+    const meta=document.createElement("div"); meta.className="mistake-meta"; meta.textContent=q.level+" · "+q.category;
+    const prompt=document.createElement("h3"); prompt.className="mistake-question"; prompt.textContent=q.prompt;
+    const selected=document.createElement("p"); selected.className="mistake-selected"; selected.textContent="Deine Antwort: "+q.choices[selectedIndex];
+    const answer=document.createElement("p"); answer.className="mistake-answer"; answer.textContent="Richtige Antwort: "+q.choices[q.answer];
+    const explanation=document.createElement("p"); explanation.className="mistake-explanation"; explanation.textContent=q.explanation;
+    item.append(meta,prompt,selected,answer,explanation); list.append(item);
+  });
+  const following=nextUnit(), nextButton=document.getElementById("next-level-button");
+  nextButton.hidden=!currentUnit||!following;
+  if(following) nextButton.innerHTML="Weiter: "+following.topic.title+" · "+levelLabels[following.level].title+' <span aria-hidden="true">→</span>';
+  document.getElementById("retry-button").textContent=currentUnit?"Einheit wiederholen ↻":"Training wiederholen ↻";
+  renderPath();
 }
 
-function nextStep() {
-  const nextLesson = lessons.find((lesson) => !completedLessons.has(lesson.id));
-  if (nextLesson) startLesson(nextLesson.id);
-  else showMap();
-}
+document.getElementById("free-practice-button").addEventListener("click",startFree);
+document.getElementById("next-level-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
+nextButton.addEventListener("click",()=>{
+  if(!answered)return;
+  if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else{renderResults();}
+});
+document.getElementById("back-to-menu").addEventListener("click",()=>screen("start"));
+document.getElementById("result-menu-button").addEventListener("click",()=>screen("start"));
+document.getElementById("retry-button").addEventListener("click",()=>currentUnit?startUnit(currentUnit):startFree());
+document.getElementById("brand-home").addEventListener("click",event=>{event.preventDefault();screen("start");});
 
-document.getElementById("back-to-map").addEventListener("click", showMap);
-document.getElementById("brand-home").addEventListener("click", (event) => {
-  event.preventDefault();
-  showMap();
-});
-document.getElementById("result-map-button").addEventListener("click", showMap);
-document.getElementById("continue-button").addEventListener("click", nextStep);
-document.getElementById("retry-button").addEventListener("click", () => {
-  if (currentLesson) startLesson(currentLesson.id);
-});
-nextButton.addEventListener("click", () => {
-  if (!answered) return;
-  if (currentIndex < questionQueue.length - 1) {
-    currentIndex += 1;
-    renderQuestion();
-  } else {
-    renderResults();
-  }
-});
-
-const mappedQuestionCount = lessons.reduce((sum, lesson) => sum + lesson.questions.length, 0);
-if (mappedQuestionCount !== questions.length) {
-  console.error("Nicht alle Fragen sind einer Themenlektion zugeordnet.");
-}
-renderMap();
+const mapped=topics.reduce((n,t)=>n+questions.filter(q=>t.cats.includes(q.category)).length,0);
+if(mapped!==totalQuestions||units.length<7) console.error("Lernpfad: Fragenzuordnung prüfen.");
+renderPath();
