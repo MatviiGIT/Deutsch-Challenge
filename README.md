@@ -142,11 +142,11 @@ Diese Prüfung ist eine interne fachliche Überarbeitung anhand des Bildungsplan
 Die Startseite zeigt eine **Themenkarte mit sieben Themenwelten**. Jede Themenwelt enthält kurze Lektionen, die zu den vorhandenen Aufgaben passen:
 
 1. Wortarten
-2. Artikel & Grammatik
-3. Wortschatz & Adjektive
-4. Rechtschreibung
-5. Satzzeichen
-6. Satzbau & Satzglieder
+2. Wortschatz
+3. Rechtschreibung
+4. Satzzeichen
+5. Grammatik
+6. Satzbau
 7. Lesen & Verstehen
 
 Innerhalb eines Themas werden nur die Schwierigkeitsstufen angezeigt, für die es tatsächlich Aufgaben gibt. Die Lernschritte heißen **Grundlagen (Leicht)**, **Anwenden (Mittel)** und **Knobeln (Schwer)**. Ein Schritt besteht aus den Fragen des jeweiligen Themas und Levels.
@@ -167,6 +167,7 @@ Die Fragensammlung enthält **30 Aufgaben: zehn pro Schwierigkeitsstufe**. Für 
 | 15 thematische Lernschritte nach Schwierigkeit | Vorhanden |
 | Schrittweise Freischaltung der nächsten Lektion | Vorhanden |
 | Wiederholung bereits abgeschlossener Lektionen | Vorhanden |
+| Freies Training über alle 30 Fragen | Vorhanden |
 | 30 Fragen mit drei Antwortmöglichkeiten | Vorhanden |
 | Zufällige Reihenfolge innerhalb einer Lektion | Vorhanden |
 | Rückmeldung und Erklärung nach jeder Antwort | Vorhanden |
