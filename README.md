@@ -567,6 +567,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 03.11.2026 | Fragebildschirm und Ergebnisansicht verfeinert; Level-Trefferbalken und ausführliche Fehlerwiederholung ergänzt. |
 | 03.11.2026 | Erste fachliche Prüfung der 30 Aufgaben anhand des Bildungsplans Deutsch Klassen 5/6; mehrdeutige Aufgabe korrigiert, Rechtschreib- und Leseschlussfolgerungsaufgaben verbessert und Kompetenzzuordnung dokumentiert. |
 | 04.11.2026 | Technische Kontrollrunde: HTML-ID-Verweise und Fragenverteilung geprüft; einen versehentlich als Text ausgegebenen `\n`-Ausdruck vor der Level-Auswertung in `index.html` korrigiert. |
+| 04.11.2026 | Geführten Lernpfad ergänzt: Leicht → Mittel → Schwer, mit Auswertung und direktem Übergang zwischen den Etappen; Fehler kosten keine Leben. |
 
 ---
 
