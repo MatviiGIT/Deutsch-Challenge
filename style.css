@@ -352,7 +352,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-off
 .profile-field label,.track-field-heading strong{display:block;color:var(--ink);font-size:.9rem;font-weight:1000}
 .profile-field input{
   width:100%;min-height:54px;margin-top:10px;padding:0 15px;border:2px solid #dce7d7;
-  border-radius:13px;background:white;color:var(--ink);font:800 1rem inherit;outline:none
+  border-radius:13px;background:white;color:var(--ink);font:800 1rem "Nunito Sans","Segoe UI",Arial,sans-serif;outline:none
 }
 .profile-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(88,168,62,.13)}
 .profile-field input::placeholder{color:#a0aaa0;font-weight:600}
@@ -446,3 +446,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-off
   .node-label{font-size:.52rem}
   .node-meta{font-size:.47rem}
 }
+
+/* The result view contains one summary card for a ten-question lesson. */
+.result-screen .level-results{grid-template-columns:1fr}
+.result-screen .level-result+.level-result{border-left:0;border-top:1px solid var(--line)}
