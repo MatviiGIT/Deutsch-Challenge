@@ -68,15 +68,15 @@ Vor dem Kurs wählt das Kind einmalig das Niveau für den gesamten Lernweg:
 
 Innerhalb jedes Themas gibt es fünf aufeinanderfolgende Lektionen. Die Reihenfolge steigt von **Entdecken** über **Erkennen**, **Anwenden** und **Kombinieren** bis **Meistern**. Das G/M/E-Niveau verändert zusätzlich die Auswahl der Antwortmöglichkeiten.
 
-### Themen in der aktuellen Fragensammlung
+### Sieben Themenwelten
 
 - Wortarten
-- Artikel und grammatische Formen
-- Rechtschreibung und Großschreibung
-- Mehrzahlbildung und Wortschatz
-- Satzglieder und Satzbau
+- Wortschatz
+- Rechtschreibung
 - Satzzeichen
-- Lese- und Textverständnis
+- Grammatik
+- Satzbau
+- Lesen & Verstehen
 
 ### Bezug zum Bildungsplan Baden-Württemberg
 
@@ -320,6 +320,7 @@ Diese Prüfung ist eine statische Code- und Datenkontrolle. Sie ersetzt keinen v
 ### Inhaltlicher Qualitätstest
 
 - [ ] Alle 350 Fragen sind sprachlich klar und altersgerecht.
+- [ ] Die Antwortmöglichkeiten der G-, M- und E-Variante sind jeweils eindeutig und fachlich korrekt.
 - [ ] Jede Aufgabe hat genau eine fachlich richtige Antwort.
 - [ ] Die Erklärung erklärt auch den entscheidenden sprachlichen Hinweis oder die Regel.
 - [ ] Die Fragen passen zu den im Unterricht bereits behandelten Themen.
@@ -410,7 +411,7 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 1. Die neue Gestaltung auf Desktop, Tablet und Smartphone prüfen.
 2. Die Abstände und Lesbarkeit auf der Startseite und im Fragebildschirm fertigstellen.
-3. Alle 30 Aufgaben sprachlich und fachlich überprüfen lassen.
+3. Alle 350 Aufgaben sprachlich und fachlich durch eine Deutschlehrkraft prüfen lassen.
 4. Einen kurzen Feedbackbogen für den Praxistest vorbereiten.
 5. Den Test mit der Lehrkraft abstimmen und durchführen.
 6. Die Ergebnisse anonymisiert auswerten und die Anwendung verbessern.
