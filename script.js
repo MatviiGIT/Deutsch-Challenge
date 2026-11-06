@@ -159,7 +159,7 @@ const topics = [
             ["Welche Wortart hat „freundliche“? „Der freundliche Verkäufer grüßt.“","Adjektiv",["Nomen","Verb"],"„Freundliche“ beschreibt den Verkäufer und ist ein Adjektiv."],
             ["Welche Wortart hat „zittert“? „Das Blatt zittert im Wind.“","Verb",["Nomen","Adjektiv"],"„Zittert“ beschreibt eine Bewegung."],
             ["Welches Wort ist ein Adjektiv? „Der flinke Hase springt über den Zaun.“","flinke",["Hase","springt"],"„Flinke“ beschreibt den Hasen."],
-            ["Was ist „Schwimmen“ im Satz: „Schwimmen macht Spaß.“?","Nomen",["Verb","Adjektiv"],"Hier steht „Schwimmen“ mit großem Anfangsbuchstaben als Nomen im Satz."],
+            ["In welchem Satz ist „spielen“ ein Verb?","Die Kinder spielen im Hof.",["Das Spielen macht Spaß.","Beim Spielen vergeht die Zeit."],"Im ersten Satz beschreibt „spielen“ eine Handlung. In den anderen Sätzen wird das Wort als Nomen verwendet."],
             ["Welche Wortart hat „schneller“? „Der Zug ist schneller.“","Adjektiv",["Nomen","Verb"],"„Schneller“ ist eine gesteigerte Eigenschaft und damit ein Adjektiv."]
           ],
           E:[
