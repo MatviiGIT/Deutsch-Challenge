@@ -730,7 +730,7 @@ function updateHeader(){
   document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
   document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
   document.getElementById("course-progress-note").textContent="Schließe deine erste Lektion ab, um den Lernpfad Schritt für Schritt freizuschalten.";
-  document.getElementById("course-chip").textContent="DEUTSCH · KLASSE 5";
+  document.getElementById("course-chip").innerHTML='<span class="chip-dot"></span> DEUTSCH · KLASSE 5';
 }
 function beginCourse(){
   const input=document.getElementById("player-name");
