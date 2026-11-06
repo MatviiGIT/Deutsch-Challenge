@@ -91,7 +91,7 @@ Der Bildungsplan für die Sekundarstufe I beschreibt Kompetenzen für **Klassen 
 
 ### Themenfelder und inhaltlicher Umfang
 
-Die aktuelle Kursfassung umfasst sieben Themen mit jeweils fünf Lektionen:
+Die frühere Kursplanung sah sieben Themen mit jeweils fünf Lektionen vor. Diese große Struktur ist vorerst pausiert; der aktuelle Testkurs konzentriert sich auf eine einzige Pilotlektion.
 
 | Themenwelt | Schwerpunkte |
 |---|---|
@@ -105,22 +105,12 @@ Die aktuelle Kursfassung umfasst sieben Themen mit jeweils fünf Lektionen:
 
 Die Fragen sind ein Arbeitsentwurf zur Wiederholung ausgewählter Inhalte aus dem Deutschunterricht. Die Themenauswahl orientiert sich am Bildungsplan Deutsch für die Sekundarstufe I, Klassen 5/6. Daraus folgt **keine** Garantie, dass jede einzelne Aufgabe bereits zum Unterrichtsstand jeder fünften Klasse passt. Vor dem schulischen Einsatz ist eine Prüfung durch eine Deutschlehrkraft erforderlich.
 
-Die G/M/E-Auswahl verändert insbesondere die Antwortmöglichkeiten: Beim G-Niveau sind Ablenkungsantworten stärker unterscheidbar; beim M- und E-Niveau werden die Alternativen zunehmend ähnlicher. Diese Abstufung ist eine erste technische Differenzierung und muss ebenfalls fachlich geprüft werden.
+Die Pilotlektion besitzt getrennte Aufgabenstellungen für G, M und E. Die Differenzierung soll sich im Denkweg und im Anwendungsniveau zeigen, nicht nur in schwierigeren falschen Antwortmöglichkeiten.
 ### Themenkarte und Lernablauf
 
-Die Startseite zeigt eine **Themenkarte mit sieben Themenwelten**. Jede Themenwelt enthält kurze Lektionen, die zu den vorhandenen Aufgaben passen:
+Die aktuelle Startseite zeigt im Pilotstand nur die Themenwelt **Wortarten** mit einer Lektion. Vor den Aufgaben erscheint eine Lernseite mit Definitionen, Beispielen und einem Ablauf für 45 Minuten. Die Aufgaben werden passend zum einmal gewählten G-, M- oder E-Niveau erzeugt.
 
-1. Wortarten
-2. Wortschatz
-3. Rechtschreibung
-4. Satzzeichen
-5. Grammatik
-6. Satzbau
-7. Lesen & Verstehen
-
-Jede Themenwelt enthält genau fünf Lektionen mit je zehn Fragen. Die Lektionen heißen **Entdecken**, **Erkennen**, **Anwenden**, **Kombinieren** und **Meistern**. Jede Stufe baut auf den vorherigen Inhalten auf. Der einmal gewählte G/M/E-Kurs gilt für alle sieben Themen.
-
-Die Reihenfolge führt durch den gesamten Kurs. Zunächst ist der erste Lernschritt geöffnet. Nach Abschluss einer Lektion wird der nächste Schritt freigeschaltet. Bereits abgeschlossene Lektionen können erneut gespielt werden. Falsche Antworten kosten keine Leben und blockieren den Lernweg nicht.
+Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden. Falsche Antworten blockieren den Abschluss nicht.
 
 Nach jeder Antwort erscheinen die richtige Lösung und eine Erklärung. Am Ende einer Lektion sieht das Kind die Punktzahl und kann falsch beantwortete Fragen mit der eigenen Antwort, der richtigen Lösung und der Erklärung wiederholen.
 
@@ -128,16 +118,16 @@ Der Fortschritt wird nur im Arbeitsspeicher der aktuellen Browser-Sitzung gehalt
 
 ## 5. Aktueller Funktionsumfang
 
-Die Fragensammlung enthält **350 Fragen**: sieben Themenwelten mit jeweils fünf Lektionen und zehn Fragen pro Lektion. Vor dem Start wählt das Kind einmalig **G-, M- oder E-Niveau**. Die gewählte Kursvariante gilt anschließend für den gesamten Lernpfad.
+Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen Wortarten-Lektion. Beim Start wird einmalig **G-, M- oder E-Niveau** gewählt. Die gewählte Variante gilt für die gesamte Probestunde.
 
 | Funktion | Aktueller Stand |
 |---|---|
-| Themenkarte mit sieben Themenwelten | Vorhanden |
-| 35 Lektionen (fünf je Themenwelt) | Vorhanden |
+| Themenkarte mit einer Pilot-Themenwelt | Vorhanden |
+| Eine 45-minütige Probestunde mit 18 Aufgaben je Niveau | Vorhanden |
 | Schrittweise Freischaltung der nächsten Lektion | Vorhanden |
 | Wiederholung bereits abgeschlossener Lektionen | Vorhanden |
-| Freies Training über alle 350 Fragen | Vorhanden |
-| 350 Fragen mit jeweils drei Antwortmöglichkeiten | Vorhanden |
+| Freies Training über die 18 Fragen der gewählten Variante | Vorhanden |
+| Drei getrennte G/M/E-Aufgabenvarianten | Im Pilotstand vorhanden |
 | Zufällige Reihenfolge innerhalb einer Lektion | Vorhanden |
 | Rückmeldung und Erklärung nach jeder Antwort | Vorhanden |
 | Fortschritt innerhalb der Lektion | Vorhanden |
@@ -250,7 +240,7 @@ Zum Beenden des lokalen Servers im Terminal **Ctrl + C** drücken.
 
 ## 9. Eine neue Frage oder Lektion hinzufügen
 
-Die Kursstruktur und die Generatoren für Aufgaben befinden sich in script.js. Das Array topics enthält sieben Themenwelten. Jede Themenwelt enthält genau fünf Lektionen. Jede Lektion besitzt eine build(track, stage)-Funktion, die zehn Fragen für das ausgewählte G/M/E-Niveau erzeugt.
+Die Kursstruktur und die Generatoren für Aufgaben befinden sich in script.js. Das Array topics enthält die geplanten Themenwelten und die bisherigen Aufgaben. Für den aktuellen Pilotkurs wird daraus nur die erste Lektion der Themenwelt Wortarten geladen. Sie besitzt eine build(track, stage)-Funktion und erzeugt 18 eigenständige Aufgaben für das ausgewählte G/M/E-Niveau.
 
 ### Aufbau einer fertigen Frage
 
@@ -267,8 +257,8 @@ Die Kursstruktur und die Generatoren für Aufgaben befinden sich in script.js. D
 
 ### Regeln für den Kursaufbau
 
-1. Jede Themenwelt enthält fünf Lektionen.
-2. Jede Lektion erzeugt genau zehn Fragen.
+1. Der Pilotkurs enthält vorerst nur eine Lektion.
+2. Die Pilotlektion erzeugt genau 18 Fragen je G/M/E-Niveau.
 3. Jede Frage hat genau drei unterschiedliche Antwortmöglichkeiten.
 4. answer ist der Index der richtigen Antwort und beginnt bei 0.
 5. Jede Frage enthält eine verständliche Erklärung.
@@ -336,12 +326,12 @@ Diese Prüfung ist eine statische Code- und Datenkontrolle. Sie ersetzt keinen v
 
 ### Inhaltlicher Qualitätstest
 
-- [ ] Alle 350 Fragen sind sprachlich klar und altersgerecht.
-- [ ] Die Antwortmöglichkeiten der G-, M- und E-Variante sind jeweils eindeutig und fachlich korrekt.
+- [ ] Alle 54 Aufgaben der Pilotlektion sind sprachlich klar und altersgerecht.
+- [ ] Die G-, M- und E-Aufgaben unterscheiden sich sinnvoll im Anspruch und sind fachlich korrekt.
 - [ ] Jede Aufgabe hat genau eine fachlich richtige Antwort.
 - [ ] Die Erklärung erklärt auch den entscheidenden sprachlichen Hinweis oder die Regel.
 - [ ] Die Fragen passen zu den im Unterricht bereits behandelten Themen.
-- [ ] Die Schwierigkeit steigt nachvollziehbar von Lektion 1 bis Lektion 5.
+- [ ] Die Schwierigkeit steigt nachvollziehbar innerhalb der 18 Aufgaben jeder Variante.
 - [ ] Die drei G/M/E-Kursvarianten sind fachlich sinnvoll voneinander abgestuft.
 - [ ] Eine Deutschlehrkraft hat die Aufgaben fachlich geprüft.
 
