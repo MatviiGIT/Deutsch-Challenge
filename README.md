@@ -274,9 +274,10 @@ Der bisherige Umfang von 350 Fragen wurde für die nächste Entwicklungsrunde be
 - 18 Aufgaben je Niveau;
 - drei getrennte Aufgabenvarianten für G, M und E (insgesamt 54 erzeugte Fragen);
 - drei Antwortmöglichkeiten und eine Erklärung pro Aufgabe;
-- eine vorgeschaltete Lernseite mit kurzen Definitionen, Beispielen und einem 45-Minuten-Ablauf.
+- eine vorgeschaltete Lernseite mit kurzen Definitionen, Beispielen und einem 45-Minuten-Ablauf;
+- eine bewusst geordnete Aufgabenfolge: Einstieg, Übung, Anwendung und kurzer Wissenstest.
 
-Die Niveaus unterscheiden sich in den Aufgabenstellungen und im erforderlichen Denken: G übt vor allem das Erkennen einfacher Beispiele, M bestimmt Wortarten in vollständigen Sätzen, E untersucht Wortarten im Kontext und bearbeitet anspruchsvollere Fälle. Die drei Kerninhalte dieser Pilotstunde sind Nomen, Verben und Adjektive.
+Die Niveaus unterscheiden sich in den Aufgabenstellungen und im erforderlichen Denken: G übt vor allem das Erkennen einfacher Beispiele, M bestimmt Wortarten in vollständigen Sätzen, E untersucht Wortarten im Kontext und bearbeitet anspruchsvollere Fälle. Die Reihenfolge der Fragen bleibt bewusst erhalten, damit der Schwierigkeitsgrad innerhalb der Lektion schrittweise steigt. Die drei Kerninhalte dieser Pilotstunde sind Nomen, Verben und Adjektive.
 
 Beim Laden prüft die Anwendung die 18 Fragen aller drei Varianten auf Anzahl, drei unterschiedliche Antwortoptionen, gültigen Antwortindex, Aufgabenstellung, Erklärung und Level-Zuordnung. Diese technische Prüfung wird beim tatsächlichen Browser-Test noch einmal kontrolliert.
 
@@ -294,6 +295,7 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Das gewählte Niveau bleibt während des gesamten Kurses gleich.
 - [ ] Im aktuellen Pilotstand wird genau eine Wortarten-Lektion angezeigt.
 - [ ] Die Pilotlektion enthält genau 18 Aufgaben für das gewählte Niveau.
+- [ ] Die Aufgaben erscheinen in der vorgesehenen Reihenfolge vom Einstieg bis zum Wissenstest.
 - [ ] Der erste Lernschritt ist geöffnet; spätere Schritte sind zunächst gesperrt.
 - [ ] Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden.
 - [ ] Bereits abgeschlossene Lektionen können erneut gestartet werden.
