@@ -63,7 +63,13 @@ function simpleRows(data,track,category,stage,makePrompt) {
   return data.map(r=>makeQuestion(makePrompt(r),r[1],r[2],r[3],track,category,stage));
 }
 function spellingRows(data,track,category,stage) {
-  return data.map(r=>makeQuestion(r[0],r[1],r[2],"Richtig ist: „"+r[1]+"“. "+r[3],track,category,stage));
+  return data.map(r=>{
+    const answer=String(r[1]),parts=answer.split(" ");
+    const clue=parts.length>1
+      ?" (Satzanfang: „"+parts.slice(0,3).join(" ")+" …“)"
+      :" (Wort mit Anfangsbuchstabe „"+answer.charAt(0)+"“ und "+answer.length+" Buchstaben)";
+    return makeQuestion(r[0]+clue,answer,r[2],"Richtig ist: „"+answer+"“. "+r[3],track,category,stage);
+  });
 }
 function readingRows(data,track,category,stage) {
   return data.map(r=>makeQuestion("Lies: „"+r[0]+"“ "+r[1],r[2],r[3],"Im Text steht: "+r[4],track,category,stage));
