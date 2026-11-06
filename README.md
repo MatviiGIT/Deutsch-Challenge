@@ -1,12 +1,12 @@
-# Deutsch-Challenge
+# Quakoo — Deutsch-Challenge
 
-**Ein interaktives Lernquiz für Deutsch in der 5. Klasse**  
+**Eine spielerische Lernplattform für Deutsch in der 5. Klasse**  
 Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 
 | Information | Stand |
 |---|---|
 | Schulprojekt / Repository | Deutsch-Challenge |
-| Name der Lernplattform | Quakademie (bisherige Bezeichnung; Quakoo wird als neuer Name geprüft) |
+| Name der Lernplattform | **Quakoo** |
 | Lernbegleiter | Quaki, der Frosch |
 | Zielgruppe | Schülerinnen und Schüler der 5. Klasse |
 | Sprache der Anwendung | Deutsch |
@@ -20,7 +20,7 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 
 ## 1. Projekt in Kürze
 
-Quakademie ist die bisherige Bezeichnung der Lernplattform des Schulprojekts Deutsch-Challenge. **Quakoo** ist der aktuelle Namensfavorit und wird vor einer Umbenennung der Oberfläche noch als endgültiger Markenname bestätigt. Quaki, ein Frosch, begleitet Kinder der 5. Klasse beim Wiederholen ausgewählter Inhalte des Deutschunterrichts.
+**Quakoo** ist die Lernplattform des Schulprojekts Deutsch-Challenge. Quaki, ein freundlicher Frosch, begleitet Kinder der 5. Klasse beim Wiederholen ausgewählter Inhalte des Deutschunterrichts.
 
 Die Website bietet drei Schwierigkeitsstufen. Jede Frage hat drei Antwortmöglichkeiten. Nach einer Antwort zeigt das Programm, ob die Auswahl richtig war, und erklärt die Lösung in einfachen Worten. Am Ende erhalten die Lernenden eine Auswertung und Hinweise darauf, welche Inhalte sie noch üben können.
 
@@ -110,7 +110,9 @@ Die Fragen sind ein Arbeitsentwurf zur Wiederholung ausgewählter Inhalte aus de
 Die Pilotlektion besitzt getrennte Aufgabenstellungen für G, M und E. Die Differenzierung soll sich im Denkweg und im Anwendungsniveau zeigen, nicht nur in schwierigeren falschen Antwortmöglichkeiten.
 ### Themenkarte und Lernablauf
 
-Die aktuelle Startseite zeigt im Pilotstand nur die Themenwelt **Wortarten** mit einer Lektion. Vor den Aufgaben erscheint eine Lernseite mit Definitionen, Beispielen und einem Ablauf für 45 Minuten. Die Aufgaben werden passend zum einmal gewählten G-, M- oder E-Niveau erzeugt.
+Die Anwendung besitzt getrennte Ansichten für **Home** und **Lernpfad**. Home zeigt den persönlichen Einstieg, das gewählte Lernniveau, den sitzungsbasierten Fortschritt und den nächsten Lernschritt. Der Lernpfad zeigt Themenkarten, Lektionen und eine Legende für offene, abgeschlossene und gesperrte Einheiten. Die Lektion bleibt eine eigene Ansicht mit Erklärungen und anschließendem Aufgabenablauf.
+
+Die aktuelle Lernpfad-Ansicht zeigt im Pilotstand nur die Themenwelt **Wortarten** mit einer Lektion. Vor den Aufgaben erscheint eine Lernseite mit Definitionen, Beispielen und einem Ablauf für 45 Minuten. Die Aufgaben werden passend zum einmal gewählten G-, M- oder E-Niveau erzeugt.
 
 Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden. Falsche Antworten blockieren den Abschluss nicht.
 
@@ -419,7 +421,7 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 ### Prioritäten für die nächste Entwicklungsrunde
 
-1. Die aktuelle veröffentlichte Gestaltung auf Desktop, Tablet und Smartphone manuell prüfen; besonders Augen des Maskottchens, Ausrichtung des Lernpfads und Lesbarkeit kontrollieren.
+1. Die aktuelle Home-, Lernpfad- und Lektionsgestaltung auf Desktop, Tablet und Smartphone manuell prüfen; besonders Augen des Maskottchens, Ausrichtung des Lernpfads und Lesbarkeit kontrollieren.
 2. Alle 54 Aufgaben der Pilotlektion (18 je G/M/E-Niveau) sprachlich und fachlich prüfen: eindeutige richtige Antwort, verständliche Erklärung und angemessene Schwierigkeit.
 3. Die Pilotlektion vollständig selbst durchspielen und Fehler sowie unklare Formulierungen protokollieren.
 4. Die Aufgaben mit einer Deutschlehrkraft abstimmen und danach einen kleinen Praxistest vorbereiten.
@@ -488,7 +490,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 
 ### Verbindliche Projektentscheidungen
 
-- Projektname: **Deutsch-Challenge**
+- Projektname: **Quakoo** (Lernplattform) / **Deutsch-Challenge** (Schulprojekt und Repository)
 - Schulischer Rahmen: **„Zeig, was du kannst“**
 - Zielgruppe: **5. Klasse**
 - Inhalt: **Deutsch — Grammatik, Rechtschreibung, Wortschatz und Textverständnis**
@@ -499,7 +501,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 - Keine Speicherung individueller Antworten oder Ergebnisse
 - Technische Basis bleibt zunächst HTML, CSS und JavaScript
 - Hosting bleibt GitHub Pages
-- Gestaltung: freundliche Themenkarte mit Lernknoten, Grün als Hauptfarbe und hellen Akzenten
+- Gestaltung: eigenständiger Quakoo-Auftritt mit freundlichem Grün, hellen Akzenten, Home- und Lernpfad-Ansicht sowie Quaki als Lernbegleiter
 - Lernfortschritt bleibt sitzungsbasiert; keine Konten, Ranglisten oder dauerhafte Speicherung.
 - Die Quiz-Erklärungen und die Fehlerübersicht müssen bei Designänderungen erhalten bleiben.
 
@@ -546,6 +548,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 06.11.2026 | Pilotlektion „Wortdetektive“ mit 45-Minuten-Lernseite, Zeitplan und 18 getrennten Aufgaben je G/M/E-Niveau vorbereitet. Änderungen liegen auf `content-audit`; GitHub Actions und Pages-Build waren erfolgreich. Manueller Browser-, Geräte- und Inhaltstest stehen noch aus. |
 | 06.11.2026 | Markenauftritt auf „Quakademie“ mit Quaki als Frosch umgestellt. Frosch-Augen als getrennte Elemente neu aufgebaut, Schriftgrößen vereinheitlicht, Hilferegeln in ein „?“-Menü verschoben und wiederholte Hinweise aus den Hauptansichten entfernt. |
 | 06.11.2026 | Kontrast der Frosch-Augen durch weiße Augenflächen und grüne Konturen verbessert; die Überschrift „Der Lernpfad“ aus der Kursübersicht entfernt, damit die Lernpfad-Spalten bündig beginnen. Die Schriftgrößen blieben unverändert; der CSS-Versionsparameter wurde auf `v=17` erhöht. GitHub-Actions-Prüfung und GitHub-Pages-Deployment für Commit `a0a920a` erfolgreich. Die visuelle Kontrolle auf echten Geräten steht weiterhin aus. |
+| 06.11.2026 | Die Lernplattform auf **Quakoo** umbenannt; **Quaki** bleibt der Name des Frosch-Maskottchens. Home und Lernpfad in getrennte Ansichten aufgeteilt und eine Navigation ergänzt. Home zeigt Lernniveau, Fortschritt und nächsten Lernschritt. Der Lernpfad besitzt eine eigene Themenübersicht mit Legende. Rückwege aus Lektion, Quiz und Ergebnis führen in den Lernpfad. Bestehende Aufgaben, Antworten und Auswertungen bleiben erhalten. CSS- und JavaScript-Versionsparameter auf `v=18` und `v=19` erhöht. Automatische und visuelle Tests für diese Änderung stehen noch aus. |
 
 ---
 

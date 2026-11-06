@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8f3">
-  <meta name="description" content="Deutsch lernen mit Quaki – kurze Übungen für die 5. Klasse.">
-  <title>Quakademie — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=17">
-  <script src="script.js?v=18" defer></script>
+  <meta name="description" content="Quakoo – Deutsch lernen mit Quaki für die 5. Klasse.">
+  <title>Quakoo — Deutsch lernen mit Quaki</title>
+  <link rel="stylesheet" href="style.css?v=18">
+  <script src="script.js?v=19" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="#" id="brand-home" aria-label="Zur Kursübersicht">
         <span class="brand-mark" aria-hidden="true">Q</span>
-        <span class="brand-words">Quakademie</span>
+        <span class="brand-words">Quakoo</span>
       </a>
       <div class="topbar-right">
         <span class="course-chip" id="course-chip"><span class="chip-dot"></span> DEUTSCH · KLASSE 5</span>
@@ -34,6 +34,15 @@
         </details>
       </div>
     </header>
+
+    <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation" hidden>
+      <button class="nav-button is-active" type="button" data-screen="start" aria-current="page">
+        <span class="nav-icon" aria-hidden="true">⌂</span> Home
+      </button>
+      <button class="nav-button" type="button" data-screen="path">
+        <span class="nav-icon" aria-hidden="true">↗</span> Lernpfad
+      </button>
+    </nav>
 
     <main id="app">
       <section class="screen profile-screen" id="profile-screen" aria-labelledby="profile-title">
@@ -77,20 +86,20 @@
         </div>
       </section>
 
-      <section class="screen start-screen" id="start-screen" hidden>
+      <section class="screen start-screen" id="start-screen" hidden aria-labelledby="home-title">
         <section class="welcome-card" aria-labelledby="home-title">
           <div class="welcome-copy">
-            <span class="eyebrow">DEIN DEUTSCHKURS</span>
-            <h1 id="home-title">Hallo, <span id="course-player-name">Wortprofi</span>!<br><em>Weiterlernen.</em></h1>
+            <span class="eyebrow">WILLKOMMEN BEI QUAKOO</span>
+            <h1 id="home-title">Hallo, <span id="course-player-name">Wortprofi</span>!<br><em>Lernen macht Quak!</em></h1>
+            <p>Ein kleiner Schritt heute bringt dich beim Deutschlernen weiter. Quaki zeigt dir, wo du weitermachen kannst.</p>
             <div class="welcome-facts">
-              
-              <span><strong>45</strong> Minuten</span>
+              <span><strong>45</strong> Minuten Lernsession</span>
               <span><strong>18</strong> Aufgaben</span>
             </div>
           </div>
           <div class="welcome-art" aria-hidden="true">
             <div class="art-sun"></div>
-            <div class="art-card art-card-back">WÖRTER</div>
+            <div class="art-card art-card-back">WORTARTEN</div>
             <div class="art-card art-card-front"><span>ä</span></div>
             <div class="guide-mascot frog-avatar frog-avatar-large" role="img" aria-label="Quaki, der Lernfrosch">
               <span class="frog-eye frog-eye-left"><span class="frog-pupil"></span></span>
@@ -105,44 +114,71 @@
           </div>
         </section>
 
+        <div class="home-stat-grid" aria-label="Dein Kurs auf einen Blick">
+          <article class="home-stat-card"><span>DEIN LERNNIVEAU</span><strong id="home-track-value">Noch nicht gewählt</strong></article>
+          <article class="home-stat-card"><span>BEARBEITETE FRAGEN</span><strong id="home-progress-stat">0 / 18</strong></article>
+          <article class="home-stat-card"><span>AKTUELLE THEMENWELT</span><strong>Wortarten</strong></article>
+        </div>
+
         <section class="course-progress-card" aria-label="Dein Lernfortschritt">
           <div class="course-progress-copy">
-            <div>
-              <span class="section-kicker">DEIN FORTSCHRITT</span>
-              <h2 id="course-progress-title">Dein Kurs beginnt hier</h2>
-            </div>
+            <div><span class="section-kicker">DEIN FORTSCHRITT</span><h2 id="course-progress-title">Dein Kurs beginnt hier</h2></div>
             <strong id="course-progress-count">0 / 18</strong>
           </div>
-          <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0">
-            <span id="course-progress-fill"></span>
-          </div>
+          <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0"><span id="course-progress-fill"></span></div>
         </section>
 
-        <div class="course-layout">
-          <section class="path-column" aria-label="Themen und freigeschaltete Einheiten">
-            <div class="learning-path" id="learning-path"></div>
+        <div class="home-dashboard">
+          <section class="continue-card" aria-labelledby="next-title">
+            <div class="continue-card-heading"><span class="section-kicker">DEIN NÄCHSTER SCHRITT</span><span class="continue-status">BEREIT ZUM START</span></div>
+            <div class="continue-card-main">
+              <div class="next-icon" id="next-icon">Aa</div>
+              <div class="continue-copy">
+                <h2 id="next-title">Wortarten · Wortdetektive</h2>
+                <p>Erkenne Nomen, Verben und Adjektive und finde heraus, wie Wörter im Satz zusammenarbeiten.</p>
+                <span class="next-meta" id="next-meta">STUFE 1 · 18 FRAGEN</span>
+              </div>
+            </div>
+            <button class="primary-button next-start-button" id="next-unit-button" type="button">Weiterlernen <span aria-hidden="true">→</span></button>
           </section>
 
-          <aside class="course-sidebar">
-            <div class="sidebar-card next-card">
-              <span class="sidebar-label">ALS NÄCHSTES</span>
-              <div class="next-icon" id="next-icon">Aa</div>
-              <h3 id="next-title">Wortarten entdecken</h3>
-              <span class="next-meta" id="next-meta">STUFE 1 · 10 FRAGEN</span>
-              <button class="primary-button next-start-button" id="next-unit-button" type="button">Weiterlernen <span aria-hidden="true">→</span></button>
-            </div>
+          <aside class="home-side-card">
+            <div class="home-side-top"><span class="section-kicker">DEIN LERNPFAD</span><span class="home-side-symbol" aria-hidden="true">↗</span></div>
+            <div class="home-topic-icon" aria-hidden="true">Aa</div>
+            <h2>Wortarten</h2>
+            <p>Deine erste Themenwelt. Schritt für Schritt lernst du, Wörter genauer zu untersuchen.</p>
+            <button class="secondary-button" type="button" data-go-screen="path">Lernpfad ansehen <span aria-hidden="true">→</span></button>
           </aside>
         </div>
 
         <div class="free-practice">
-          <button class="text-button" id="free-practice-button" type="button">Freies Training · 18 Fragen <span aria-hidden="true">→</span></button>
+          <div><strong>Schon sicher? Zeit zum Wiederholen.</strong><span>Übe gemischte Aufgaben unabhängig vom Lernpfad.</span></div>
+          <button class="text-button" id="free-practice-button" type="button">Freies Training <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="screen path-screen" id="path-screen" hidden aria-labelledby="path-title">
+        <div class="page-heading">
+          <div><span class="eyebrow">DEIN DEUTSCHKURS</span><h1 id="path-title">Dein Lernpfad</h1><p>Hier siehst du deine Themen, Lektionen und deinen bisherigen Fortschritt.</p></div>
+          <button class="text-button path-home-button" type="button" data-go-screen="start">← Zur Home-Seite</button>
+        </div>
+        <div class="path-layout">
+          <section class="path-column" aria-label="Themen und freigeschaltete Einheiten"><div class="learning-path" id="learning-path"></div></section>
+          <aside class="path-guide">
+            <span class="section-kicker">SO FUNKTIONIERT DER PFAD</span>
+            <div class="path-guide-item"><span class="guide-symbol guide-open">▶</span><div><strong>Als Nächstes</strong><small>Diese Lektion kannst du jetzt starten.</small></div></div>
+            <div class="path-guide-item"><span class="guide-symbol guide-done">✓</span><div><strong>Abgeschlossen</strong><small>Diese Lektion hast du bereits geschafft.</small></div></div>
+            <div class="path-guide-item"><span class="guide-symbol guide-locked">2</span><div><strong>Noch gesperrt</strong><small>Schließe zuerst die vorherige Lektion ab.</small></div></div>
+            <div class="path-guide-note"><strong>Quakis Tipp</strong><p>Du musst nicht alles auf einmal schaffen. Wiederhole eine Lektion, wenn du noch üben möchtest.</p></div>
+            <button class="secondary-button path-practice-button" type="button" id="path-free-practice-button">Freies Training <span aria-hidden="true">→</span></button>
+          </aside>
         </div>
       </section>
 
       <section class="screen lesson-screen" id="lesson-screen" hidden aria-labelledby="lesson-title">
         <div class="lesson-card">
-          <button class="text-button lesson-back-button" id="lesson-back-button" type="button">← Lernpfad</button>
-          <span class="eyebrow">45-MINUTEN-LEKTION</span>
+          <button class="text-button lesson-back-button" id="lesson-back-button" type="button">← Zurück zum Lernpfad</button>
+          <span class="eyebrow">DEINE LERNSESSION</span>
           <h1 id="lesson-title">Wortdetektive</h1>
           <p class="lesson-lead" id="lesson-focus">Nomen, Verben und Adjektive unterscheiden.</p>
           <div class="lesson-level" id="lesson-level">G · 45 MINUTEN · 18 AUFGABEN</div>
@@ -179,7 +215,7 @@
             </div>
           </div>
           <div class="lesson-schedule">
-            <h2>So läuft die Stunde ab</h2>
+            <h2>Dein Lernablauf</h2>
             <div class="lesson-timeline">
               <div><strong>5 Min.</strong><span>Einstieg</span></div>
               <div><strong>8 Min.</strong><span>Regeln ansehen</span></div>
@@ -254,7 +290,7 @@
       </section>
     </main>
 
-    <footer class="site-footer"><span>QUAKADEMIE <span class="footer-dot">/</span> DEUTSCH LERNEN</span><span>MIT QUAKI.</span></footer>
+    <footer class="site-footer"><span>QUAKOO <span class="footer-dot">/</span> DEUTSCH LERNEN</span><span>MIT QUAKI.</span></footer>
   </div>
 </body>
 </html>

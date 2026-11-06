@@ -748,6 +748,8 @@ const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...
 const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=18,totalQuestions=totalUnits*questionsPerUnit;
 const profileScreen=document.getElementById("profile-screen");
 const startScreen=document.getElementById("start-screen");
+const pathScreen=document.getElementById("path-screen");
+const mainNav=document.getElementById("main-nav");
 const quizScreen=document.getElementById("quiz-screen");
 const resultScreen=document.getElementById("result-screen");
 const answerGrid=document.getElementById("answer-grid");
@@ -756,10 +758,18 @@ const nextButton=document.getElementById("next-button");
 function screen(name){
   profileScreen.hidden=name!=="profile";
   startScreen.hidden=name!=="start";
+  pathScreen.hidden=name!=="path";
   document.getElementById("lesson-screen").hidden=name!=="lesson";
   quizScreen.hidden=name!=="quiz";
   resultScreen.hidden=name!=="result";
-  if(name==="start")renderPath();
+  mainNav.hidden=!courseStarted||!["start","path","lesson"].includes(name);
+  document.querySelectorAll(".nav-button").forEach(button=>{
+    const active=name==="lesson"?button.dataset.screen==="path":button.dataset.screen===name;
+    button.classList.toggle("is-active",active);
+    if(active)button.setAttribute("aria-current","page");
+    else button.removeAttribute("aria-current");
+  });
+  if(name==="start"||name==="path")renderPath();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function completedCount(){return units.filter(unit=>completed.has(unit.id)).reduce((sum,unit)=>sum+unit.questions.length,0);}
@@ -812,6 +822,7 @@ function updateHeader(){
   document.getElementById("track-chip").hidden=false;
   document.getElementById("topbar-progress").innerHTML="0 / "+totalQuestions+" <span>FRAGEN</span>";
   document.getElementById("course-player-name").textContent=playerName;
+  document.getElementById("home-track-value").textContent=selectedTrack+" · "+TRACKS[selectedTrack].name;
   document.getElementById("course-progress").setAttribute("aria-valuemax",String(totalQuestions));
   document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
   document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
@@ -831,6 +842,7 @@ function renderPath(){
   bar.setAttribute("aria-valuemax",String(totalQuestions));bar.setAttribute("aria-valuenow",String(done));
   document.getElementById("course-progress-fill").style.width=pct+"%";
   document.getElementById("course-progress-count").textContent=done+" / "+totalQuestions;
+  document.getElementById("home-progress-stat").textContent=done+" / "+totalQuestions;
   document.getElementById("topbar-progress").innerHTML=done+" / "+totalQuestions+" <span>FRAGEN</span>";
   document.getElementById("course-progress-title").textContent=done===totalQuestions?"Du hast den Kurs geschafft!":done?"Du bist auf deinem Weg!":"Dein Kurs beginnt hier";
   const path=document.getElementById("learning-path");path.replaceChildren();
@@ -1012,16 +1024,24 @@ document.getElementById("profile-form").addEventListener("submit",event=>{
   event.preventDefault();if(!beginButton.disabled)beginCourse();
 });
 document.getElementById("free-practice-button").addEventListener("click",startFree);
+document.querySelectorAll(".nav-button").forEach(button=>{
+  button.addEventListener("click",()=>screen(button.dataset.screen));
+});
+document.querySelectorAll("[data-go-screen]").forEach(button=>{
+  button.addEventListener("click",()=>screen(button.dataset.goScreen));
+});
+document.getElementById("path-free-practice-button").addEventListener("click",startFree);
+
 document.getElementById("next-unit-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
 document.getElementById("next-level-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
 nextButton.addEventListener("click",()=>{
   if(!answered)return;
   if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();
 });
-document.getElementById("lesson-back-button").addEventListener("click",()=>screen("start"));
+document.getElementById("lesson-back-button").addEventListener("click",()=>screen("path"));
 document.getElementById("lesson-start-button").addEventListener("click",()=>{if(currentUnit)prepare(currentUnit.questions,currentUnit);});
-document.getElementById("back-to-menu").addEventListener("click",()=>screen("start"));
-document.getElementById("result-menu-button").addEventListener("click",()=>screen("start"));
+document.getElementById("back-to-menu").addEventListener("click",()=>screen("path"));
+document.getElementById("result-menu-button").addEventListener("click",()=>screen("path"));
 document.getElementById("retry-button").addEventListener("click",()=>currentUnit?startUnit(currentUnit):startFree());
 document.getElementById("brand-home").addEventListener("click",event=>{
   event.preventDefault();if(courseStarted)screen("start");

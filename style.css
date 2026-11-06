@@ -650,3 +650,102 @@ body{font-size:var(--font-body);line-height:1.5}
 .frog-avatar-small .frog-eye{border-width:2.5px}
 .course-layout{align-items:start}
 .path-column{padding-top:0}
+
+
+/* Quakoo interface: distinct Home, Lernpfad and lesson views. */
+:root{--page:#f6f7f1;--green:#4e9a43;--green-dark:#31743b;--green-pale:#e9f4e5;--yellow:#f4cf68}
+.app-shell{width:min(1160px,calc(100% - 48px))}
+.topbar{height:76px}
+.brand-mark{border-radius:14px 14px 14px 5px;font-family:Georgia,serif}
+.brand-words{font-size:1.15rem;letter-spacing:-.045em}
+.main-nav{display:flex;align-items:center;gap:7px;padding:13px 0 0;border-bottom:1px solid var(--line)}
+.nav-button{min-height:42px;padding:8px 17px;display:inline-flex;align-items:center;gap:8px;border:0;border-bottom:3px solid transparent;border-radius:12px 12px 0 0;background:transparent;color:var(--ink-soft);font:800 var(--font-body) "Nunito Sans","Segoe UI",Arial,sans-serif;cursor:pointer;transition:background .15s ease,color .15s ease}
+.nav-button:hover{background:#eef4e9;color:var(--green-dark)}
+.nav-button.is-active{border-bottom-color:var(--green);background:#edf5e9;color:var(--green-dark)}
+.nav-icon{font-size:1.05rem;line-height:1}
+.start-screen,.path-screen{padding-top:26px}
+.welcome-card{min-height:250px;padding:30px 36px;background:linear-gradient(115deg,#eaf4e5 0%,#e4f0dc 100%)}
+.welcome-copy h1{max-width:650px;font-size:clamp(2.2rem,4.6vw,3.65rem)}
+.welcome-copy>p{max-width:500px;margin-top:8px;color:#526456;font-size:var(--font-support)}
+.welcome-facts{margin-top:17px}
+.home-stat-grid{margin:16px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.home-stat-card{min-height:78px;padding:13px 16px;display:flex;flex-direction:column;justify-content:center;gap:5px;border:1px solid var(--line);border-radius:15px;background:#fff}
+.home-stat-card span{color:var(--muted);font-size:.62rem;font-weight:1000;letter-spacing:.09em}
+.home-stat-card strong{color:var(--ink);font-size:var(--font-body);font-weight:900}
+.course-progress-card{margin:16px 0 18px;padding:16px 20px;box-shadow:0 3px 0 #e7ebe3}
+.course-progress-copy h2{font-family:"Nunito Sans","Segoe UI",Arial,sans-serif;font-size:var(--font-body);font-weight:900}
+.home-dashboard{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(230px,.75fr);gap:16px;align-items:stretch}
+.continue-card,.home-side-card,.path-guide{padding:21px;border:1px solid var(--line);border-radius:19px;background:#fff;box-shadow:0 3px 0 #e7ebe3}
+.continue-card{display:flex;flex-direction:column}
+.continue-card-heading,.home-side-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.continue-status{padding:5px 9px;border-radius:999px;background:#edf5e9;color:var(--green-dark);font-size:.58rem;font-weight:1000;letter-spacing:.06em}
+.continue-card-main{display:flex;align-items:center;gap:17px;margin:18px 0;flex:1}
+.continue-card .next-icon{width:70px;height:70px;flex:0 0 70px;margin:0;border-radius:21px;font-size:1.55rem;background:#eef6e9}
+.continue-copy{min-width:0}
+.continue-copy h2{margin:0;font:900 1.35rem/1.2 "Nunito Sans","Segoe UI",Arial,sans-serif;letter-spacing:-.035em}
+.continue-copy p{margin:7px 0 9px;color:var(--ink-soft);font-size:var(--font-support);line-height:1.5}
+.continue-copy .next-meta{display:inline-block}
+.next-start-button{width:100%;min-height:49px;border-radius:13px}
+.home-side-card{display:flex;flex-direction:column;align-items:flex-start}
+.home-side-symbol{width:29px;height:29px;display:grid;place-items:center;border-radius:10px;background:var(--green-pale);color:var(--green-dark);font-size:1rem;font-weight:900}
+.home-topic-icon{width:54px;height:54px;margin:16px 0 10px;display:grid;place-items:center;border-radius:17px;background:#f8edc9;color:#816824;font:900 1.15rem Georgia,serif}
+.home-side-card h2{margin:0;font:900 1.2rem "Nunito Sans","Segoe UI",Arial,sans-serif}
+.home-side-card p{flex:1;margin:7px 0 16px;color:var(--ink-soft);font-size:var(--font-support);line-height:1.55}
+.home-side-card .secondary-button{width:100%;min-height:45px}
+.free-practice{margin-top:16px;padding:13px 17px;border:1px solid #dce7d7;border-radius:15px;background:#f1f6ed}
+.free-practice>div{display:flex;flex-direction:column;gap:2px}
+.free-practice strong{font-size:var(--font-support)}
+.free-practice>div span{margin:0;font-size:var(--font-caption)}
+.free-practice .text-button{white-space:nowrap}
+.page-heading{margin-bottom:20px;display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
+.page-heading h1{margin:6px 0 3px;font:900 clamp(2rem,4vw,2.8rem)/1.05 Georgia,"Times New Roman",serif;letter-spacing:-.05em}
+.page-heading p{margin:0;color:var(--ink-soft);font-size:var(--font-support)}
+.path-home-button{white-space:nowrap}
+.path-layout{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:18px;align-items:start}
+.path-column{min-width:0}
+.path-guide{position:sticky;top:18px}
+.path-guide-item{display:flex;align-items:center;gap:10px;margin-top:17px}
+.path-guide-item strong,.path-guide-item small{display:block}
+.path-guide-item strong{font-size:var(--font-support)}
+.path-guide-item small{margin-top:2px;color:var(--muted);font-size:var(--font-caption);line-height:1.4}
+.path-guide-note{margin-top:20px;padding:13px;border-radius:14px;background:#fff5d9;color:#705b27}
+.path-guide-note strong{font-size:var(--font-support)}
+.path-guide-note p{margin:5px 0 0;font-size:var(--font-caption);line-height:1.5}
+.path-practice-button{width:100%;margin-top:15px}
+.path-screen .learning-path{gap:15px}
+.path-screen .topic-section{padding:20px 21px 17px}
+.path-screen .topic-nodes{justify-content:flex-start;gap:clamp(10px,3vw,30px);padding-left:8px}
+.path-screen .topic-nodes::before{left:44px;right:auto;width:min(430px,calc(100% - 95px))}
+.lesson-screen{padding-top:25px}
+.lesson-card{border-radius:23px}
+.lesson-card h1{margin-top:12px}
+.lesson-level{display:inline-flex;align-items:center;border-radius:999px;padding:7px 11px;background:#edf5e9;color:var(--green-dark);font-weight:900}
+.lesson-schedule{margin-top:22px}
+.lesson-timeline>div{border:1px solid #e8ede4;background:#f8faf6}
+.site-footer{margin-top:auto}
+@media(max-width:850px){.home-dashboard{grid-template-columns:minmax(0,1.2fr) minmax(210px,.8fr)}.path-layout{grid-template-columns:minmax(0,1fr) 220px}}
+@media(max-width:680px){
+  .app-shell{width:calc(100% - 28px)}.topbar{height:68px}.main-nav{padding-top:9px}
+  .nav-button{flex:1;justify-content:center;padding:8px 10px;font-size:.9rem}
+  .welcome-card{min-height:230px;padding:25px 22px;grid-template-columns:1.2fr .8fr;gap:8px}
+  .welcome-copy h1{font-size:clamp(1.85rem,7vw,2.5rem)}.welcome-copy>p{max-width:330px}
+  .welcome-art{height:190px;transform:scale(.9);transform-origin:center right}
+  .home-stat-grid{gap:8px}.home-stat-card{padding:11px 10px;min-height:75px}
+  .home-stat-card span{font-size:.54rem}.home-stat-card strong{font-size:.82rem}
+  .home-dashboard{grid-template-columns:1fr}.home-side-card{min-height:0}
+  .path-layout{grid-template-columns:1fr}.path-guide{position:static}
+  .path-screen .topic-nodes{gap:8px;overflow-x:auto;justify-content:flex-start}
+  .path-screen .topic-nodes::before{width:420px}
+  .page-heading{align-items:flex-start;flex-direction:column}.path-home-button{padding-top:0}
+}
+@media(max-width:480px){
+  .welcome-card{grid-template-columns:1fr;min-height:0;padding:23px 20px 0}
+  .welcome-copy h1{max-width:280px}.welcome-art{height:145px;width:100%;transform:scale(.78);transform-origin:center bottom;margin-top:-4px}
+  .welcome-facts{gap:12px}.home-stat-grid{grid-template-columns:1fr 1fr}
+  .home-stat-card:last-child{grid-column:1/-1}
+  .continue-card,.home-side-card,.path-guide{padding:17px}
+  .continue-card-main{gap:12px}.continue-card .next-icon{width:58px;height:58px;flex-basis:58px}
+  .continue-copy h2{font-size:1.12rem}
+  .free-practice{align-items:flex-start;flex-direction:column}.free-practice .text-button{padding-bottom:0}
+  .path-screen .topic-section{padding:16px 14px}.path-screen .topic-nodes{padding-left:0}
+}
