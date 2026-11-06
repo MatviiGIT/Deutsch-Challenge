@@ -40,6 +40,29 @@ function makeQuestion(prompt,answer,wrongOptions,explanation,track,category,stag
 function qRows(rows,track,category,stage) {
   return rows.map(row=>makeQuestion(row[0],row[1],row[2],row[3],track,category,stage));
 }
+function ensureUniquePrompts(items,topicId) {
+  const hints={
+    wortarten:["Untersuche die Wortart genau.","Achte auf die Aufgabe des Wortes im Satz.","Prüfe, zu welcher Wortgruppe das Wort gehört."],
+    wortschatz:["Achte auf die genaue Bedeutung.","Vergleiche die Bedeutungen der Wörter.","Nutze den Zusammenhang als Hinweis."],
+    rechtschreibung:["Prüfe die Schreibweise genau.","Achte auf die Rechtschreibregel.","Untersuche die einzelnen Wortteile."],
+    satzzeichen:["Achte genau auf die Zeichensetzung.","Prüfe, wo Satzteile voneinander getrennt werden.","Untersuche die Satzzeichen im ganzen Satz."],
+    grammatik:["Achte auf den grammatischen Fall.","Prüfe die Beziehung zwischen den Satzteilen.","Untersuche die Form des Artikels oder Pronomens."],
+    satzbau:["Achte auf die Stellung des finiten Verbs.","Prüfe die Reihenfolge der Satzglieder.","Untersuche die Struktur des Satzes."],
+    lesen:["Suche die passenden Hinweise im Text.","Vergleiche die Informationen genau.","Leite deine Antwort aus dem Text ab."]
+  }[topicId]||["Prüfe die Aufgabe genau.","Achte auf den Zusammenhang.","Vergleiche die Antwortmöglichkeiten."];
+  const seen=new Set();
+  let hintIndex=0;
+  return items.map((question,index)=>{
+    if(seen.has(question.prompt)){
+      let candidate=question.prompt+" "+hints[hintIndex%hints.length];
+      hintIndex++;
+      while(seen.has(candidate)){candidate=question.prompt+" Hinweis "+(index+1)+".";}
+      question.prompt=candidate;
+    }
+    seen.add(question.prompt);
+    return question;
+  });
+}
 function classWrongs(answer) {
   const easy=["Nomen","Verb","Adjektiv"].filter(x=>x!==answer);
   const medium=["Pronomen","Artikel","Adverb","Präposition","Konjunktion"].filter(x=>x!==answer);
@@ -688,7 +711,7 @@ function buildCourse(track){
     topic.lessons.forEach((lesson,index)=>{
       const stage=index+1;
       const unit={id:topic.id+"-"+stage,topic:topic,lesson:lesson,stage:stage,title:lesson.title,focus:lesson.focus,stageInfo:stageIndex(stage)};
-      unit.questions=lesson.build(track,stage);
+      unit.questions=ensureUniquePrompts(lesson.build(track,stage),topic.id);
       if(unit.questions.length!==questionsPerUnit)throw new Error(topic.title+" / "+lesson.title+": erwartet werden 10 Fragen, gefunden "+unit.questions.length);
       units.push(unit);questions.push(...unit.questions);
     });
