@@ -199,15 +199,15 @@ const topics = [
       {title:"Wörter mit ähnlicher Bedeutung",focus:"Synonyme erkennen",build(track,stage){
         const rows=[
           ["Welches Wort bedeutet ungefähr dasselbe wie „fröhlich“?","heiter",["wütend","müde","überrascht","ängstlich","ernst","unruhig"],"„Heiter“ und „fröhlich“ haben eine ähnliche Bedeutung."],
-          ["Welches Wort passt als Synonym zu „beginnen“?","anfangen",["beenden","warten","starten","verlieren","aufhören"],"„Anfangen“ bedeutet dasselbe wie „beginnen“."],
-          ["Was bedeutet ungefähr dasselbe wie „riesig“?","gewaltig",["winzig","schmal","groß","klein","niedrig"],"„Gewaltig“ kann eine sehr große Sache beschreiben."],
+          ["Welches Wort passt als Synonym zu „beginnen“?","anfangen",["beenden","warten","üben","verlieren","aufhören","zögern"],"„Anfangen“ bedeutet dasselbe wie „beginnen“."],
+          ["Was bedeutet ungefähr dasselbe wie „riesig“?","gewaltig",["winzig","schmal","hoch","klein","niedrig","eng"],"„Gewaltig“ kann eine sehr große Sache beschreiben."],
           ["Welches Wort passt zu „leise“?","still",["laut","hell","beweglich","lärmend","grell","aufgeregt"],"„Still“ ist ein passendes Synonym für „leise“."],
           ["Welches Wort bedeutet ähnlich wie „mutig“?","tapfer",["ängstlich","vorsichtig","neugierig","schüchtern","feige","zaghaft"],"„Tapfer“ und „mutig“ beschreiben Furchtlosigkeit."],
           ["Welches Wort passt zu „schnell“?","rasch",["langsam","spät","zögerlich","träge","gemächlich","schwerfällig"],"„Rasch“ bedeutet „schnell“."],
           ["Welches Wort ist ein Synonym für „nachdenken“?","überlegen",["vergessen","erzählen","zweifeln","rennen","schweigen","ruhen"],"„Überlegen“ bedeutet, über etwas nachzudenken."],
-          ["Welches Wort passt zu „erstaunt“?","überrascht",["gelangweilt","besorgt","verärgert","müde","gleichgültig","unbeeindruckt"],"„Verwundert“ und „erstaunt“ sind bedeutungsähnlich."],
+          ["Welches Wort passt zu „erstaunt“?","überrascht",["gelangweilt","besorgt","verärgert","müde","gleichgültig","unbeeindruckt"],"„Überrascht“ und „erstaunt“ sind bedeutungsähnlich."],
           ["Welches Wort passt zu „schützen“?","bewahren",["zerstören","verstecken","beobachten","verlieren","angreifen","wegwerfen"],"„Bewahren“ kann bedeuten, etwas zu schützen oder zu erhalten."],
-          ["Welches Wort bedeutet ähnlich wie „sorgfältig“?","gewissenhaft",["flüchtig","ordentlich","nachlässig","unachtsam","zufällig"],"„Gewissenhaft“ beschreibt sorgfältiges Arbeiten."]
+          ["Welches Wort bedeutet ähnlich wie „sorgfältig“?","gewissenhaft",["flüchtig","laut","nachlässig","unachtsam","zufällig","bequem"],"„Gewissenhaft“ beschreibt sorgfältiges Arbeiten."]
         ];
         return qRows(rows,track,"SYNONYME",stage);
       }},
@@ -231,13 +231,13 @@ const topics = [
           ["Welches Wort gehört zum Wortfeld „Wetter“?","Nebel",["Schreibtisch","Pausenglocke","Schulheft","Ranzen","Kochtopf","Teppich"],"Nebel ist eine Erscheinung des Wetters."],
           ["Welches Wort gehört zum Wortfeld „sagen“?","berichten",["laufen","essen","zuhören","springen","bauen","schweigen"],"„Berichten“ gehört zum Wortfeld des Sprechens."],
           ["Welches Wort gehört zum Wortfeld „gehen“?","schlendern",["singen","flüstern","malen","kochen","rechnen","schreiben"],"„Schlendern“ beschreibt eine Art zu gehen."],
-          ["Welches Wort passt zum Wortfeld „Wald“?","Moos",["Lenkrad","Kreide","Rinde","Fenster","Tastatur"],"Moos wächst häufig im Wald."],
-          ["Welches Wort gehört zum Wortfeld „Gefühle“?","Erleichterung",["Lineal","Rucksack","Freude","Fahrkarte","Bleistift"],"Erleichterung ist ein Gefühl."],
-          ["Welches Wort passt zum Wortfeld „Schule“?","Stundenplan",["Wolke","Pinsel","Hausaufgabe","Schnecke","Kochtopf"],"Ein Stundenplan gehört zum Schulalltag."],
-          ["Welches Wort gehört zum Wortfeld „sehen“?","beobachten",["horchen","betrachten","schmecken","fühlen","riechen"],"„Betrachten“ bedeutet, etwas aufmerksam anzusehen."],
+          ["Welches Wort passt zum Wortfeld „Wald“?","Moos",["Lenkrad","Kreide","Fenster","Tastatur","Handy","Teller"],"Moos wächst häufig im Wald."],
+          ["Welches Wort gehört zum Wortfeld „Gefühle“?","Erleichterung",["Lineal","Rucksack","Fahrstuhl","Fahrkarte","Bleistift","Schraubenzieher"],"Erleichterung ist ein Gefühl."],
+          ["Welches Wort passt zum Wortfeld „Schule“?","Stundenplan",["Wolke","Pinsel","Schornstein","Schnecke","Kochtopf","Gießkanne"],"Ein Stundenplan gehört zum Schulalltag."],
+          ["Welches Wort gehört zum Wortfeld „sehen“?","beobachten",["horchen","kochen","schmecken","fühlen","riechen","hören"],"„Betrachten“ bedeutet, etwas aufmerksam anzusehen."],
           ["Welches Wort passt zum Wortfeld „Wasser“?","Strömung",["Schraube","Weste","Buchseite","Wolldecke","Schlüssel","Teppich"],"Eine Strömung ist eine Bewegung des Wassers."],
-          ["Welches Wort gehört zum Wortfeld „streiten“?","widersprechen",["zustimmen","weglaufen","zuhören","loben","begrüßen","verzeihen"],"„Widersprechen“ kann Teil eines Streits sein."],
-          ["Welches Wort passt zum Wortfeld „Reise“?","Gepäck",["Tafel","Koffer","Heizung","Pinsel","Schneeball"],"Gepäck nimmt man auf eine Reise mit."]
+          ["Welches Wort gehört zum Wortfeld „streiten“?","widersprechen",["zustimmen","weglaufen","zuhören","loben","begrüßen","malen"],"„Widersprechen“ kann Teil eines Streits sein."],
+          ["Welches Wort passt zum Wortfeld „Reise“?","Gepäck",["Tafel","Teppich","Heizung","Pinsel","Schneeball","Schlüssel"],"Gepäck nimmt man auf eine Reise mit."]
         ];
         return qRows(rows,track,"WORTFELDER",stage);
       }},
@@ -248,10 +248,10 @@ const topics = [
           ["Welches Wort gehört zur Wortfamilie von „freundlich“?","Freundschaft",["Fremdheit","Freitag","Freizeit","Frühling","Freiheit","Freiwillige"],"„Freundschaft“ gehört zur Wortfamilie von „Freund“."],
           ["Welches Wort gehört zur Wortfamilie von „lesen“?","Leser",["Leiter","Leiste","Lehre","Leere","Laster","Leder"],"„Leser“ ist von „lesen“ abgeleitet."],
           ["Welches Wort gehört zur Wortfamilie von „sichtbar“?","Sichtweise",["Sicherheit","Sitte","Sichel","Sieg","Sinn","Sitzung"],"„Sichtweise“ gehört zum Wortstamm „sicht-“."],
-          ["Welches Wort ist mit „bauen“ verwandt?","Baustelle",["Baum","Bauch","Bauer","Bogen","Börse","Boden"],"„Bauwerk“ gehört zur Wortfamilie von „bauen“."],
-          ["Welches Wort gehört zur Wortfamilie von „denken“?","Gedanke",["Decke","Dunkel","Ding","Dach","Dampf","Dunst"],"„Denkweise“ gehört zur Wortfamilie von „denken“."],
-          ["Welches Wort gehört zur Wortfamilie von „singen“?","Gesang",["Sache","Saison","Sinn","Sichel","Sieg","Seite"],"„Sänger“ ist von „singen“ abgeleitet."],
-          ["Welches Wort gehört zur Wortfamilie von „Mut“?","mutig",["Mutter","Muster","müde","Minute","Muskel","Mütze"],"„Mutprobe“ gehört zur Wortfamilie von „Mut“."],
+          ["Welches Wort ist mit „bauen“ verwandt?","Baustelle",["Baum","Bauch","Bauer","Bogen","Börse","Boden"],"„Baustelle“ gehört zur Wortfamilie von „bauen“."],
+          ["Welches Wort gehört zur Wortfamilie von „denken“?","Gedanke",["Decke","Dunkel","Ding","Dach","Dampf","Dunst"],"„Gedanke“ gehört zur Wortfamilie von „denken“."],
+          ["Welches Wort gehört zur Wortfamilie von „singen“?","Gesang",["Sache","Saison","Sinn","Sichel","Sieg","Seite"],"„Gesang“ gehört zur Wortfamilie von „singen“."],
+          ["Welches Wort gehört zur Wortfamilie von „Mut“?","mutig",["Mutter","Muster","müde","Minute","Muskel","Mütze"],"„Mutig“ ist von „Mut“ abgeleitet."],
           ["Welches Wort gehört zur Wortfamilie von „ordnen“?","Ordnung",["Ohr","Ort","Orkan","Orange","Orden","Orgel"],"„Ordner“ und „Ordnung“ gehören zur Wortfamilie von „ordnen“."]
         ];
         return qRows(rows,track,"WORTFAMILIEN",stage);
@@ -259,14 +259,14 @@ const topics = [
       {title:"Wörter im Zusammenhang",focus:"Bedeutungen aus dem Kontext erschließen",build(track,stage){
         const rows=[
           ["Im Satz „Nach dem langen Lauf war Ben völlig erschöpft“ bedeutet „erschöpft“ …","sehr müde",["sehr stolz","sehr hungrig","kraftlos","aufgeregt","unaufmerksam"],"Der lange Lauf ist ein Hinweis darauf, dass Ben keine Kraft mehr hat."],
-          ["Im Satz „Mira zögerte, bevor sie die Tür öffnete“ bedeutet „zögerte“ …","sie war unsicher",["sie war sehr schnell","sie wartete kurz unsicher","sie lachte laut","sie rannte weg","sie öffnete sofort"],"„Zögern“ bedeutet, etwas nicht sofort zu tun, weil man unsicher ist."],
-          ["Im Satz „Der Hinweis war entscheidend“ bedeutet „entscheidend“ …","besonders wichtig",["unbedeutend","zufällig","ausschlaggebend","unverständlich","überflüssig"],"Ein entscheidender Hinweis beeinflusst das Ergebnis stark."],
+          ["Im Satz „Mira zögerte, bevor sie die Tür öffnete“ bedeutet „zögerte“ …","sie war unsicher",["sie war sehr schnell","sie handelte ohne zu überlegen","sie lachte laut","sie rannte weg","sie öffnete sofort","sie war völlig sicher"],"„Zögern“ bedeutet, etwas nicht sofort zu tun, weil man unsicher ist."],
+          ["Im Satz „Der Hinweis war entscheidend“ bedeutet „entscheidend“ …","besonders wichtig",["unbedeutend","zufällig","ungewöhnlich","unverständlich","überflüssig","belanglos"],"Ein entscheidender Hinweis beeinflusst das Ergebnis stark."],
           ["Im Satz „Die Gruppe arbeitete gemeinsam“ bedeutet „gemeinsam“ …","zusammen",["getrennt","heimlich","miteinander","allein","nacheinander"],"„Gemeinsam“ bedeutet, dass mehrere etwas zusammen tun."],
           ["Im Satz „Der Weg war schmal“ bedeutet „schmal“ …","nicht breit",["nicht lang","eng","sehr hoch","breit","steil"],"Ein schmaler Weg hat wenig Breite."],
           ["Im Satz „Paul reagierte gelassen“ bedeutet „gelassen“ …","ruhig",["nervös","ruhig und sicher","wütend","hektisch","überrascht"],"Wer gelassen reagiert, bleibt ruhig."],
-          ["Im Satz „Die Lösung war naheliegend“ bedeutet „naheliegend“ …","leicht zu erkennen",["weit entfernt","schwer zu finden","offensichtlich","unmöglich","zufällig"],"Eine naheliegende Lösung liegt gedanklich nahe und ist gut zu erkennen."],
+          ["Im Satz „Die Lösung war naheliegend“ bedeutet „naheliegend“ …","leicht zu erkennen",["weit entfernt","schwer zu finden","unpassend","unmöglich","zufällig","unwahrscheinlich"],"Eine naheliegende Lösung liegt gedanklich nahe und ist gut zu erkennen."],
           ["Im Satz „Der Plan scheiterte“ bedeutet „scheiterte“ …","hatte keinen Erfolg",["wurde verbessert","war erfolgreich","misslang","wurde begonnen","blieb geheim"],"„Scheitern“ bedeutet, dass etwas keinen Erfolg hat."],
-          ["Im Satz „Die Erklärung war überzeugend“ bedeutet „überzeugend“ …","gut begründet",["unglaubwürdig","gut nachvollziehbar","verwirrend","unvollständig","zufällig"],"Eine überzeugende Erklärung liefert gute Gründe."],
+          ["Im Satz „Die Erklärung war überzeugend“ bedeutet „überzeugend“ …","gut begründet",["unglaubwürdig","unbelegt","verwirrend","unvollständig","zufällig","widersprüchlich"],"Eine überzeugende Erklärung liefert gute Gründe."],
           ["Im Satz „Sie fasste den Entschluss“ bedeutet „Entschluss“ …","Entscheidung",["Frage","Entscheidung","Vermutung","Wunsch","Zufall"],"Ein Entschluss ist eine Entscheidung, die man getroffen hat."]
         ];
         return qRows(rows,track,"WÖRTER IM KONTEXT",stage);
