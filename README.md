@@ -52,19 +52,21 @@ Ein veröffentlichter Link allein ist noch kein Nachweis für den Lernerfolg. Da
 
 **Weitere mögliche Nutzer:** Deutschlehrkräfte, die das Quiz als kurze Wiederholung oder zusätzliche Übung einsetzen möchten.
 
-Die aktuelle Version ist bewusst klein gehalten: Sie benötigt kein Benutzerkonto, keine Installation und keine Registrierung. Die Website kann über einen normalen Browser auf einem Computer, Tablet oder Smartphone geöffnet werden.
+Die Anwendung benötigt kein Benutzerkonto, keine Installation und keine Registrierung. Vor dem Kursstart wird nur ein frei gewählter Spielname (am besten ein Spitzname) eingegeben und ein Lernniveau ausgewählt. Diese Angaben bleiben nur im Arbeitsspeicher der aktuellen Sitzung. Die Website kann über einen normalen Browser auf einem Computer, Tablet oder Smartphone geöffnet werden.
 
 Die Aufgaben sind ein erster Entwurf für die 5. Klasse. Vor einem Einsatz im Unterricht sollten die Formulierungen, Themen und Schwierigkeitsgrade mit einer Lehrkraft abgeglichen werden.
 
 ## 4. Pädagogisches Konzept
 
-Die drei Stufen orientieren sich an drei Arten des Lernens:
+Vor dem Kurs wählt das Kind einmalig das Niveau für den gesamten Lernweg:
 
-| Level | Schwerpunkt | Ziel |
+| Niveau | Bezeichnung | Ausrichtung |
 |---|---|---|
-| **Leicht — Wissen** | Grundlagen erkennen | Begriffe und einfache Regeln wiedererkennen |
-| **Mittel — Anwenden** | Regeln benutzen | Wissen in Sätzen und kurzen Situationen anwenden |
-| **Schwer — Analysieren** | Zusammenhänge verstehen | Informationen aus Sätzen und kurzen Texten erschließen |
+| **G** | Grundlegendes Niveau | Klarere Beispiele und weniger ähnliche Antwortmöglichkeiten |
+| **M** | Mittleres Niveau | Mehr Zusammenhänge und plausiblere Ablenkungsantworten |
+| **E** | Erweitertes Niveau | Anspruchsvollere Beispiele und besonders ähnliche Ablenkungsantworten |
+
+Innerhalb jedes Themas gibt es fünf aufeinanderfolgende Lektionen. Die Reihenfolge steigt von **Entdecken** über **Erkennen**, **Anwenden** und **Kombinieren** bis **Meistern**. Das G/M/E-Niveau verändert zusätzlich die Auswahl der Antwortmöglichkeiten.
 
 ### Themen in der aktuellen Fragensammlung
 
@@ -87,56 +89,23 @@ Offizielle Grundlagen:
 
 Der Bildungsplan für die Sekundarstufe I beschreibt Kompetenzen für **Klassen 5/6**. Er ist daher eine passende fachliche Orientierung, bestätigt aber nicht automatisch, dass jedes einzelne Thema an jeder Schule bereits in Klasse 5 behandelt wurde. Die konkrete Unterrichtsreihenfolge und der Lernstand müssen mit einer Deutschlehrkraft abgestimmt werden.
 
-| Aufgaben | Geprüfter Themenbereich | Bezug zum Kompetenzbereich |
-|---|---|---|
-| 1–3, 5–6, 9, 11, 15–17 | Wortarten, Numerus, Genus, Verbformen, Adjektivsteigerung, Wortbedeutung und Wortfelder | Sprachgebrauch und Sprachreflexion |
-| 12–14, 19, 22–26 | Kasus, Subjekt und Prädikat, Zusammensetzungen, Satzstellung, Nebensatz, Pronomen und Konjunktionen | Struktur von Äußerungen |
-| 4, 7–8, 10, 20, 27 | Großschreibung, kurze und lange Vokale, Doppelkonsonanten, Satzschlusszeichen, wörtliche Rede und ß | Rechtschreibung und Zeichensetzung |
-| 18, 21, 28–30 | Hinweise erschließen, Hauptaussagen finden, Schlussfolgerungen ziehen und Informationen aus einem Aushang entnehmen | Lesen sowie Sach- und Gebrauchstexte |
+### Themenfelder und inhaltlicher Umfang
 
-Die Zuordnung zeigt eine **inhaltliche Orientierung**, keine vollständige Abdeckung des gesamten Bildungsplans. Beispielsweise sind weitere Themen wie Präpositionen, verschiedene Satzarten, Kommas bei Nebensätzen, Silbierung und das Auswerten von Tabellen noch nicht oder nur teilweise enthalten.
+Die aktuelle Kursfassung umfasst sieben Themen mit jeweils fünf Lektionen:
 
-### Inhaltliche Prüfung der 30 Aufgaben
-
-Bei der Überarbeitung wurden insbesondere diese Punkte berücksichtigt:
-
-- Eine mehrdeutige Aufgabe zur höchsten Steigerungsform von „warm“ wurde in eine eindeutige Ergänzungsaufgabe umformuliert.
-- Eine Frage nach einem einzelnen Nomen enthält jetzt auch nur einzelne Wörter als Antwortmöglichkeiten.
-- Die Aufgaben der Stufe „Schwer“ verlangen häufiger, mehrere Hinweise miteinander zu verbinden oder Satzstrukturen zu untersuchen.
-- Die wörtliche Rede, die Verbposition im Nebensatz, die Unterscheidung von Subjekt und Objekt sowie die Schreibung von „ß“ wurden gezielter einbezogen.
-- Eine Aufgabe zur Informationsentnahme verwendet nun die Öffnungszeiten einer Schulbibliothek.
-- Die Erklärungen nennen möglichst auch die Regel oder den sprachlichen Hinweis, mit dem die Lösung gefunden werden kann.
-
-#### Überblick über die geprüften Aufgaben
-
-| Nummer | Inhalt / Fähigkeit |
+| Themenwelt | Schwerpunkte |
 |---|---|
-| 1–3 | Nomen, Verb und Adjektiv erkennen |
-| 4, 10 | Großschreibung am Satzanfang und bei Nomen |
-| 5–6 | Plural und Artikel / Genus |
-| 7 | Kurz gesprochener Vokal und Doppelkonsonant |
-| 8 | Fragezeichen bei einer direkten Frage |
-| 9 | Wortbedeutung und sinnverwandte Wörter |
-| 11 | Verbform passend zur Person bilden |
-| 12 | Akkusativ in einem einfachen Satz verwenden |
-| 13, 19 | Subjekt und Prädikat erkennen |
-| 14 | Zusammengesetzte Nomen bilden |
-| 15 | Adjektive steigern |
-| 16 | Wortfeld erkennen |
-| 17 | Präteritum in einem Satz verwenden |
-| 18, 21, 28 | Hinweise verbinden und Schlussfolgerungen aus kurzen Texten ziehen |
-| 20 | Satzzeichen bei wörtlicher Rede |
-| 22 | Verbzweitstellung im Aussagesatz |
-| 23 | Nebensatz mit „weil“ und Verbendstellung erkennen |
-| 24 | Subjekt trotz vorangestelltem Objekt bestimmen |
-| 25 | Bezug eines Pronomens erkennen |
-| 26 | Begründung mit „denn“ in einen „weil“-Nebensatz umformen |
-| 27 | ß nach langem betontem Vokal |
-| 29 | Markieren wichtiger Wörter als Lesestrategie |
-| 30 | Öffnungszeiten aus einem Aushang entnehmen |
+| Wortarten | Nomen, Verben, Adjektive, Artikel, Pronomen und weitere Wortarten |
+| Wortschatz | Synonyme, Gegenteile, Wortfelder, Wortfamilien und Bedeutungen im Kontext |
+| Rechtschreibung | Groß- und Kleinschreibung, Vokallänge, Doppelkonsonanten, s/ss/ß und Wortbildung |
+| Satzzeichen | Satzschlusszeichen, Aufzählungen, wörtliche Rede und Kommas bei Nebensätzen |
+| Grammatik | Artikel, Nominativ, Akkusativ, Dativ, Pronomen und Satzglieder |
+| Satzbau | Subjekt und Prädikat, Verbposition, Satzglieder, Konjunktionen und Nebensätze |
+| Lesen & Verstehen | Einzelheiten finden, Abläufe ordnen, Schlussfolgerungen, Hauptaussagen und Informationen kombinieren |
 
-Diese Prüfung ist eine interne fachliche Überarbeitung anhand des Bildungsplans. Sie ersetzt **nicht** die abschließende Prüfung der Fragen durch eine Deutschlehrkraft.
+Die Fragen sind ein Arbeitsentwurf zur Wiederholung ausgewählter Inhalte aus dem Deutschunterricht. Die Themenauswahl orientiert sich am Bildungsplan Deutsch für die Sekundarstufe I, Klassen 5/6. Daraus folgt **keine** Garantie, dass jede einzelne Aufgabe bereits zum Unterrichtsstand jeder fünften Klasse passt. Vor dem schulischen Einsatz ist eine Prüfung durch eine Deutschlehrkraft erforderlich.
 
+Die G/M/E-Auswahl verändert insbesondere die Antwortmöglichkeiten: Beim G-Niveau sind Ablenkungsantworten stärker unterscheidbar; beim M- und E-Niveau werden die Alternativen zunehmend ähnlicher. Diese Abstufung ist eine erste technische Differenzierung und muss ebenfalls fachlich geprüft werden.
 ### Themenkarte und Lernablauf
 
 Die Startseite zeigt eine **Themenkarte mit sieben Themenwelten**. Jede Themenwelt enthält kurze Lektionen, die zu den vorhandenen Aufgaben passen:
@@ -149,7 +118,7 @@ Die Startseite zeigt eine **Themenkarte mit sieben Themenwelten**. Jede Themenwe
 6. Satzbau
 7. Lesen & Verstehen
 
-Innerhalb eines Themas werden nur die Schwierigkeitsstufen angezeigt, für die es tatsächlich Aufgaben gibt. Die Lernschritte heißen **Grundlagen (Leicht)**, **Anwenden (Mittel)** und **Knobeln (Schwer)**. Ein Schritt besteht aus den Fragen des jeweiligen Themas und Levels.
+Jede Themenwelt enthält genau fünf Lektionen mit je zehn Fragen. Die Lektionen heißen **Entdecken**, **Erkennen**, **Anwenden**, **Kombinieren** und **Meistern**. Jede Stufe baut auf den vorherigen Inhalten auf. Der einmal gewählte G/M/E-Kurs gilt für alle sieben Themen.
 
 Die Reihenfolge führt durch den gesamten Kurs. Zunächst ist der erste Lernschritt geöffnet. Nach Abschluss einer Lektion wird der nächste Schritt freigeschaltet. Bereits abgeschlossene Lektionen können erneut gespielt werden. Falsche Antworten kosten keine Leben und blockieren den Lernweg nicht.
 
@@ -159,16 +128,16 @@ Der Fortschritt wird nur im Arbeitsspeicher der aktuellen Browser-Sitzung gehalt
 
 ## 5. Aktueller Funktionsumfang
 
-Die Fragensammlung enthält **30 Aufgaben: zehn pro Schwierigkeitsstufe**. Für die Lernkarte sind sie nach sieben Themen geordnet und in **15 kurze Lektionen** aufgeteilt: Wortarten, Wortschatz, Rechtschreibung, Satzzeichen, Grammatik, Satzbau sowie Lesen & Verstehen. Nicht jedes Thema enthält Aufgaben auf allen drei Stufen; angezeigt werden nur die tatsächlich vorhandenen Lektionen.
+Die Fragensammlung enthält **350 Fragen**: sieben Themenwelten mit jeweils fünf Lektionen und zehn Fragen pro Lektion. Vor dem Start wählt das Kind einmalig **G-, M- oder E-Niveau**. Die gewählte Kursvariante gilt anschließend für den gesamten Lernpfad.
 
 | Funktion | Aktueller Stand |
 |---|---|
 | Themenkarte mit sieben Themenwelten | Vorhanden |
-| 15 thematische Lernschritte nach Schwierigkeit | Vorhanden |
+| 35 Lektionen (fünf je Themenwelt) | Vorhanden |
 | Schrittweise Freischaltung der nächsten Lektion | Vorhanden |
 | Wiederholung bereits abgeschlossener Lektionen | Vorhanden |
-| Freies Training über alle 30 Fragen | Vorhanden |
-| 30 Fragen mit drei Antwortmöglichkeiten | Vorhanden |
+| Freies Training über alle 350 Fragen | Vorhanden |
+| 350 Fragen mit jeweils drei Antwortmöglichkeiten | Vorhanden |
 | Zufällige Reihenfolge innerhalb einer Lektion | Vorhanden |
 | Rückmeldung und Erklärung nach jeder Antwort | Vorhanden |
 | Fortschritt innerhalb der Lektion | Vorhanden |
@@ -180,7 +149,7 @@ Die Fragensammlung enthält **30 Aufgaben: zehn pro Schwierigkeitsstufe**. Für 
 | Dauerhafte Speicherung persönlicher Ergebnisse | Nicht implementiert |
 | Lehrer-Dashboard oder Klassenstatistik | Nicht implementiert |
 
-**Wichtige Einschränkung:** Die Themenkarte merkt sich abgeschlossene Lektionen nur bis zum Neuladen oder Schließen der Seite. Danach beginnt der Lernweg erneut beim ersten Schritt.
+**Wichtige Einschränkung:** Spielname, gewähltes Niveau und abgeschlossene Lektionen werden nur während der aktuellen Sitzung im Arbeitsspeicher gehalten. Ein Neuladen oder Schließen der Seite setzt den Lernweg zurück.
 
 ## 6. Gestaltung und Bedienung
 
@@ -279,48 +248,33 @@ http://localhost:8000
 
 Zum Beenden des lokalen Servers im Terminal **Ctrl + C** drücken.
 
-## 9. Eine neue Frage hinzufügen
+## 9. Eine neue Frage oder Lektion hinzufügen
 
-Alle Quizfragen befinden sich am Anfang von `script.js` im Array `questions`.
+Die Kursstruktur und die Generatoren für Aufgaben befinden sich in script.js. Das Array topics enthält sieben Themenwelten. Jede Themenwelt enthält genau fünf Lektionen. Jede Lektion besitzt eine build(track, stage)-Funktion, die zehn Fragen für das ausgewählte G/M/E-Niveau erzeugt.
 
-### Aufbau einer Frage
+### Aufbau einer fertigen Frage
 
 ```javascript
 {
-  level: "Leicht",
   category: "WORTARTEN",
-  prompt: "Welches Wort ist ein Nomen?",
-  choices: ["laufen", "die Schule", "schnell"],
-  answer: 1,
-  explanation: "„Die Schule“ ist ein Nomen. Nomen werden großgeschrieben."
+  stage: 1,
+  prompt: "Welche Wortart ist „Schulranzen“?",
+  choices: ["Nomen", "Verb", "Adjektiv"],
+  answer: 0,
+  explanation: "Ein Schulranzen ist ein Ding und deshalb ein Nomen."
 }
 ```
 
-### Bedeutung der Felder
+### Regeln für den Kursaufbau
 
-| Feld | Bedeutung |
-|---|---|
-| `level` | Genau einer der Werte `Leicht`, `Mittel` oder `Schwer` |
-| `category` | Kurzer Themenname, zum Beispiel `WORTARTEN` |
-| `prompt` | Frage oder Aufgabenstellung |
-| `choices` | Drei Antwortmöglichkeiten |
-| `answer` | Position der richtigen Antwort, beginnend bei **0** |
-| `explanation` | Kurze Erklärung, warum die Antwort richtig ist |
-
-**Achtung beim Feld `answer`:** Die Zählung beginnt bei null. `answer: 0` bedeutet die erste Antwort, `answer: 1` die zweite und `answer: 2` die dritte.
-
-### Qualitätsregeln für neue Fragen
-
-1. Die Aufgabe muss zum Lernstand der 5. Klasse passen.
-2. Es muss genau eine eindeutig richtige Antwort geben.
-3. Alle drei Antworten müssen zur Frage passen und verständlich formuliert sein.
-4. Die Erklärung soll die Regel oder den Gedankengang erklären, nicht nur die Lösung wiederholen.
-5. Sprache, Rechtschreibung und fachliche Richtigkeit müssen überprüft werden.
-6. Bei neuen Aufgaben muss die Anzahl pro Level kontrolliert werden. Das aktuelle Ziel sind zehn Fragen je Level.
-7. Bei Unsicherheit sollte eine Deutschlehrkraft die Aufgabe prüfen.
-
-Keine Namen, Fotos oder anderen persönlichen Informationen von Kindern in die Fragen aufnehmen.
-
+1. Jede Themenwelt enthält fünf Lektionen.
+2. Jede Lektion erzeugt genau zehn Fragen.
+3. Jede Frage hat genau drei unterschiedliche Antwortmöglichkeiten.
+4. answer ist der Index der richtigen Antwort und beginnt bei 0.
+5. Jede Frage enthält eine verständliche Erklärung.
+6. Die Antwortmöglichkeiten werden passend zu G, M oder E ausgewählt.
+7. Die Fragen der späteren Lektionen sollen zusätzliche Regeln oder Zusammenhänge verlangen.
+8. Vor einer Veröffentlichung müssen fachliche Richtigkeit, eindeutige Lösungen und Altersangemessenheit kontrolliert werden.
 ## 10. Testplan vor einer Veröffentlichung
 
 Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Checkliste geprüft werden.
@@ -328,8 +282,11 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 ### Funktionstest
 
 - [ ] Die Themenkarte wird ohne sichtbare Fehler geladen.
-- [ ] Es werden genau sieben Themenwelten angezeigt.
-- [ ] Die Fragensammlung ist vollständig auf 15 Lektionen verteilt.
+- [ ] Vor dem Hauptmenü erscheint die Spielname- und G/M/E-Auswahl.
+- [ ] Ohne Spielname und Niveau lässt sich der Kurs nicht starten.
+- [ ] Das gewählte Niveau bleibt während des gesamten Kurses gleich.
+- [ ] Es werden genau sieben Themenwelten mit je fünf Lektionen angezeigt.
+- [ ] Jede Lektion enthält genau zehn Fragen.
 - [ ] Der erste Lernschritt ist geöffnet; spätere Schritte sind zunächst gesperrt.
 - [ ] Nach Abschluss einer Lektion wird genau der nächste Lernschritt freigeschaltet.
 - [ ] Bereits abgeschlossene Lektionen können erneut gestartet werden.
@@ -349,24 +306,25 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 Die aktualisierte Daten- und Verknüpfungsprüfung ergab:
 
 - JavaScript-Syntax: bestanden.
-- 30 Fragen insgesamt; genau zehn pro Schwierigkeitsstufe.
-- Sieben Themenwelten und 15 thematische Lektionen.
-- Alle 30 Fragen sind genau einer Themenwelt zugeordnet.
+- 350 Fragen insgesamt; genau zehn pro Lektion.
+- Sieben Themenwelten mit jeweils fünf Lektionen (35 Lektionen insgesamt).
+- G-, M- und E-Varianten werden für jede Lektion erzeugt.
 - Jede Frage hat genau drei Antwortmöglichkeiten.
 - Alle Antwortindizes liegen zwischen 0 und 2.
 - Alle Fragen enthalten eine Aufgabenstellung und eine Erklärung.
-- 52 HTML-IDs, keine doppelten IDs.
-- Alle 57 direkten JavaScript-Verweise auf HTML-IDs wurden auf vorhandene Elemente geprüft.
+- HTML-IDs: keine doppelten IDs.
+- Alle direkten JavaScript-Verweise auf HTML-IDs wurden auf vorhandene Elemente geprüft.
 
 Diese Prüfung ist eine statische Code- und Datenkontrolle. Sie ersetzt keinen vollständigen Funktionstest im echten Browser oder die Darstellungskontrolle auf verschiedenen Geräten.
 
 ### Inhaltlicher Qualitätstest
 
-- [ ] Alle 30 Fragen sind sprachlich klar und altersgerecht.
+- [ ] Alle 350 Fragen sind sprachlich klar und altersgerecht.
 - [ ] Jede Aufgabe hat genau eine fachlich richtige Antwort.
 - [ ] Die Erklärung erklärt auch den entscheidenden sprachlichen Hinweis oder die Regel.
 - [ ] Die Fragen passen zu den im Unterricht bereits behandelten Themen.
-- [ ] Die Schwierigkeit steigt nachvollziehbar von Wiedererkennen über Anwenden bis zum Erschließen von Zusammenhängen.
+- [ ] Die Schwierigkeit steigt nachvollziehbar von Lektion 1 bis Lektion 5.
+- [ ] Die drei G/M/E-Kursvarianten sind fachlich sinnvoll voneinander abgestuft.
 - [ ] Eine Deutschlehrkraft hat die Aufgaben fachlich geprüft.
 
 ### Darstellungstest
@@ -390,13 +348,14 @@ Zusätzlich sollte der Zugriff über das Schul-WLAN geprüft werden. Ein erfolgr
 Die aktuelle Anwendung ist so einfach wie möglich aufgebaut:
 
 - keine Anmeldung;
-- keine Benutzernamen oder Passwörter;
-- keine Formulare zur Erhebung persönlicher Daten;
+- kein Benutzerkonto und kein Passwort;
+- ein frei gewählter Spielname wird vor Kursbeginn abgefragt; empfohlen wird ein Spitzname, kein echter Name;
+- keine Abfrage von Adresse, Geburtsdatum oder anderen persönlichen Angaben;
 - keine Datenbank;
 - keine Quiz-Statistik, die an einen eigenen Server gesendet wird;
 - keine dauerhafte Speicherung der Antworten durch die Quiz-Anwendung.
 
-Die Antworten und der Punktestand werden nur während der aktuellen Nutzung im Arbeitsspeicher des Browsers verarbeitet. Beim Neuladen der Seite gehen sie verloren.
+Der Spielname, das ausgewählte G/M/E-Niveau, die Antworten und der Punktestand werden nur während der aktuellen Nutzung im Arbeitsspeicher des Browsers verarbeitet. Es gibt keine Übertragung an einen eigenen Server und keine dauerhafte Speicherung durch die Quiz-Anwendung. Beim Neuladen der Seite gehen diese Angaben und der Lernfortschritt verloren.
 
 Die Website wird über GitHub Pages bereitgestellt. GitHub ist damit der Hosting-Anbieter. Für den schulischen Einsatz sollten die geltenden Regeln der Schule und die Datenschutzinformationen des Hosting-Anbieters berücksichtigt werden.
 
@@ -483,9 +442,11 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 
 - [x] Öffentliches GitHub-Repository eingerichtet
 - [x] GitHub Pages als Hosting eingerichtet
-- [x] 30 Fragen mit drei Antwortmöglichkeiten und Erklärungen
+- [x] Startbildschirm mit Spielname und einmaliger G/M/E-Auswahl
+- [x] 350 Fragen mit drei Antwortmöglichkeiten und Erklärungen
 - [x] Fragen nach sieben Themenwelten geordnet
-- [x] 15 kurze Lernschritte nach den vorhandenen Schwierigkeitsstufen
+- [x] 35 Lektionen, fünf je Themenwelt, zehn Fragen je Lektion
+- [x] Fünf aufeinander aufbauende Schwierigkeitsstufen je Themenwelt
 - [x] Themenkarte mit schrittweiser Freischaltung
 - [x] Wiederholung bereits abgeschlossener Lektionen
 - [x] Sofortige Rückmeldung und Erklärungen zu Antworten
@@ -493,7 +454,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [x] Kursfortschritt während der Browser-Sitzung
 - [x] Responsive Gestaltung für verschiedene Bildschirmgrößen
 - [x] Tastatur-Fokus, ARIA-Fortschrittsanzeigen und Reduced-Motion-Unterstützung
-- [x] Erste inhaltliche Prüfung der 30 Fragen anhand des Bildungsplans Deutsch Klassen 5/6
+- [x] Kursinhalte grob am Bildungsplan Deutsch Klassen 5/6 ausgerichtet; Prüfung aller neuen Fragen durch eine Lehrkraft steht noch aus
 
 **Noch offen**
 
@@ -519,9 +480,9 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 - Schulischer Rahmen: **„Zeig, was du kannst“**
 - Zielgruppe: **5. Klasse**
 - Inhalt: **Deutsch — Grammatik, Rechtschreibung, Wortschatz und Textverständnis**
-- Drei Schwierigkeitsstufen innerhalb der Lernlektionen: **Leicht / Mittel / Schwer**
-- Kursstruktur: **7 Themenwelten und 15 Lektionen**
-- Zielumfang der aktuellen Version: **30 Fragen, zehn pro Schwierigkeitsstufe**
+- Einmalige Niveaustufen-Auswahl: **G / M / E**
+- Kursstruktur: **7 Themenwelten, 5 Lektionen je Thema, 35 Lektionen insgesamt**
+- Zielumfang der aktuellen Version: **350 Fragen, zehn je Lektion**
 - Kein Login und keine Registrierung
 - Keine Speicherung individueller Antworten oder Ergebnisse
 - Technische Basis bleibt zunächst HTML, CSS und JavaScript
@@ -545,7 +506,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 
 - [ ] README vollständig lesen.
 - [ ] Dateien aus `main` abrufen und den aktuellen Commit feststellen.
-- [ ] Bei Änderungen der Themenstruktur die Zuordnung aller 30 Fragen zu den Lektionen kontrollieren.
+- [ ] Bei Änderungen der Themenstruktur die Zuordnung aller 350 Fragen zu den 35 Lektionen kontrollieren.
 - [ ] Ziel der nächsten Änderung festlegen.
 - [ ] Änderungen möglichst in kleinen, überprüfbaren Schritten vornehmen.
 - [ ] Funktion und Darstellung testen.
@@ -568,6 +529,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 04.11.2026 | Oberfläche und Navigation neu aufgebaut: sieben Themenwelten, 15 thematische Lektionen, schrittweise Freischaltung, sitzungsbasierter Fortschritt und wiederholbare Lektionen. |
 | 04.11.2026 | Visuelles Redesign mit spielerischer Kursübersicht, Lernknoten, deutlicher Fortschrittsanzeige und angepasster Quiz- und Ergebnisansicht umgesetzt. |
 | 04.11.2026 | Moderates Duolingo-inspiriertes Feintuning: eigener CSS-Maskottchen-Entwurf, dezente Themenfarben, verbesserte Karten-Rückmeldung und direkter „Weiterlernen“-Einstieg zur nächsten offenen Einheit. |
+| 06.11.2026 | Startbildschirm mit Spielname (Sitzungsspeicher) und einmaliger G/M/E-Auswahl hinzugefügt. Kurs auf sieben Themen mit je fünf Lektionen und zehn Fragen pro Lektion erweitert: 35 Lektionen und 350 Fragen insgesamt. |
 
 ---
 
