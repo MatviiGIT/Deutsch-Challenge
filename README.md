@@ -152,10 +152,12 @@ Die Gestaltung soll wie ein eigenständiges Lernprodukt wirken und nicht wie ein
 - heller, freundlicher Hintergrund;
 - kräftiges Grün als Hauptfarbe, helles Mint für Themenflächen, Gelb für abgeschlossene Lernknoten und Terrakotta für kleine Akzente;
 - abgerundete Themenkarten und klar erkennbare Lernknoten;
-- eine eigene, CSS-gezeichnete kleine Eulenfigur als ruhiger Lernbegleiter;
+- Quaki, ein freundlicher CSS-gezeichneter Frosch mit klar getrennten Augen als Lernbegleiter;
 - dezente Farbcodierung der sieben Themen und eine direkte Schaltfläche zum nächsten offenen Lernschritt;
 - zurückhaltende Hover- und Fokuszustände statt dauernder Animationen;
 - deutliche Fortschrittsanzeige und große, gut erreichbare Schaltflächen;
+- ein einheitliches Schriftgrößensystem mit wenigen klaren Größen;
+- eine kompakte Hilfe-Schaltfläche mit den Regeln und Erklärungen, damit die Hauptansichten übersichtlich bleiben;
 - eine vertikale Kursübersicht, die an bekannte Lernpfad-Apps erinnert, aber eine eigene Gestaltung besitzt;
 - sichtbare Rückmeldung bei richtigen und falschen Antworten;
 - keine unnötigen Animationen, Leuchteffekte oder dekorativen Verläufe.
@@ -542,6 +544,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 04.11.2026 | Moderates Duolingo-inspiriertes Feintuning: eigener CSS-Maskottchen-Entwurf, dezente Themenfarben, verbesserte Karten-Rückmeldung und direkter „Weiterlernen“-Einstieg zur nächsten offenen Einheit. |
 | 06.11.2026 | Startbildschirm mit Spielname (Sitzungsspeicher) und einmaliger G/M/E-Auswahl hinzugefügt. Der Umfang von 350 Fragen wurde später zugunsten einer fokussierten Pilotlektion zurückgestellt. |
 | 06.11.2026 | Pilotlektion „Wortdetektive“ mit 45-Minuten-Lernseite, Zeitplan und 18 getrennten Aufgaben je G/M/E-Niveau vorbereitet. Änderungen liegen auf `content-audit`; GitHub Actions und Pages-Build waren erfolgreich. Manueller Browser-, Geräte- und Inhaltstest stehen noch aus. |
+| 06.11.2026 | Markenauftritt auf „Quakademie“ mit Quaki als Frosch umgestellt. Frosch-Augen als getrennte Elemente neu aufgebaut, Schriftgrößen vereinheitlicht, Hilferegeln in ein „?“-Menü verschoben und wiederholte Hinweise aus den Hauptansichten entfernt. |
 
 ---
 
