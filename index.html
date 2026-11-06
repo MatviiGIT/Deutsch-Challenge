@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Ein spielerischer Lernpfad für Deutsch in der 5. Klasse.">
   <title>Deutsch-Challenge — Dein Lernpfad</title>
-  <link rel="stylesheet" href="style.css?v=11">
-  <script src="script.js?v=14" defer></script>
+  <link rel="stylesheet" href="style.css?v=12">
+  <script src="script.js?v=15" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -68,7 +68,7 @@
             </div>
             <button class="primary-button begin-course-button" id="begin-course-button" type="submit" disabled>Kurs starten <span aria-hidden="true">→</span></button>
           </form>
-          <p class="profile-note"><span aria-hidden="true">✦</span> 7 Themen · 35 Lektionen · 350 Fragen. Dein Lernfortschritt wird nicht online gespeichert.</p>
+          <p class="profile-note"><span aria-hidden="true">✦</span> 1 Thema · 1 Probestunde · 18 Aufgaben. Dein Lernfortschritt wird nicht online gespeichert.</p>
         </div>
       </section>
 
@@ -79,9 +79,9 @@
             <h1 id="home-title">Hallo, <span id="course-player-name">Wortprofi</span>!<br><em>Weiterlernen.</em></h1>
             <p id="course-track-note">Dein persönlicher Deutschkurs ist bereit. Jede Etappe bringt dich mit kurzen Aufgaben und verständlichen Erklärungen weiter.</p>
             <div class="welcome-facts">
-              <span><strong>7</strong> Themen</span>
-              <span><strong>35</strong> Lektionen</span>
-              <span><strong>350</strong> Fragen</span>
+              <span><strong>1</strong> Thema</span>
+              <span><strong>45</strong> Minuten</span>
+              <span><strong>18</strong> Aufgaben</span>
             </div>
           </div>
           <div class="welcome-art" aria-hidden="true">
@@ -110,9 +110,9 @@
               <span class="section-kicker">DEIN FORTSCHRITT</span>
               <h2 id="course-progress-title">Dein Kurs beginnt hier</h2>
             </div>
-            <strong id="course-progress-count">0 / 350</strong>
+            <strong id="course-progress-count">0 / 18</strong>
           </div>
-          <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="350" aria-valuenow="0">
+          <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0">
             <span id="course-progress-fill"></span>
           </div>
           <p id="course-progress-note">Schließe deine erste Lektion ab, um den Weg freizuschalten.</p>
@@ -126,7 +126,7 @@
                 <h2 id="path-title">Der Lernpfad</h2>
                 <p>Wähle den nächsten freien Kreis und starte deine Einheit.</p>
               </div>
-              <span class="path-total">01 — 07 THEMEN</span>
+              <span class="path-total">PILOTSTUNDE</span>
             </div>
             <div class="learning-path" id="learning-path" aria-label="Themen und freigeschaltete Einheiten"></div>
           </section>
@@ -154,10 +154,65 @@
         </div>
 
         <div class="free-practice">
-          <div><strong>Lieber frei üben?</strong><span>Alle 350 Fragen gemischt — ohne Reihenfolge.</span></div>
+          <div><strong>Lieber frei üben?</strong><span>Alle 18 Aufgaben der Probestunde gemischt — ohne Reihenfolge.</span></div>
           <button class="text-button" id="free-practice-button" type="button">Freies Training starten <span aria-hidden="true">→</span></button>
         </div>
         <p class="start-footnote">Dein Lernfortschritt bleibt in dieser Sitzung. Ohne Anmeldung und ohne persönliche Daten.</p>
+      </section>
+
+      <section class="screen lesson-screen" id="lesson-screen" hidden aria-labelledby="lesson-title">
+        <div class="lesson-card">
+          <button class="text-button lesson-back-button" id="lesson-back-button" type="button">← Lernpfad</button>
+          <span class="eyebrow">DEINE 45-MINUTEN-LEKTION</span>
+          <h1 id="lesson-title">Wortdetektive</h1>
+          <p class="lesson-lead" id="lesson-focus">Nomen, Verben und Adjektive erkennen und im Satz unterscheiden.</p>
+          <div class="lesson-level" id="lesson-level">G · 45 MINUTEN · 18 AUFGABEN</div>
+          <div class="lesson-explain">
+            <h2>Das lernst du heute</h2>
+            <div class="word-type-grid">
+              <article class="word-type-card noun-card">
+                <span class="word-type-label">NOMEN</span>
+                <h3>Wer oder was?</h3>
+                <p>Nomen bezeichnen Menschen, Tiere, Dinge, Orte oder Gefühle. Man schreibt sie groß.</p>
+                <p class="word-example">der <strong>Hund</strong> · die <strong>Schule</strong> · die <strong>Freude</strong></p>
+              </article>
+              <article class="word-type-card verb-card">
+                <span class="word-type-label">VERBEN</span>
+                <h3>Was tut jemand?</h3>
+                <p>Verben sagen, was jemand oder etwas tut oder was geschieht. Man kann sie verändern.</p>
+                <p class="word-example"><strong>laufen</strong> · <strong>lacht</strong> · <strong>schlafen</strong></p>
+              </article>
+              <article class="word-type-card adjective-card">
+                <span class="word-type-label">ADJEKTIVE</span>
+                <h3>Wie ist etwas?</h3>
+                <p>Adjektive beschreiben Eigenschaften. Sie sagen zum Beispiel, wie etwas aussieht oder sich anfühlt.</p>
+                <p class="word-example"><strong>klein</strong> · <strong>freundlich</strong> · <strong>weich</strong></p>
+              </article>
+            </div>
+            <div class="lesson-example">
+              <span class="section-kicker">BEISPIEL</span>
+              <p>Der <strong>kleine</strong> <strong>Fuchs</strong> <strong>rennt</strong>.</p>
+              <ul>
+                <li><strong>Fuchs</strong> = Nomen (Wer oder was?)</li>
+                <li><strong>rennt</strong> = Verb (Was tut er?)</li>
+                <li><strong>kleine</strong> = Adjektiv (Wie ist der Fuchs?)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="lesson-schedule">
+            <h2>So ist die Stunde aufgebaut</h2>
+            <div class="lesson-timeline">
+              <div><strong>5 Min.</strong><span>Einstieg und Vorwissen</span></div>
+              <div><strong>8 Min.</strong><span>Regeln und Beispiele verstehen</span></div>
+              <div><strong>8 Min.</strong><span>Gemeinsam üben</span></div>
+              <div><strong>15 Min.</strong><span>Aufgaben selbstständig lösen</span></div>
+              <div><strong>6 Min.</strong><span>Knifflige Beispiele</span></div>
+              <div><strong>3 Min.</strong><span>Wissen überprüfen</span></div>
+            </div>
+          </div>
+          <p class="lesson-tip">Tipp: Lies die Beispiele in Ruhe. Du kannst jederzeit zur Erklärung zurückkehren, bevor du mit den Aufgaben beginnst.</p>
+          <button class="primary-button lesson-start-button" id="lesson-start-button" type="button">Mit den Aufgaben beginnen <span aria-hidden="true">→</span></button>
+        </div>
       </section>
 
       <section class="screen quiz-screen" id="quiz-screen" hidden>
