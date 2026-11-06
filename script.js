@@ -127,7 +127,7 @@ const topics = [
             ["Welche Wortart ist „spielen“?","Verb",["Nomen","Adjektiv"],"„Spielen“ beschreibt, was jemand tut. Das ist ein Verb."],
             ["Welche Wortart ist „lustig“?","Adjektiv",["Nomen","Verb"],"„Lustig“ beschreibt eine Eigenschaft. Das ist ein Adjektiv."],
             ["Finde das Nomen: „Der Ball rollt.“","Ball",["rollt","Der"],"„Ball“ bezeichnet einen Gegenstand und ist ein Nomen."],
-            ["Finde das Verb: „Mia lacht.“","lacht",["Mia","fröhlich"],"„Lacht“ sagt, was Mia tut. Das ist das Verb."],
+            ["Finde das Verb: „Mia lacht laut.“","lacht",["Mia","laut"],"„Lacht“ sagt, was Mia tut. Das ist das Verb."],
             ["Finde das Adjektiv: „Der kleine Fuchs schläft.“","kleine",["Fuchs","schläft"],"„Kleine“ beschreibt den Fuchs."],
             ["Welches Wort ist ein Nomen?","Schule",["lernen","schnell"],"„Schule“ bezeichnet einen Ort und wird großgeschrieben."],
             ["Welches Wort ist ein Verb?","malen",["Bild","bunt"],"„Malen“ beschreibt eine Tätigkeit."],
@@ -136,7 +136,7 @@ const topics = [
             ["Was tut der Vogel? „Der Vogel singt laut.“","singt",["Vogel","laut"],"„Singt“ ist das Verb und beschreibt die Handlung."],
             ["Wie ist die Blume? „Die Blume ist gelb.“","gelb",["Blume","ist"],"„Gelb“ beschreibt die Blume und ist ein Adjektiv."],
             ["Welches Wort bezeichnet eine Person?","Lehrerin",["erklärt","freundlich"],"„Lehrerin“ bezeichnet eine Person und ist ein Nomen."],
-            ["Welches Wort beschreibt eine Bewegung?","rennen",["Rennen","schnell"],"„Rennen“ beschreibt eine Tätigkeit. Hier wird es als Verb verwendet."],
+            ["Welches Wort ist das Verb? „Die Kinder rennen zum Tor.“","rennen",["Kinder","Tor"],"„Rennen“ beschreibt, was die Kinder tun. Es ist das Verb im Satz."],
             ["Welches Wort beschreibt den Schnee? „Der Schnee ist kalt.“","kalt",["Schnee","liegt"],"„Kalt“ beschreibt eine Eigenschaft des Schnees."],
             ["In welchem Satz steht ein Nomen?","Der Frosch hüpft.",["Wir hüpfen.","Hüpfe schnell!"],"„Frosch“ ist ein Nomen und steht im ersten Satz."],
             ["In welchem Satz ist „tanzt“ das Verb?","Das Kind tanzt.",["Der Tanz beginnt.","Der schöne Tanz."],"„Tanzt“ beschreibt, was das Kind tut."],
@@ -169,11 +169,11 @@ const topics = [
             ["Welche Wortart hat „Geheimnis“ im Satz? „Das Geheimnis bleibt verborgen.“","Nomen",["Verb","Adjektiv"],"„Geheimnis“ bezeichnet etwas und ist ein Nomen."],
             ["Bestimme das Verb: „Obwohl es regnete, spielten die Kinder weiter.“","spielten",["Kinder","weiter"],"„Spielten“ ist die Handlung im Hauptsatz."],
             ["Bestimme das Adjektiv: „Der ungewöhnlich helle Stern leuchtete.“","helle",["Stern","leuchtete"],"„Helle“ beschreibt den Stern."],
-            ["Welche Wortart hat „schnell“? „Der schnelle Läufer gewinnt.“","Adjektiv",["Nomen","Verb"],"„Schnelle“ beschreibt den Läufer und ist ein Adjektiv."],
+            ["Welche Wortart hat „schnelle“? „Der schnelle Läufer gewinnt.“","Adjektiv",["Nomen","Verb"],"„Schnelle“ beschreibt den Läufer und ist ein Adjektiv."],
             ["Welche Wortart hat „Reise“? „Die Reise beginnt morgen.“","Nomen",["Verb","Adjektiv"],"„Reise“ bezeichnet ein Ereignis und ist ein Nomen."],
             ["Welche Wortart hat „erforschen“?","Verb",["Nomen","Adjektiv"],"„Erforschen“ beschreibt eine Tätigkeit."],
             ["Welche Wortart hat „dunkel“? „Der Himmel wird dunkel.“","Adjektiv",["Nomen","Verb"],"„Dunkel“ beschreibt den Zustand des Himmels."],
-            ["Welches Wort ist das Nomen? „Nach dem Sturm sammelten wir Äste.“","Sturm",["sammelten","wir"],"„Sturm“ bezeichnet ein Naturereignis."],
+            ["Welches Wort ist das Nomen? „Nach dem Sturm wurde es still.“","Sturm",["wurde","still"],"„Sturm“ bezeichnet ein Naturereignis und ist das Nomen im Satz."],
             ["Welches Wort ist das Verb? „Die mutige Forscherin untersucht den Stein.“","untersucht",["mutige","Forscherin"],"„Untersucht“ beschreibt die Tätigkeit der Forscherin."],
             ["Welches Wort ist das Adjektiv? „Ein zerbrechliches Glas stand auf dem Tisch.“","zerbrechliches",["Glas","stand"],"„Zerbrechliches“ beschreibt die Eigenschaft des Glases."],
             ["Welche Wortart hat „Erleben“? „Das Erleben neuer Dinge macht Spaß.“","Nomen",["Verb","Adjektiv"],"Durch den Artikel „das“ wird „Erleben“ hier als Nomen verwendet."],
@@ -888,7 +888,7 @@ function startUnit(unit){
   currentUnit=unit;
   document.getElementById("lesson-title").textContent=unit.title;
   document.getElementById("lesson-focus").textContent=unit.focus;
-  document.getElementById("lesson-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · 45 MINUTEN · 18 AUFGABEN";
+  document.getElementById("lesson-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · 45 MINUTEN · "+unit.questions.length+" AUFGABEN";
   screen("lesson");
 }
 function startFree(){prepare(shuffle(questions),null);}
@@ -1026,7 +1026,7 @@ nextButton.addEventListener("click",()=>{
   if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();
 });
 document.getElementById("lesson-back-button").addEventListener("click",()=>screen("start"));
-document.getElementById("lesson-start-button").addEventListener("click",()=>{if(currentUnit)prepare(shuffle(currentUnit.questions),currentUnit);});
+document.getElementById("lesson-start-button").addEventListener("click",()=>{if(currentUnit)prepare(currentUnit.questions,currentUnit);});
 document.getElementById("back-to-menu").addEventListener("click",()=>screen("start"));
 document.getElementById("result-menu-button").addEventListener("click",()=>screen("start"));
 document.getElementById("retry-button").addEventListener("click",()=>currentUnit?startUnit(currentUnit):startFree());
