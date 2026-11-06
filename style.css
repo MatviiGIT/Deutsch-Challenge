@@ -520,7 +520,8 @@ body{font-size:var(--font-body);line-height:1.5}
 .track-option,.primary-button,.secondary-button,.text-button{
   font-size:var(--font-body);
 }
-.track-name{font-weight:900}
+.track-option{min-height:118px;padding:14px}
+.track-name{margin-top:10px;font-weight:900}
 .welcome-copy h1,.profile-heading h1,.lesson-card h1,
 .result-header h1{font-size:var(--font-display);line-height:1.05}
 .welcome-copy>p,.profile-heading>p,.lesson-lead,
