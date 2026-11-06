@@ -229,12 +229,12 @@ const topics = [
       {title:"Wortfelder entdecken",focus:"Wörter nach Themen ordnen",build(track,stage){
         const rows=[
           ["Welches Wort gehört zum Wortfeld „Wetter“?","Nebel",["Schreibtisch","Pausenglocke","Schulheft","Ranzen","Kochtopf","Teppich"],"Nebel ist eine Erscheinung des Wetters."],
-          ["Welches Wort gehört zum Wortfeld „sagen“?","berichten",["laufen","essen","zuhören","springen","bauen","schweigen"],"„Berichten“ gehört zum Wortfeld des Sprechens."],
+          ["Welches Wort gehört zum Wortfeld „sagen“?","berichten",["laufen","essen","springen","bauen","rechnen","malen"],"„Berichten“ gehört zum Wortfeld des Sprechens."],
           ["Welches Wort gehört zum Wortfeld „gehen“?","schlendern",["singen","flüstern","malen","kochen","rechnen","schreiben"],"„Schlendern“ beschreibt eine Art zu gehen."],
           ["Welches Wort passt zum Wortfeld „Wald“?","Moos",["Lenkrad","Kreide","Fenster","Tastatur","Handy","Teller"],"Moos wächst häufig im Wald."],
           ["Welches Wort gehört zum Wortfeld „Gefühle“?","Erleichterung",["Lineal","Rucksack","Fahrstuhl","Fahrkarte","Bleistift","Schraubenzieher"],"Erleichterung ist ein Gefühl."],
           ["Welches Wort passt zum Wortfeld „Schule“?","Stundenplan",["Wolke","Pinsel","Schornstein","Schnecke","Kochtopf","Gießkanne"],"Ein Stundenplan gehört zum Schulalltag."],
-          ["Welches Wort gehört zum Wortfeld „sehen“?","beobachten",["horchen","kochen","schmecken","fühlen","riechen","hören"],"„Betrachten“ bedeutet, etwas aufmerksam anzusehen."],
+          ["Welches Wort gehört zum Wortfeld „sehen“?","beobachten",["horchen","kochen","schmecken","fühlen","riechen","hören"],"„Beobachten“ bedeutet, etwas aufmerksam anzusehen."],
           ["Welches Wort passt zum Wortfeld „Wasser“?","Strömung",["Schraube","Weste","Buchseite","Wolldecke","Schlüssel","Teppich"],"Eine Strömung ist eine Bewegung des Wassers."],
           ["Welches Wort gehört zum Wortfeld „streiten“?","widersprechen",["zustimmen","weglaufen","zuhören","loben","begrüßen","malen"],"„Widersprechen“ kann Teil eines Streits sein."],
           ["Welches Wort passt zum Wortfeld „Reise“?","Gepäck",["Tafel","Teppich","Heizung","Pinsel","Schneeball","Schlüssel"],"Gepäck nimmt man auf eine Reise mit."]
