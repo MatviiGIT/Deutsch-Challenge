@@ -421,12 +421,12 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 ### Prioritäten für die nächste Entwicklungsrunde
 
-1. Die aktuelle Home-, Lernpfad- und Lektionsgestaltung auf Desktop, Tablet und Smartphone manuell prüfen; besonders Augen des Maskottchens, Ausrichtung des Lernpfads und Lesbarkeit kontrollieren.
-2. Alle 54 Aufgaben der Pilotlektion (18 je G/M/E-Niveau) sprachlich und fachlich prüfen: eindeutige richtige Antwort, verständliche Erklärung und angemessene Schwierigkeit.
-3. Die Pilotlektion vollständig selbst durchspielen und Fehler sowie unklare Formulierungen protokollieren.
-4. Die Aufgaben mit einer Deutschlehrkraft abstimmen und danach einen kleinen Praxistest vorbereiten.
-5. Rückmeldungen auswerten und die Pilotlektion gezielt verbessern.
-6. Erst danach die nächste Lektion planen. Als nächster Inhaltsbereich bietet sich Grammatik an; Thema und Lernziele sollten aus den Rückmeldungen und dem Unterrichtsstand der 5. Klasse abgeleitet werden.
+1. Die neue automatische Projektprüfung auf dem Branch `content-audit` ausführen und eventuelle Fehlermeldungen beheben.
+2. Home, Lernpfad und Lektion auf Desktop, Tablet und Smartphone manuell prüfen; Lesbarkeit, Abstände, Navigation und Tastaturbedienung kontrollieren.
+3. Die Pilotlektion vollständig durchspielen und Fehler sowie unklare Formulierungen protokollieren.
+4. Alle 54 Aufgaben (18 je G/M/E-Niveau) sprachlich und fachlich prüfen: eindeutige richtige Antwort, verständliche Erklärung und angemessene Schwierigkeit.
+5. Die Aufgaben mit einer Deutschlehrkraft abstimmen und danach einen kleinen Praxistest vorbereiten.
+6. Rückmeldungen auswerten und die Pilotlektion gezielt verbessern, bevor neue Themen ergänzt werden.
 
 Neue technische Funktionen sollten erst ergänzt werden, wenn sie einen klaren Nutzen für die Lernenden haben.
 
@@ -530,6 +530,12 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 - [ ] `main` nicht ohne ausdrückliche Entscheidung aktualisieren oder einen Pull Request mergen.
 
 ## 17. Änderungsverlauf
+
+| Datum | Änderung |
+|---|---|
+| 06.11.2026 | GitHub-Actions-Prüfung erweitert: zusätzlich zu JavaScript-Syntax werden doppelte HTML-IDs, JavaScript-Verweise auf HTML-IDs, zentrale Ansichten, Navigation, G/M/E-Auswahl und grundlegende Aufgabenregeln geprüft. Die Prüfung liegt in `scripts/validate-project.mjs` und wird über `.github/workflows/validate.yml` gestartet. Ein erfolgreicher statischer Check ersetzt keinen manuellen Browser- und Gerätetest. |
+
+
 
 | Datum | Änderung |
 |---|---|

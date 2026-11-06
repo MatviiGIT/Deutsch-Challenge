@@ -1,11 +1,11 @@
-name: Validate quiz
+name: Validate Quakoo
 
 on:
   push:
   pull_request:
 
 jobs:
-  javascript:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -16,7 +16,5 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: node --check script.js
-      - name: Check required lesson markup
-        run: |
-          grep -q 'id="lesson-screen"' index.html
-          grep -q 'id="lesson-start-button"' index.html
+      - name: Run project structure checks
+        run: node scripts/validate-project.mjs
