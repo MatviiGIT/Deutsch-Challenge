@@ -6,7 +6,7 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 | Information | Stand |
 |---|---|
 | Schulprojekt / Repository | Deutsch-Challenge |
-| Name der Lernplattform | Quakademie |
+| Name der Lernplattform | Quakademie (bisherige Bezeichnung; Quakoo wird als neuer Name geprüft) |
 | Lernbegleiter | Quaki, der Frosch |
 | Zielgruppe | Schülerinnen und Schüler der 5. Klasse |
 | Sprache der Anwendung | Deutsch |
@@ -20,7 +20,7 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 
 ## 1. Projekt in Kürze
 
-Quakademie ist die Lernplattform des Schulprojekts Deutsch-Challenge. Quaki, ein Frosch, begleitet Kinder der 5. Klasse beim Wiederholen ausgewählter Inhalte des Deutschunterrichts.
+Quakademie ist die bisherige Bezeichnung der Lernplattform des Schulprojekts Deutsch-Challenge. **Quakoo** ist der aktuelle Namensfavorit und wird vor einer Umbenennung der Oberfläche noch als endgültiger Markenname bestätigt. Quaki, ein Frosch, begleitet Kinder der 5. Klasse beim Wiederholen ausgewählter Inhalte des Deutschunterrichts.
 
 Die Website bietet drei Schwierigkeitsstufen. Jede Frage hat drei Antwortmöglichkeiten. Nach einer Antwort zeigt das Programm, ob die Auswahl richtig war, und erklärt die Lösung in einfachen Worten. Am Ende erhalten die Lernenden eine Auswertung und Hinweise darauf, welche Inhalte sie noch üben können.
 
@@ -419,12 +419,12 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 ### Prioritäten für die nächste Entwicklungsrunde
 
-1. Die neue Gestaltung auf Desktop, Tablet und Smartphone prüfen.
-2. Die Abstände und Lesbarkeit auf der Startseite und im Fragebildschirm fertigstellen.
-3. Alle 54 Aufgaben der Pilotlektion sprachlich und fachlich durch eine Deutschlehrkraft prüfen lassen.
-4. Einen kurzen Feedbackbogen für den Praxistest vorbereiten.
-5. Den Test mit der Lehrkraft abstimmen und durchführen.
-6. Die Ergebnisse anonymisiert auswerten und die Anwendung verbessern.
+1. Die aktuelle veröffentlichte Gestaltung auf Desktop, Tablet und Smartphone manuell prüfen; besonders Augen des Maskottchens, Ausrichtung des Lernpfads und Lesbarkeit kontrollieren.
+2. Alle 54 Aufgaben der Pilotlektion (18 je G/M/E-Niveau) sprachlich und fachlich prüfen: eindeutige richtige Antwort, verständliche Erklärung und angemessene Schwierigkeit.
+3. Die Pilotlektion vollständig selbst durchspielen und Fehler sowie unklare Formulierungen protokollieren.
+4. Die Aufgaben mit einer Deutschlehrkraft abstimmen und danach einen kleinen Praxistest vorbereiten.
+5. Rückmeldungen auswerten und die Pilotlektion gezielt verbessern.
+6. Erst danach die nächste Lektion planen. Als nächster Inhaltsbereich bietet sich Grammatik an; Thema und Lernziele sollten aus den Rückmeldungen und dem Unterrichtsstand der 5. Klasse abgeleitet werden.
 
 Neue technische Funktionen sollten erst ergänzt werden, wenn sie einen klaren Nutzen für die Lernenden haben.
 
@@ -545,6 +545,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 06.11.2026 | Startbildschirm mit Spielname (Sitzungsspeicher) und einmaliger G/M/E-Auswahl hinzugefügt. Der Umfang von 350 Fragen wurde später zugunsten einer fokussierten Pilotlektion zurückgestellt. |
 | 06.11.2026 | Pilotlektion „Wortdetektive“ mit 45-Minuten-Lernseite, Zeitplan und 18 getrennten Aufgaben je G/M/E-Niveau vorbereitet. Änderungen liegen auf `content-audit`; GitHub Actions und Pages-Build waren erfolgreich. Manueller Browser-, Geräte- und Inhaltstest stehen noch aus. |
 | 06.11.2026 | Markenauftritt auf „Quakademie“ mit Quaki als Frosch umgestellt. Frosch-Augen als getrennte Elemente neu aufgebaut, Schriftgrößen vereinheitlicht, Hilferegeln in ein „?“-Menü verschoben und wiederholte Hinweise aus den Hauptansichten entfernt. |
+| 06.11.2026 | Kontrast der Frosch-Augen durch weiße Augenflächen und grüne Konturen verbessert; die Überschrift „Der Lernpfad“ aus der Kursübersicht entfernt, damit die Lernpfad-Spalten bündig beginnen. Die Schriftgrößen blieben unverändert; der CSS-Versionsparameter wurde auf `v=17` erhöht. GitHub-Actions-Prüfung und GitHub-Pages-Deployment für Commit `a0a920a` erfolgreich. Die visuelle Kontrolle auf echten Geräten steht weiterhin aus. |
 
 ---
 
