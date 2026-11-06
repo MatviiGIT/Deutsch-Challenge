@@ -619,3 +619,23 @@ body{font-size:var(--font-body);line-height:1.5}
   }
   .help-panel{right:0;max-height:70vh;overflow:auto}
 }
+
+
+/* Final alignment of captions, questions and compact mobile header */
+#app .node-label{font-size:var(--font-support);line-height:1.25}
+#app .node-meta,.site-footer,.mistake-meta,.result-score-side small{
+  font-size:var(--font-caption);
+}
+#app .answer-option{font-size:var(--font-body);line-height:1.35}
+#app .score-live,#app .feedback-title,#app .question-counter{
+  font-size:var(--font-support);
+}
+#app .lesson-example>p{font-size:var(--font-card);line-height:1.4}
+#app .course-progress-copy>strong{font-size:var(--font-body)}
+.site-footer{letter-spacing:.08em}
+@media(max-width:580px){
+  .topbar-player{display:none}
+  .topbar-progress span{display:none}
+  .brand-mark{width:36px;height:36px}
+  .brand-words{font-size:.9rem}
+}
