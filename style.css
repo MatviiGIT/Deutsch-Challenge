@@ -275,17 +275,19 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-off
 .art-card-front{box-shadow:0 7px 0 rgba(49,117,47,.12),0 12px 25px rgba(48,82,42,.08)}
 .guide-mascot{
   position:absolute;z-index:3;right:7%;bottom:7px;width:104px;height:96px;
-  border:5px solid #fff;border-radius:48% 48% 43% 43%;
+  border:5px solid #fff;border-radius:50% 50% 46% 46%;
   background:#79b94d;box-shadow:0 6px 0 #4b8d37,0 12px 22px rgba(48,82,42,.12);
-  transform:rotate(5deg);
+  transform:rotate(2deg);
 }
-.mascot-ear{position:absolute;top:-19px;width:28px;height:37px;border:5px solid #fff;border-radius:80% 80% 20% 20%;background:#79b94d;z-index:-1}
-.mascot-ear-left{left:7px;transform:rotate(-18deg)}
-.mascot-ear-right{right:7px;transform:rotate(18deg)}
-.mascot-eye{position:absolute;top:29px;width:10px;height:13px;border-radius:50%;background:#26352c}
+.guide-mascot::before,.guide-mascot::after{
+  content:"";position:absolute;top:-11px;width:31px;height:32px;
+  border:4px solid #fff;border-radius:50%;background:#fff;
+}
+.guide-mascot::before{left:12px}.guide-mascot::after{right:12px}
+.mascot-eye{position:absolute;z-index:2;top:-2px;width:9px;height:12px;border-radius:50%;background:#26352c}
 .mascot-eye-left{left:25px}.mascot-eye-right{right:25px}
-.mascot-beak{position:absolute;top:46px;left:43px;width:14px;height:12px;background:#f3bd4f;clip-path:polygon(0 0,100% 0,50% 100%)}
-.mascot-cheek{position:absolute;top:49px;width:12px;height:7px;border-radius:50%;background:#f0a28c;opacity:.9}
+.mascot-mouth{position:absolute;top:59px;left:35px;width:25px;height:11px;border-bottom:3px solid #26352c;border-radius:50%}
+.mascot-cheek{position:absolute;top:53px;width:12px;height:7px;border-radius:50%;background:#f0a28c;opacity:.9}
 .mascot-cheek-left{left:12px}.mascot-cheek-right{right:12px}
 .mascot-bubble{
   position:absolute;z-index:4;right:1%;top:1px;padding:8px 12px;border:1px solid #d9e8d2;
@@ -337,17 +339,16 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-off
 .profile-heading>p{max-width:590px;margin:0;color:var(--ink-soft);font-size:.9rem;line-height:1.6}
 .profile-mascot{
   position:absolute;right:10px;top:0;width:82px;height:76px;border:4px solid white;
-  border-radius:48% 48% 43% 43%;background:#79b94d;box-shadow:0 5px 0 #4b8d37;transform:rotate(5deg)
+  border-radius:50% 50% 46% 46%;background:#79b94d;box-shadow:0 5px 0 #4b8d37;transform:rotate(2deg)
 }
 .profile-mascot::before,.profile-mascot::after{
-  content:"";position:absolute;top:-13px;width:23px;height:29px;border:4px solid white;
-  border-radius:80% 80% 20% 20%;background:#79b94d;z-index:-1
+  content:"";position:absolute;top:-8px;width:27px;height:27px;
+  border:4px solid white;border-radius:50%;background:white
 }
-.profile-mascot::before{left:6px;transform:rotate(-17deg)}
-.profile-mascot::after{right:6px;transform:rotate(17deg)}
-.profile-mascot-eye{position:absolute;top:25px;width:9px;height:11px;border-radius:50%;background:#26352c}
+.profile-mascot::before{left:10px}.profile-mascot::after{right:10px}
+.profile-mascot-eye{position:absolute;z-index:2;top:-1px;width:7px;height:9px;border-radius:50%;background:#26352c}
 .profile-mascot-eye.eye-left{left:20px}.profile-mascot-eye.eye-right{right:20px}
-.profile-mascot-beak{position:absolute;top:41px;left:34px;width:12px;height:11px;background:#f3bd4f;clip-path:polygon(0 0,100% 0,50% 100%)}
+.profile-mascot-mouth{position:absolute;top:45px;left:29px;width:17px;height:8px;border-bottom:3px solid #26352c;border-radius:50%}
 .profile-form{margin-top:30px}
 .profile-field label,.track-field-heading strong{display:block;color:var(--ink);font-size:.9rem;font-weight:1000}
 .profile-field input{
@@ -417,9 +418,9 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-off
   .profile-heading h1{font-size:2.05rem}
   .profile-heading>p{font-size:.8rem}
   .profile-mascot{right:0;width:66px;height:62px;transform:scale(.85) rotate(5deg);transform-origin:top right}
-  .profile-mascot-eye{top:20px}
-  .profile-mascot-eye.eye-left{left:15px}.profile-mascot-eye.eye-right{right:15px}
-  .profile-mascot-beak{top:34px;left:27px}
+  .profile-mascot-eye{top:-1px}
+  .profile-mascot-eye.eye-left{left:16px}.profile-mascot-eye.eye-right{right:16px}
+  .profile-mascot-mouth{top:38px;left:25px;width:14px;height:7px}
   .profile-form{margin-top:23px}
   .track-options{grid-template-columns:1fr;gap:8px}
   .track-option{min-height:0;padding:11px 12px;display:grid;grid-template-columns:42px 1fr;column-gap:11px;align-items:center}
