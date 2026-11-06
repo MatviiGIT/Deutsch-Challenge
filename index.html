@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8f3">
-  <meta name="description" content="Ein spielerischer Lernpfad für Deutsch in der 5. Klasse.">
-  <title>Deutsch-Challenge — Dein Lernpfad</title>
+  <meta name="description" content="Deutsch lernen mit Quaki – kurze Übungen für die 5. Klasse.">
+  <title>Quakademie — Deutsch lernen mit Quaki</title>
   <link rel="stylesheet" href="style.css?v=12">
   <script src="script.js?v=17" defer></script>
 </head>
@@ -13,8 +13,8 @@
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="#" id="brand-home" aria-label="Zur Kursübersicht">
-        <span class="brand-mark" aria-hidden="true">ä!</span>
-        <span class="brand-words">Deutsch<span>Challenge</span></span>
+        <span class="brand-mark" aria-hidden="true">Q</span>
+        <span class="brand-words">Quakademie</span>
       </a>
       <div class="topbar-right">
         <span class="course-chip" id="course-chip"><span class="chip-dot"></span> DEUTSCH · KLASSE 5</span>
@@ -28,25 +28,25 @@
       <section class="screen profile-screen" id="profile-screen" aria-labelledby="profile-title">
         <div class="profile-card">
           <div class="profile-heading">
-            <span class="eyebrow">WILLKOMMEN BEI DEUTSCH-CHALLENGE</span>
+            <span class="eyebrow">WILLKOMMEN BEI QUAKADEMIE</span>
             <div class="profile-mascot" aria-hidden="true">
               <span class="profile-mascot-eye eye-left"></span>
               <span class="profile-mascot-eye eye-right"></span>
               <span class="profile-mascot-beak"></span>
             </div>
             <h1 id="profile-title">Dein Lernweg beginnt hier.</h1>
-            <p>Richte deinen Lernplatz ein. Danach wird dein Kurs passend zu deinem Niveau zusammengestellt.</p>
+            <p>Wähle deinen Namen und dein Lernniveau.</p>
           </div>
           <form id="profile-form" class="profile-form">
             <div class="profile-field">
               <label for="player-name">Wie möchtest du im Spiel heißen?</label>
               <input id="player-name" name="player-name" type="text" maxlength="18" autocomplete="nickname" placeholder="Zum Beispiel: Wortprofi" required>
-              <p class="field-hint">Nutze am besten einen Spitznamen statt deines echten Namens. Der Name bleibt nur während dieser Sitzung im Browser.</p>
+              <p class="field-hint">Nutze einen Spitznamen. Er bleibt nur in dieser Sitzung.</p>
             </div>
             <div class="track-field">
               <div class="track-field-heading">
                 <strong>Wähle dein Lernniveau</strong>
-                <span>Du legst es einmal für den ganzen Kurs fest.</span>
+                <span>Gilt für den ganzen Kurs.</span>
               </div>
               <div class="track-options" role="group" aria-label="Lernniveau auswählen">
                 <button class="track-option" type="button" data-track="G" aria-pressed="false">
@@ -68,7 +68,6 @@
             </div>
             <button class="primary-button begin-course-button" id="begin-course-button" type="submit" disabled>Kurs starten <span aria-hidden="true">→</span></button>
           </form>
-          <p class="profile-note"><span aria-hidden="true">✦</span> 1 Thema · 1 Probestunde · 18 Aufgaben. Dein Lernfortschritt wird nicht online gespeichert.</p>
         </div>
       </section>
 
@@ -77,7 +76,7 @@
           <div class="welcome-copy">
             <span class="eyebrow">DEIN DEUTSCHKURS</span>
             <h1 id="home-title">Hallo, <span id="course-player-name">Wortprofi</span>!<br><em>Weiterlernen.</em></h1>
-            <p id="course-track-note">Dein persönlicher Deutschkurs ist bereit. Jede Etappe bringt dich mit kurzen Aufgaben und verständlichen Erklärungen weiter.</p>
+            <p id="course-track-note">Kurze Aufgaben. Klare Erklärungen. Schritt für Schritt.</p>
             <div class="welcome-facts">
               <span><strong>1</strong> Thema</span>
               <span><strong>45</strong> Minuten</span>
@@ -88,16 +87,14 @@
             <div class="art-sun"></div>
             <div class="art-card art-card-back">WÖRTER</div>
             <div class="art-card art-card-front"><span>ä</span><small>ABC</small></div>
-            <div class="guide-mascot">
-              <span class="mascot-ear mascot-ear-left"></span>
-              <span class="mascot-ear mascot-ear-right"></span>
+            <div class="guide-mascot" role="img" aria-label="Quaki, der Lernfrosch">
               <span class="mascot-eye mascot-eye-left"></span>
               <span class="mascot-eye mascot-eye-right"></span>
-              <span class="mascot-beak"></span>
+              <span class="mascot-mouth"></span>
               <span class="mascot-cheek mascot-cheek-left"></span>
               <span class="mascot-cheek mascot-cheek-right"></span>
             </div>
-            <div class="mascot-bubble">Los geht's!</div>
+            <div class="mascot-bubble">Quak!</div>
             <div class="art-spark spark-one">✳</div>
             <div class="art-spark spark-two">✦</div>
             <div class="art-caption">SCHRITT FÜR SCHRITT</div>
@@ -115,7 +112,7 @@
           <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0">
             <span id="course-progress-fill"></span>
           </div>
-          <p id="course-progress-note">Schließe deine erste Lektion ab, um den Weg freizuschalten.</p>
+          <p id="course-progress-note">Hier siehst du deinen Fortschritt.</p>
         </section>
 
         <div class="course-layout">
@@ -124,7 +121,7 @@
               <div>
                 <span class="section-kicker">DEINE LERNREISE</span>
                 <h2 id="path-title">Der Lernpfad</h2>
-                <p>Wähle den nächsten freien Kreis und starte deine Einheit.</p>
+                <p>Tippe auf den offenen Kreis.</p>
               </div>
               <span class="path-total">PILOTSTUNDE</span>
             </div>
@@ -142,13 +139,13 @@
             </div>
             <div class="sidebar-card guide-card">
               <span class="sidebar-label">SO FUNKTIONIERT'S</span>
-              <div class="guide-row"><span class="guide-symbol guide-open">●</span><span><strong>Offen</strong><small>Diese Einheit kannst du starten.</small></span></div>
-              <div class="guide-row"><span class="guide-symbol guide-done">✓</span><span><strong>Geschafft</strong><small>Du kannst sie jederzeit wiederholen.</small></span></div>
-              <div class="guide-row"><span class="guide-symbol guide-locked">⌑</span><span><strong>Gesperrt</strong><small>Wird nach der vorherigen Einheit geöffnet.</small></span></div>
+              <div class="guide-row"><span class="guide-symbol guide-open">●</span><span><strong>Offen</strong><small>Jetzt starten.</small></span></div>
+              <div class="guide-row"><span class="guide-symbol guide-done">✓</span><span><strong>Geschafft</strong><small>Jederzeit wiederholbar.</small></span></div>
+              <div class="guide-row"><span class="guide-symbol guide-locked">⌑</span><span><strong>Gesperrt</strong><small>Noch nicht verfügbar.</small></span></div>
             </div>
             <div class="sidebar-note">
               <span aria-hidden="true">✦</span>
-              <p>Fehler gehören zum Lernen. Lies die Erklärung und probiere es weiter.</p>
+              <p>Fehler helfen dir. Lies die Erklärung.</p>
             </div>
           </aside>
         </div>
@@ -157,15 +154,15 @@
           <div><strong>Lieber frei üben?</strong><span>Alle 18 Aufgaben der Probestunde gemischt — ohne Reihenfolge.</span></div>
           <button class="text-button" id="free-practice-button" type="button">Freies Training starten <span aria-hidden="true">→</span></button>
         </div>
-        <p class="start-footnote">Dein Lernfortschritt bleibt in dieser Sitzung. Ohne Anmeldung und ohne persönliche Daten.</p>
+        <p class="start-footnote">Dein Fortschritt gilt nur für diese Sitzung.</p>
       </section>
 
       <section class="screen lesson-screen" id="lesson-screen" hidden aria-labelledby="lesson-title">
         <div class="lesson-card">
           <button class="text-button lesson-back-button" id="lesson-back-button" type="button">← Lernpfad</button>
-          <span class="eyebrow">DEINE 45-MINUTEN-LEKTION</span>
+          <span class="eyebrow">45-MINUTEN-LEKTION</span>
           <h1 id="lesson-title">Wortdetektive</h1>
-          <p class="lesson-lead" id="lesson-focus">Nomen, Verben und Adjektive erkennen und im Satz unterscheiden.</p>
+          <p class="lesson-lead" id="lesson-focus">Nomen, Verben und Adjektive unterscheiden.</p>
           <div class="lesson-level" id="lesson-level">G · 45 MINUTEN · 18 AUFGABEN</div>
           <div class="lesson-explain">
             <h2>Das lernst du heute</h2>
@@ -173,19 +170,19 @@
               <article class="word-type-card noun-card">
                 <span class="word-type-label">NOMEN</span>
                 <h3>Wer oder was?</h3>
-                <p>Nomen bezeichnen Menschen, Tiere, Dinge, Orte oder Gefühle. Man schreibt sie groß.</p>
+                <p>Nomen benennen Menschen, Tiere, Dinge, Orte und Gefühle. Man schreibt sie groß.</p>
                 <p class="word-example">der <strong>Hund</strong> · die <strong>Schule</strong> · die <strong>Freude</strong></p>
               </article>
               <article class="word-type-card verb-card">
                 <span class="word-type-label">VERBEN</span>
                 <h3>Was tut jemand?</h3>
-                <p>Verben sagen, was jemand oder etwas tut oder was geschieht. Man kann sie verändern.</p>
+                <p>Verben sagen, was jemand tut oder was geschieht. Man kann sie verändern.</p>
                 <p class="word-example"><strong>laufen</strong> · <strong>lacht</strong> · <strong>schlafen</strong></p>
               </article>
               <article class="word-type-card adjective-card">
                 <span class="word-type-label">ADJEKTIVE</span>
                 <h3>Wie ist etwas?</h3>
-                <p>Adjektive beschreiben Eigenschaften. Sie sagen zum Beispiel, wie etwas aussieht oder sich anfühlt.</p>
+                <p>Adjektive beschreiben, wie etwas ist.</p>
                 <p class="word-example"><strong>klein</strong> · <strong>freundlich</strong> · <strong>weich</strong></p>
               </article>
             </div>
@@ -200,17 +197,16 @@
             </div>
           </div>
           <div class="lesson-schedule">
-            <h2>So ist die Stunde aufgebaut</h2>
+            <h2>So läuft die Stunde ab</h2>
             <div class="lesson-timeline">
-              <div><strong>5 Min.</strong><span>Einstieg und Vorwissen</span></div>
-              <div><strong>8 Min.</strong><span>Regeln und Beispiele verstehen</span></div>
-              <div><strong>5 Min.</strong><span>Erste drei Aufgaben gemeinsam lösen</span></div>
-              <div><strong>14 Min.</strong><span>Sieben Aufgaben selbstständig üben</span></div>
-              <div><strong>9 Min.</strong><span>Fünf anspruchsvollere Aufgaben bearbeiten</span></div>
-              <div><strong>4 Min.</strong><span>Drei Abschlussfragen und Rückblick</span></div>
+              <div><strong>5 Min.</strong><span>Einstieg</span></div>
+              <div><strong>8 Min.</strong><span>Regeln ansehen</span></div>
+              <div><strong>5 Min.</strong><span>3 Aufgaben gemeinsam</span></div>
+              <div><strong>14 Min.</strong><span>7 Aufgaben allein</span></div>
+              <div><strong>9 Min.</strong><span>5 schwierigere Aufgaben</span></div>
+              <div><strong>4 Min.</strong><span>Abschluss und Rückblick</span></div>
             </div>
           </div>
-          <p class="lesson-tip">Tipp: Lies die Beispiele in Ruhe. Du kannst jederzeit zur Erklärung zurückkehren, bevor du mit den Aufgaben beginnst.</p>
           <button class="primary-button lesson-start-button" id="lesson-start-button" type="button">Mit den Aufgaben beginnen <span aria-hidden="true">→</span></button>
         </div>
       </section>
@@ -228,7 +224,7 @@
         <div class="question-panel">
           <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
           <h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2>
-          <p class="question-instruction">Wähle eine richtige Antwort.</p>
+          <p class="question-instruction">Wähle die richtige Antwort.</p>
           <div class="answer-grid" id="answer-grid"></div>
           <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
             <div class="feedback-title" id="feedback-title"></div>
@@ -239,7 +235,6 @@
             <button class="primary-button" id="next-button" type="button" disabled>Weiter <span aria-hidden="true">→</span></button>
           </div>
         </div>
-        <p class="quiz-footnote">Eine Frage nach der anderen. Du schaffst das.</p>
       </section>
 
       <section class="screen result-screen" id="result-screen" hidden>
@@ -278,7 +273,7 @@
       </section>
     </main>
 
-    <footer class="site-footer"><span>DEUTSCH-CHALLENGE <span class="footer-dot">/</span> ZEIG, WAS DU KANNST</span><span>JEDER SCHRITT ZÄHLT.</span></footer>
+    <footer class="site-footer"><span>QUAKADEMIE <span class="footer-dot">/</span> DEUTSCH LERNEN</span><span>MIT QUAKI.</span></footer>
   </div>
 </body>
 </html>
