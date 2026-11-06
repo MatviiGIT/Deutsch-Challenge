@@ -275,6 +275,21 @@ Die Kursstruktur und die Generatoren für Aufgaben befinden sich in script.js. D
 6. Die Antwortmöglichkeiten werden passend zu G, M oder E ausgewählt.
 7. Die Fragen der späteren Lektionen sollen zusätzliche Regeln oder Zusammenhänge verlangen.
 8. Vor einer Veröffentlichung müssen fachliche Richtigkeit, eindeutige Lösungen und Altersangemessenheit kontrolliert werden.
+## 9.1 Qualitätssicherung der Fragen (Audit in Arbeit)
+
+Die Fragensammlung wird schrittweise fachlich und technisch überprüft. Die technische Prüfung kontrolliert beim Aufbau jeder G/M/E-Kursvariante:
+
+- genau zehn Fragen je Lektion;
+- genau drei nicht leere und unterschiedliche Antwortmöglichkeiten je Frage;
+- einen gültigen Antwortindex zwischen 0 und 2;
+- eine vorhandene Aufgabenstellung und Erklärung;
+- die korrekte Zuordnung zum ausgewählten G/M/E-Kurs;
+- mindestens zwei unterschiedliche falsche Antwortmöglichkeiten.
+
+Die Auswahl der Ablenkungsantworten bevorzugt weiterhin den Schwierigkeitsbereich des gewählten Niveaus. Falls dieser Bereich nicht genügend unterschiedliche Optionen enthält, werden weitere eindeutige Optionen aus dem Aufgabenpool verwendet. Unvollständige Fragen lösen nun einen verständlichen Fehler beim Kursaufbau aus, statt unbemerkt mit doppelten Antwortmöglichkeiten angezeigt zu werden.
+
+**Wichtig:** Diese technische Prüfung bestätigt weder die fachliche Richtigkeit jeder Lösung noch eine sinnvolle Progression. Die inhaltliche Prüfung der 350 Aufgaben und die stärkere Differenzierung der G/M/E-Aufgaben bleiben Teil des laufenden Audits.
+
 ## 10. Testplan vor einer Veröffentlichung
 
 Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Checkliste geprüft werden.
