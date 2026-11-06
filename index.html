@@ -21,6 +21,17 @@
         <span class="topbar-player" id="topbar-player" hidden></span>
         <span class="track-chip" id="track-chip" hidden></span>
         <span class="topbar-progress" id="topbar-progress">DEIN KURS</span>
+        <details class="help-menu">
+          <summary aria-label="Hilfe und Regeln" title="Hilfe">?</summary>
+          <div class="help-panel">
+            <h2>So funktioniert's</h2>
+            <p><strong>G</strong> – Grundlagen erkennen.</p>
+            <p><strong>M</strong> – Regeln im Satz anwenden.</p>
+            <p><strong>E</strong> – Wörter genau untersuchen.</p>
+            <p>Jede Frage hat drei Antworten. Danach erscheint eine Erklärung.</p>
+            <p>Dein Spitzname und dein Fortschritt bleiben nur in dieser Sitzung.</p>
+          </div>
+        </details>
       </div>
     </header>
 
@@ -28,41 +39,36 @@
       <section class="screen profile-screen" id="profile-screen" aria-labelledby="profile-title">
         <div class="profile-card">
           <div class="profile-heading">
-            <span class="eyebrow">WILLKOMMEN BEI QUAKADEMIE</span>
-            <div class="profile-mascot" aria-hidden="true">
-              <span class="profile-mascot-eye eye-left"></span>
-              <span class="profile-mascot-eye eye-right"></span>
-              <span class="profile-mascot-mouth"></span>
+            <div class="profile-mascot frog-avatar frog-avatar-small" aria-hidden="true">
+              <span class="frog-eye frog-eye-left"><span class="frog-pupil"></span></span>
+              <span class="frog-eye frog-eye-right"><span class="frog-pupil"></span></span>
+              <span class="frog-mouth"></span>
+              <span class="frog-cheek frog-cheek-left"></span>
+              <span class="frog-cheek frog-cheek-right"></span>
             </div>
-            <h1 id="profile-title">Dein Lernweg beginnt hier.</h1>
-            <p>Wähle deinen Namen und dein Lernniveau.</p>
+            <h1 id="profile-title">Wie heißt du?</h1>
           </div>
           <form id="profile-form" class="profile-form">
             <div class="profile-field">
               <label for="player-name">Wie möchtest du im Spiel heißen?</label>
               <input id="player-name" name="player-name" type="text" maxlength="18" autocomplete="nickname" placeholder="Zum Beispiel: Wortprofi" required>
-              <p class="field-hint">Nutze einen Spitznamen. Er bleibt nur in dieser Sitzung.</p>
             </div>
             <div class="track-field">
               <div class="track-field-heading">
                 <strong>Wähle dein Lernniveau</strong>
-                <span>Gilt für den ganzen Kurs.</span>
               </div>
               <div class="track-options" role="group" aria-label="Lernniveau auswählen">
                 <button class="track-option" type="button" data-track="G" aria-pressed="false">
                   <span class="track-letter">G</span>
-                  <span class="track-name">Grundlegendes Niveau</span>
-                  <span class="track-description">Klare Grundlagen und gut erkennbare Beispiele.</span>
+                  <span class="track-name">Grundlagen</span>
                 </button>
                 <button class="track-option" type="button" data-track="M" aria-pressed="false">
                   <span class="track-letter">M</span>
-                  <span class="track-name">Mittleres Niveau</span>
-                  <span class="track-description">Mehr Zusammenhänge und anspruchsvollere Aufgaben.</span>
+                  <span class="track-name">Mittelstufe</span>
                 </button>
                 <button class="track-option" type="button" data-track="E" aria-pressed="false">
                   <span class="track-letter">E</span>
-                  <span class="track-name">Erweitertes Niveau</span>
-                  <span class="track-description">Kniffligere Beispiele und genaues Analysieren.</span>
+                  <span class="track-name">Erweitert</span>
                 </button>
               </div>
             </div>
@@ -76,7 +82,6 @@
           <div class="welcome-copy">
             <span class="eyebrow">DEIN DEUTSCHKURS</span>
             <h1 id="home-title">Hallo, <span id="course-player-name">Wortprofi</span>!<br><em>Weiterlernen.</em></h1>
-            <p id="course-track-note">Kurze Aufgaben. Klare Erklärungen. Schritt für Schritt.</p>
             <div class="welcome-facts">
               <span><strong>1</strong> Thema</span>
               <span><strong>45</strong> Minuten</span>
@@ -87,12 +92,12 @@
             <div class="art-sun"></div>
             <div class="art-card art-card-back">WÖRTER</div>
             <div class="art-card art-card-front"><span>ä</span><small>ABC</small></div>
-            <div class="guide-mascot" role="img" aria-label="Quaki, der Lernfrosch">
-              <span class="mascot-eye mascot-eye-left"></span>
-              <span class="mascot-eye mascot-eye-right"></span>
-              <span class="mascot-mouth"></span>
-              <span class="mascot-cheek mascot-cheek-left"></span>
-              <span class="mascot-cheek mascot-cheek-right"></span>
+            <div class="guide-mascot frog-avatar frog-avatar-large" role="img" aria-label="Quaki, der Lernfrosch">
+              <span class="frog-eye frog-eye-left"><span class="frog-pupil"></span></span>
+              <span class="frog-eye frog-eye-right"><span class="frog-pupil"></span></span>
+              <span class="frog-mouth"></span>
+              <span class="frog-cheek frog-cheek-left"></span>
+              <span class="frog-cheek frog-cheek-right"></span>
             </div>
             <div class="mascot-bubble">Quak!</div>
             <div class="art-spark spark-one">✳</div>
@@ -112,16 +117,13 @@
           <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0">
             <span id="course-progress-fill"></span>
           </div>
-          <p id="course-progress-note">Hier siehst du deinen Fortschritt.</p>
         </section>
 
         <div class="course-layout">
           <section class="path-column" aria-labelledby="path-title">
             <div class="path-heading">
               <div>
-                <span class="section-kicker">DEINE LERNREISE</span>
                 <h2 id="path-title">Der Lernpfad</h2>
-                <p>Tippe auf den offenen Kreis.</p>
               </div>
               <span class="path-total">PILOTSTUNDE</span>
             </div>
@@ -133,28 +135,15 @@
               <span class="sidebar-label">ALS NÄCHSTES</span>
               <div class="next-icon" id="next-icon">Aa</div>
               <h3 id="next-title">Wortarten entdecken</h3>
-              <p id="next-description">Lerne, Wörter zu erkennen und zu unterscheiden.</p>
               <span class="next-meta" id="next-meta">STUFE 1 · 10 FRAGEN</span>
               <button class="primary-button next-start-button" id="next-unit-button" type="button">Weiterlernen <span aria-hidden="true">→</span></button>
-            </div>
-            <div class="sidebar-card guide-card">
-              <span class="sidebar-label">SO FUNKTIONIERT'S</span>
-              <div class="guide-row"><span class="guide-symbol guide-open">●</span><span><strong>Offen</strong><small>Jetzt starten.</small></span></div>
-              <div class="guide-row"><span class="guide-symbol guide-done">✓</span><span><strong>Geschafft</strong><small>Jederzeit wiederholbar.</small></span></div>
-              <div class="guide-row"><span class="guide-symbol guide-locked">⌑</span><span><strong>Gesperrt</strong><small>Noch nicht verfügbar.</small></span></div>
-            </div>
-            <div class="sidebar-note">
-              <span aria-hidden="true">✦</span>
-              <p>Fehler helfen dir. Lies die Erklärung.</p>
             </div>
           </aside>
         </div>
 
         <div class="free-practice">
-          <div><strong>Lieber frei üben?</strong><span>Alle 18 Aufgaben der Probestunde gemischt — ohne Reihenfolge.</span></div>
-          <button class="text-button" id="free-practice-button" type="button">Freies Training starten <span aria-hidden="true">→</span></button>
+          <button class="text-button" id="free-practice-button" type="button">Freies Training · 18 Fragen <span aria-hidden="true">→</span></button>
         </div>
-        <p class="start-footnote">Dein Fortschritt gilt nur für diese Sitzung.</p>
       </section>
 
       <section class="screen lesson-screen" id="lesson-screen" hidden aria-labelledby="lesson-title">
@@ -224,7 +213,6 @@
         <div class="question-panel">
           <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
           <h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2>
-          <p class="question-instruction">Wähle die richtige Antwort.</p>
           <div class="answer-grid" id="answer-grid"></div>
           <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
             <div class="feedback-title" id="feedback-title"></div>
