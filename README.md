@@ -284,9 +284,10 @@ Die Fragensammlung wird schrittweise fachlich und technisch überprüft. Die tec
 - einen gültigen Antwortindex zwischen 0 und 2;
 - eine vorhandene Aufgabenstellung und Erklärung;
 - die korrekte Zuordnung zum ausgewählten G/M/E-Kurs;
+- dieselben Strukturprüfungen beim Start für alle drei Kursvarianten (insgesamt 1.050 erzeugte Fragen);
 - mindestens zwei unterschiedliche falsche Antwortmöglichkeiten.
 
-Die Auswahl der Ablenkungsantworten bevorzugt weiterhin den Schwierigkeitsbereich des gewählten Niveaus. Falls dieser Bereich nicht genügend unterschiedliche Optionen enthält, werden weitere eindeutige Optionen aus dem Aufgabenpool verwendet. Unvollständige Fragen lösen nun einen verständlichen Fehler beim Kursaufbau aus, statt unbemerkt mit doppelten Antwortmöglichkeiten angezeigt zu werden.
+Beim Laden prüft die Anwendung alle 35 Lektionen für G, M und E, also 1.050 erzeugte Fragen, bevor der Kurs verwendet wird. Die Auswahl der Ablenkungsantworten bevorzugt weiterhin den Schwierigkeitsbereich des gewählten Niveaus. Falls dieser Bereich nicht genügend unterschiedliche Optionen enthält, werden weitere eindeutige Optionen aus dem Aufgabenpool verwendet. Unvollständige Fragen lösen nun einen verständlichen Fehler beim Kursaufbau aus, statt unbemerkt mit doppelten Antwortmöglichkeiten angezeigt zu werden.
 
 **Wichtig:** Diese technische Prüfung bestätigt weder die fachliche Richtigkeit jeder Lösung noch eine sinnvolle Progression. Die inhaltliche Prüfung der 350 Aufgaben und die stärkere Differenzierung der G/M/E-Aufgaben bleiben Teil des laufenden Audits.
 
