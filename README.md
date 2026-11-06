@@ -275,21 +275,22 @@ Die Kursstruktur und die Generatoren für Aufgaben befinden sich in script.js. D
 6. Die Antwortmöglichkeiten werden passend zu G, M oder E ausgewählt.
 7. Die Fragen der späteren Lektionen sollen zusätzliche Regeln oder Zusammenhänge verlangen.
 8. Vor einer Veröffentlichung müssen fachliche Richtigkeit, eindeutige Lösungen und Altersangemessenheit kontrolliert werden.
-## 9.1 Qualitätssicherung der Fragen (Audit in Arbeit)
+## 9.1 Qualitätssicherung und Pilotlektion
 
-Die Fragensammlung wird schrittweise fachlich und technisch überprüft. Die technische Prüfung kontrolliert beim Aufbau jeder G/M/E-Kursvariante:
+Der bisherige Umfang von 350 Fragen wurde für die nächste Entwicklungsrunde bewusst zurückgestellt. Zuerst wird eine einzelne 45-minütige Probestunde fachlich und didaktisch ausgearbeitet. Der aktuelle Testkurs enthält deshalb nur:
 
-- genau zehn Fragen je Lektion;
-- genau drei nicht leere und unterschiedliche Antwortmöglichkeiten je Frage;
-- einen gültigen Antwortindex zwischen 0 und 2;
-- eine vorhandene Aufgabenstellung und Erklärung;
-- die korrekte Zuordnung zum ausgewählten G/M/E-Kurs;
-- dieselben Strukturprüfungen beim Start für alle drei Kursvarianten (insgesamt 1.050 erzeugte Fragen);
-- mindestens zwei unterschiedliche falsche Antwortmöglichkeiten.
+- ein Thema: Wortarten;
+- eine Lektion: „Wortdetektive“;
+- 18 Aufgaben je Niveau;
+- drei getrennte Aufgabenvarianten für G, M und E (insgesamt 54 erzeugte Fragen);
+- drei Antwortmöglichkeiten und eine Erklärung pro Aufgabe;
+- eine vorgeschaltete Lernseite mit kurzen Definitionen, Beispielen und einem 45-Minuten-Ablauf.
 
-Beim Laden prüft die Anwendung alle 35 Lektionen für G, M und E, also 1.050 erzeugte Fragen, bevor der Kurs verwendet wird. Die Auswahl der Ablenkungsantworten bevorzugt weiterhin den Schwierigkeitsbereich des gewählten Niveaus. Falls dieser Bereich nicht genügend unterschiedliche Optionen enthält, werden weitere eindeutige Optionen aus dem Aufgabenpool verwendet. Unvollständige Fragen lösen nun einen verständlichen Fehler beim Kursaufbau aus, statt unbemerkt mit doppelten Antwortmöglichkeiten angezeigt zu werden.
+Die Niveaus unterscheiden sich in den Aufgabenstellungen und im erforderlichen Denken: G übt vor allem das Erkennen einfacher Beispiele, M bestimmt Wortarten in vollständigen Sätzen, E untersucht Wortarten im Kontext und bearbeitet anspruchsvollere Fälle. Die drei Kerninhalte dieser Pilotstunde sind Nomen, Verben und Adjektive.
 
-**Wichtig:** Diese technische Prüfung bestätigt weder die fachliche Richtigkeit jeder Lösung noch eine sinnvolle Progression. Die inhaltliche Prüfung der 350 Aufgaben und die stärkere Differenzierung der G/M/E-Aufgaben bleiben Teil des laufenden Audits.
+Beim Laden prüft die Anwendung die 18 Fragen aller drei Varianten auf Anzahl, drei unterschiedliche Antwortoptionen, gültigen Antwortindex, Aufgabenstellung, Erklärung und Level-Zuordnung. Diese technische Prüfung wird beim tatsächlichen Browser-Test noch einmal kontrolliert.
+
+**Wichtig:** Die automatische Prüfung bestätigt nicht die fachliche Richtigkeit oder die pädagogische Qualität. Die Aufgaben müssen weiterhin manuell geprüft und möglichst mit einer Lehrkraft abgestimmt werden. Erst nach erfolgreichem Test der Pilotstunde wird entschieden, wie viele Lektionen und Aufgaben die übrigen Themen wirklich benötigen.
 
 ## 10. Testplan vor einer Veröffentlichung
 
@@ -301,10 +302,10 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Vor dem Hauptmenü erscheint die Spielname- und G/M/E-Auswahl.
 - [ ] Ohne Spielname und Niveau lässt sich der Kurs nicht starten.
 - [ ] Das gewählte Niveau bleibt während des gesamten Kurses gleich.
-- [ ] Es werden genau sieben Themenwelten mit je fünf Lektionen angezeigt.
-- [ ] Jede Lektion enthält genau zehn Fragen.
+- [ ] Im aktuellen Pilotstand wird genau eine Wortarten-Lektion angezeigt.
+- [ ] Die Pilotlektion enthält genau 18 Aufgaben für das gewählte Niveau.
 - [ ] Der erste Lernschritt ist geöffnet; spätere Schritte sind zunächst gesperrt.
-- [ ] Nach Abschluss einer Lektion wird genau der nächste Lernschritt freigeschaltet.
+- [ ] Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden.
 - [ ] Bereits abgeschlossene Lektionen können erneut gestartet werden.
 - [ ] Falsche Antworten verhindern den Abschluss der Lektion nicht.
 - [ ] Jede Aufgabe hat genau drei auswählbare Antworten.
@@ -317,7 +318,7 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Ein Neuladen setzt den nur sitzungsbasierten Fortschritt zurück.
 - [ ] Die Rückkehr zur Themenkarte funktioniert aus Quiz und Ergebnisansicht.
 
-### Automatische Code- und Datenprüfung (04.11.2026)
+### Frühere automatische Prüfung (04.11.2026)
 
 Die aktualisierte Daten- und Verknüpfungsprüfung ergab:
 
@@ -460,10 +461,10 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [x] Öffentliches GitHub-Repository eingerichtet
 - [x] GitHub Pages als Hosting eingerichtet
 - [x] Startbildschirm mit Spielname und einmaliger G/M/E-Auswahl
-- [x] 350 Fragen mit drei Antwortmöglichkeiten und Erklärungen
-- [x] Fragen nach sieben Themenwelten geordnet
-- [x] 35 Lektionen, fünf je Themenwelt, zehn Fragen je Lektion
-- [x] Fünf aufeinander aufbauende Schwierigkeitsstufen je Themenwelt
+- [x] Eine 45-minütige Pilotlektion zu Nomen, Verben und Adjektiven mit Lernseite und Zeitplan
+- [x] 18 Aufgaben je Niveau G/M/E (54 erzeugte Fragen im Pilotkurs)
+- [x] Drei inhaltlich unterschiedliche Aufgabenvarianten für G, M und E
+- [ ] Weitere Themen und Lektionen werden erst nach der Prüfung der Pilotlektion ergänzt
 - [x] Themenkarte mit schrittweiser Freischaltung
 - [x] Wiederholung bereits abgeschlossener Lektionen
 - [x] Sofortige Rückmeldung und Erklärungen zu Antworten
@@ -475,7 +476,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 
 **Noch offen**
 
-- [x] Automatische Code- und Datenprüfung nach der Neustrukturierung (Syntax, Fragenanzahl, Schwierigkeitsverteilung, Themenzuordnung, Antwortoptionen, Antwortindizes und HTML-ID-Verweise)
+- [ ] Automatische Prüfung der neuen Pilotversion im Browser und JavaScript-Syntaxprüfung
 - [ ] Visuelle Prüfung der veröffentlichten Version auf Desktop, Tablet und Smartphone
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
 - [ ] Vollständiger manueller Funktionstest
@@ -498,8 +499,8 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 - Zielgruppe: **5. Klasse**
 - Inhalt: **Deutsch — Grammatik, Rechtschreibung, Wortschatz und Textverständnis**
 - Einmalige Niveaustufen-Auswahl: **G / M / E**
-- Kursstruktur: **7 Themenwelten, 5 Lektionen je Thema, 35 Lektionen insgesamt**
-- Zielumfang der aktuellen Version: **350 Fragen, zehn je Lektion**
+- Aktueller Entwicklungsstand: **eine 45-minütige Pilotlektion zu Wortarten, 18 Aufgaben je G/M/E-Niveau**
+- Künftiger Umfang wird nach einem Praxistest festgelegt; 350 Fragen sind kein festes Ziel mehr
 - Kein Login und keine Registrierung
 - Keine Speicherung individueller Antworten oder Ergebnisse
 - Technische Basis bleibt zunächst HTML, CSS und JavaScript
@@ -523,7 +524,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 
 - [ ] README vollständig lesen.
 - [ ] Dateien aus `main` abrufen und den aktuellen Commit feststellen.
-- [ ] Bei Änderungen der Themenstruktur die Zuordnung aller 350 Fragen zu den 35 Lektionen kontrollieren.
+- [ ] Bei Änderungen der Pilotlektion die Aufgabenanzahl, Level-Unterschiede und Lernziele kontrollieren.
 - [ ] Ziel der nächsten Änderung festlegen.
 - [ ] Änderungen möglichst in kleinen, überprüfbaren Schritten vornehmen.
 - [ ] Funktion und Darstellung testen.
@@ -546,7 +547,8 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 04.11.2026 | Oberfläche und Navigation neu aufgebaut: sieben Themenwelten, 15 thematische Lektionen, schrittweise Freischaltung, sitzungsbasierter Fortschritt und wiederholbare Lektionen. |
 | 04.11.2026 | Visuelles Redesign mit spielerischer Kursübersicht, Lernknoten, deutlicher Fortschrittsanzeige und angepasster Quiz- und Ergebnisansicht umgesetzt. |
 | 04.11.2026 | Moderates Duolingo-inspiriertes Feintuning: eigener CSS-Maskottchen-Entwurf, dezente Themenfarben, verbesserte Karten-Rückmeldung und direkter „Weiterlernen“-Einstieg zur nächsten offenen Einheit. |
-| 06.11.2026 | Startbildschirm mit Spielname (Sitzungsspeicher) und einmaliger G/M/E-Auswahl hinzugefügt. Kurs auf sieben Themen mit je fünf Lektionen und zehn Fragen pro Lektion erweitert: 35 Lektionen und 350 Fragen insgesamt. |
+| 06.11.2026 | Startbildschirm mit Spielname (Sitzungsspeicher) und einmaliger G/M/E-Auswahl hinzugefügt. Der Umfang von 350 Fragen wurde später zugunsten einer fokussierten Pilotlektion zurückgestellt. |
+| 06.11.2026 | Pilotlektion „Wortdetektive“ mit 45-Minuten-Lernseite, Zeitplan und 18 getrennten Aufgaben je G/M/E-Niveau vorbereitet. Browser- und Funktionsprüfung stehen noch aus. |
 
 ---
 
