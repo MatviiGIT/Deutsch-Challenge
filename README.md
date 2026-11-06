@@ -5,7 +5,9 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 
 | Information | Stand |
 |---|---|
-| Projekt | Deutsch-Challenge |
+| Schulprojekt / Repository | Deutsch-Challenge |
+| Name der Lernplattform | Quakademie |
+| Lernbegleiter | Quaki, der Frosch |
 | Zielgruppe | Schülerinnen und Schüler der 5. Klasse |
 | Sprache der Anwendung | Deutsch |
 | Technische Basis | HTML, CSS und JavaScript |
@@ -18,7 +20,7 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 
 ## 1. Projekt in Kürze
 
-Deutsch-Challenge ist eine kleine, browserbasierte Lernplattform. Kinder der 5. Klasse können damit ausgewählte Inhalte des Deutschunterrichts selbstständig wiederholen und ihr Wissen überprüfen.
+Quakademie ist die Lernplattform des Schulprojekts Deutsch-Challenge. Quaki, ein Frosch, begleitet Kinder der 5. Klasse beim Wiederholen ausgewählter Inhalte des Deutschunterrichts.
 
 Die Website bietet drei Schwierigkeitsstufen. Jede Frage hat drei Antwortmöglichkeiten. Nach einer Antwort zeigt das Programm, ob die Auswahl richtig war, und erklärt die Lösung in einfachen Worten. Am Ende erhalten die Lernenden eine Auswertung und Hinweise darauf, welche Inhalte sie noch üben können.
 
