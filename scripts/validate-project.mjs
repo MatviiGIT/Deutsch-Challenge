@@ -21,7 +21,9 @@ for (const id of new Set(jsIds)) {
 const requiredIds = [
   "profile-screen", "start-screen", "path-screen",
   "lesson-screen", "quiz-screen", "result-screen",
-  "lesson-start-button", "answer-grid", "next-button"
+  "lesson-start-button", "stage-intro", "stage-intro-title",
+  "stage-intro-description", "stage-intro-tip", "stage-intro-start-button",
+  "question-panel", "answer-grid", "next-button"
 ];
 for (const id of requiredIds) {
   if (!counts.has(id)) errors.push("Erforderliche HTML-ID fehlt: " + id);
@@ -40,6 +42,15 @@ for (const track of ["G", "M", "E"]) {
 
 if (!/auditAllTracks\(\);/.test(js)) {
   errors.push("Automatische Prüfung der Aufgaben beim Start fehlt.");
+}
+for (const stage of ["Entdecken", "Erkennen", "Anwenden", "Kombinieren", "Meistern"]) {
+  if (!js.includes('name:"' + stage + '"')) errors.push("Lernphase fehlt: " + stage);
+}
+for (const endQuestion of [3, 7, 12, 16, 18]) {
+  if (!js.includes("endQuestion:" + endQuestion)) errors.push("Grenze einer Lernphase fehlt: Frage " + endQuestion);
+}
+if (!/function showStageIntro\(/.test(js) || !/stage-intro-start-button/.test(js)) {
+  errors.push("Einführungen und Übergänge zwischen Lernphasen fehlen.");
 }
 if (!/choices\.length\s*===\s*3/.test(js)) {
   errors.push("Prüfung auf genau drei Antwortmöglichkeiten fehlt.");
@@ -62,3 +73,4 @@ console.log("- " + ids.length + " HTML-IDs geprüft (keine Duplikate)");
 console.log("- " + new Set(jsIds).size + " JavaScript-ID-Verweise geprüft");
 console.log("- Home, Lernpfad, Lektion, Quiz und Ergebnisse vorhanden");
 console.log("- G/M/E-Niveaus und Aufgaben-Grundregeln vorhanden");
+console.log("- Fünf Lernphasen, Phasengrenzen und Einführungsansichten vorhanden");

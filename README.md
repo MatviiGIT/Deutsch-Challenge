@@ -114,7 +114,7 @@ Die Anwendung besitzt getrennte Ansichten für **Home** und **Lernpfad**. Home z
 
 Die aktuelle Lernpfad-Ansicht zeigt im Pilotstand nur die Themenwelt **Wortarten** mit einer Lektion. Vor den Aufgaben erscheint eine Lernseite mit Definitionen, Beispielen und einem Ablauf für 45 Minuten. Die Aufgaben werden passend zum einmal gewählten G-, M- oder E-Niveau erzeugt.
 
-Die 18 Aufgaben sind zusätzlich in fünf aufeinanderfolgende Lernphasen gegliedert. Die Phasen werden auf der Lernseite vorab angezeigt und während des Quiz im Fortschrittsbereich kenntlich gemacht:
+Die 18 Aufgaben sind zusätzlich in fünf aufeinanderfolgende Lernphasen gegliedert. Vor jeder Phase erscheint eine kurze Zwischenansicht mit ihrem Lernziel und einem passenden Tipp von Quaki. Erst nach dem Klick auf „Mit dieser Phase beginnen“ werden die Aufgaben dieser Phase freigegeben. Während der Fragen bleibt der aktuelle Phasenname im Fortschrittsbereich sichtbar. Im freien Training werden diese Zwischenansichten nicht eingeblendet:
 
 | Phase | Fragen | Lernziel |
 |---|---:|---|
@@ -145,6 +145,8 @@ Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen
 | Freies Training | Vorhanden; Verhalten im Browser noch manuell prüfen |
 | Drei getrennte G/M/E-Aufgabenvarianten | Im Pilotstand vorhanden |
 | Feste, didaktisch geordnete Reihenfolge in der Pilotlektion | Vorhanden |
+| Kurze Einführung mit Lernziel und Quaki-Tipp vor jeder der fünf Phasen | Vorhanden |
+| Sichtbarer Phasenwechsel vor dem nächsten Aufgabenabschnitt | Vorhanden |
 | Rückmeldung und Erklärung nach jeder Antwort | Vorhanden |
 | Fortschritt innerhalb der Lektion | Vorhanden |
 | Fortschritt der Pilotlektion während der Sitzung | Vorhanden |
@@ -313,8 +315,12 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Das gewählte Niveau bleibt während des gesamten Kurses gleich.
 - [ ] Im aktuellen Pilotstand wird genau eine Wortarten-Lektion angezeigt.
 - [ ] Die Pilotlektion enthält genau 18 Aufgaben für das gewählte Niveau.
+- [ ] Vor der ersten Frage erscheint die Einführung zu „Entdecken“ mit Lernziel und Quaki-Tipp.
+- [ ] Nach Frage 3, 7, 12 und 16 erscheint jeweils die passende Einführung zur nächsten Phase.
+- [ ] Mit der Schaltfläche lässt sich jede Phase starten; die Quizfrage erscheint anschließend.
 - [ ] Die Aufgaben erscheinen in der vorgesehenen Reihenfolge innerhalb der fünf Lernphasen.
 - [ ] Die jeweils aktuelle Lernphase wird im Quiz-Fortschritt korrekt angezeigt.
+- [ ] Im freien Training erscheinen keine Einführungen zu Lernphasen.
 - [ ] Die Pilotlektion lässt sich über die Themenkarte öffnen.
 - [ ] Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden.
 - [ ] Die abgeschlossene Pilotlektion kann erneut gestartet werden.
@@ -475,6 +481,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [ ] Weitere Themen und Lektionen werden erst nach der Prüfung der Pilotlektion ergänzt
 - [x] Themenkarte mit schrittweiser Freischaltung
 - [x] Wiederholung bereits abgeschlossener Lektionen
+- [x] Fünf Lernphasen mit eigener Einführung, Lernziel und Quaki-Tipp
 - [x] Sofortige Rückmeldung und Erklärungen zu Antworten
 - [x] Fehlerübersicht mit eigener Antwort, richtiger Lösung und Erklärung
 - [x] Kursfortschritt während der Browser-Sitzung
@@ -568,6 +575,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 06.11.2026 | Markenauftritt auf „Quakademie“ mit Quaki als Frosch umgestellt. Frosch-Augen als getrennte Elemente neu aufgebaut, Schriftgrößen vereinheitlicht, Hilferegeln in ein „?“-Menü verschoben und wiederholte Hinweise aus den Hauptansichten entfernt. |
 | 06.11.2026 | Kontrast der Frosch-Augen durch weiße Augenflächen und grüne Konturen verbessert; die Überschrift „Der Lernpfad“ aus der Kursübersicht entfernt, damit die Lernpfad-Spalten bündig beginnen. Die Schriftgrößen blieben unverändert; der CSS-Versionsparameter wurde auf `v=17` erhöht. GitHub-Actions-Prüfung und GitHub-Pages-Deployment für Commit `a0a920a` erfolgreich. Die visuelle Kontrolle auf echten Geräten steht weiterhin aus. |
 | 06.11.2026 | Die Lernplattform auf **Quakoo** umbenannt; **Quaki** bleibt der Name des Frosch-Maskottchens. Home und Lernpfad in getrennte Ansichten aufgeteilt und eine Navigation ergänzt. Home zeigt Lernniveau, Fortschritt und nächsten Lernschritt. Der Lernpfad besitzt eine eigene Themenübersicht mit Legende. Rückwege aus Lektion, Quiz und Ergebnis führen in den Lernpfad. Bestehende Aufgaben, Antworten und Auswertungen bleiben erhalten. CSS- und JavaScript-Versionsparameter auf `v=18` und `v=19` erhöht. Automatische und visuelle Tests für diese Änderung stehen noch aus. |
+| 06.11.2026 | Fünf Lernphasen in der Pilotlektion erweitert: Vor „Entdecken“, „Erkennen“, „Anwenden“, „Kombinieren“ und „Meistern“ erscheint nun eine eigene Einführung mit Lernziel und Quaki-Tipp. Der Quiz-Fortschritt zeigt weiterhin die aktuelle Phase. Ein mehrdeutiger E-Aufgabenhinweis zur Großschreibung von „Laufen“ wurde präzisiert („Das Laufen“). CSS- und JavaScript-Versionsparameter auf `v=20` und `v=21` erhöht. |
 
 ---
 

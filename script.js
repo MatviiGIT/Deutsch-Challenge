@@ -5,11 +5,21 @@ const TRACKS = {
   E: {label:"E-Niveau",name:"Erweitertes Niveau",short:"E"}
 };
 const STAGES = [
-  {name:"Entdecken",tag:"STUFE 1",hint:"Du lernst die Grundlagen kennen."},
-  {name:"Erkennen",tag:"STUFE 2",hint:"Du erkennst Regeln in Beispielen."},
-  {name:"Anwenden",tag:"STUFE 3",hint:"Du wendest dein Wissen selbstständig an."},
-  {name:"Kombinieren",tag:"STUFE 4",hint:"Du verbindest mehrere Regeln miteinander."},
-  {name:"Meistern",tag:"STUFE 5",hint:"Du löst anspruchsvollere Aufgaben im Zusammenhang."}
+  {name:"Entdecken",tag:"STUFE 1",firstQuestion:1,endQuestion:3,
+   hint:"Du lernst die drei Wortarten anhand einfacher Beispiele kennen.",
+   tip:"Frage dich: Benennt das Wort etwas, beschreibt es etwas oder sagt es, was jemand tut?"},
+  {name:"Erkennen",tag:"STUFE 2",firstQuestion:4,endQuestion:7,
+   hint:"Du findest Nomen, Verben und Adjektive in kurzen Sätzen.",
+   tip:"Lies den ganzen Satz und prüfe die Aufgabe des gesuchten Wortes."},
+  {name:"Anwenden",tag:"STUFE 3",firstQuestion:8,endQuestion:12,
+   hint:"Du bestimmst Wortarten selbstständig in unterschiedlichen Beispielen.",
+   tip:"Suche nach einem Hinweis im Satz und achte darauf, was das Wort dort macht."},
+  {name:"Kombinieren",tag:"STUFE 4",firstQuestion:13,endQuestion:16,
+   hint:"Du vergleichst ähnliche Wörter und achtest auf ihre Verwendung.",
+   tip:"Dasselbe Wort kann je nach Verwendung eine andere Wortart haben."},
+  {name:"Meistern",tag:"STUFE 5",firstQuestion:17,endQuestion:18,
+   hint:"Du löst schwierigere Aufgaben und überträgst die Regeln auf neue Sätze.",
+   tip:"Begründe deine Entscheidung mit einem grammatischen Hinweis aus dem Satz."}
 ];
 const stageIndex = n => STAGES[n-1];
 function shuffle(items) {
@@ -163,7 +173,7 @@ const topics = [
             ["Welche Wortart hat „schneller“? „Der Zug ist schneller.“","Adjektiv",["Nomen","Verb"],"„Schneller“ ist eine gesteigerte Eigenschaft und damit ein Adjektiv."]
           ],
           E:[
-            ["Welche Wortart hat „Laufen“? „Laufen hält fit.“","Nomen",["Verb","Adjektiv"],"„Laufen“ steht hier als Nomen: Es wird großgeschrieben und bezeichnet eine Tätigkeit."],
+            ["Welche Wortart hat „Laufen“ im Satz: „Das Laufen hält fit.“?","Nomen",["Verb","Adjektiv"],"Mit dem Artikel „das“ wird der Infinitiv „Laufen“ hier als Nomen verwendet (Substantivierung)."],
             ["Welche Wortart hat „laufen“? „Wir laufen zum Sportplatz.“","Verb",["Nomen","Adjektiv"],"„Laufen“ beschreibt hier, was wir tun. Es ist ein Verb."],
             ["Welche Wortart hat „aufmerksam“?","Adjektiv",["Nomen","Verb"],"„Aufmerksam“ beschreibt eine Eigenschaft."],
             ["Welche Wortart hat „Geheimnis“ im Satz? „Das Geheimnis bleibt verborgen.“","Nomen",["Verb","Adjektiv"],"„Geheimnis“ bezeichnet etwas und ist ein Nomen."],
@@ -743,6 +753,7 @@ const topics = [
 ];
 let selectedTrack=null,playerName="",courseStarted=false;
 let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,wrongAnswers=[],stats={correct:0,total:0};
+let activeQuizStage=-1,pendingQuizStage=-1;
 let completed=new Set();
 const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...topic,lessons:topic.lessons.slice(0,1)}));
 const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=18,totalQuestions=totalUnits*questionsPerUnit;
@@ -885,17 +896,28 @@ function renderPath(){
 }
 function prepare(items,unit=null){
   currentUnit=unit;queue=items;currentIndex=0;score=0;answered=false;wrongAnswers=[];stats={correct:0,total:items.length};
+  activeQuizStage=-1;pendingQuizStage=-1;
   document.getElementById("score-value").textContent="0 Punkte";
   document.getElementById("quiz-topic").textContent=unit?unit.topic.title.toUpperCase(): "FREIES TRAINING";
+  document.getElementById("stage-intro").hidden=true;
+  document.getElementById("question-panel").hidden=false;
   screen("quiz");renderQuestion();
 }
-function learningStageFor(index,total){
-  const progress=(index+1)/total;
-  if(progress<=3/18)return 0;
-  if(progress<=7/18)return 1;
-  if(progress<=12/18)return 2;
-  if(progress<=16/18)return 3;
-  return 4;
+function learningStageFor(index){
+  const questionNumber=index+1;
+  const stage=STAGES.findIndex(item=>questionNumber<=item.endQuestion);
+  return stage===-1?STAGES.length-1:stage;
+}
+function showStageIntro(stageNumber){
+  const stage=STAGES[stageNumber];
+  const intro=document.getElementById("stage-intro");
+  document.getElementById("stage-intro-kicker").textContent=
+    "LERNPHASE "+(stageNumber+1)+" VON "+STAGES.length+" · FRAGEN "+stage.firstQuestion+"–"+stage.endQuestion;
+  document.getElementById("stage-intro-title").textContent=stage.name;
+  document.getElementById("stage-intro-description").textContent=stage.hint;
+  document.getElementById("stage-intro-tip").textContent=stage.tip;
+  intro.hidden=false;
+  document.getElementById("question-panel").hidden=true;
 }
 function renderLessonStages(unit){
   const container=document.getElementById("lesson-stages");
@@ -930,14 +952,24 @@ function startFree(){prepare(shuffle(questions),null);}
 function renderQuestion(){
   const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100);
   answered=false;
+  const stageNumber=currentUnit?learningStageFor(currentIndex):-1;
   document.getElementById("question-counter").textContent=number+" / "+queue.length;
   document.getElementById("progress-level").textContent=currentUnit
-    ?TRACKS[selectedTrack].label.toUpperCase()+" · "+STAGES[learningStageFor(currentIndex,queue.length)].name.toUpperCase()+" · "+currentUnit.title.toUpperCase()
+    ?TRACKS[selectedTrack].label.toUpperCase()+" · "+STAGES[stageNumber].name.toUpperCase()+" · "+currentUnit.title.toUpperCase()
     :TRACKS[selectedTrack].label.toUpperCase()+" · FREIES TRAINING";
   document.getElementById("progress-percent").textContent=percent+" %";
   document.getElementById("progress-fill").style.width=percent+"%";
   const progress=document.getElementById("quiz-progress");
   progress.setAttribute("aria-valuemax",String(queue.length));progress.setAttribute("aria-valuenow",String(number));
+
+  if(currentUnit&&stageNumber!==activeQuizStage){
+    pendingQuizStage=stageNumber;
+    showStageIntro(stageNumber);
+    return;
+  }
+  pendingQuizStage=-1;
+  document.getElementById("stage-intro").hidden=true;
+  document.getElementById("question-panel").hidden=false;
   document.getElementById("question-number").textContent="FRAGE "+String(number).padStart(2,"0");
   document.getElementById("question-category").textContent=q.category;
   document.getElementById("question-text").textContent=q.prompt;
@@ -1070,6 +1102,12 @@ nextButton.addEventListener("click",()=>{
 });
 document.getElementById("lesson-back-button").addEventListener("click",()=>screen("path"));
 document.getElementById("lesson-start-button").addEventListener("click",()=>{if(currentUnit)prepare(currentUnit.questions,currentUnit);});
+document.getElementById("stage-intro-start-button").addEventListener("click",()=>{
+  if(!currentUnit||pendingQuizStage<0)return;
+  activeQuizStage=pendingQuizStage;
+  pendingQuizStage=-1;
+  renderQuestion();
+});
 document.getElementById("back-to-menu").addEventListener("click",()=>screen("path"));
 document.getElementById("result-menu-button").addEventListener("click",()=>screen("path"));
 document.getElementById("retry-button").addEventListener("click",()=>currentUnit?startUnit(currentUnit):startFree());
