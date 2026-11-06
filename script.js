@@ -889,11 +889,41 @@ function prepare(items,unit=null){
   document.getElementById("quiz-topic").textContent=unit?unit.topic.title.toUpperCase(): "FREIES TRAINING";
   screen("quiz");renderQuestion();
 }
+function learningStageFor(index,total){
+  const progress=(index+1)/total;
+  if(progress<=3/18)return 0;
+  if(progress<=7/18)return 1;
+  if(progress<=12/18)return 2;
+  if(progress<=16/18)return 3;
+  return 4;
+}
+function renderLessonStages(unit){
+  const container=document.getElementById("lesson-stages");
+  container.replaceChildren();
+  const ranges=["Fragen 1–3","Fragen 4–7","Fragen 8–12","Fragen 13–16","Fragen 17–18"];
+  STAGES.forEach((stage,index)=>{
+    const item=document.createElement("div");
+    item.className="lesson-stage-item";
+    const number=document.createElement("span");
+    number.className="lesson-stage-number";
+    number.textContent=String(index+1);
+    const copy=document.createElement("span");
+    copy.className="lesson-stage-copy";
+    const name=document.createElement("strong");
+    name.textContent=stage.name;
+    const detail=document.createElement("small");
+    detail.textContent=ranges[index]+" · "+stage.hint;
+    copy.append(name,detail);
+    item.append(number,copy);
+    container.append(item);
+  });
+}
 function startUnit(unit){
   currentUnit=unit;
   document.getElementById("lesson-title").textContent=unit.title;
   document.getElementById("lesson-focus").textContent=unit.focus;
   document.getElementById("lesson-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · 45 MINUTEN · "+unit.questions.length+" AUFGABEN";
+  renderLessonStages(unit);
   screen("lesson");
 }
 function startFree(){prepare(shuffle(questions),null);}
@@ -902,7 +932,7 @@ function renderQuestion(){
   answered=false;
   document.getElementById("question-counter").textContent=number+" / "+queue.length;
   document.getElementById("progress-level").textContent=currentUnit
-    ?TRACKS[selectedTrack].label.toUpperCase()+" · "+currentUnit.stageInfo.tag+" · "+currentUnit.title.toUpperCase()
+    ?TRACKS[selectedTrack].label.toUpperCase()+" · "+STAGES[learningStageFor(currentIndex,queue.length)].name.toUpperCase()+" · "+currentUnit.title.toUpperCase()
     :TRACKS[selectedTrack].label.toUpperCase()+" · FREIES TRAINING";
   document.getElementById("progress-percent").textContent=percent+" %";
   document.getElementById("progress-fill").style.width=percent+"%";

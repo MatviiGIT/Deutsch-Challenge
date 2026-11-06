@@ -114,6 +114,18 @@ Die Anwendung besitzt getrennte Ansichten für **Home** und **Lernpfad**. Home z
 
 Die aktuelle Lernpfad-Ansicht zeigt im Pilotstand nur die Themenwelt **Wortarten** mit einer Lektion. Vor den Aufgaben erscheint eine Lernseite mit Definitionen, Beispielen und einem Ablauf für 45 Minuten. Die Aufgaben werden passend zum einmal gewählten G-, M- oder E-Niveau erzeugt.
 
+Die 18 Aufgaben sind zusätzlich in fünf aufeinanderfolgende Lernphasen gegliedert. Die Phasen werden auf der Lernseite vorab angezeigt und während des Quiz im Fortschrittsbereich kenntlich gemacht:
+
+| Phase | Fragen | Lernziel |
+|---|---:|---|
+| Entdecken | 1–3 | Grundlagen kennenlernen |
+| Erkennen | 4–7 | Regeln in Beispielen erkennen |
+| Anwenden | 8–12 | Wissen selbstständig einsetzen |
+| Kombinieren | 13–16 | Mehrere Hinweise miteinander verbinden |
+| Meistern | 17–18 | Anspruchsvollere Aufgaben im Zusammenhang lösen |
+
+Die Phasen sind Abschnitte innerhalb derselben 18-Fragen-Lektion, keine fünf separat freischaltbaren Lektionen. Die Einteilung folgt der vorgesehenen Reihenfolge der Aufgaben. Die fachliche Qualität und der tatsächliche Schwierigkeitsanstieg müssen weiterhin manuell geprüft werden.
+
 Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden. Falsche Antworten blockieren den Abschluss nicht.
 
 Nach jeder Antwort erscheinen die richtige Lösung und eine Erklärung. Am Ende einer Lektion sieht das Kind die Punktzahl und kann falsch beantwortete Fragen mit der eigenen Antwort, der richtigen Lösung und der Erklärung wiederholen.
@@ -301,7 +313,8 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Das gewählte Niveau bleibt während des gesamten Kurses gleich.
 - [ ] Im aktuellen Pilotstand wird genau eine Wortarten-Lektion angezeigt.
 - [ ] Die Pilotlektion enthält genau 18 Aufgaben für das gewählte Niveau.
-- [ ] Die Aufgaben erscheinen in der vorgesehenen Reihenfolge vom Einstieg bis zum Wissenstest.
+- [ ] Die Aufgaben erscheinen in der vorgesehenen Reihenfolge innerhalb der fünf Lernphasen.
+- [ ] Die jeweils aktuelle Lernphase wird im Quiz-Fortschritt korrekt angezeigt.
 - [ ] Die Pilotlektion lässt sich über die Themenkarte öffnen.
 - [ ] Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden.
 - [ ] Die abgeschlossene Pilotlektion kann erneut gestartet werden.
