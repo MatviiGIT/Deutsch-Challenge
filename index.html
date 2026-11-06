@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Ein spielerischer Lernpfad für Deutsch in der 5. Klasse.">
   <title>Deutsch-Challenge — Dein Lernpfad</title>
-  <link rel="stylesheet" href="style.css?v=10">
-  <script src="script.js?v=11" defer></script>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script src="script.js?v=12" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -17,22 +17,71 @@
         <span class="brand-words">Deutsch<span>Challenge</span></span>
       </a>
       <div class="topbar-right">
-        <span class="course-chip"><span class="chip-dot"></span> DEUTSCH · KLASSE 5</span>
-        <span class="topbar-progress" id="topbar-progress">0 / 30 <span>ÜBUNGEN</span></span>
+        <span class="course-chip" id="course-chip"><span class="chip-dot"></span> DEUTSCH · KLASSE 5</span>
+        <span class="topbar-player" id="topbar-player" hidden></span>
+        <span class="track-chip" id="track-chip" hidden></span>
+        <span class="topbar-progress" id="topbar-progress">DEIN KURS</span>
       </div>
     </header>
 
     <main id="app">
-      <section class="screen start-screen" id="start-screen">
+      <section class="screen profile-screen" id="profile-screen" aria-labelledby="profile-title">
+        <div class="profile-card">
+          <div class="profile-heading">
+            <span class="eyebrow">WILLKOMMEN BEI DEUTSCH-CHALLENGE</span>
+            <div class="profile-mascot" aria-hidden="true">
+              <span class="profile-mascot-eye eye-left"></span>
+              <span class="profile-mascot-eye eye-right"></span>
+              <span class="profile-mascot-beak"></span>
+            </div>
+            <h1 id="profile-title">Dein Lernweg beginnt hier.</h1>
+            <p>Richte deinen Lernplatz ein. Danach wird dein Kurs passend zu deinem Niveau zusammengestellt.</p>
+          </div>
+          <form id="profile-form" class="profile-form">
+            <div class="profile-field">
+              <label for="player-name">Wie möchtest du im Spiel heißen?</label>
+              <input id="player-name" name="player-name" type="text" maxlength="18" autocomplete="nickname" placeholder="Zum Beispiel: Wortprofi" required>
+              <p class="field-hint">Nutze am besten einen Spitznamen statt deines echten Namens. Der Name bleibt nur während dieser Sitzung im Browser.</p>
+            </div>
+            <div class="track-field">
+              <div class="track-field-heading">
+                <strong>Wähle dein Lernniveau</strong>
+                <span>Du legst es einmal für den ganzen Kurs fest.</span>
+              </div>
+              <div class="track-options" role="group" aria-label="Lernniveau auswählen">
+                <button class="track-option" type="button" data-track="G" aria-pressed="false">
+                  <span class="track-letter">G</span>
+                  <span class="track-name">Grundlegendes Niveau</span>
+                  <span class="track-description">Klare Grundlagen und gut erkennbare Beispiele.</span>
+                </button>
+                <button class="track-option" type="button" data-track="M" aria-pressed="false">
+                  <span class="track-letter">M</span>
+                  <span class="track-name">Mittleres Niveau</span>
+                  <span class="track-description">Mehr Zusammenhänge und anspruchsvollere Aufgaben.</span>
+                </button>
+                <button class="track-option" type="button" data-track="E" aria-pressed="false">
+                  <span class="track-letter">E</span>
+                  <span class="track-name">Erweitertes Niveau</span>
+                  <span class="track-description">Kniffligere Beispiele und genaues Analysieren.</span>
+                </button>
+              </div>
+            </div>
+            <button class="primary-button begin-course-button" id="begin-course-button" type="submit" disabled>Kurs starten <span aria-hidden="true">→</span></button>
+          </form>
+          <p class="profile-note"><span aria-hidden="true">✦</span> 7 Themen · 35 Lektionen · 350 Fragen. Dein Lernfortschritt wird nicht online gespeichert.</p>
+        </div>
+      </section>
+
+      <section class="screen start-screen" id="start-screen" hidden>
         <section class="welcome-card" aria-labelledby="home-title">
           <div class="welcome-copy">
             <span class="eyebrow">DEIN DEUTSCHKURS</span>
-            <h1 id="home-title">Lernen. Üben.<br><em>Weiterkommen.</em></h1>
-            <p>Folge deinem Lernpfad durch sieben Themen. Jede Etappe bringt dich ein Stück weiter — mit kurzen Aufgaben und verständlichen Erklärungen.</p>
+            <h1 id="home-title">Hallo, <span id="course-player-name">Wortprofi</span>!<br><em>Weiterlernen.</em></h1>
+            <p id="course-track-note">Dein persönlicher Deutschkurs ist bereit. Jede Etappe bringt dich mit kurzen Aufgaben und verständlichen Erklärungen weiter.</p>
             <div class="welcome-facts">
               <span><strong>7</strong> Themen</span>
-              <span><strong>30</strong> Übungen</span>
-              <span><strong>3</strong> Schwierigkeitsstufen</span>
+              <span><strong>35</strong> Lektionen</span>
+              <span><strong>350</strong> Fragen</span>
             </div>
           </div>
           <div class="welcome-art" aria-hidden="true">
@@ -61,12 +110,12 @@
               <span class="section-kicker">DEIN FORTSCHRITT</span>
               <h2 id="course-progress-title">Dein Kurs beginnt hier</h2>
             </div>
-            <strong id="course-progress-count">0 / 30</strong>
+            <strong id="course-progress-count">0 / 350</strong>
           </div>
-          <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0">
+          <div class="course-progress-track" id="course-progress" role="progressbar" aria-label="Abgeschlossene Übungen" aria-valuemin="0" aria-valuemax="350" aria-valuenow="0">
             <span id="course-progress-fill"></span>
           </div>
-          <p id="course-progress-note">Schließe deine erste Einheit ab, um den Weg freizuschalten.</p>
+          <p id="course-progress-note">Schließe deine erste Lektion ab, um den Weg freizuschalten.</p>
         </section>
 
         <div class="course-layout">
@@ -77,7 +126,7 @@
                 <h2 id="path-title">Der Lernpfad</h2>
                 <p>Wähle den nächsten freien Kreis und starte deine Einheit.</p>
               </div>
-              <span class="path-total">01 — 07</span>
+              <span class="path-total">01 — 07 THEMEN</span>
             </div>
             <div class="learning-path" id="learning-path" aria-label="Themen und freigeschaltete Einheiten"></div>
           </section>
@@ -88,7 +137,7 @@
               <div class="next-icon" id="next-icon">Aa</div>
               <h3 id="next-title">Wortarten entdecken</h3>
               <p id="next-description">Lerne, Wörter zu erkennen und zu unterscheiden.</p>
-              <span class="next-meta" id="next-meta">GRUNDLAGEN · 3 FRAGEN</span>
+              <span class="next-meta" id="next-meta">STUFE 1 · 10 FRAGEN</span>
               <button class="primary-button next-start-button" id="next-unit-button" type="button">Weiterlernen <span aria-hidden="true">→</span></button>
             </div>
             <div class="sidebar-card guide-card">
@@ -105,7 +154,7 @@
         </div>
 
         <div class="free-practice">
-          <div><strong>Lieber frei üben?</strong><span>Alle 30 Fragen gemischt — ohne Reihenfolge.</span></div>
+          <div><strong>Lieber frei üben?</strong><span>Alle 350 Fragen gemischt — ohne Reihenfolge.</span></div>
           <button class="text-button" id="free-practice-button" type="button">Freies Training starten <span aria-hidden="true">→</span></button>
         </div>
         <p class="start-footnote">Dein Lernfortschritt bleibt in dieser Sitzung. Ohne Anmeldung und ohne persönliche Daten.</p>
