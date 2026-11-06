@@ -63,12 +63,23 @@ function simpleRows(data,track,category,stage,makePrompt) {
   return data.map(r=>makeQuestion(makePrompt(r),r[1],r[2],r[3],track,category,stage));
 }
 function spellingRows(data,track,category,stage) {
+  const alternatives=[
+    "Welche Variante ist richtig geschrieben?",
+    "Wähle die korrekt geschriebene Fassung.",
+    "Welche Form ist orthografisch richtig?",
+    "In welcher Version stimmt die Schreibweise?",
+    "Welche Antwort hält die Rechtschreibregel ein?",
+    "Welche Fassung enthält keinen Schreibfehler?",
+    "Wie lautet die richtige Schreibweise?",
+    "Welche der drei Varianten ist korrekt?",
+    "Prüfe die Schreibweise: Welche Antwort stimmt?"
+  ];
+  const seen=new Map();
   return data.map(r=>{
-    const answer=String(r[1]),parts=answer.split(" ");
-    const clue=parts.length>1
-      ?" (Satzanfang: „"+parts.slice(0,3).join(" ")+" …“)"
-      :" (Wort mit Anfangsbuchstabe „"+answer.charAt(0)+"“ und "+answer.length+" Buchstaben)";
-    return makeQuestion(r[0]+clue,answer,r[2],"Richtig ist: „"+answer+"“. "+r[3],track,category,stage);
+    const count=seen.get(r[0])||0;seen.set(r[0],count+1);
+    const prompt=count===0?r[0]:alternatives[(count-1)%alternatives.length];
+    const answer=String(r[1]);
+    return makeQuestion(prompt,answer,r[2],"Richtig ist: „"+answer+"“. "+r[3],track,category,stage);
   });
 }
 function readingRows(data,track,category,stage) {
@@ -164,15 +175,15 @@ const topics = [
     lessons:[
       {title:"Wörter mit ähnlicher Bedeutung",focus:"Synonyme erkennen",build(track,stage){
         const rows=[
-          ["Welches Wort bedeutet ungefähr dasselbe wie „fröhlich“?","heiter",["wütend","müde","glücklich","traurig","ausgelassen"],"„Heiter“ und „fröhlich“ haben eine ähnliche Bedeutung."],
+          ["Welches Wort bedeutet ungefähr dasselbe wie „fröhlich“?","heiter",["wütend","müde","überrascht","ängstlich","ernst","unruhig"],"„Heiter“ und „fröhlich“ haben eine ähnliche Bedeutung."],
           ["Welches Wort passt als Synonym zu „beginnen“?","anfangen",["beenden","warten","starten","verlieren","aufhören"],"„Anfangen“ bedeutet dasselbe wie „beginnen“."],
           ["Was bedeutet ungefähr dasselbe wie „riesig“?","gewaltig",["winzig","schmal","groß","klein","niedrig"],"„Gewaltig“ kann eine sehr große Sache beschreiben."],
-          ["Welches Wort passt zu „leise“?","still",["laut","hell","ruhig","lärmend","grell"],"„Still“ ist ein passendes Synonym für „leise“."],
-          ["Welches Wort bedeutet ähnlich wie „mutig“?","tapfer",["ängstlich","vorsichtig","kühn","schüchtern","feige"],"„Tapfer“ und „mutig“ beschreiben Furchtlosigkeit."],
-          ["Welches Wort passt zu „schnell“?","rasch",["langsam","spät","flink","träge","gemächlich"],"„Rasch“ bedeutet „schnell“."],
-          ["Welches Wort ist ein Synonym für „nachdenken“?","überlegen",["vergessen","erzählen","grübeln","rennen","schweigen"],"„Überlegen“ bedeutet, über etwas nachzudenken."],
-          ["Welches Wort passt zu „erstaunt“?","überrascht",["gelangweilt","erschrocken","verwundert","müde","gleichgültig"],"„Verwundert“ und „erstaunt“ sind bedeutungsähnlich."],
-          ["Welches Wort passt zu „schützen“?","bewahren",["zerstören","verstecken","beschützen","verlieren","angreifen"],"„Bewahren“ kann bedeuten, etwas zu schützen oder zu erhalten."],
+          ["Welches Wort passt zu „leise“?","still",["laut","hell","beweglich","lärmend","grell","aufgeregt"],"„Still“ ist ein passendes Synonym für „leise“."],
+          ["Welches Wort bedeutet ähnlich wie „mutig“?","tapfer",["ängstlich","vorsichtig","neugierig","schüchtern","feige","zaghaft"],"„Tapfer“ und „mutig“ beschreiben Furchtlosigkeit."],
+          ["Welches Wort passt zu „schnell“?","rasch",["langsam","spät","zögerlich","träge","gemächlich","schwerfällig"],"„Rasch“ bedeutet „schnell“."],
+          ["Welches Wort ist ein Synonym für „nachdenken“?","überlegen",["vergessen","erzählen","zweifeln","rennen","schweigen","ruhen"],"„Überlegen“ bedeutet, über etwas nachzudenken."],
+          ["Welches Wort passt zu „erstaunt“?","überrascht",["gelangweilt","besorgt","verärgert","müde","gleichgültig","unbeeindruckt"],"„Verwundert“ und „erstaunt“ sind bedeutungsähnlich."],
+          ["Welches Wort passt zu „schützen“?","bewahren",["zerstören","verstecken","beobachten","verlieren","angreifen","wegwerfen"],"„Bewahren“ kann bedeuten, etwas zu schützen oder zu erhalten."],
           ["Welches Wort bedeutet ähnlich wie „sorgfältig“?","gewissenhaft",["flüchtig","ordentlich","nachlässig","unachtsam","zufällig"],"„Gewissenhaft“ beschreibt sorgfältiges Arbeiten."]
         ];
         return qRows(rows,track,"SYNONYME",stage);
@@ -194,31 +205,31 @@ const topics = [
       }},
       {title:"Wortfelder entdecken",focus:"Wörter nach Themen ordnen",build(track,stage){
         const rows=[
-          ["Welches Wort gehört zum Wortfeld „Wetter“?","Nebel",["Schreibtisch","Gewitter","Schulheft","Pausenglocke","Ranzen"],"Nebel ist eine Erscheinung des Wetters."],
-          ["Welches Wort gehört zum Wortfeld „sagen“?","berichten",["laufen","essen","erzählen","springen","bauen"],"„Berichten“ gehört zum Wortfeld des Sprechens."],
-          ["Welches Wort gehört zum Wortfeld „gehen“?","schlendern",["flüstern","rennen","malen","kochen","rechnen"],"„Schlendern“ beschreibt eine Art zu gehen."],
+          ["Welches Wort gehört zum Wortfeld „Wetter“?","Nebel",["Schreibtisch","Pausenglocke","Schulheft","Ranzen","Kochtopf","Teppich"],"Nebel ist eine Erscheinung des Wetters."],
+          ["Welches Wort gehört zum Wortfeld „sagen“?","berichten",["laufen","essen","zuhören","springen","bauen","schweigen"],"„Berichten“ gehört zum Wortfeld des Sprechens."],
+          ["Welches Wort gehört zum Wortfeld „gehen“?","schlendern",["singen","flüstern","malen","kochen","rechnen","schreiben"],"„Schlendern“ beschreibt eine Art zu gehen."],
           ["Welches Wort passt zum Wortfeld „Wald“?","Moos",["Lenkrad","Kreide","Rinde","Fenster","Tastatur"],"Moos wächst häufig im Wald."],
           ["Welches Wort gehört zum Wortfeld „Gefühle“?","Erleichterung",["Lineal","Rucksack","Freude","Fahrkarte","Bleistift"],"Erleichterung ist ein Gefühl."],
           ["Welches Wort passt zum Wortfeld „Schule“?","Stundenplan",["Wolke","Pinsel","Hausaufgabe","Schnecke","Kochtopf"],"Ein Stundenplan gehört zum Schulalltag."],
           ["Welches Wort gehört zum Wortfeld „sehen“?","beobachten",["horchen","betrachten","schmecken","fühlen","riechen"],"„Betrachten“ bedeutet, etwas aufmerksam anzusehen."],
-          ["Welches Wort passt zum Wortfeld „Wasser“?","Strömung",["Schraube","Welle","Buchseite","Wolldecke","Schlüssel"],"Eine Strömung ist eine Bewegung des Wassers."],
-          ["Welches Wort gehört zum Wortfeld „streiten“?","widersprechen",["zustimmen","diskutieren","zuhören","loben","begrüßen"],"„Widersprechen“ kann Teil eines Streits sein."],
+          ["Welches Wort passt zum Wortfeld „Wasser“?","Strömung",["Schraube","Weste","Buchseite","Wolldecke","Schlüssel","Teppich"],"Eine Strömung ist eine Bewegung des Wassers."],
+          ["Welches Wort gehört zum Wortfeld „streiten“?","widersprechen",["zustimmen","weglaufen","zuhören","loben","begrüßen","verzeihen"],"„Widersprechen“ kann Teil eines Streits sein."],
           ["Welches Wort passt zum Wortfeld „Reise“?","Gepäck",["Tafel","Koffer","Heizung","Pinsel","Schneeball"],"Gepäck nimmt man auf eine Reise mit."]
         ];
         return qRows(rows,track,"WORTFELDER",stage);
       }},
       {title:"Wortfamilien bauen",focus:"Wortstämme und Ableitungen",build(track,stage){
         const rows=[
-          ["Welches Wort gehört zur Wortfamilie von „spielen“?","Spieler",["Spielplatz","Spiegel","Spielzeug","Spülmittel","Spirale"],"„Spieler“ gehört zur Wortfamilie „spiel-“."],
-          ["Welches Wort gehört zur Wortfamilie von „fahren“?","Fahrer",["Fahrrad","Farbe","Fahne","Faden","Falle"],"„Fahrer“ ist von „fahren“ abgeleitet."],
-          ["Welches Wort gehört zur Wortfamilie von „freundlich“?","Freundschaft",["Freude","Freundeskreis","Fremdheit","Freitag","Freizeit"],"„Freundschaft“ gehört zur Wortfamilie von „Freund“."],
-          ["Welches Wort gehört zur Wortfamilie von „lesen“?","Leser",["Leiter","Lesung","Leiste","Lehre","Leere"],"„Leser“ ist von „lesen“ abgeleitet."],
-          ["Welches Wort gehört zur Wortfamilie von „sichtbar“?","Sichtweise",["Sicherheit","Sichtung","Sitte","Sichel","Sieg"],"„Sichtweise“ gehört zum Wortstamm „sicht-“."],
-          ["Welches Wort ist mit „bauen“ verwandt?","Baustelle",["Baum","Bauch","Bauer","Bauwerk","Bogen"],"„Bauwerk“ gehört zur Wortfamilie von „bauen“."],
-          ["Welches Wort gehört zur Wortfamilie von „denken“?","Gedanke",["Denkmal","Decke","Denkweise","Dunkel","Ding"],"„Denkweise“ gehört zur Wortfamilie von „denken“."],
-          ["Welches Wort gehört zur Wortfamilie von „singen“?","Gesang",["Sänger","Sängerin","Sache","Saison","Sinn"],"„Sänger“ ist von „singen“ abgeleitet."],
-          ["Welches Wort gehört zur Wortfamilie von „Mut“?","mutig",["Mutter","Muster","müde","Mutprobe","Minute"],"„Mutprobe“ gehört zur Wortfamilie von „Mut“."],
-          ["Welches Wort gehört zur Wortfamilie von „ordnen“?","Ordnung",["Ort","Ordner","Ordentlichkeit","Ohr","Orientierung"],"„Ordner“ und „Ordnung“ gehören zur Wortfamilie von „ordnen“."]
+          ["Welches Wort gehört zur Wortfamilie von „spielen“?","Spieler",["Spiegel","Spinat","Spirale","Sperre","Spur","spitz"],"„Spieler“ gehört zur Wortfamilie „spiel-“."],
+          ["Welches Wort gehört zur Wortfamilie von „fahren“?","Fahrer",["Farbe","Fahne","Faden","Falle","Farn","Fabel"],"„Fahrer“ ist von „fahren“ abgeleitet."],
+          ["Welches Wort gehört zur Wortfamilie von „freundlich“?","Freundschaft",["Fremdheit","Freitag","Freizeit","Frühling","Freiheit","Freiwillige"],"„Freundschaft“ gehört zur Wortfamilie von „Freund“."],
+          ["Welches Wort gehört zur Wortfamilie von „lesen“?","Leser",["Leiter","Leiste","Lehre","Leere","Laster","Leder"],"„Leser“ ist von „lesen“ abgeleitet."],
+          ["Welches Wort gehört zur Wortfamilie von „sichtbar“?","Sichtweise",["Sicherheit","Sitte","Sichel","Sieg","Sinn","Sitzung"],"„Sichtweise“ gehört zum Wortstamm „sicht-“."],
+          ["Welches Wort ist mit „bauen“ verwandt?","Baustelle",["Baum","Bauch","Bauer","Bogen","Börse","Boden"],"„Bauwerk“ gehört zur Wortfamilie von „bauen“."],
+          ["Welches Wort gehört zur Wortfamilie von „denken“?","Gedanke",["Decke","Dunkel","Ding","Dach","Dampf","Dunst"],"„Denkweise“ gehört zur Wortfamilie von „denken“."],
+          ["Welches Wort gehört zur Wortfamilie von „singen“?","Gesang",["Sache","Saison","Sinn","Sichel","Sieg","Seite"],"„Sänger“ ist von „singen“ abgeleitet."],
+          ["Welches Wort gehört zur Wortfamilie von „Mut“?","mutig",["Mutter","Muster","müde","Minute","Muskel","Mütze"],"„Mutprobe“ gehört zur Wortfamilie von „Mut“."],
+          ["Welches Wort gehört zur Wortfamilie von „ordnen“?","Ordnung",["Ohr","Ort","Orkan","Orange","Orden","Orgel"],"„Ordner“ und „Ordnung“ gehören zur Wortfamilie von „ordnen“."]
         ];
         return qRows(rows,track,"WORTFAMILIEN",stage);
       }},
@@ -539,7 +550,7 @@ const topics = [
         const rows=[
           ["Welche Verbindung drückt einen Grund aus?","Ich bleibe drinnen, denn es regnet.",["Ich bleibe drinnen, aber es regnet.","Ich bleibe drinnen, denn es regnet.","Ich bleibe drinnen, oder es regnet.","Ich bleibe drinnen, trotzdem es regnet.","Ich bleibe drinnen, sondern es regnet.","Ich bleibe drinnen, während es regnet."],"„Denn“ leitet eine Begründung ein; im Hauptsatz bleibt die normale Wortstellung."],
           ["Welche Verbindung zeigt einen Gegensatz?","Ich bin müde, aber ich mache die Aufgabe fertig.",["Ich bin müde, denn ich mache die Aufgabe fertig.","Ich bin müde, oder ich mache die Aufgabe fertig.","Ich bin müde, aber ich mache die Aufgabe fertig.","Ich bin müde, weil ich mache die Aufgabe fertig.","Ich bin müde, und ich mache die Aufgabe fertig.","Ich bin müde, deshalb ich mache die Aufgabe fertig."],"„Aber“ verbindet zwei gegensätzliche Aussagen."],
-          ["Welche Verbindung passt für eine Auswahl?","Du kannst Tee trinken oder Wasser nehmen.",["und","aber","oder","denn","sondern","deshalb"],"„Oder“ bietet eine Auswahl an."],
+          ["Welche Verbindung passt? „Du kannst Tee trinken ___ Wasser nehmen.“","oder",["und","aber","denn","sondern","deshalb","obwohl"],"„Oder“ verbindet zwei Möglichkeiten und bietet eine Auswahl an."],
           ["Welche Verbindung passt für eine Folge?","Es regnete stark, deshalb blieb das Spiel aus.",["obwohl","deshalb","während","bevor","falls","damit"],"„Deshalb“ leitet eine Folge oder Konsequenz ein."],
           ["Welche Verbindung ergänzt den Satz? „Sie lernte viel, ___ bestand sie den Test.“","deshalb",["obwohl","denn","deshalb","während","bevor","falls"],"„Deshalb“ zeigt die Folge des vielen Lernens."],
           ["Welche Konjunktion passt? „Er wollte spielen, ___ musste er zuerst lernen.“","aber",["denn","oder","aber","weil","damit","sobald"],"„Aber“ drückt einen Gegensatz aus."],
