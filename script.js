@@ -710,6 +710,33 @@ function screen(name){
 }
 function completedCount(){return completed.size*questionsPerUnit;}
 function nextUnit(){return units.find(u=>!completed.has(u.id))||null;}
+function validateUnitQuestions(topic,lesson,questions,track){
+  if(questions.length!==questionsPerUnit){
+    throw new Error(topic.title+" / "+lesson.title+": erwartet werden 10 Fragen, gefunden "+questions.length);
+  }
+  questions.forEach((question,index)=>{
+    const validChoices=Array.isArray(question.choices)&&question.choices.length===3
+      &&new Set(question.choices).size===3
+      &&question.choices.every(choice=>typeof choice==="string"&&choice.trim().length>0);
+    const validAnswer=Number.isInteger(question.answer)&&question.answer>=0&&question.answer<3;
+    if(!validChoices||!validAnswer||!question.prompt?.trim()||!question.explanation?.trim()){
+      throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": ungültige Frage oder Antwortoptionen.");
+    }
+    if(question.track!==track||question.choices[question.answer]===undefined){
+      throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": Kursniveau oder Antwortindex stimmt nicht.");
+    }
+  });
+}
+function auditAllTracks(){
+  Object.keys(TRACKS).forEach(track=>{
+    topics.forEach(topic=>{
+      topic.lessons.forEach((lesson,index)=>{
+        const questions=ensureUniquePrompts(lesson.build(track,index+1),topic.id);
+        validateUnitQuestions(topic,lesson,questions,track);
+      });
+    });
+  });
+}
 function buildCourse(track){
   selectedTrack=track;units=[];questions=[];
   topics.forEach(topic=>{
@@ -717,19 +744,7 @@ function buildCourse(track){
       const stage=index+1;
       const unit={id:topic.id+"-"+stage,topic:topic,lesson:lesson,stage:stage,title:lesson.title,focus:lesson.focus,stageInfo:stageIndex(stage)};
       unit.questions=ensureUniquePrompts(lesson.build(track,stage),topic.id);
-      if(unit.questions.length!==questionsPerUnit)throw new Error(topic.title+" / "+lesson.title+": erwartet werden 10 Fragen, gefunden "+unit.questions.length);
-      unit.questions.forEach((question,index)=>{
-        const validChoices=Array.isArray(question.choices)&&question.choices.length===3
-          &&new Set(question.choices).size===3
-          &&question.choices.every(choice=>typeof choice==="string"&&choice.trim().length>0);
-        const validAnswer=Number.isInteger(question.answer)&&question.answer>=0&&question.answer<3;
-        if(!validChoices||!validAnswer||!question.prompt?.trim()||!question.explanation?.trim()){
-          throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": ungültige Frage oder Antwortoptionen.");
-        }
-        if(question.track!==track||question.choices[question.answer]===undefined){
-          throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": Kursniveau oder Antwortindex stimmt nicht.");
-        }
-      });
+      validateUnitQuestions(topic,lesson,unit.questions,track);
       units.push(unit);questions.push(...unit.questions);
     });
   });
@@ -955,4 +970,5 @@ document.getElementById("retry-button").addEventListener("click",()=>currentUnit
 document.getElementById("brand-home").addEventListener("click",event=>{
   event.preventDefault();if(courseStarted)screen("start");
 });
+auditAllTracks();
 renderPath();
