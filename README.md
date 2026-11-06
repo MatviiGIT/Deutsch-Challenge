@@ -12,7 +12,7 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 | Hosting | GitHub Pages |
 | Repository | [MatviiGIT/Deutsch-Challenge](https://github.com/MatviiGIT/Deutsch-Challenge) |
 | Öffentliche Website | [matviigit.github.io/Deutsch-Challenge](https://matviigit.github.io/Deutsch-Challenge/) |
-| Dokumentationsstand | 4. November 2026 |
+| Dokumentationsstand | 6. November 2026 |
 
 ---
 
@@ -66,7 +66,7 @@ Vor dem Kurs wählt das Kind einmalig das Niveau für den gesamten Lernweg:
 | **M** | Mittleres Niveau | Mehr Zusammenhänge und plausiblere Ablenkungsantworten |
 | **E** | Erweitertes Niveau | Anspruchsvollere Beispiele und besonders ähnliche Ablenkungsantworten |
 
-Innerhalb jedes Themas gibt es fünf aufeinanderfolgende Lektionen. Die Reihenfolge steigt von **Entdecken** über **Erkennen**, **Anwenden** und **Kombinieren** bis **Meistern**. Das G/M/E-Niveau verändert zusätzlich die Auswahl der Antwortmöglichkeiten.
+Die ursprüngliche Planung sah fünf aufeinanderfolgende Lektionen pro Thema vor. Diese Struktur ist derzeit nicht Teil des aktiven Pilotkurses. Zuerst wird eine einzelne 45-minütige Lektion getestet. Erst danach wird entschieden, ob und wie die übrigen Lektionen umgesetzt werden. Das G/M/E-Niveau verändert im Pilotkurs sowohl die Aufgabenstellungen als auch den erforderlichen Denkweg.
 
 ### Sieben Themenwelten
 
@@ -124,14 +124,14 @@ Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen
 |---|---|
 | Themenkarte mit einer Pilot-Themenwelt | Vorhanden |
 | Eine 45-minütige Probestunde mit 18 Aufgaben je Niveau | Vorhanden |
-| Schrittweise Freischaltung der nächsten Lektion | Vorhanden |
-| Wiederholung bereits abgeschlossener Lektionen | Vorhanden |
-| Freies Training über die 18 Fragen der gewählten Variante | Vorhanden |
+| Freischaltung weiterer Lektionen | Im Pilotkurs nicht aktiv |
+| Wiederholung der Pilotlektion | Vorhanden |
+| Freies Training | Vorhanden; Verhalten im Browser noch manuell prüfen |
 | Drei getrennte G/M/E-Aufgabenvarianten | Im Pilotstand vorhanden |
-| Zufällige Reihenfolge innerhalb einer Lektion | Vorhanden |
+| Feste, didaktisch geordnete Reihenfolge in der Pilotlektion | Vorhanden |
 | Rückmeldung und Erklärung nach jeder Antwort | Vorhanden |
 | Fortschritt innerhalb der Lektion | Vorhanden |
-| Kursfortschritt während der Sitzung | Vorhanden |
+| Fortschritt der Pilotlektion während der Sitzung | Vorhanden |
 | Punktzahl und Prozentwert je Lektion | Vorhanden |
 | Fehlerübersicht mit eigener Antwort, Lösung und Erklärung | Vorhanden |
 | Leben / Strafversuche | Bewusst nicht vorgesehen |
@@ -240,7 +240,7 @@ Zum Beenden des lokalen Servers im Terminal **Ctrl + C** drücken.
 
 ## 9. Eine neue Frage oder Lektion hinzufügen
 
-Die Kursstruktur und die Generatoren für Aufgaben befinden sich in script.js. Das Array topics enthält die geplanten Themenwelten und die bisherigen Aufgaben. Für den aktuellen Pilotkurs wird daraus nur die erste Lektion der Themenwelt Wortarten geladen. Sie besitzt eine build(track, stage)-Funktion und erzeugt 18 eigenständige Aufgaben für das ausgewählte G/M/E-Niveau.
+Die Kursstruktur und die Generatoren für Aufgaben befinden sich in `script.js`. Das Array `topics` enthält auch ältere beziehungsweise vorläufige Inhalte. Für den aktuellen Pilotkurs wird daraus ausschließlich die erste Lektion der Themenwelt Wortarten geladen. Diese Pilotlektion erzeugt 18 eigenständige Aufgaben für das ausgewählte G/M/E-Niveau. Andere Themen und Lektionen sind derzeit nicht Teil des aktiven Lernpfads.
 
 ### Aufbau einer fertigen Frage
 
@@ -296,9 +296,9 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Im aktuellen Pilotstand wird genau eine Wortarten-Lektion angezeigt.
 - [ ] Die Pilotlektion enthält genau 18 Aufgaben für das gewählte Niveau.
 - [ ] Die Aufgaben erscheinen in der vorgesehenen Reihenfolge vom Einstieg bis zum Wissenstest.
-- [ ] Der erste Lernschritt ist geöffnet; spätere Schritte sind zunächst gesperrt.
+- [ ] Die Pilotlektion lässt sich über die Themenkarte öffnen.
 - [ ] Die Probestunde kann geöffnet, gestartet, abgeschlossen und wiederholt werden.
-- [ ] Bereits abgeschlossene Lektionen können erneut gestartet werden.
+- [ ] Die abgeschlossene Pilotlektion kann erneut gestartet werden.
 - [ ] Falsche Antworten verhindern den Abschluss der Lektion nicht.
 - [ ] Jede Aufgabe hat genau drei auswählbare Antworten.
 - [ ] Die richtige Lösung wird markiert.
@@ -306,25 +306,20 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 - [ ] Der Fortschritt innerhalb der Lektion wird korrekt aktualisiert.
 - [ ] Punktestand und Prozentwert stimmen.
 - [ ] Die Fehlerübersicht zeigt eigene Antwort, richtige Lösung und Erklärung.
-- [ ] Nach Abschluss der letzten Lektion wird der gesamte Kursabschluss angezeigt.
+- [ ] Nach der 18. Aufgabe erscheint die Ergebnisansicht der Pilotlektion.
 - [ ] Ein Neuladen setzt den nur sitzungsbasierten Fortschritt zurück.
 - [ ] Die Rückkehr zur Themenkarte funktioniert aus Quiz und Ergebnisansicht.
 
-### Frühere automatische Prüfung (04.11.2026)
+### Automatische Prüfungen (Stand 06.11.2026)
 
-Die aktualisierte Daten- und Verknüpfungsprüfung ergab:
+Für den aktuellen Stand des Branches `content-audit` wurden die GitHub-Actions-Workflows erfolgreich abgeschlossen:
 
-- JavaScript-Syntax: bestanden.
-- 350 Fragen insgesamt; genau zehn pro Lektion.
-- Sieben Themenwelten mit jeweils fünf Lektionen (35 Lektionen insgesamt).
-- G-, M- und E-Varianten werden für jede Lektion erzeugt.
-- Jede Frage hat genau drei Antwortmöglichkeiten.
-- Alle Antwortindizes liegen zwischen 0 und 2.
-- Alle Fragen enthalten eine Aufgabenstellung und eine Erklärung.
-- HTML-IDs: keine doppelten IDs.
-- Alle direkten JavaScript-Verweise auf HTML-IDs wurden auf vorhandene Elemente geprüft.
+- JavaScript-Syntaxprüfung (`node --check script.js`): bestanden.
+- Prüfung erforderlicher Pilot-Lektions-HTML-IDs: bestanden.
+- Statische Kontrolle der HTML-IDs und ihrer JavaScript-Verweise: keine doppelten IDs oder fehlenden direkten DOM-Verweise festgestellt.
+- Datenprüfung der Pilotlektion: 18 Fragen je Niveau; drei Antwortmöglichkeiten und gültige Antwortindizes.
 
-Diese Prüfung ist eine statische Code- und Datenkontrolle. Sie ersetzt keinen vollständigen Funktionstest im echten Browser oder die Darstellungskontrolle auf verschiedenen Geräten.
+Der Workflow `Validate quiz` prüft derzeit nur JavaScript-Syntax und zwei erforderliche HTML-IDs. Er ist kein vollständiger automatisierter Funktionstest. Die fachliche Richtigkeit, die Laufzeitlogik und die Darstellung auf echten Geräten müssen weiterhin manuell geprüft werden.
 
 ### Inhaltlicher Qualitätstest
 
@@ -381,11 +376,13 @@ Die öffentliche Website wird aus diesem Repository bereitgestellt:
 
 ### Veröffentlichungsprinzip
 
-1. Änderungen werden in den Branch `main` des Repositories übernommen.
+1. Der aktuell konfigurierte Pages-Workflow veröffentlicht den Stand des Branches `content-audit`.
 2. GitHub Actions startet den Workflow **pages build and deployment**.
 3. Der Build-Schritt erstellt das veröffentlichbare Paket.
 4. Der Deploy-Schritt veröffentlicht das Paket über GitHub Pages.
 5. Der Status des Workflows kann im Tab **Actions** kontrolliert werden.
+
+Der Branch `main` bleibt vorerst unverändert. Die Pilotversion wurde auf `content-audit` entwickelt und dort erfolgreich durch GitHub Pages gebaut. Ein Pull Request für diese Arbeit wurde geschlossen, ohne in `main` gemergt zu werden. Vor einer späteren Zusammenmerge-Entscheidung muss geprüft werden, ob Pilotversion und Dokumentация bereit sind.
 
 Die Veröffentlichung gilt erst als erfolgreich, wenn der Workflow abgeschlossen ist und der Deploy-Schritt den Status **Success** zeigt.
 
@@ -420,7 +417,7 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 1. Die neue Gestaltung auf Desktop, Tablet und Smartphone prüfen.
 2. Die Abstände und Lesbarkeit auf der Startseite und im Fragebildschirm fertigstellen.
-3. Alle 350 Aufgaben sprachlich und fachlich durch eine Deutschlehrkraft prüfen lassen.
+3. Alle 54 Aufgaben der Pilotlektion sprachlich und fachlich durch eine Deutschlehrkraft prüfen lassen.
 4. Einen kurzen Feedbackbogen für den Praxistest vorbereiten.
 5. Den Test mit der Lehrkraft abstimmen und durchführen.
 6. Die Ergebnisse anonymisiert auswerten und die Anwendung verbessern.
@@ -468,10 +465,11 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 
 **Noch offen**
 
-- [ ] Automatische Prüfung der neuen Pilotversion im Browser und JavaScript-Syntaxprüfung
+- [x] GitHub-Actions-Prüfung auf dem aktuellen Branch `content-audit`: JavaScript-Syntax und erforderliche HTML-IDs erfolgreich
+- [ ] Vollständiger automatisierter Browser-Test (derzeit nicht eingerichtet)
 - [ ] Visuelle Prüfung der veröffentlichten Version auf Desktop, Tablet und Smartphone
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
-- [ ] Vollständiger manueller Funktionstest
+- [ ] Vollständiger manueller Funktionstest der Pilotlektion
 - [ ] Test über das Schul-WLAN
 - [ ] Praxistest mit einer Lerngruppe der 5. Klasse
 - [ ] Anonyme Auswertung des Feedbacks
@@ -503,7 +501,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 
 ### Regeln für künftige Änderungen
 
-1. **Zuerst den aktuellen Stand lesen.** Vor einer Änderung die betroffenen Dateien aus dem Branch `main` abrufen. Diese Dateien sind die maßgebliche Version, nicht alte Textausschnitte aus einem früheren Chat.
+1. **Zuerst den aktuellen Stand lesen.** Die aktive Pilotentwicklung liegt im Branch `content-audit`. Vor einer Änderung die betroffenen Dateien aus diesem Branch abrufen. `main` ist vorerst die unveränderte stabile Ausgangsversion. Diese Dateien sind maßgeblich, nicht alte Textausschnitte aus einem früheren Chat.
 2. **Bestehende Funktionen erhalten.** Bei Änderungen an `index.html` müssen die IDs erhalten bleiben, auf die `script.js` zugreift, sofern die JavaScript-Logik nicht gleichzeitig angepasst wird.
 3. **Keine blinden Überschreibungen.** Beim Aktualisieren einer GitHub-Datei die aktuelle Datei und ihren aktuellen SHA verwenden.
 4. **Änderungen prüfen.** JavaScript-Syntax, Anzahl der Fragen, Level-Verteilung, Antwortindizes, HTML-IDs und Versionsparameter kontrollieren.
@@ -515,14 +513,15 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 ### Checkliste für eine neue Entwicklungssitzung
 
 - [ ] README vollständig lesen.
-- [ ] Dateien aus `main` abrufen und den aktuellen Commit feststellen.
-- [ ] Bei Änderungen der Pilotlektion die Aufgabenanzahl, Level-Unterschiede und Lernziele kontrollieren.
+- [ ] Aktuellen Branch und Commit feststellen; für die laufende Pilotentwicklung Dateien aus `content-audit` abrufen.
+- [ ] Bei Änderungen der Pilotlektion die Aufgabenanzahl, Level-Unterschiede, feste Reihenfolge und Lernziele kontrollieren.
 - [ ] Ziel der nächsten Änderung festlegen.
 - [ ] Änderungen möglichst in kleinen, überprüfbaren Schritten vornehmen.
 - [ ] Funktion und Darstellung testen.
 - [ ] README und Änderungsverlauf aktualisieren.
-- [ ] GitHub-Actions-Ergebnis prüfen.
+- [ ] GitHub-Actions-Ergebnis auf `content-audit` prüfen.
 - [ ] Veröffentlichte Website öffnen und die Änderung kontrollieren.
+- [ ] `main` nicht ohne ausdrückliche Entscheidung aktualisieren oder einen Pull Request mergen.
 
 ## 17. Änderungsverlauf
 
@@ -540,7 +539,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 04.11.2026 | Visuelles Redesign mit spielerischer Kursübersicht, Lernknoten, deutlicher Fortschrittsanzeige und angepasster Quiz- und Ergebnisansicht umgesetzt. |
 | 04.11.2026 | Moderates Duolingo-inspiriertes Feintuning: eigener CSS-Maskottchen-Entwurf, dezente Themenfarben, verbesserte Karten-Rückmeldung und direkter „Weiterlernen“-Einstieg zur nächsten offenen Einheit. |
 | 06.11.2026 | Startbildschirm mit Spielname (Sitzungsspeicher) und einmaliger G/M/E-Auswahl hinzugefügt. Der Umfang von 350 Fragen wurde später zugunsten einer fokussierten Pilotlektion zurückgestellt. |
-| 06.11.2026 | Pilotlektion „Wortdetektive“ mit 45-Minuten-Lernseite, Zeitplan und 18 getrennten Aufgaben je G/M/E-Niveau vorbereitet. Browser- und Funktionsprüfung stehen noch aus. |
+| 06.11.2026 | Pilotlektion „Wortdetektive“ mit 45-Minuten-Lernseite, Zeitplan und 18 getrennten Aufgaben je G/M/E-Niveau vorbereitet. Änderungen liegen auf `content-audit`; GitHub Actions und Pages-Build waren erfolgreich. Manueller Browser-, Geräte- und Inhaltstest stehen noch aus. |
 
 ---
 
