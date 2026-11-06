@@ -21,19 +21,24 @@ function shuffle(items) {
   return copy;
 }
 function makeQuestion(prompt,answer,wrongOptions,explanation,track,category,stage) {
+  // Prefer distractors from the selected difficulty band, then fill from
+  // the remaining pool without ever creating duplicate answer choices.
   const offset=track==="G"?0:track==="M"?2:4;
-  let wrong=wrongOptions.slice(offset,offset+2);
-  wrong=wrong.filter(x=>x!==answer);
-  if(wrong.length<2){
-    for(const option of wrongOptions){if(option!==answer&&!wrong.includes(option))wrong.push(option);if(wrong.length===2)break;}
+  const uniqueWrong=[...new Set(wrongOptions.map(option=>String(option).trim()).filter(option=>option&&option!==String(answer).trim()))];
+  const preferred=uniqueWrong.slice(offset,offset+2);
+  const distractors=[...new Set([...preferred,...uniqueWrong])].slice(0,2);
+  if(distractors.length!==2){
+    throw new Error("Aufgabe benötigt zwei unterschiedliche falsche Antworten: "+prompt);
   }
-  const choices=shuffle([answer,...wrong.slice(0,2)]);
+  const correct=String(answer).trim();
+  const choices=shuffle([correct,...distractors]);
   return {
     category:category,
     stage:stage,
+    track:track,
     prompt:prompt,
     choices:choices,
-    answer:choices.indexOf(answer),
+    answer:choices.indexOf(correct),
     explanation:explanation
   };
 }
@@ -713,6 +718,18 @@ function buildCourse(track){
       const unit={id:topic.id+"-"+stage,topic:topic,lesson:lesson,stage:stage,title:lesson.title,focus:lesson.focus,stageInfo:stageIndex(stage)};
       unit.questions=ensureUniquePrompts(lesson.build(track,stage),topic.id);
       if(unit.questions.length!==questionsPerUnit)throw new Error(topic.title+" / "+lesson.title+": erwartet werden 10 Fragen, gefunden "+unit.questions.length);
+      unit.questions.forEach((question,index)=>{
+        const validChoices=Array.isArray(question.choices)&&question.choices.length===3
+          &&new Set(question.choices).size===3
+          &&question.choices.every(choice=>typeof choice==="string"&&choice.trim().length>0);
+        const validAnswer=Number.isInteger(question.answer)&&question.answer>=0&&question.answer<3;
+        if(!validChoices||!validAnswer||!question.prompt?.trim()||!question.explanation?.trim()){
+          throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": ungültige Frage oder Antwortoptionen.");
+        }
+        if(question.track!==track||question.choices[question.answer]===undefined){
+          throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": Kursniveau oder Antwortindex stimmt nicht.");
+        }
+      });
       units.push(unit);questions.push(...unit.questions);
     });
   });
