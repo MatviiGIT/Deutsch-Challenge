@@ -48,10 +48,12 @@ function classWrongs(answer) {
 }
 function makeClassQuestions(items,track,category,stage,withSentence) {
   return items.map(item=>{
+    const wordClass=withSentence?item[2]:item[1];
+    const explanation=withSentence?item[3]:item[2];
     const prompt=withSentence
-      ?"Welche Wortart hat das hervorgehobene Wort „"+item[0]+"“ im Satz: „"+item[1]+"“?"
+      ?"Welche Wortart hat das Wort „"+item[0]+"“ im Satz: „"+item[1]+"“?"
       :"Welche Wortart ist „"+item[0]+"“?";
-    return makeQuestion(prompt,item[2],classWrongs(item[2]),"Das Wort „"+item[0]+"“ ist ein "+item[2]+". "+item[3],track,category,stage);
+    return makeQuestion(prompt,wordClass,classWrongs(wordClass),"Das Wort „"+item[0]+"“ ist ein "+wordClass+". "+explanation,track,category,stage);
   });
 }
 function nounsQuestion(rows,track,category,stage) {
@@ -896,22 +898,4 @@ document.getElementById("retry-button").addEventListener("click",()=>currentUnit
 document.getElementById("brand-home").addEventListener("click",event=>{
   event.preventDefault();if(courseStarted)screen("start");
 });
-document.getElementById("profile-edit-button").addEventListener("click",()=>{
-  if(!courseStarted)return;
-  screen("profile");
-  playerInput.value=playerName;
-  trackOptions.forEach(button=>{
-    const chosen=button.dataset.track===selectedTrack;
-    button.classList.toggle("is-selected",chosen);button.setAttribute("aria-pressed",String(chosen));
-  });
-  updateSetupButton();
-});
-document.getElementById("change-course-button").addEventListener("click",()=>{
-  if(!courseStarted)return;
-  playerName="";selectedTrack=null;completed=new Set();courseStarted=false;
-  playerInput.value="";trackOptions.forEach(button=>{button.classList.remove("is-selected");button.setAttribute("aria-pressed","false");});
-  document.getElementById("topbar-player").hidden=true;document.getElementById("track-chip").hidden=true;
-  beginButton.disabled=true;screen("profile");
-});
-document.getElementById("change-course-button").hidden=true;
 renderPath();
