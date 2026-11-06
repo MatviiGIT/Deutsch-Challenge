@@ -639,3 +639,14 @@ body{font-size:var(--font-body);line-height:1.5}
   .brand-mark{width:36px;height:36px}
   .brand-words{font-size:.9rem}
 }
+
+
+/* Improve eye contrast and align the learning tables without a section heading. */
+.frog-eye{
+  border:3px solid #397b32;
+  background:#fff;
+  box-shadow:0 0 0 1px rgba(38,53,44,.16),0 2px 3px rgba(38,53,44,.12);
+}
+.frog-avatar-small .frog-eye{border-width:2.5px}
+.course-layout{align-items:start}
+.path-column{padding-top:0}
