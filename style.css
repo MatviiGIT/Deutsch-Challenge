@@ -488,3 +488,133 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-off
   .word-type-card{padding:15px}
   .lesson-timeline{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* Unified type scale and compact layout */
+:root{
+  --font-caption:.74rem;
+  --font-support:.86rem;
+  --font-body:.96rem;
+  --font-card:1.08rem;
+  --font-heading:1.45rem;
+  --font-display:clamp(2rem,4.5vw,3.2rem);
+}
+body{font-size:var(--font-body);line-height:1.5}
+#app p,#app li,#app small,#app label,
+#app .track-name,#app .lesson-timeline span,
+#app .word-example,#app .welcome-facts{
+  font-size:var(--font-support);
+  line-height:1.5;
+}
+#app h2{font-size:var(--font-heading);line-height:1.2}
+#app h3{font-size:var(--font-card);line-height:1.25}
+#app .eyebrow,#app .section-kicker,#app .sidebar-label,
+#app .word-type-label,#app .path-total,#app .next-meta,
+#app .question-number,#app .question-category,
+#app .progress-labels,#app .quiz-topic{
+  font-size:var(--font-caption);
+}
+.brand-words{font-size:1rem}
+.course-chip,.topbar-progress,.topbar-player,.track-chip{font-size:var(--font-caption)}
+.profile-field label,.track-field-heading strong,
+.track-option,.primary-button,.secondary-button,.text-button{
+  font-size:var(--font-body);
+}
+.track-name{font-weight:900}
+.welcome-copy h1,.profile-heading h1,.lesson-card h1,
+.result-header h1{font-size:var(--font-display);line-height:1.05}
+.welcome-copy>p,.profile-heading>p,.lesson-lead,
+.word-type-card p,.lesson-example ul,.lesson-tip,
+.next-card p,.result-header p,.recommendation-card p,
+.feedback-panel p,.mistake-selected,.mistake-answer,
+.mistake-explanation{font-size:var(--font-support);line-height:1.5}
+.question-panel h2{font-size:clamp(1.45rem,3vw,2rem);line-height:1.2}
+.lesson-explain h2,.lesson-schedule h2,.level-results-heading h2,
+.recommendation-card h2,.mistakes-section h2{font-size:var(--font-heading)}
+
+/* One help button keeps instructions out of the main screens. */
+.topbar-right{position:relative}
+.help-menu{position:relative;flex:0 0 auto}
+.help-menu summary{
+  width:34px;height:34px;display:grid;place-items:center;
+  list-style:none;border:1px solid var(--line);border-radius:50%;
+  background:#fff;color:var(--green-dark);font-size:1rem;font-weight:1000;
+  cursor:pointer;box-shadow:0 2px 0 #e4e9df;
+}
+.help-menu summary::-webkit-details-marker{display:none}
+.help-menu[open] summary{background:var(--green-pale);border-color:#b9d7ac}
+.help-panel{
+  position:absolute;z-index:30;top:calc(100% + 12px);right:0;
+  width:min(320px,calc(100vw - 36px));padding:18px 20px;
+  border:1px solid var(--line);border-radius:17px;background:#fff;
+  box-shadow:0 12px 34px rgba(38,58,38,.16);
+}
+.help-panel h2{margin:0 0 12px;font-size:1.2rem}
+.help-panel p{margin:8px 0;color:var(--ink-soft);font-size:var(--font-support);line-height:1.45}
+.help-panel p:last-child{margin-bottom:0}
+
+/* Quaki: two separate eye sockets with pupils centered inside them. */
+.frog-avatar{
+  position:absolute;z-index:3;border:5px solid #fff;
+  border-radius:50% 50% 46% 46%;background:#7fc45a;
+  box-shadow:0 6px 0 #4b8d37,0 12px 22px rgba(48,82,42,.12);
+}
+.frog-avatar-large{
+  right:7%;bottom:7px;width:108px;height:96px;transform:rotate(2deg);
+}
+.frog-avatar-small{
+  right:10px;top:0;width:82px;height:74px;
+  border-width:4px;box-shadow:0 5px 0 #4b8d37;transform:rotate(2deg);
+}
+.frog-eye{
+  position:absolute;top:-16px;width:35px;height:35px;
+  display:grid;place-items:center;border:4px solid #fff;
+  border-radius:50%;background:#fff;z-index:2;
+}
+.frog-eye-left{left:12px}
+.frog-eye-right{right:12px}
+.frog-pupil{
+  width:9px;height:13px;border-radius:50%;
+  background:#26352c;transform:translateY(2px);
+}
+.frog-mouth{
+  position:absolute;top:59px;left:35px;width:25px;height:12px;
+  border-bottom:3px solid #26352c;border-radius:50%;
+}
+.frog-cheek{
+  position:absolute;top:52px;width:12px;height:7px;
+  border-radius:50%;background:#f0a28c;opacity:.9;
+}
+.frog-cheek-left{left:12px}
+.frog-cheek-right{right:12px}
+.frog-avatar-small .frog-eye{
+  top:-12px;width:27px;height:27px;border-width:3px;
+}
+.frog-avatar-small .frog-eye-left{left:8px}
+.frog-avatar-small .frog-eye-right{right:8px}
+.frog-avatar-small .frog-pupil{width:7px;height:10px;transform:translateY(1px)}
+.frog-avatar-small .frog-mouth{top:44px;left:29px;width:17px;height:8px;border-bottom-width:2px}
+.frog-avatar-small .frog-cheek{top:43px;width:9px;height:6px}
+.frog-avatar-small .frog-cheek-left{left:9px}
+.frog-avatar-small .frog-cheek-right{right:9px}
+.profile-mascot.frog-avatar-small::before,.profile-mascot.frog-avatar-small::after,
+.guide-mascot.frog-avatar-large::before,.guide-mascot.frog-avatar-large::after{
+  content:none!important;display:none!important;
+}
+.profile-mascot.frog-avatar-small{width:82px;height:74px}
+.guide-mascot.frog-avatar-large{width:108px;height:96px}
+.free-practice{justify-content:center}
+.free-practice .text-button{font-size:var(--font-body);font-weight:900}
+@media(max-width:850px){
+  .frog-avatar-large{right:8%;transform:scale(.9) rotate(2deg);transform-origin:bottom right}
+}
+@media(max-width:580px){
+  .course-chip{display:none}
+  .topbar-right{gap:6px}
+  .frog-avatar-large{right:14%;bottom:3px;transform:scale(.78) rotate(2deg);transform-origin:bottom right}
+  .profile-mascot.frog-avatar-small{
+    right:0;width:82px;height:74px;
+    transform:scale(.82) rotate(2deg);transform-origin:top right;
+  }
+  .help-panel{right:0;max-height:70vh;overflow:auto}
+}
