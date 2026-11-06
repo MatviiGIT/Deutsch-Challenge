@@ -179,7 +179,7 @@ const topics = [
             ["Welche Wortart hat „Erleben“? „Das Erleben neuer Dinge macht Spaß.“","Nomen",["Verb","Adjektiv"],"Durch den Artikel „das“ wird „Erleben“ hier als Nomen verwendet."],
             ["Welche Wortart hat „erlebt“? „Sie erlebt ein Abenteuer.“","Verb",["Nomen","Adjektiv"],"„Erlebt“ ist die Verbform und beschreibt, was sie tut."],
             ["In welchem Satz ist „hell“ ein Adjektiv?","Das helle Licht blendet.",["Das Licht erhellt den Raum.","Die Helligkeit nimmt zu."],"Im ersten Satz beschreibt „helle“ das Nomen „Licht“."],
-            ["Welche Wortart hat „das“? „Das spannende Buch liegt hier.“","Artikel",["Nomen","Verb"],"„Das“ begleitet das Nomen „Buch“. Es ist ein Artikel; gesucht ist hier die Wortart des Begleiters."],
+            ["Welche Wortart hat „offen“? „Die Tür steht offen.“","Adjektiv",["Nomen","Verb"],"„Offen“ beschreibt den Zustand der Tür und ist ein Adjektiv."],
             ["Welche Aussage ist richtig?","Nomen bezeichnen unter anderem Personen, Dinge und Gefühle.",["Verben beschreiben Eigenschaften.","Adjektive sagen, was jemand tut."],"Nomen benennen unter anderem Personen, Dinge, Orte und Gefühle."]
           ]
         };
