@@ -250,9 +250,9 @@ const topics = [
         const rows=[
           ["Welches Wort gehört zur Wortfamilie von „spielen“?","Spieler",["Spiegel","Spinat","Spirale","Sperre","Spur","spitz"],"„Spieler“ gehört zur Wortfamilie „spiel-“."],
           ["Welches Wort gehört zur Wortfamilie von „fahren“?","Fahrer",["Farbe","Fahne","Faden","Falle","Farn","Fabel"],"„Fahrer“ ist von „fahren“ abgeleitet."],
-          ["Welches Wort gehört zur Wortfamilie von „freundlich“?","Freundschaft",["Fremdheit","Freitag","Freizeit","Frühling","Freiheit","Freiwillige"],"„Freundschaft“ gehört zur Wortfamilie von „Freund“."],
+          ["Welches Wort ist direkt von „freundlich“ abgeleitet?","Freundlichkeit",["Fremdheit","Freitag","Freizeit","Frühling","Freiheit","Freiwillige"],"„Freundlichkeit“ entsteht aus dem Adjektiv „freundlich“ und gehört zur selben Wortfamilie."],
           ["Welches Wort gehört zur Wortfamilie von „lesen“?","Leser",["Leiter","Leiste","Lehre","Leere","Laster","Leder"],"„Leser“ ist von „lesen“ abgeleitet."],
-          ["Welches Wort gehört zur Wortfamilie von „sichtbar“?","Sichtweise",["Sicherheit","Sitte","Sichel","Sieg","Sinn","Sitzung"],"„Sichtweise“ gehört zum Wortstamm „sicht-“."],
+          ["Welches Wort ist direkt von „sichtbar“ abgeleitet?","Sichtbarkeit",["Sicherheit","Sitte","Sichel","Sieg","Sinn","Sitzung"],"„Sichtbarkeit“ ist ein Nomen, das aus „sichtbar“ gebildet wird."],
           ["Welches Wort ist mit „bauen“ verwandt?","Baustelle",["Baum","Bauch","Bauer","Bogen","Börse","Boden"],"„Baustelle“ gehört zur Wortfamilie von „bauen“."],
           ["Welches Wort gehört zur Wortfamilie von „denken“?","Gedanke",["Decke","Dunkel","Ding","Dach","Dampf","Dunst"],"„Gedanke“ gehört zur Wortfamilie von „denken“."],
           ["Welches Wort gehört zur Wortfamilie von „singen“?","Gesang",["Sache","Saison","Sinn","Sichel","Sieg","Seite"],"„Gesang“ gehört zur Wortfamilie von „singen“."],
@@ -371,12 +371,12 @@ const topics = [
           ["Welches Satzzeichen passt? „Heute scheint die Sonne___“",".",["?","!",".","; ",":","…"],"Ein Aussagesatz endet normalerweise mit einem Punkt."],
           ["Welches Satzzeichen passt? „Pass auf___“","!",[".","?","!",":",";","…"],"Ein Warnruf kann mit einem Ausrufezeichen enden."],
           ["Welches Satzzeichen passt? „Wann beginnt der Film___“","?",[".","!", "?",":",";","…"],"Eine Frage verlangt ein Fragezeichen."],
-          ["Welches Satzzeichen passt? „Das hast du toll gemacht___“","!",[".","?","!",":",";","…"],"Der Satz drückt starke Freude oder Anerkennung aus."],
+          ["Welches Satzzeichen passt, wenn der Satz als begeisterter Ausruf gemeint ist? „Das hast du toll gemacht___“","!",[".","?","!",":",";","…"],"Der Satz soll starke Freude ausdrücken; deshalb passt hier das Ausrufezeichen."],
           ["Welches Satzzeichen passt? „Morgen fahren wir nach Berlin___“",".",["?","!",".",":",";","…"],"Der Satz informiert über etwas und endet mit einem Punkt."],
           ["Welches Satzzeichen passt? „Hast du den Schlüssel gesehen___“","?",[".","!","?",":",";","…"],"Die Satzform ist eine direkte Frage."],
-          ["Welches Satzzeichen passt? „Vorsicht, der Boden ist nass___“","!",[".","?","!",":",";","…"],"Die Warnung wird mit einem Ausrufezeichen betont."],
+          ["Welches Satzzeichen passt, wenn die Warnung besonders deutlich ausgerufen wird? „Vorsicht, der Boden ist nass___“","!",[".","?","!",":",";","…"],"Die Aufgabe verlangt ausdrücklich einen deutlichen Warnruf; deshalb passt das Ausrufezeichen."],
           ["Welches Satzzeichen passt? „Ich weiß nicht, ob es klappt___“",".",["?","!",".",":",";","…"],"Der ganze Satz ist eine Aussage, keine direkte Frage."],
-          ["Welches Satzzeichen passt? „Wie schön das aussieht___“","!",[".","?","!",":",";","…"],"Der Satz ist ein Ausruf und kann mit ! enden."]
+          ["Welches Satzzeichen passt, wenn die Freude besonders stark ausgedrückt wird? „Wie schön das aussieht___“","!",[".","?","!",":",";","…"],"Der Satz soll starke Freude ausdrücken; deshalb passt hier das Ausrufezeichen."]
         ];
         return qRows(rows,track,"SATZENDE",stage);
       }},
