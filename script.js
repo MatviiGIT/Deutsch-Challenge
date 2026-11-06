@@ -115,24 +115,76 @@ function readingRows(data,track,category,stage) {
 }
 const topics = [
   {
-    id:"wortarten",title:"Wortarten",subtitle:"Nomen, Verben, Adjektive und mehr",
-    description:"Entdecke die Aufgaben der Wörter und untersuche, wie sie im Satz zusammenarbeiten.",
+    id:"wortarten",title:"Wortarten",subtitle:"Nomen, Verben und Adjektive",
+    description:"Erkenne, was Wörter bezeichnen, was sie tun und wie sie Dinge oder Personen beschreiben.",
     icon:"Aa",
     lessons:[
-      {title:"Wortdetektive",focus:"Nomen, Verben und Adjektive unterscheiden",build(track,stage){
-        const items=[
-          ["Schulranzen","Nomen","Der Schulranzen ist ein Ding und wird großgeschrieben."],
-          ["flüstert","Verb","„Flüstert“ beschreibt, was jemand tut."],
-          ["neugierig","Adjektiv","„Neugierig“ beschreibt eine Eigenschaft."],
-          ["Freundschaft","Nomen","„Freundschaft“ bezeichnet ein Gefühl oder eine Beziehung."],
-          ["springen","Verb","„Springen“ beschreibt eine Tätigkeit."],
-          ["vorsichtig","Adjektiv","„Vorsichtig“ beschreibt, wie etwas geschieht oder jemand ist."],
-          ["Abenteuer","Nomen","„Abenteuer“ ist ein Nomen und wird großgeschrieben."],
-          ["glänzt","Verb","„Glänzt“ beschreibt eine Handlung oder einen Vorgang."],
-          ["winzig","Adjektiv","„Winzig“ beschreibt die Größe."],
-          ["Gedanke","Nomen","„Gedanke“ bezeichnet etwas, das man denkt."]
-        ];
-        return makeClassQuestions(items,track,"WORTARTEN",stage,false);
+      {title:"Wortdetektive",focus:"Nomen, Verben und Adjektive erkennen und im Satz unterscheiden",questionCount:18,
+       build(track,stage){
+        const sets={
+          G:[
+            ["Welche Wortart ist „Hund“?","Nomen",["Verb","Adjektiv"],"„Hund“ bezeichnet ein Lebewesen. Deshalb ist es ein Nomen."],
+            ["Welche Wortart ist „spielen“?","Verb",["Nomen","Adjektiv"],"„Spielen“ beschreibt, was jemand tut. Das ist ein Verb."],
+            ["Welche Wortart ist „lustig“?","Adjektiv",["Nomen","Verb"],"„Lustig“ beschreibt eine Eigenschaft. Das ist ein Adjektiv."],
+            ["Finde das Nomen: „Der Ball rollt.“","Ball",["rollt","Der"],"„Ball“ bezeichnet einen Gegenstand und ist ein Nomen."],
+            ["Finde das Verb: „Mia lacht.“","lacht",["Mia","fröhlich"],"„Lacht“ sagt, was Mia tut. Das ist das Verb."],
+            ["Finde das Adjektiv: „Der kleine Fuchs schläft.“","kleine",["Fuchs","schläft"],"„Kleine“ beschreibt den Fuchs."],
+            ["Welches Wort ist ein Nomen?","Schule",["lernen","schnell"],"„Schule“ bezeichnet einen Ort und wird großgeschrieben."],
+            ["Welches Wort ist ein Verb?","malen",["Bild","bunt"],"„Malen“ beschreibt eine Tätigkeit."],
+            ["Welches Wort ist ein Adjektiv?","weich",["Kissen","liegen"],"„Weich“ beschreibt eine Eigenschaft."],
+            ["Welches Wort wird großgeschrieben, weil es ein Nomen ist?","Tisch",["decken","sauber"],"Nomen werden im Deutschen großgeschrieben."],
+            ["Was tut der Vogel? „Der Vogel singt laut.“","singt",["Vogel","laut"],"„Singt“ ist das Verb und beschreibt die Handlung."],
+            ["Wie ist die Blume? „Die Blume ist gelb.“","gelb",["Blume","ist"],"„Gelb“ beschreibt die Blume und ist ein Adjektiv."],
+            ["Welches Wort bezeichnet eine Person?","Lehrerin",["erklärt","freundlich"],"„Lehrerin“ bezeichnet eine Person und ist ein Nomen."],
+            ["Welches Wort beschreibt eine Bewegung?","rennen",["Rennen","schnell"],"„Rennen“ beschreibt eine Tätigkeit. Hier wird es als Verb verwendet."],
+            ["Welches Wort beschreibt den Schnee? „Der Schnee ist kalt.“","kalt",["Schnee","liegt"],"„Kalt“ beschreibt eine Eigenschaft des Schnees."],
+            ["In welchem Satz steht ein Nomen?","Der Frosch hüpft.",["Wir hüpfen.","Hüpfe schnell!"],"„Frosch“ ist ein Nomen und steht im ersten Satz."],
+            ["In welchem Satz ist „tanzt“ das Verb?","Das Kind tanzt.",["Der Tanz beginnt.","Der schöne Tanz."],"„Tanzt“ beschreibt, was das Kind tut."],
+            ["Welche Wortart fehlt? „Der ___ Hund schläft.“","müde",["Hund","schläft"],"„Müde“ beschreibt den Hund. Gesucht ist ein Adjektiv."]
+          ],
+          M:[
+            ["Welche Wortart hat „Freude“ im Satz: „Die Freude war groß.“?","Nomen",["Verb","Adjektiv"],"„Freude“ bezeichnet ein Gefühl und ist ein Nomen."],
+            ["Welche Wortart hat „entdecken“?","Verb",["Nomen","Adjektiv"],"„Entdecken“ beschreibt eine Tätigkeit und ist ein Verb."],
+            ["Welche Wortart hat „mutig“?","Adjektiv",["Nomen","Verb"],"„Mutig“ beschreibt eine Eigenschaft."],
+            ["Welches Wort ist im Satz das Nomen? „Der kleine Drache schläft.“","Drache",["kleine","schläft"],"„Drache“ bezeichnet ein Wesen und ist das Nomen."],
+            ["Welches Wort ist das Verb? „Die Kinder bauen eine Höhle.“","bauen",["Kinder","Höhle"],"„Bauen“ beschreibt die Tätigkeit der Kinder."],
+            ["Welches Wort ist das Adjektiv? „Der Weg ist steinig.“","steinig",["Weg","ist"],"„Steinig“ beschreibt die Beschaffenheit des Weges."],
+            ["Welche Wortart hat „leise“? „Bitte sprich leise.“","Adjektiv",["Nomen","Verb"],"„Leise“ beschreibt hier, wie gesprochen werden soll."],
+            ["Welche Wortart hat „Antwort“?","Nomen",["Verb","Adjektiv"],"„Antwort“ bezeichnet etwas und ist ein Nomen."],
+            ["Welche Wortart hat „verstecken“?","Verb",["Nomen","Adjektiv"],"„Verstecken“ bezeichnet eine Handlung."],
+            ["Welches Wort ist das Nomen? „Unser Nachbar repariert das Fahrrad.“","Nachbar",["repariert","Unser"],"„Nachbar“ bezeichnet eine Person."],
+            ["Welches Wort ist das Verb? „Am Morgen glitzert der See.“","glitzert",["Morgen","See"],"„Glitzert“ beschreibt, was der See tut."],
+            ["Welches Wort ist das Adjektiv? „Die Aufgabe war schwierig.“","schwierig",["Aufgabe","war"],"„Schwierig“ beschreibt die Aufgabe."],
+            ["Welche Wortart hat „Licht“? „Das Licht blendet mich.“","Nomen",["Verb","Adjektiv"],"„Licht“ bezeichnet etwas und ist ein Nomen."],
+            ["Welche Wortart hat „freundlich“? „Der Verkäufer grüßt freundlich.“","Adjektiv",["Nomen","Verb"],"„Freundlich“ beschreibt die Art des Grüßens."],
+            ["Welche Wortart hat „zittert“? „Das Blatt zittert im Wind.“","Verb",["Nomen","Adjektiv"],"„Zittert“ beschreibt eine Bewegung."],
+            ["Welches Wort ist ein Adjektiv? „Der flinke Hase springt über den Zaun.“","flinke",["Hase","springt"],"„Flinke“ beschreibt den Hasen."],
+            ["Was ist „Schwimmen“ im Satz: „Schwimmen macht Spaß.“?","Nomen",["Verb","Adjektiv"],"Hier steht „Schwimmen“ mit großem Anfangsbuchstaben als Nomen im Satz."],
+            ["Welche Wortart hat „schneller“? „Der Zug ist schneller.“","Adjektiv",["Nomen","Verb"],"„Schneller“ ist eine gesteigerte Eigenschaft und damit ein Adjektiv."]
+          ],
+          E:[
+            ["Welche Wortart hat „Laufen“? „Laufen hält fit.“","Nomen",["Verb","Adjektiv"],"„Laufen“ steht hier als Nomen: Es wird großgeschrieben und bezeichnet eine Tätigkeit."],
+            ["Welche Wortart hat „laufen“? „Wir laufen zum Sportplatz.“","Verb",["Nomen","Adjektiv"],"„Laufen“ beschreibt hier, was wir tun. Es ist ein Verb."],
+            ["Welche Wortart hat „aufmerksam“?","Adjektiv",["Nomen","Verb"],"„Aufmerksam“ beschreibt eine Eigenschaft."],
+            ["Welche Wortart hat „Geheimnis“ im Satz? „Das Geheimnis bleibt verborgen.“","Nomen",["Verb","Adjektiv"],"„Geheimnis“ bezeichnet etwas und ist ein Nomen."],
+            ["Bestimme das Verb: „Obwohl es regnete, spielten die Kinder weiter.“","spielten",["Kinder","weiter"],"„Spielten“ ist die Handlung im Hauptsatz."],
+            ["Bestimme das Adjektiv: „Der ungewöhnlich helle Stern leuchtete.“","helle",["Stern","leuchtete"],"„Helle“ beschreibt den Stern."],
+            ["Welche Wortart hat „schnell“? „Der schnelle Läufer gewinnt.“","Adjektiv",["Nomen","Verb"],"„Schnelle“ beschreibt den Läufer und ist ein Adjektiv."],
+            ["Welche Wortart hat „Reise“? „Die Reise beginnt morgen.“","Nomen",["Verb","Adjektiv"],"„Reise“ bezeichnet ein Ereignis und ist ein Nomen."],
+            ["Welche Wortart hat „erforschen“?","Verb",["Nomen","Adjektiv"],"„Erforschen“ beschreibt eine Tätigkeit."],
+            ["Welche Wortart hat „dunkel“? „Der Himmel wird dunkel.“","Adjektiv",["Nomen","Verb"],"„Dunkel“ beschreibt den Zustand des Himmels."],
+            ["Welches Wort ist das Nomen? „Nach dem Sturm sammelten wir Äste.“","Sturm",["sammelten","wir"],"„Sturm“ bezeichnet ein Naturereignis."],
+            ["Welches Wort ist das Verb? „Die mutige Forscherin untersucht den Stein.“","untersucht",["mutige","Forscherin"],"„Untersucht“ beschreibt die Tätigkeit der Forscherin."],
+            ["Welches Wort ist das Adjektiv? „Ein zerbrechliches Glas stand auf dem Tisch.“","zerbrechliches",["Glas","stand"],"„Zerbrechliches“ beschreibt die Eigenschaft des Glases."],
+            ["Welche Wortart hat „Erleben“? „Das Erleben neuer Dinge macht Spaß.“","Nomen",["Verb","Adjektiv"],"Durch den Artikel „das“ wird „Erleben“ hier als Nomen verwendet."],
+            ["Welche Wortart hat „erlebt“? „Sie erlebt ein Abenteuer.“","Verb",["Nomen","Adjektiv"],"„Erlebt“ ist die Verbform und beschreibt, was sie tut."],
+            ["In welchem Satz ist „hell“ ein Adjektiv?","Das helle Licht blendet.",["Das Licht erhellt den Raum.","Die Helligkeit nimmt zu."],"Im ersten Satz beschreibt „helle“ das Nomen „Licht“."],
+            ["Welche Wortart hat „das“? „Das spannende Buch liegt hier.“","Artikel",["Nomen","Verb"],"„Das“ begleitet das Nomen „Buch“. Es ist ein Artikel; gesucht ist hier die Wortart des Begleiters."],
+            ["Welche Aussage ist richtig?","Nomen bezeichnen unter anderem Personen, Dinge und Gefühle.",["Verben beschreiben Eigenschaften.","Adjektive sagen, was jemand tut."],"Nomen benennen unter anderem Personen, Dinge, Orte und Gefühle."]
+          ]
+        };
+        return sets[track].map((row,index)=>makeQuestion(row[0],row[1],row[2],row[3],track,
+          index<3?"START":index<10?"ÜBEN":index<15?"ANWENDEN":"WISSENSCHECK",stage));
       }},
       {title:"Nomen und Begleiter",focus:"Artikel und grammatisches Geschlecht",build(track,stage){
         const rows=[
@@ -692,7 +744,8 @@ const topics = [
 let selectedTrack=null,playerName="",courseStarted=false;
 let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,wrongAnswers=[],stats={correct:0,total:0};
 let completed=new Set();
-const totalUnits=35,questionsPerUnit=10,totalQuestions=totalUnits*questionsPerUnit;
+const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...topic,lessons:topic.lessons.slice(0,1)}));
+const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=18,totalQuestions=totalUnits*questionsPerUnit;
 const profileScreen=document.getElementById("profile-screen");
 const startScreen=document.getElementById("start-screen");
 const quizScreen=document.getElementById("quiz-screen");
@@ -703,16 +756,18 @@ const nextButton=document.getElementById("next-button");
 function screen(name){
   profileScreen.hidden=name!=="profile";
   startScreen.hidden=name!=="start";
+  document.getElementById("lesson-screen").hidden=name!=="lesson";
   quizScreen.hidden=name!=="quiz";
   resultScreen.hidden=name!=="result";
   if(name==="start")renderPath();
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function completedCount(){return completed.size*questionsPerUnit;}
+function completedCount(){return units.filter(unit=>completed.has(unit.id)).reduce((sum,unit)=>sum+unit.questions.length,0);}
 function nextUnit(){return units.find(u=>!completed.has(u.id))||null;}
 function validateUnitQuestions(topic,lesson,questions,track){
-  if(questions.length!==questionsPerUnit){
-    throw new Error(topic.title+" / "+lesson.title+": erwartet werden 10 Fragen, gefunden "+questions.length);
+  const expected=lesson.questionCount||10;
+  if(questions.length!==expected){
+    throw new Error(topic.title+" / "+lesson.title+": erwartet werden "+expected+" Fragen, gefunden "+questions.length);
   }
   questions.forEach((question,index)=>{
     const validChoices=Array.isArray(question.choices)&&question.choices.length===3
@@ -729,7 +784,7 @@ function validateUnitQuestions(topic,lesson,questions,track){
 }
 function auditAllTracks(){
   Object.keys(TRACKS).forEach(track=>{
-    topics.forEach(topic=>{
+    courseTopics.forEach(topic=>{
       topic.lessons.forEach((lesson,index)=>{
         const questions=ensureUniquePrompts(lesson.build(track,index+1),topic.id);
         validateUnitQuestions(topic,lesson,questions,track);
@@ -739,7 +794,7 @@ function auditAllTracks(){
 }
 function buildCourse(track){
   selectedTrack=track;units=[];questions=[];
-  topics.forEach(topic=>{
+  courseTopics.forEach(topic=>{
     topic.lessons.forEach((lesson,index)=>{
       const stage=index+1;
       const unit={id:topic.id+"-"+stage,topic:topic,lesson:lesson,stage:stage,title:lesson.title,focus:lesson.focus,stageInfo:stageIndex(stage)};
@@ -757,7 +812,7 @@ function updateHeader(){
   document.getElementById("track-chip").hidden=false;
   document.getElementById("topbar-progress").innerHTML="0 / "+totalQuestions+" <span>FRAGEN</span>";
   document.getElementById("course-player-name").textContent=playerName;
-  document.getElementById("course-track-note").textContent=TRACKS[selectedTrack].name+" · Dein Kurs enthält 35 Lektionen mit je 10 Fragen.";
+  document.getElementById("course-track-note").textContent=TRACKS[selectedTrack].name+" · Dein Testkurs enthält eine vollständige Probestunde zu Nomen, Verben und Adjektiven.";
   document.getElementById("course-progress").setAttribute("aria-valuemax",String(totalQuestions));
   document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
   document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
@@ -781,14 +836,14 @@ function renderPath(){
   document.getElementById("topbar-progress").innerHTML=done+" / "+totalQuestions+" <span>FRAGEN</span>";
   document.getElementById("course-progress-title").textContent=done===totalQuestions?"Du hast den Kurs geschafft!":done?"Du bist auf deinem Weg!":"Dein Kurs beginnt hier";
   document.getElementById("course-progress-note").textContent=done===totalQuestions
-    ?"Alle 350 Fragen abgeschlossen. Du kannst jede Lektion erneut spielen."
+    ?"Die Probestunde ist abgeschlossen. Du kannst sie jederzeit wiederholen."
     :done?"Noch "+(totalQuestions-done)+" Fragen bis zum Kursabschluss."
     :"Schließe deine erste Lektion ab, um den Lernpfad Schritt für Schritt freizuschalten.";
   const path=document.getElementById("learning-path");path.replaceChildren();
-  topics.forEach(topic=>{
+  courseTopics.forEach(topic=>{
     const topicUnits=units.filter(u=>u.topic.id===topic.id);
-    const topicDone=topicUnits.filter(u=>completed.has(u.id)).length*questionsPerUnit;
-    const topicTotal=topicUnits.length*questionsPerUnit;
+    const topicDone=topicUnits.filter(u=>completed.has(u.id)).reduce((sum,u)=>sum+u.questions.length,0);
+    const topicTotal=topicUnits.reduce((sum,u)=>sum+u.questions.length,0);
     const section=document.createElement("section");section.className="topic-section";section.dataset.topic=topic.id;
     const head=document.createElement("div");head.className="topic-header";
     const icon=document.createElement("div");icon.className="topic-icon";icon.textContent=topic.icon;
@@ -810,7 +865,7 @@ function renderPath(){
       button.setAttribute("aria-label",topic.title+", "+unit.title+", "+(doneUnit?"abgeschlossen":open?"starten":"gesperrt"));
       const orb=document.createElement("span");orb.className="node-orb";orb.textContent=doneUnit?"✓":open?"▶":String(unit.stage);
       const label=document.createElement("span");label.className="node-label";label.textContent=""+unit.stage+". "+unit.title;
-      const meta=document.createElement("span");meta.className="node-meta";meta.textContent="10 Fragen";
+      const meta=document.createElement("span");meta.className="node-meta";meta.textContent=unit.questions.length+" Fragen";
       button.append(orb,label,meta);button.addEventListener("click",()=>startUnit(unit));nodes.append(button);
     });
     const description=document.createElement("p");description.className="topic-description";description.textContent=topic.description;
@@ -819,7 +874,7 @@ function renderPath(){
   document.getElementById("next-icon").textContent=next?next.topic.icon:"✓";
   document.getElementById("next-title").textContent=next?next.topic.title+" · "+next.title:"Alles geschafft!";
   document.getElementById("next-description").textContent=next?next.focus:"Der ganze Lernpfad ist abgeschlossen. Du kannst Lektionen wiederholen.";
-  document.getElementById("next-meta").textContent=next?next.stageInfo.tag+" · 10 FRAGEN":"350 / 350 FRAGEN";
+  document.getElementById("next-meta").textContent=next?next.stageInfo.tag+" · "+next.questions.length+" FRAGEN":"18 / 18 FRAGEN";
   const button=document.getElementById("next-unit-button");button.disabled=!next;
   button.innerHTML=next?'Weiterlernen <span aria-hidden="true">→</span>':'Kurs geschafft <span aria-hidden="true">✓</span>';
 }
@@ -829,7 +884,13 @@ function prepare(items,unit=null){
   document.getElementById("quiz-topic").textContent=unit?unit.topic.title.toUpperCase(): "FREIES TRAINING";
   screen("quiz");renderQuestion();
 }
-function startUnit(unit){prepare(shuffle(unit.questions),unit);}
+function startUnit(unit){
+  currentUnit=unit;
+  document.getElementById("lesson-title").textContent=unit.title;
+  document.getElementById("lesson-focus").textContent=unit.focus;
+  document.getElementById("lesson-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · 45 MINUTEN · 18 AUFGABEN";
+  screen("lesson");
+}
 function startFree(){prepare(shuffle(questions),null);}
 function renderQuestion(){
   const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100);
@@ -964,6 +1025,8 @@ nextButton.addEventListener("click",()=>{
   if(!answered)return;
   if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();
 });
+document.getElementById("lesson-back-button").addEventListener("click",()=>screen("start"));
+document.getElementById("lesson-start-button").addEventListener("click",()=>{if(currentUnit)prepare(shuffle(currentUnit.questions),currentUnit);});
 document.getElementById("back-to-menu").addEventListener("click",()=>screen("start"));
 document.getElementById("result-menu-button").addEventListener("click",()=>screen("start"));
 document.getElementById("retry-button").addEventListener("click",()=>currentUnit?startUnit(currentUnit):startFree());
