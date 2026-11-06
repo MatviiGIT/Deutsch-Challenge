@@ -913,6 +913,8 @@ function showStageIntro(stageNumber){
   const intro=document.getElementById("stage-intro");
   document.getElementById("stage-intro-kicker").textContent=
     "LERNPHASE "+(stageNumber+1)+" VON "+STAGES.length+" · FRAGEN "+stage.firstQuestion+"–"+stage.endQuestion;
+  document.getElementById("stage-intro-count").textContent=
+    String(stageNumber+1).padStart(2,"0")+" / "+String(STAGES.length).padStart(2,"0");
   document.getElementById("stage-intro-title").textContent=stage.name;
   document.getElementById("stage-intro-description").textContent=stage.hint;
   document.getElementById("stage-intro-tip").textContent=stage.tip;

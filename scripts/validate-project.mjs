@@ -22,7 +22,7 @@ const requiredIds = [
   "profile-screen", "start-screen", "path-screen",
   "lesson-screen", "quiz-screen", "result-screen",
   "lesson-start-button", "stage-intro", "stage-intro-title",
-  "stage-intro-description", "stage-intro-tip", "stage-intro-start-button",
+  "stage-intro-description", "stage-intro-tip", "stage-intro-count", "stage-intro-start-button",
   "question-panel", "answer-grid", "next-button"
 ];
 for (const id of requiredIds) {
