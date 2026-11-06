@@ -325,3 +325,124 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-off
 @media(prefers-reduced-motion:reduce){
   .topic-section{transition:none}
 }
+
+/* Player setup and G/M/E course selection */
+.profile-screen{width:min(860px,100%);margin:0 auto;padding-top:clamp(26px,5vw,56px)}
+.profile-card{
+  padding:clamp(24px,5vw,48px);border:1px solid #dcebd5;border-radius:26px;
+  background:linear-gradient(145deg,#fff 0%,#f5f9f1 100%);box-shadow:0 5px 0 #e4ecdf;
+}
+.profile-heading{position:relative;padding-right:112px}
+.profile-heading h1{margin:11px 0 9px;font:900 clamp(2rem,5vw,3.2rem)/1.05 Georgia,"Times New Roman",serif;letter-spacing:-.055em}
+.profile-heading>p{max-width:590px;margin:0;color:var(--ink-soft);font-size:.9rem;line-height:1.6}
+.profile-mascot{
+  position:absolute;right:10px;top:0;width:82px;height:76px;border:4px solid white;
+  border-radius:48% 48% 43% 43%;background:#79b94d;box-shadow:0 5px 0 #4b8d37;transform:rotate(5deg)
+}
+.profile-mascot::before,.profile-mascot::after{
+  content:"";position:absolute;top:-13px;width:23px;height:29px;border:4px solid white;
+  border-radius:80% 80% 20% 20%;background:#79b94d;z-index:-1
+}
+.profile-mascot::before{left:6px;transform:rotate(-17deg)}
+.profile-mascot::after{right:6px;transform:rotate(17deg)}
+.profile-mascot-eye{position:absolute;top:25px;width:9px;height:11px;border-radius:50%;background:#26352c}
+.profile-mascot-eye.eye-left{left:20px}.profile-mascot-eye.eye-right{right:20px}
+.profile-mascot-beak{position:absolute;top:41px;left:34px;width:12px;height:11px;background:#f3bd4f;clip-path:polygon(0 0,100% 0,50% 100%)}
+.profile-form{margin-top:30px}
+.profile-field label,.track-field-heading strong{display:block;color:var(--ink);font-size:.9rem;font-weight:1000}
+.profile-field input{
+  width:100%;min-height:54px;margin-top:10px;padding:0 15px;border:2px solid #dce7d7;
+  border-radius:13px;background:white;color:var(--ink);font:800 1rem inherit;outline:none
+}
+.profile-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(88,168,62,.13)}
+.profile-field input::placeholder{color:#a0aaa0;font-weight:600}
+.field-hint{margin:7px 0 0;color:var(--muted);font-size:.7rem;line-height:1.5}
+.track-field{margin-top:27px}
+.track-field-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.track-field-heading span{color:var(--muted);font-size:.7rem}
+.track-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:12px}
+.track-option{
+  min-height:168px;padding:16px 15px;display:flex;align-items:flex-start;flex-direction:column;
+  border:2px solid #e1e8de;border-bottom-width:4px;border-radius:16px;background:white;
+  color:var(--ink);text-align:left;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .15s ease
+}
+.track-option:hover{border-color:#a9ca9c;transform:translateY(-2px)}
+.track-option.is-selected{border-color:var(--green);background:#f0f8ec;box-shadow:0 3px 0 #d8e9cf}
+.track-option:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.track-letter{
+  width:37px;height:37px;display:grid;place-items:center;border-radius:11px;
+  background:#edf3e9;color:var(--green-dark);font:900 1.25rem Georgia,serif
+}
+.track-option[data-track="M"] .track-letter{background:#fff2d4;color:#946c16}
+.track-option[data-track="E"] .track-letter{background:#eee9f8;color:#70599c}
+.track-option.is-selected .track-letter{background:var(--green);color:white}
+.track-name{margin-top:13px;font-size:.78rem;font-weight:1000;line-height:1.3}
+.track-description{margin-top:6px;color:var(--muted);font-size:.68rem;line-height:1.45}
+.begin-course-button{width:100%;min-height:53px;margin-top:23px;border-radius:14px;font-size:.9rem}
+.profile-note{margin:18px 0 0;color:var(--muted);font-size:.68rem;line-height:1.55;text-align:center}
+.profile-note span{margin-right:5px;color:var(--orange)}
+.topbar-player,.track-chip{
+  max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:white;
+  color:var(--ink-soft);font-size:.7rem;font-weight:1000
+}
+.topbar-player{color:var(--green-dark)}
+.track-chip{background:#f0f6ed;color:var(--green-dark);letter-spacing:.04em}
+.course-progress-card>p{line-height:1.5}
+.welcome-copy h1 #course-player-name{color:var(--green-dark);overflow-wrap:anywhere}
+.welcome-copy>p#course-track-note{max-width:560px}
+.path-total{white-space:nowrap}
+.topic-nodes{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:start;
+  justify-items:center;gap:3px;min-height:126px;padding:16px 2px 5px
+}
+.topic-nodes::before{left:8%;right:8%;top:46px}
+.lesson-node{
+  width:100%;min-width:0;min-height:102px;padding:0 1px;
+  display:flex;align-items:center;flex-direction:column;gap:5px
+}
+.lesson-node.node-position-1,.lesson-node.node-position-2{padding-top:0}
+.node-orb{width:52px;height:52px;flex:0 0 52px;font-size:1.08rem}
+.node-label{width:100%;max-width:100%;font-size:.66rem;line-height:1.2;overflow-wrap:anywhere}
+.node-meta{font-size:.57rem;white-space:nowrap}
+.lesson-node.is-locked .node-label{color:#89948a}
+@media(max-width:850px){
+  .profile-screen{width:min(100%,720px)}
+  .topic-nodes{min-height:124px}
+}
+@media(max-width:580px){
+  .profile-screen{padding-top:20px}
+  .profile-card{padding:23px 17px;border-radius:21px}
+  .profile-heading{padding-right:78px}
+  .profile-heading h1{font-size:2.05rem}
+  .profile-heading>p{font-size:.8rem}
+  .profile-mascot{right:0;width:66px;height:62px;transform:scale(.85) rotate(5deg);transform-origin:top right}
+  .profile-mascot-eye{top:20px}
+  .profile-mascot-eye.eye-left{left:15px}.profile-mascot-eye.eye-right{right:15px}
+  .profile-mascot-beak{top:34px;left:27px}
+  .profile-form{margin-top:23px}
+  .track-options{grid-template-columns:1fr;gap:8px}
+  .track-option{min-height:0;padding:11px 12px;display:grid;grid-template-columns:42px 1fr;column-gap:11px;align-items:center}
+  .track-letter{grid-row:span 2}
+  .track-name{margin:0;font-size:.76rem}
+  .track-description{margin:3px 0 0}
+  .track-field-heading{display:block}
+  .track-field-heading span{display:block;margin-top:4px}
+  .topbar-right{gap:6px}
+  .topbar-player,.track-chip{max-width:76px;padding:7px 8px;font-size:.6rem}
+  .topbar-progress{padding:7px 8px;font-size:.62rem}
+  .topic-nodes{min-height:110px;padding:12px 0 2px;gap:1px}
+  .topic-nodes::before{left:8%;right:8%;top:37px;border-top-width:2px}
+  .lesson-node{min-height:91px;gap:4px}
+  .node-orb{width:43px;height:43px;flex-basis:43px;border-width:3px;font-size:.95rem}
+  .node-label{font-size:.56rem;line-height:1.15;max-height:39px;overflow:hidden}
+  .node-meta{font-size:.51rem}
+  .topic-section{padding:14px 10px 11px}
+}
+@media(max-width:365px){
+  .topbar-player{max-width:62px}
+  .node-orb{width:38px;height:38px;flex-basis:38px}
+  .topic-nodes::before{top:34px}
+  .node-label{font-size:.52rem}
+  .node-meta{font-size:.47rem}
+}
