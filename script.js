@@ -812,11 +812,9 @@ function updateHeader(){
   document.getElementById("track-chip").hidden=false;
   document.getElementById("topbar-progress").innerHTML="0 / "+totalQuestions+" <span>FRAGEN</span>";
   document.getElementById("course-player-name").textContent=playerName;
-  document.getElementById("course-track-note").textContent=TRACKS[selectedTrack].name+" · Dein Testkurs enthält eine vollständige Probestunde zu Nomen, Verben und Adjektiven.";
   document.getElementById("course-progress").setAttribute("aria-valuemax",String(totalQuestions));
   document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
   document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
-  document.getElementById("course-progress-note").textContent="Schließe deine erste Lektion ab, um den Lernpfad Schritt für Schritt freizuschalten.";
   document.getElementById("course-chip").innerHTML='<span class="chip-dot"></span> DEUTSCH · KLASSE 5';
 }
 function beginCourse(){
@@ -835,10 +833,6 @@ function renderPath(){
   document.getElementById("course-progress-count").textContent=done+" / "+totalQuestions;
   document.getElementById("topbar-progress").innerHTML=done+" / "+totalQuestions+" <span>FRAGEN</span>";
   document.getElementById("course-progress-title").textContent=done===totalQuestions?"Du hast den Kurs geschafft!":done?"Du bist auf deinem Weg!":"Dein Kurs beginnt hier";
-  document.getElementById("course-progress-note").textContent=done===totalQuestions
-    ?"Die Probestunde ist abgeschlossen. Du kannst sie jederzeit wiederholen."
-    :done?"Noch "+(totalQuestions-done)+" Fragen bis zum Kursabschluss."
-    :"Schließe deine erste Lektion ab, um den Lernpfad Schritt für Schritt freizuschalten.";
   const path=document.getElementById("learning-path");path.replaceChildren();
   courseTopics.forEach(topic=>{
     const topicUnits=units.filter(u=>u.topic.id===topic.id);
@@ -873,7 +867,6 @@ function renderPath(){
   });
   document.getElementById("next-icon").textContent=next?next.topic.icon:"✓";
   document.getElementById("next-title").textContent=next?next.topic.title+" · "+next.title:"Alles geschafft!";
-  document.getElementById("next-description").textContent=next?next.focus:"Der ganze Lernpfad ist abgeschlossen. Du kannst Lektionen wiederholen.";
   document.getElementById("next-meta").textContent=next?next.stageInfo.tag+" · "+next.questions.length+" FRAGEN":"18 / 18 FRAGEN";
   const button=document.getElementById("next-unit-button");button.disabled=!next;
   button.innerHTML=next?'Weiterlernen <span aria-hidden="true">→</span>':'Kurs geschafft <span aria-hidden="true">✓</span>';
