@@ -440,10 +440,10 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 ### Prioritäten für die nächste Entwicklungsrunde
 
-1. Die neue automatische Projektprüfung auf dem Branch `content-audit` ausführen und eventuelle Fehlermeldungen beheben.
-2. Home, Lernpfad und Lektion auf Desktop, Tablet und Smartphone manuell prüfen; Lesbarkeit, Abstände, Navigation und Tastaturbedienung kontrollieren.
-3. Die Pilotlektion vollständig durchspielen und Fehler sowie unklare Formulierungen protokollieren.
-4. Alle 54 Aufgaben (18 je G/M/E-Niveau) sprachlich und fachlich prüfen: eindeutige richtige Antwort, verständliche Erklärung und angemessene Schwierigkeit.
+1. Den neuen Ablauf mit den fünf Phasen im Browser vollständig testen: Einführungen, Quaki-Tipps, Phasenzähler und Übergänge nach den Fragen 3, 7, 12 und 16 kontrollieren.
+2. Alle 54 Aufgaben (18 je G/M/E-Niveau) systematisch sprachlich und fachlich prüfen: eindeutige richtige Antwort, plausible Ablenkungsantworten, verständliche Erklärung und altersgerechte Formulierung.
+3. Die drei Niveaus miteinander vergleichen: G soll grundlegendes Erkennen, M das Anwenden in Sätzen und E das genauere Untersuchen im Kontext verlangen. Die Unterschiede dürfen nicht nur in schwierigeren Antwortoptionen bestehen.
+4. Home, Lernpfad und Lektion auf Desktop, Tablet und Smartphone manuell prüfen; Lesbarkeit, Abstände, Navigation und Tastaturbedienung kontrollieren.
 5. Die Aufgaben mit einer Deutschlehrkraft abstimmen und danach einen kleinen Praxistest vorbereiten.
 6. Rückmeldungen auswerten und die Pilotlektion gezielt verbessern, bevor neue Themen ergänzt werden.
 
@@ -531,10 +531,14 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 2. **Bestehende Funktionen erhalten.** Bei Änderungen an `index.html` müssen die IDs erhalten bleiben, auf die `script.js` zugreift, sofern die JavaScript-Logik nicht gleichzeitig angepasst wird.
 3. **Keine blinden Überschreibungen.** Beim Aktualisieren einer GitHub-Datei die aktuelle Datei und ihren aktuellen SHA verwenden.
 4. **Änderungen prüfen.** JavaScript-Syntax, Anzahl der Fragen, Level-Verteilung, Antwortindizes, HTML-IDs und Versionsparameter kontrollieren.
-5. **Keine Veröffentlichung behaupten, bevor sie geprüft wurde.** Erst nach einem erfolgreichen GitHub-Pages-Workflow und einem tatsächlichen Seitenaufruf von einer veröffentlichten Version sprechen.
-6. **Dokumentation aktuell halten.** Nach jeder größeren Änderung den Projektstand, den Teststatus, die Roadmap und den Änderungsverlauf in diesem README aktualisieren.
-7. **Datenschutz nicht nachträglich vernachlässigen.** Keine unnötigen persönlichen Daten von Kindern sammeln. Ein Backend oder eine Statistikfunktion nicht ohne klaren Zweck und Datenschutzkonzept hinzufügen.
-8. **Schulischen Nutzen priorisieren.** Neue Funktionen müssen das Üben, Verstehen oder die Zugänglichkeit verbessern. Komplexität allein ist kein Projektziel.
+5. **Eine zusammenhängende Änderung = ein Commit.** Mehrere Änderungen, die zu demselben Entwicklungsschritt gehören, zuerst gemeinsam vorbereiten, prüfen und in einem Commit speichern. Keine schnellen Folge-Commits nur für kleine Korrekturen, solange sich die Änderungen noch sinnvoll bündeln lassen.
+6. **Keine neue Veröffentlichung während eines laufenden Deployments starten.** Nach einem Push zuerst den zugehörigen Workflow für die Projektprüfung und den GitHub-Pages-Workflow abwarten. Erst wenn beide abgeschlossen sind, den nächsten Entwicklungsschritt committen und pushen. So werden unnötige abgebrochene oder doppelte Veröffentlichungen vermieden.
+7. **Prüfung und Veröffentlichung getrennt kontrollieren.** Die Projektprüfung („Validate Quakoo“) und GitHub Pages sind zwei getrennte Läufe. Beim Pages-Lauf gehören Build und Deploy zu unterschiedlichen Jobs. Ein erfolgreicher Build allein bedeutet noch nicht, dass die Website veröffentlicht wurde.
+8. **Bei Verzögerungen zuerst den Lauf untersuchen.** Wenn Pages länger als üblich läuft, den konkreten Workflow-Lauf, den Build-Job und den Deploy-Job prüfen. Nicht vorschnell einen weiteren Commit pushen, um den Prozess vermeintlich neu zu starten. Wenn ein Lauf durch einen neueren Push abgebrochen wurde, den neuesten Lauf vollständig abwarten und nur dessen Ergebnis als aktuellen Veröffentlichungsstatus werten.
+9. **Keine Veröffentlichung behaupten, bevor sie geprüft wurde.** Erst nach einem erfolgreichen GitHub-Pages-Workflow und einem tatsächlichen Seitenaufruf von einer veröffentlichten Version sprechen.
+10. **Dokumentation aktuell halten.** Nach jeder größeren Änderung den Projektstand, den Teststatus, die Roadmap und den Änderungsverlauf in diesem README aktualisieren.
+11. **Datenschutz nicht nachträglich vernachlässigen.** Keine unnötigen persönlichen Daten von Kindern sammeln. Ein Backend oder eine Statistikfunktion nicht ohne klaren Zweck und Datenschutzkonzept hinzufügen.
+12. **Schulischen Nutzen priorisieren.** Neue Funktionen müssen das Üben, Verstehen oder die Zugänglichkeit verbessern. Komplexität allein ist kein Projektziel.
 
 ### Checkliste für eine neue Entwicklungssitzung
 
@@ -542,11 +546,13 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 - [ ] Aktuellen Branch und Commit feststellen; für die laufende Pilotentwicklung Dateien aus `content-audit` abrufen.
 - [ ] Bei Änderungen der Pilotlektion die Aufgabenanzahl, Level-Unterschiede, feste Reihenfolge und Lernziele kontrollieren.
 - [ ] Ziel der nächsten Änderung festlegen.
-- [ ] Änderungen möglichst in kleinen, überprüfbaren Schritten vornehmen.
-- [ ] Funktion und Darstellung testen.
+- [ ] Zusammenhängende Änderungen bündeln und in einem Commit speichern.
+- [ ] JavaScript-Syntax und Projektstruktur prüfen.
+- [ ] Nach dem Push zuerst `Validate Quakoo` und den Pages-Workflow vollständig abwarten.
+- [ ] Während eines laufenden Pages-Deployments keinen weiteren Commit pushen.
+- [ ] Bei Verzögerungen zuerst den Status und die Jobs des bestehenden Laufs untersuchen.
+- [ ] Erst nach erfolgreicher Veröffentlichung die Website öffnen und die Änderung kontrollieren.
 - [ ] README und Änderungsverlauf aktualisieren.
-- [ ] GitHub-Actions-Ergebnis auf `content-audit` prüfen.
-- [ ] Veröffentlichte Website öffnen und die Änderung kontrollieren.
 - [ ] `main` nicht ohne ausdrückliche Entscheidung aktualisieren oder einen Pull Request mergen.
 
 ## 17. Änderungsverlauf
@@ -576,6 +582,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 06.11.2026 | Kontrast der Frosch-Augen durch weiße Augenflächen und grüne Konturen verbessert; die Überschrift „Der Lernpfad“ aus der Kursübersicht entfernt, damit die Lernpfad-Spalten bündig beginnen. Die Schriftgrößen blieben unverändert; der CSS-Versionsparameter wurde auf `v=17` erhöht. GitHub-Actions-Prüfung und GitHub-Pages-Deployment für Commit `a0a920a` erfolgreich. Die visuelle Kontrolle auf echten Geräten steht weiterhin aus. |
 | 06.11.2026 | Die Lernplattform auf **Quakoo** umbenannt; **Quaki** bleibt der Name des Frosch-Maskottchens. Home und Lernpfad in getrennte Ansichten aufgeteilt und eine Navigation ergänzt. Home zeigt Lernniveau, Fortschritt und nächsten Lernschritt. Der Lernpfad besitzt eine eigene Themenübersicht mit Legende. Rückwege aus Lektion, Quiz und Ergebnis führen in den Lernpfad. Bestehende Aufgaben, Antworten und Auswertungen bleiben erhalten. CSS- und JavaScript-Versionsparameter auf `v=18` und `v=19` erhöht. Automatische und visuelle Tests für diese Änderung stehen noch aus. |
 | 06.11.2026 | Fünf Lernphasen in der Pilotlektion erweitert: Vor „Entdecken“, „Erkennen“, „Anwenden“, „Kombinieren“ und „Meistern“ erscheint nun eine eigene Einführung mit Lernziel und Quaki-Tipp. Der Quiz-Fortschritt zeigt weiterhin die aktuelle Phase. Der Phasenzähler aktualisiert seine Nummer ebenfalls dynamisch. Ein mehrdeutiger E-Aufgabenhinweis zur Großschreibung von „Laufen“ wurde präzisiert („Das Laufen“). CSS- und JavaScript-Versionsparameter auf `v=20` und `v=21` erhöht. |
+| 10.11.2026 | README um verbindliche Git- und Deployment-Regeln ergänzt: zusammenhängende Änderungen bündeln, nur einen Commit pro Entwicklungsschritt pushen, Projektprüfung und Pages-Deployment vollständig abwarten und bei Verzögerungen zuerst den bestehenden Lauf untersuchen. Die nächste Entwicklungspriorität ist der vollständige Funktionstest der fünf Phasen und danach die fachliche Prüfung aller 54 Pilotfragen. |
 
 ---
 
