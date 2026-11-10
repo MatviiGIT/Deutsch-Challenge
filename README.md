@@ -498,7 +498,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [ ] Vollständiger automatisierter Browser-Test (derzeit nicht eingerichtet)
 - [ ] Visuelle Prüfung der veröffentlichten Version auf Desktop, Tablet und Smartphone
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
-- [ ] Visuelle Kontrolle der neuen Header-Hierarchie, vollbreiten Namensgenerator-Schaltfläche und Quaki-Mundform auf Desktop und Smartphone
+- [ ] Visuelle Kontrolle der neuen Header-Hierarchie (Logo ganz links, Abmelden direkt rechts daneben), vollbreiten Namensgenerator-Schaltfläche und kleineren Quaki-Mundform auf Desktop und Smartphone
 - [ ] Manueller Test von Namensgenerator, Logo-Navigation und Abmelden auf Desktop und Smartphone
 - [ ] Vollständiger manueller Funktionstest der Pilotlektion
 - [ ] Test über das Schul-WLAN
@@ -589,7 +589,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 06.11.2026 | Fünf Lernphasen in der Pilotlektion erweitert: Vor „Entdecken“, „Erkennen“, „Anwenden“, „Kombinieren“ und „Meistern“ erscheint nun eine eigene Einführung mit Lernziel und Quaki-Tipp. Der Quiz-Fortschritt zeigt weiterhin die aktuelle Phase. Der Phasenzähler aktualisiert seine Nummer ebenfalls dynamisch. Ein mehrdeutiger E-Aufgabenhinweis zur Großschreibung von „Laufen“ wurde präzisiert („Das Laufen“). CSS- und JavaScript-Versionsparameter auf `v=20` und `v=21` erhöht. |
 | 10.11.2026 | README um verbindliche Git- und Deployment-Regeln ergänzt: zusammenhängende Änderungen bündeln, nur einen Commit pro Entwicklungsschritt pushen, Projektprüfung und Pages-Deployment vollständig abwarten und bei Verzögerungen zuerst den bestehenden Lauf untersuchen. |
 | 10.11.2026 | Profilbedienung verbessert: zufällige Spielnamen können optional erzeugt und anschließend bearbeitet werden; die Abmeldefunktion leert die aktuelle Sitzung; das Quakoo-Logo führt immer zur Home-Ansicht. CSS-/JavaScript-Versionen auf v=21/v=23 erhöht. Automatische Projektprüfung ergänzt; manuelle Browserprüfung steht noch aus. |
-| 10.11.2026 | Rückmeldung zum Design umgesetzt: Abmelden ist jetzt eine kompakte Symbol-Schaltfläche links vom hervorgehobenen Quakoo-Logo. Der Namensgenerator befindet sich unter dem Eingabefeld und nutzt eine vollbreite Schaltfläche im Stil der sekundären Quakoo-Aktionen. Quakis Mund wurde als gefüllte, weiche Smile-Form statt als dünne Linie gestaltet; CSS-Version auf v=22 erhöht. |
+| 10.11.2026 | Rückmeldung zum Design umgesetzt: Abmelden ist jetzt eine kompakte Symbol-Schaltfläche direkt rechts vom Quakoo-Logo; das Logo steht ganz links und bleibt das erste Element der Kopfzeile. Der Namensgenerator befindet sich unter dem Eingabefeld und nutzt eine vollbreite Schaltfläche im Stil der sekundären Quakoo-Aktionen. Quakis Mund wurde verkleinert und als kurze, weich gerundete Smile-Form gestaltet; CSS-Version auf v=23 erhöht. |
 
 ---
 
