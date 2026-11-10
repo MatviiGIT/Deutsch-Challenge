@@ -54,7 +54,7 @@ Ein veröffentlichter Link allein ist noch kein Nachweis für den Lernerfolg. Da
 
 **Weitere mögliche Nutzer:** Deutschlehrkräfte, die das Quiz als kurze Wiederholung oder zusätzliche Übung einsetzen möchten.
 
-Die Anwendung benötigt kein Benutzerkonto, keine Installation und keine Registrierung. Vor dem Kursstart wird nur ein frei gewählter oder zufällig generierter Spielname (am besten ein Spitzname) eingegeben und ein Lernniveau ausgewählt. Diese Angaben bleiben nur im Arbeitsspeicher der aktuellen Sitzung. Über „Abmelden“ wird die Sitzung beendet und der aktuelle Fortschritt aus dem Arbeitsspeicher gelöscht. Ein Klick auf das Quakoo-Logo führt zurück zur Home-Seite. Die Website kann über einen normalen Browser auf einem Computer, Tablet oder Smartphone geöffnet werden.
+Die Anwendung benötigt kein Benutzerkonto, keine Installation und keine Registrierung. Vor dem Kursstart wird nur ein frei gewählter oder zufällig generierter Spielname (am besten ein Spitzname) eingegeben und ein Lernniveau ausgewählt. Diese Angaben bleiben nur im Arbeitsspeicher der aktuellen Sitzung. Über die kompakte Abmelden-Schaltfläche links vom Quakoo-Logo wird die Sitzung beendet und der aktuelle Fortschritt aus dem Arbeitsspeicher gelöscht. Das Logo bleibt das wichtigste Element links in der Kopfzeile und führt zurück zur Home-Seite. Die Website kann über einen normalen Browser auf einem Computer, Tablet oder Smartphone geöffnet werden.
 
 Die Aufgaben sind ein erster Entwurf für die 5. Klasse. Vor einem Einsatz im Unterricht sollten die Formulierungen, Themen und Schwierigkeitsgrade mit einer Lehrkraft abgeglichen werden.
 
@@ -440,7 +440,7 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 ### Prioritäten für die nächste Entwicklungsrunde
 
-1. Den neuen Profilablauf im Browser prüfen: eigene Namen eingeben, zufällige Namen erstellen und bearbeiten, über das Logo zu Home zurückkehren und über „Abmelden“ die Sitzung zurücksetzen.
+1. Den Profilablauf im Browser prüfen: eigene Namen eingeben, den vollbreiten Zufallsnamen-Button verwenden und Namen bearbeiten, über das Logo zu Home zurückkehren und über das kompakte Abmelden-Symbol links vom Logo die Sitzung zurücksetzen.
 2. Den Ablauf mit den fünf Phasen vollständig testen: Einführungen, Quaki-Tipps, Phasenzähler und Übergänge nach den Fragen 3, 7, 12 und 16 kontrollieren.
 3. Alle 54 Aufgaben (18 je G/M/E-Niveau) systematisch sprachlich und fachlich prüfen: eindeutige richtige Antwort, plausible Ablenkungsantworten, verständliche Erklärung und altersgerechte Formulierung.
 4. Die drei Niveaus miteinander vergleichen: G soll grundlegendes Erkennen, M das Anwenden in Sätzen und E das genauere Untersuchen im Kontext verlangen. Die Unterschiede dürfen nicht nur in schwierigeren Antwortoptionen bestehen.
@@ -498,6 +498,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [ ] Vollständiger automatisierter Browser-Test (derzeit nicht eingerichtet)
 - [ ] Visuelle Prüfung der veröffentlichten Version auf Desktop, Tablet und Smartphone
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
+- [ ] Visuelle Kontrolle der neuen Header-Hierarchie, vollbreiten Namensgenerator-Schaltfläche und Quaki-Mundform auf Desktop und Smartphone
 - [ ] Manueller Test von Namensgenerator, Logo-Navigation und Abmelden auf Desktop und Smartphone
 - [ ] Vollständiger manueller Funktionstest der Pilotlektion
 - [ ] Test über das Schul-WLAN
@@ -587,7 +588,8 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 06.11.2026 | Die Lernplattform auf **Quakoo** umbenannt; **Quaki** bleibt der Name des Frosch-Maskottchens. Home und Lernpfad in getrennte Ansichten aufgeteilt und eine Navigation ergänzt. Home zeigt Lernniveau, Fortschritt und nächsten Lernschritt. Der Lernpfad besitzt eine eigene Themenübersicht mit Legende. Rückwege aus Lektion, Quiz und Ergebnis führen in den Lernpfad. Bestehende Aufgaben, Antworten und Auswertungen bleiben erhalten. CSS- und JavaScript-Versionsparameter auf `v=18` und `v=19` erhöht. Automatische und visuelle Tests für diese Änderung stehen noch aus. |
 | 06.11.2026 | Fünf Lernphasen in der Pilotlektion erweitert: Vor „Entdecken“, „Erkennen“, „Anwenden“, „Kombinieren“ und „Meistern“ erscheint nun eine eigene Einführung mit Lernziel und Quaki-Tipp. Der Quiz-Fortschritt zeigt weiterhin die aktuelle Phase. Der Phasenzähler aktualisiert seine Nummer ebenfalls dynamisch. Ein mehrdeutiger E-Aufgabenhinweis zur Großschreibung von „Laufen“ wurde präzisiert („Das Laufen“). CSS- und JavaScript-Versionsparameter auf `v=20` und `v=21` erhöht. |
 | 10.11.2026 | README um verbindliche Git- und Deployment-Regeln ergänzt: zusammenhängende Änderungen bündeln, nur einen Commit pro Entwicklungsschritt pushen, Projektprüfung und Pages-Deployment vollständig abwarten und bei Verzögerungen zuerst den bestehenden Lauf untersuchen. |
-| 10.11.2026 | Profilbedienung verbessert: zufällige Spielnamen können optional erzeugt und anschließend bearbeitet werden; die Abmeldefunktion leert die aktuelle Sitzung; das Quakoo-Logo führt immer zur Home-Ansicht. Quakis Mund als klarer, offener Smile-Bogen überarbeitet. CSS-/JavaScript-Versionen auf v=21/v=23 erhöht. Automatische Projektprüfung ergänzt; manuelle Browserprüfung steht noch aus. |
+| 10.11.2026 | Profilbedienung verbessert: zufällige Spielnamen können optional erzeugt und anschließend bearbeitet werden; die Abmeldefunktion leert die aktuelle Sitzung; das Quakoo-Logo führt immer zur Home-Ansicht. CSS-/JavaScript-Versionen auf v=21/v=23 erhöht. Automatische Projektprüfung ergänzt; manuelle Browserprüfung steht noch aus. |
+| 10.11.2026 | Rückmeldung zum Design umgesetzt: Abmelden ist jetzt eine kompakte Symbol-Schaltfläche links vom hervorgehobenen Quakoo-Logo. Der Namensgenerator befindet sich unter dem Eingabefeld und nutzt eine vollbreite Schaltfläche im Stil der sekundären Quakoo-Aktionen. Quakis Mund wurde als gefüllte, weiche Smile-Form statt als dünne Linie gestaltet; CSS-Version auf v=22 erhöht. |
 
 ---
 

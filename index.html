@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Quakoo – Deutsch lernen mit Quaki für die 5. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=21">
+  <link rel="stylesheet" href="style.css?v=22">
   <script src="script.js?v=23" defer></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
       <div class="topbar-left">
         <button class="session-exit-button" id="logout-button" type="button" hidden
                 aria-label="Abmelden und zur Namensauswahl zurückkehren" title="Abmelden">
-          <span aria-hidden="true">↩</span><span class="session-exit-label">Abmelden</span>
+          <span aria-hidden="true">↪</span>
         </button>
         <a class="brand" href="#start-screen" id="brand-home" aria-label="Zur Home-Seite">
           <span class="brand-mark" aria-hidden="true">Q</span>
@@ -65,14 +65,12 @@
           </div>
           <form id="profile-form" class="profile-form">
             <div class="profile-field">
-              <div class="profile-name-heading">
-                <label for="player-name">Dein Spielname</label>
-                <button class="generate-name-button" id="generate-name-button" type="button">
-                  <span aria-hidden="true">↻</span> Zufälligen Namen
-                </button>
-              </div>
+              <label for="player-name">Dein Spielname</label>
               <input id="player-name" name="player-name" type="text" maxlength="18" autocomplete="nickname" placeholder="Zum Beispiel: Wortprofi" required>
-              <p class="field-hint">Gib einen Namen ein oder lass dir einen zufälligen Spielnamen erstellen.</p>
+              <button class="secondary-button generate-name-button" id="generate-name-button" type="button">
+                <span aria-hidden="true">↻</span> Zufälligen Spielnamen erstellen
+              </button>
+              <p class="field-hint">Du kannst den vorgeschlagenen Namen jederzeit ändern.</p>
               <p class="name-generator-status" id="name-generator-status" role="status" aria-live="polite"></p>
             </div>
             <div class="track-field">
