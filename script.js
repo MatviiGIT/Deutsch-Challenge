@@ -752,7 +752,7 @@ const topics = [
   }
 ];
 let selectedTrack=null,playerName="",courseStarted=false;
-let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,wrongAnswers=[],stats={correct:0,total:0};
+let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,selectedAnswer=null,wrongAnswers=[],stats={correct:0,total:0};
 let activeQuizStage=-1,pendingQuizStage=-1;
 let completed=new Set();
 const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...topic,lessons:topic.lessons.slice(0,1)}));
@@ -851,7 +851,7 @@ function beginCourse(){
 function endSession(){
   courseStarted=false;selectedTrack=null;playerName="";
   units=[];questions=[];currentUnit=null;queue=[];currentIndex=0;
-  score=0;answered=false;wrongAnswers=[];stats={correct:0,total:0};
+  score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:0};
   activeQuizStage=-1;pendingQuizStage=-1;completed=new Set();
 
   const input=document.getElementById("player-name");
@@ -926,7 +926,7 @@ function renderPath(){
   button.innerHTML=next?'Weiterlernen <span aria-hidden="true">→</span>':'Kurs geschafft <span aria-hidden="true">✓</span>';
 }
 function prepare(items,unit=null){
-  currentUnit=unit;queue=items;currentIndex=0;score=0;answered=false;wrongAnswers=[];stats={correct:0,total:items.length};
+  currentUnit=unit;queue=items;currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:items.length};
   activeQuizStage=-1;pendingQuizStage=-1;
   document.getElementById("score-value").textContent="0 Punkte";
   document.getElementById("quiz-topic").textContent=unit?unit.topic.title.toUpperCase(): "FREIES TRAINING";
@@ -984,7 +984,7 @@ function startUnit(unit){
 function startFree(){prepare(shuffle(questions),null);}
 function renderQuestion(){
   const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100);
-  answered=false;
+  answered=false;selectedAnswer=null;
   const stageNumber=currentUnit?learningStageFor(currentIndex):-1;
   document.getElementById("question-counter").textContent=number+" / "+queue.length;
   document.getElementById("progress-level").textContent=currentUnit
@@ -1010,19 +1010,31 @@ function renderQuestion(){
   answerGrid.replaceChildren();
   q.choices.forEach((choice,index)=>{
     const button=document.createElement("button");button.type="button";button.className="answer-option";
+    button.setAttribute("aria-pressed","false");
     const letter=document.createElement("span");letter.className="answer-letter";letter.textContent=letters[index];
     const text=document.createElement("span");text.textContent=choice;button.append(letter,text);
-    button.addEventListener("click",()=>selectAnswer(index));answerGrid.append(button);
+    button.addEventListener("click",()=>chooseAnswer(index));answerGrid.append(button);
   });
   feedbackPanel.hidden=true;feedbackPanel.className="feedback-panel";
   document.getElementById("feedback-title").textContent="";
   document.getElementById("feedback-text").textContent="";
   nextButton.disabled=true;
-  nextButton.innerHTML=currentIndex===queue.length-1
-    ?'Ergebnis ansehen <span aria-hidden="true">→</span>':'Weiter <span aria-hidden="true">→</span>';
+  nextButton.textContent="Antwort prüfen";
+}
+function chooseAnswer(selected){
+  if(answered)return;
+  selectedAnswer=selected;
+  [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{
+    const chosen=index===selected;
+    button.classList.toggle("is-selected",chosen);
+    button.setAttribute("aria-pressed",String(chosen));
+  });
+  nextButton.disabled=false;
+  nextButton.textContent="Antwort prüfen";
 }
 function selectAnswer(selected){
-  if(answered)return;answered=true;
+  if(answered||selected===null)return;
+  answered=true;
   const q=queue[currentIndex],correct=selected===q.answer;
   [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{
     button.disabled=true;
@@ -1040,6 +1052,8 @@ function selectAnswer(selected){
   document.getElementById("feedback-text").textContent=q.explanation;
   feedbackPanel.hidden=false;document.getElementById("score-value").textContent=score+" Punkte";
   nextButton.disabled=false;
+  nextButton.innerHTML=currentIndex===queue.length-1
+    ?'Ergebnis ansehen <span aria-hidden="true">→</span>':'Weiter <span aria-hidden="true">→</span>';
 }
 function renderResults(){
   screen("result");
@@ -1145,7 +1159,11 @@ document.getElementById("path-free-practice-button").addEventListener("click",st
 document.getElementById("next-unit-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
 document.getElementById("next-level-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
 nextButton.addEventListener("click",()=>{
-  if(!answered)return;
+  if(!answered){
+    if(selectedAnswer===null)return;
+    selectAnswer(selectedAnswer);
+    return;
+  }
   if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();
 });
 document.getElementById("lesson-back-button").addEventListener("click",()=>screen("path"));

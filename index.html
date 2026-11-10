@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Quakoo – Deutsch lernen mit Quaki für die 5. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=23">
-  <script src="script.js?v=23" defer></script>
+  <link rel="stylesheet" href="style.css?v=24">
+  <script src="script.js?v=24" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -19,7 +19,14 @@
         </a>
         <button class="session-exit-button" id="logout-button" type="button" hidden
                 aria-label="Abmelden und zur Namensauswahl zurückkehren" title="Abmelden">
-          <span aria-hidden="true">↪</span>
+          <svg class="logout-mark" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
+            <path d="M15.8 5.2H8.1a2.3 2.3 0 0 0-2.3 2.3v13a2.3 2.3 0 0 0 2.3 2.3h7.7"
+                  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.2 14h11m-4-4 4 4-4 4"
+                  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.1 14h.1" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M8.2 5.2h3.1" stroke="#78ad54" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
         </button>
       </div>
       <div class="topbar-right">
@@ -267,6 +274,7 @@
         <div class="question-panel" id="question-panel">
           <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
           <h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2>
+          <p class="question-instruction">Wähle zuerst eine Antwort. Danach kannst du sie überprüfen.</p>
           <div class="answer-grid" id="answer-grid"></div>
           <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
             <div class="feedback-title" id="feedback-title"></div>
@@ -274,7 +282,7 @@
           </div>
           <div class="question-actions">
             <span class="score-live"><span aria-hidden="true">✦</span><span id="score-value">0 Punkte</span></span>
-            <button class="primary-button" id="next-button" type="button" disabled>Weiter <span aria-hidden="true">→</span></button>
+            <button class="primary-button" id="next-button" type="button" disabled>Antwort prüfen</button>
           </div>
         </div>
       </section>

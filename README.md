@@ -440,8 +440,10 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 ### Prioritäten für die nächste Entwicklungsrunde
 
-1. Den Profilablauf im Browser prüfen: eigene Namen eingeben, den vollbreiten Zufallsnamen-Button verwenden und Namen bearbeiten, über das Logo zu Home zurückkehren und über das kompakte Abmelden-Symbol links vom Logo die Sitzung zurücksetzen.
-2. Den Ablauf mit den fünf Phasen vollständig testen: Einführungen, Quaki-Tipps, Phasenzähler und Übergänge nach den Fragen 3, 7, 12 und 16 kontrollieren.
+1. Den Profilablauf im Browser prüfen: eigene Namen eingeben, den vollbreiten Zufallsnamen-Button verwenden und Namen bearbeiten, über das Logo zu Home zurückkehren und über das Quakoo-Abmeldesymbol rechts vom Logo die Sitzung zurücksetzen.
+2. Den neuen zweistufigen Antwortablauf testen: erst eine Antwort auswählen, danach „Antwort prüfen“ betätigen, Feedback kontrollieren und erst anschließend zur nächsten Frage wechseln.
+3. Prüfen, ob die Auswahl der G/M/E-Stufe ohne grüne Hervorhebung der gesamten Karte verständlich bleibt und die neutrale Markierung auf Desktop und Smartphone korrekt erscheint.
+4. Den Ablauf mit den fünf Phasen vollständig testen: Einführungen, Quaki-Tipps, Phasenzähler und Übergänge nach den Fragen 3, 7, 12 und 16 kontrollieren.
 3. Alle 54 Aufgaben (18 je G/M/E-Niveau) systematisch sprachlich und fachlich prüfen: eindeutige richtige Antwort, plausible Ablenkungsantworten, verständliche Erklärung und altersgerechte Formulierung.
 4. Die drei Niveaus miteinander vergleichen: G soll grundlegendes Erkennen, M das Anwenden in Sätzen und E das genauere Untersuchen im Kontext verlangen. Die Unterschiede dürfen nicht nur in schwierigeren Antwortoptionen bestehen.
 5. Home, Lernpfad und Lektion auf Desktop, Tablet und Smartphone manuell prüfen; Lesbarkeit, Abstände, Navigation und Tastaturbedienung kontrollieren.
@@ -500,6 +502,7 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
 - [ ] Visuelle Kontrolle der neuen Header-Hierarchie (Logo ganz links, Abmelden direkt rechts daneben), vollbreiten Namensgenerator-Schaltfläche und kleineren Quaki-Mundform auf Desktop und Smartphone
 - [ ] Manueller Test von Namensgenerator, Logo-Navigation und Abmelden auf Desktop und Smartphone
+- [ ] Manueller Funktionstest des zweistufigen Antwortablaufs und der neutralen G/M/E-Auswahl
 - [ ] Vollständiger manueller Funktionstest der Pilotlektion
 - [ ] Test über das Schul-WLAN
 - [ ] Praxistest mit einer Lerngruppe der 5. Klasse
@@ -590,6 +593,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 10.11.2026 | README um verbindliche Git- und Deployment-Regeln ergänzt: zusammenhängende Änderungen bündeln, nur einen Commit pro Entwicklungsschritt pushen, Projektprüfung und Pages-Deployment vollständig abwarten und bei Verzögerungen zuerst den bestehenden Lauf untersuchen. |
 | 10.11.2026 | Profilbedienung verbessert: zufällige Spielnamen können optional erzeugt und anschließend bearbeitet werden; die Abmeldefunktion leert die aktuelle Sitzung; das Quakoo-Logo führt immer zur Home-Ansicht. CSS-/JavaScript-Versionen auf v=21/v=23 erhöht. Automatische Projektprüfung ergänzt; manuelle Browserprüfung steht noch aus. |
 | 10.11.2026 | Rückmeldung zum Design umgesetzt: Abmelden ist jetzt eine kompakte Symbol-Schaltfläche direkt rechts vom Quakoo-Logo; das Logo steht ganz links und bleibt das erste Element der Kopfzeile. Der Namensgenerator befindet sich unter dem Eingabefeld und nutzt eine vollbreite Schaltfläche im Stil der sekundären Quakoo-Aktionen. Quakis Mund wurde verkleinert und als kurze, weich gerundete Smile-Form gestaltet; CSS-Version auf v=23 erhöht. |
+| 10.11.2026 | Im Quiz wird eine Antwort zunächst nur ausgewählt und erst nach separatem Klick auf „Antwort prüfen“ bewertet; Feedback und Navigation zur nächsten Frage sind getrennte Schritte. Ein eigenes SVG-Abmeldesymbol im Quakoo-Stil ersetzt das Standardsymbol. G/M/E-Karten behalten bei Auswahl ihre neutrale Grundgestaltung und erhalten nur eine kleine graue Auswahlmarkierung. CSS-/JavaScript-Versionen auf v=24 erhöht; automatische Projektprüfung um diese Abläufe erweitert. |
 
 ---
 

@@ -47,6 +47,17 @@ if (!/auditAllTracks\(\);/.test(js)) {
 if (!/function generatePlayerName\(/.test(js) || !html.includes('id="generate-name-button"')) {
   errors.push("Generator für zufällige Spielnamen fehlt.");
 }
+if (!js.includes("function chooseAnswer(") || !js.includes("function selectAnswer(") ||
+    !html.includes("Antwort prüfen") || !js.includes("selectAnswer(selectedAnswer)")) {
+  errors.push("Zweistufige Antwortauswahl mit separater Prüfung fehlt.");
+}
+if (!css.includes(".track-option.is-selected::after") ||
+    !css.includes(".track-option.is-selected{border-color:#e1e8de;background:white;box-shadow:none}")) {
+  errors.push("Neutrale Markierung des gewählten Lernniveaus fehlt.");
+}
+if (!html.includes("logout-mark") || !css.includes(".session-exit-button .logout-mark")) {
+  errors.push("Individuelles Quakoo-Symbol für Abmelden fehlt.");
+}
 if (!/function endSession\(/.test(js) || !html.includes('id="logout-button"')) {
   errors.push("Abmelden und Zurücksetzen der Sitzung fehlt.");
 }
