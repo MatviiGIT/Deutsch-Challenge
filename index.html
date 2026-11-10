@@ -6,16 +6,22 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Quakoo – Deutsch lernen mit Quaki für die 5. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=20">
-  <script src="script.js?v=22" defer></script>
+  <link rel="stylesheet" href="style.css?v=21">
+  <script src="script.js?v=23" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#" id="brand-home" aria-label="Zur Kursübersicht">
-        <span class="brand-mark" aria-hidden="true">Q</span>
-        <span class="brand-words">Quakoo</span>
-      </a>
+      <div class="topbar-left">
+        <button class="session-exit-button" id="logout-button" type="button" hidden
+                aria-label="Abmelden und zur Namensauswahl zurückkehren" title="Abmelden">
+          <span aria-hidden="true">↩</span><span class="session-exit-label">Abmelden</span>
+        </button>
+        <a class="brand" href="#start-screen" id="brand-home" aria-label="Zur Home-Seite">
+          <span class="brand-mark" aria-hidden="true">Q</span>
+          <span class="brand-words">Quakoo</span>
+        </a>
+      </div>
       <div class="topbar-right">
         <span class="course-chip" id="course-chip"><span class="chip-dot"></span> DEUTSCH · KLASSE 5</span>
         <span class="topbar-player" id="topbar-player" hidden></span>
@@ -59,8 +65,15 @@
           </div>
           <form id="profile-form" class="profile-form">
             <div class="profile-field">
-              <label for="player-name">Dein Spielname</label>
+              <div class="profile-name-heading">
+                <label for="player-name">Dein Spielname</label>
+                <button class="generate-name-button" id="generate-name-button" type="button">
+                  <span aria-hidden="true">↻</span> Zufälligen Namen
+                </button>
+              </div>
               <input id="player-name" name="player-name" type="text" maxlength="18" autocomplete="nickname" placeholder="Zum Beispiel: Wortprofi" required>
+              <p class="field-hint">Gib einen Namen ein oder lass dir einen zufälligen Spielnamen erstellen.</p>
+              <p class="name-generator-status" id="name-generator-status" role="status" aria-live="polite"></p>
             </div>
             <div class="track-field">
               <div class="track-field-heading">

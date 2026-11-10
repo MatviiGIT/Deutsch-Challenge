@@ -21,6 +21,7 @@ for (const id of new Set(jsIds)) {
 const requiredIds = [
   "profile-screen", "start-screen", "path-screen",
   "lesson-screen", "quiz-screen", "result-screen",
+  "logout-button", "generate-name-button", "name-generator-status",
   "lesson-start-button", "stage-intro", "stage-intro-title",
   "stage-intro-description", "stage-intro-tip", "stage-intro-count", "stage-intro-start-button",
   "question-panel", "answer-grid", "next-button"
@@ -42,6 +43,15 @@ for (const track of ["G", "M", "E"]) {
 
 if (!/auditAllTracks\(\);/.test(js)) {
   errors.push("Automatische Prüfung der Aufgaben beim Start fehlt.");
+}
+if (!/function generatePlayerName\(/.test(js) || !html.includes('id="generate-name-button"')) {
+  errors.push("Generator für zufällige Spielnamen fehlt.");
+}
+if (!/function endSession\(/.test(js) || !html.includes('id="logout-button"')) {
+  errors.push("Abmelden und Zurücksetzen der Sitzung fehlt.");
+}
+if (!/screen\(courseStarted\?"start":"profile"\)/.test(js)) {
+  errors.push("Das Quakoo-Logo führt nicht zur Home-Ansicht.");
 }
 for (const stage of ["Entdecken", "Erkennen", "Anwenden", "Kombinieren", "Meistern"]) {
   if (!js.includes('name:"' + stage + '"')) errors.push("Lernphase fehlt: " + stage);

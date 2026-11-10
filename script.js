@@ -766,6 +766,7 @@ const resultScreen=document.getElementById("result-screen");
 const answerGrid=document.getElementById("answer-grid");
 const feedbackPanel=document.getElementById("feedback-panel");
 const nextButton=document.getElementById("next-button");
+const logoutButton=document.getElementById("logout-button");
 function screen(name){
   profileScreen.hidden=name!=="profile";
   startScreen.hidden=name!=="start";
@@ -774,6 +775,7 @@ function screen(name){
   quizScreen.hidden=name!=="quiz";
   resultScreen.hidden=name!=="result";
   mainNav.hidden=!courseStarted||!["start","path","lesson"].includes(name);
+  logoutButton.hidden=!courseStarted;
   document.querySelectorAll(".nav-button").forEach(button=>{
     const active=name==="lesson"?button.dataset.screen==="path":button.dataset.screen===name;
     button.classList.toggle("is-active",active);
@@ -845,6 +847,35 @@ function beginCourse(){
   if(!playerName||!selectedTrack)return;
   buildCourse(selectedTrack);courseStarted=true;completed=new Set();
   updateHeader();screen("start");
+}
+function endSession(){
+  courseStarted=false;selectedTrack=null;playerName="";
+  units=[];questions=[];currentUnit=null;queue=[];currentIndex=0;
+  score=0;answered=false;wrongAnswers=[];stats={correct:0,total:0};
+  activeQuizStage=-1;pendingQuizStage=-1;completed=new Set();
+
+  const input=document.getElementById("player-name");
+  input.value="";
+  document.querySelectorAll(".track-option").forEach(option=>{
+    option.classList.remove("is-selected");
+    option.setAttribute("aria-pressed","false");
+  });
+  document.getElementById("begin-course-button").disabled=true;
+  document.getElementById("name-generator-status").textContent="";
+
+  document.getElementById("topbar-player").textContent="";
+  document.getElementById("topbar-player").hidden=true;
+  document.getElementById("track-chip").textContent="";
+  document.getElementById("track-chip").hidden=true;
+  document.getElementById("topbar-progress").textContent="DEIN KURS";
+  document.getElementById("home-track-value").textContent="Noch nicht gewählt";
+  document.getElementById("home-progress-stat").textContent="0 / "+totalQuestions;
+  document.getElementById("course-progress").setAttribute("aria-valuenow","0");
+  document.getElementById("course-progress-fill").style.width="0%";
+  document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
+  document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
+  document.getElementById("learning-path").replaceChildren();
+  screen("profile");
 }
 function renderPath(){
   if(!courseStarted)return;
@@ -1071,10 +1102,25 @@ function updateSetupButton(){
   const valid=playerInput.value.trim().length>0&&selectedTrack!==null;
   beginButton.disabled=!valid;
 }
+const generatedNameBases=[
+  "FlotterFuchs","KlugeEule","MutigerDachs","WacherFrosch",
+  "SchnelleMaus","RuhigerBiber","KleinerLuchs","LustigerHase",
+  "StarkerOtter","SmarteKrähe","FrecherPanda","FlinkerIgel"
+];
+function generatePlayerName(){
+  const base=generatedNameBases[Math.floor(Math.random()*generatedNameBases.length)];
+  const number=String(Math.floor(Math.random()*90)+10);
+  playerInput.value=base+"-"+number;
+  updateSetupButton();
+  document.getElementById("name-generator-status").textContent=
+    "Zufälliger Name erstellt. Du kannst ihn noch ändern.";
+}
 playerInput.addEventListener("input",()=>{
   playerInput.value=playerInput.value.slice(0,18);
+  document.getElementById("name-generator-status").textContent="";
   updateSetupButton();
 });
+document.getElementById("generate-name-button").addEventListener("click",generatePlayerName);
 trackOptions.forEach(button=>button.addEventListener("click",()=>{
   selectedTrack=button.dataset.track;
   trackOptions.forEach(option=>{
@@ -1114,7 +1160,12 @@ document.getElementById("back-to-menu").addEventListener("click",()=>screen("pat
 document.getElementById("result-menu-button").addEventListener("click",()=>screen("path"));
 document.getElementById("retry-button").addEventListener("click",()=>currentUnit?startUnit(currentUnit):startFree());
 document.getElementById("brand-home").addEventListener("click",event=>{
-  event.preventDefault();if(courseStarted)screen("start");
+  event.preventDefault();
+  screen(courseStarted?"start":"profile");
+});
+logoutButton.addEventListener("click",()=>{
+  const confirmed=window.confirm("Möchtest du dich abmelden? Dein Fortschritt in dieser Sitzung wird gelöscht.");
+  if(confirmed)endSession();
 });
 auditAllTracks();
 renderPath();
