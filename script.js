@@ -839,7 +839,6 @@ function updateHeader(){
   document.getElementById("course-progress").setAttribute("aria-valuemax",String(totalQuestions));
   document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
   document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
-  document.getElementById("course-chip").innerHTML='<span class="chip-dot"></span> DEUTSCH · KLASSE 5';
 }
 function beginCourse(){
   const input=document.getElementById("player-name");

@@ -503,6 +503,8 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [ ] Visuelle Kontrolle der neuen Header-Hierarchie (Logo ganz links, Abmelden direkt rechts daneben), vollbreiten Namensgenerator-Schaltfläche und kleineren Quaki-Mundform auf Desktop und Smartphone
 - [ ] Manueller Test von Namensgenerator, Logo-Navigation und Abmelden auf Desktop und Smartphone
 - [ ] Manueller Funktionstest des zweistufigen Antwortablaufs und der neutralen G/M/E-Auswahl
+- [ ] Prüfen, dass das Niveau im Header dieselbe weiße, neutrale Gestaltung wie die übrigen Chips hat und „Deutsch · Klasse 5“ nicht mehr erscheint
+- [ ] Hilfemenü auf Desktop und Smartphone öffnen und die aktualisierten Hinweise prüfen
 - [ ] Vollständiger manueller Funktionstest der Pilotlektion
 - [ ] Test über das Schul-WLAN
 - [ ] Praxistest mit einer Lerngruppe der 5. Klasse
@@ -594,6 +596,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | 10.11.2026 | Profilbedienung verbessert: zufällige Spielnamen können optional erzeugt und anschließend bearbeitet werden; die Abmeldefunktion leert die aktuelle Sitzung; das Quakoo-Logo führt immer zur Home-Ansicht. CSS-/JavaScript-Versionen auf v=21/v=23 erhöht. Automatische Projektprüfung ergänzt; manuelle Browserprüfung steht noch aus. |
 | 10.11.2026 | Rückmeldung zum Design umgesetzt: Abmelden ist jetzt eine kompakte Symbol-Schaltfläche direkt rechts vom Quakoo-Logo; das Logo steht ganz links und bleibt das erste Element der Kopfzeile. Der Namensgenerator befindet sich unter dem Eingabefeld und nutzt eine vollbreite Schaltfläche im Stil der sekundären Quakoo-Aktionen. Quakis Mund wurde verkleinert und als kurze, weich gerundete Smile-Form gestaltet; CSS-Version auf v=23 erhöht. |
 | 10.11.2026 | Im Quiz wird eine Antwort zunächst nur ausgewählt und erst nach separatem Klick auf „Antwort prüfen“ bewertet; Feedback und Navigation zur nächsten Frage sind getrennte Schritte. Ein eigenes SVG-Abmeldesymbol im Quakoo-Stil ersetzt das Standardsymbol. G/M/E-Karten behalten bei Auswahl ihre neutrale Grundgestaltung und erhalten nur eine kleine graue Auswahlmarkierung. CSS-/JavaScript-Versionen auf v=24 erhöht; automatische Projektprüfung um diese Abläufe erweitert. |
+| 10.11.2026 | Kopfzeile vereinfacht: Das feste Label „Deutsch · Klasse 5“ wurde entfernt. Das ausgewählte Niveau und der Spielername verwenden jetzt dieselbe neutrale weiße Chip-Gestaltung ohne grüne Hervorhebung. Allgemeine Fülltexte auf Home und Lernpfad gekürzt. Das Hilfemenü erklärt kompakt die Niveauwahl, den zweistufigen Antwortablauf, die fünf Lernphasen und die sitzungsbezogene Datenspeicherung. CSS-/JavaScript-Versionen auf v=25 erhöht. |
 
 ---
 

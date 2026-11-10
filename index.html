@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8f3">
-  <meta name="description" content="Quakoo – Deutsch lernen mit Quaki für die 5. Klasse.">
+  <meta name="description" content="Quakoo – Deutsch üben, Aufgaben lösen und den eigenen Lernfortschritt entdecken.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=24">
-  <script src="script.js?v=24" defer></script>
+  <link rel="stylesheet" href="style.css?v=25">
+  <script src="script.js?v=25" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -30,19 +30,18 @@
         </button>
       </div>
       <div class="topbar-right">
-        <span class="course-chip" id="course-chip"><span class="chip-dot"></span> DEUTSCH · KLASSE 5</span>
         <span class="topbar-player" id="topbar-player" hidden></span>
         <span class="track-chip" id="track-chip" hidden></span>
         <span class="topbar-progress" id="topbar-progress">DEIN KURS</span>
         <details class="help-menu">
           <summary aria-label="Hilfe und Regeln" title="Hilfe">?</summary>
           <div class="help-panel">
-            <h2>So funktioniert's</h2>
-            <p><strong>G</strong> – Grundlagen erkennen.</p>
-            <p><strong>M</strong> – Regeln im Satz anwenden.</p>
-            <p><strong>E</strong> – Wörter genau untersuchen.</p>
-            <p>Jede Frage hat drei Antworten. Danach erscheint eine Erklärung.</p>
-            <p>Dein Spitzname und dein Fortschritt bleiben nur in dieser Sitzung.</p>
+            <h2>Hilfe &amp; Tipps</h2>
+            <p><strong>1. Niveau wählen:</strong> G, M oder E. Dein Niveau kannst du bei einer neuen Sitzung ändern.</p>
+            <p><strong>2. Antwort auswählen:</strong> Lies die Aufgabe und tippe auf eine der drei Möglichkeiten.</p>
+            <p><strong>3. Antwort prüfen:</strong> Erst mit „Antwort prüfen“ wird deine Auswahl ausgewertet. Danach erhältst du eine Erklärung.</p>
+            <p><strong>4. Weiterlernen:</strong> Arbeite dich durch die fünf Lernphasen. Am Ende kannst du deine Fehler wiederholen.</p>
+            <p><strong>Datenschutz:</strong> Ein echter Name ist nicht nötig. Spielname und Fortschritt bleiben nur während der Sitzung im Browser.</p>
           </div>
         </details>
       </div>
@@ -107,9 +106,7 @@
       <section class="screen start-screen" id="start-screen" hidden aria-labelledby="home-title">
         <section class="welcome-card" aria-labelledby="home-title">
           <div class="welcome-copy">
-            <span class="eyebrow">WILLKOMMEN BEI QUAKOO</span>
             <h1 id="home-title">Hallo, <span id="course-player-name">Wortprofi</span>!<br><em>Lernen macht Quak!</em></h1>
-            <p>Ein kleiner Schritt heute bringt dich beim Deutschlernen weiter. Quaki zeigt dir, wo du weitermachen kannst.</p>
             <div class="welcome-facts">
               <span><strong>45</strong> Minuten Lernsession</span>
               <span><strong>18</strong> Aufgaben</span>
@@ -177,7 +174,7 @@
 
       <section class="screen path-screen" id="path-screen" hidden aria-labelledby="path-title">
         <div class="page-heading">
-          <div><span class="eyebrow">DEIN DEUTSCHKURS</span><h1 id="path-title">Dein Lernpfad</h1><p>Hier siehst du deine Themen, Lektionen und deinen bisherigen Fortschritt.</p></div>
+          <div><h1 id="path-title">Dein Lernpfad</h1></div>
           <button class="text-button path-home-button" type="button" data-go-screen="start">← Zur Home-Seite</button>
         </div>
         <div class="path-layout">

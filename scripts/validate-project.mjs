@@ -61,6 +61,14 @@ if (!html.includes("logout-mark") || !css.includes(".session-exit-button .logout
 if (!/function endSession\(/.test(js) || !html.includes('id="logout-button"')) {
   errors.push("Abmelden und Zurücksetzen der Sitzung fehlt.");
 }
+if (html.includes('id="course-chip"') || html.includes("DEUTSCH · KLASSE 5")) {
+  errors.push("Veraltetes Klassenstufen-Label ist noch vorhanden.");
+}
+if (!html.includes("Hilfe &amp; Tipps") || !html.includes("Antwort prüfen") ||
+    !html.includes("Weiterlernen") ||
+    !css.includes(".track-chip{background:#fff;color:var(--ink-soft);letter-spacing:.04em}")) {
+  errors.push("Neutrale Niveauanzeige oder aktualisierte Hilfe fehlt.");
+}
 if (!/screen\(courseStarted\?"start":"profile"\)/.test(js)) {
   errors.push("Das Quakoo-Logo führt nicht zur Home-Ansicht.");
 }
