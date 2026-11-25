@@ -841,3 +841,12 @@ body{font-size:var(--font-body);line-height:1.5}
  .level-select-screen .track-option{min-height:0;padding:12px;display:grid;grid-template-columns:42px 1fr;column-gap:11px;align-items:center}
  .level-select-screen .track-letter{grid-row:span 2}.level-select-screen .track-name{margin:0}.level-select-screen .track-description{margin:3px 0 0}
 }
+
+
+/* Freie Texteingabe für ausgewählte Fragen. */
+.free-answer-wrap{margin-top:13px;padding:17px;border:1px solid #dce8d6;border-radius:15px;background:#f7faf4}
+.free-answer-wrap label{display:block;margin-bottom:8px;color:var(--ink);font-size:.8rem;font-weight:1000}
+.free-answer-input{width:100%;min-height:54px;padding:12px 14px;border:2px solid #dce7d6;border-bottom-width:4px;border-radius:12px;background:white;color:var(--ink);font:800 1rem "Nunito Sans","Segoe UI",Arial,sans-serif;outline:none}
+.free-answer-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(88,168,62,.12)}
+.free-answer-input:disabled{background:#f2f5ef;color:var(--ink-soft)}
+.free-answer-hint{margin:8px 0 0;color:var(--muted);font-size:.7rem;line-height:1.4}

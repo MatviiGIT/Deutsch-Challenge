@@ -129,7 +129,7 @@ const topics = [
     description:"Erkenne, was Wörter bezeichnen, was sie tun und wie sie Dinge oder Personen beschreiben.",
     icon:"Aa",
     lessons:[
-      {title:"Wortdetektive",focus:"Nomen, Verben und Adjektive erkennen und im Satz unterscheiden",questionCount:18,
+      {title:"Wortdetektive",focus:"Nomen, Verben und Adjektive erkennen und im Satz unterscheiden",questionCount:10,
        build(track,stage){
         const sets={
           G:[
@@ -755,17 +755,18 @@ const topics = [
 let selectedTrack=null;
 let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,selectedAnswer=null,wrongAnswers=[],stats={correct:0,total:0};
 const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...topic,lessons:topic.lessons.slice(0,1)}));
-const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=18,totalQuestions=totalUnits*questionsPerUnit;
+const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=10,totalQuestions=totalUnits*questionsPerUnit;
 const startScreen=document.getElementById("start-screen");
 const quizScreen=document.getElementById("quiz-screen");
 const resultScreen=document.getElementById("result-screen");
 const answerGrid=document.getElementById("answer-grid");
+const freeAnswerWrap=document.getElementById("free-answer-wrap");
+const freeAnswerInput=document.getElementById("free-answer-input");
 const feedbackPanel=document.getElementById("feedback-panel");
 const nextButton=document.getElementById("next-button");
 function screen(name){
  startScreen.hidden=name!=="start";
- document.getElementById("lesson-screen").hidden=name!=="lesson";
- quizScreen.hidden=name!=="quiz";
+quizScreen.hidden=name!=="quiz";
  resultScreen.hidden=name!=="result";
  window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -791,7 +792,8 @@ function auditAllTracks(){
   Object.keys(TRACKS).forEach(track=>{
     courseTopics.forEach(topic=>{
       topic.lessons.forEach((lesson,index)=>{
-        const questions=ensureUniquePrompts(lesson.build(track,index+1),topic.id);
+        const questions=ensureUniquePrompts(lesson.build(track,index+1),topic.id).slice(0,lesson.questionCount||10);
+        questions.forEach((question,questionIndex)=>{if([3,8].includes(questionIndex))question.answerMode="text";});
         validateUnitQuestions(topic,lesson,questions,track);
       });
     });
@@ -803,7 +805,8 @@ function buildCourse(track){
     topic.lessons.forEach((lesson,index)=>{
       const stage=index+1;
       const unit={id:topic.id+"-"+stage,topic:topic,lesson:lesson,stage:stage,title:lesson.title,focus:lesson.focus,stageInfo:stageIndex(stage)};
-      unit.questions=ensureUniquePrompts(lesson.build(track,stage),topic.id);
+      unit.questions=ensureUniquePrompts(lesson.build(track,stage),topic.id).slice(0,lesson.questionCount||10);
+      unit.questions.forEach((question,questionIndex)=>{if([3,8].includes(questionIndex))question.answerMode="text";});
       validateUnitQuestions(topic,lesson,unit.questions,track);
       units.push(unit);questions.push(...unit.questions);
     });
@@ -814,11 +817,14 @@ function updateHeader(){
  const chip=document.getElementById("track-chip");chip.textContent=TRACKS[selectedTrack].label.toUpperCase();chip.hidden=false;
  document.getElementById("topbar-progress").innerHTML="0 / "+totalQuestions+" <span>FRAGEN</span>";
 }
-function beginCourse(){if(!selectedTrack)return;buildCourse(selectedTrack);updateHeader();startUnit(units[0]);}
+function beginCourse(){
+ if(!selectedTrack)return;
+ buildCourse(selectedTrack);updateHeader();prepare(units[0].questions,units[0]);
+}
 function resetCourse(){
  selectedTrack=null;units=[];questions=[];currentUnit=null;queue=[];currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:0};
  document.querySelectorAll(".track-option").forEach(option=>{option.classList.remove("is-selected");option.setAttribute("aria-pressed","false");});
- beginButton.disabled=true;const chip=document.getElementById("track-chip");chip.textContent="";chip.hidden=true;
+ const chip=document.getElementById("track-chip");chip.textContent="";chip.hidden=true;
  document.getElementById("topbar-progress").textContent="LEVEL WÄHLEN";screen("start");
 }
 function prepare(items,unit=null){
@@ -826,12 +832,9 @@ function prepare(items,unit=null){
  document.getElementById("score-value").textContent="0 Punkte";document.getElementById("quiz-topic").textContent="WORTARTEN";document.getElementById("question-panel").hidden=false;
  screen("quiz");renderQuestion();
 }
-function startUnit(unit){
- currentUnit=unit;document.getElementById("lesson-title").textContent=unit.title;document.getElementById("lesson-focus").textContent=unit.focus;
- document.getElementById("lesson-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · "+unit.questions.length+" AUFGABEN";screen("lesson");
-}
 function renderQuestion(){
- const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100);answered=false;selectedAnswer=null;
+ const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100),textMode=q.answerMode==="text";
+ answered=false;selectedAnswer=null;
  document.getElementById("question-counter").textContent=number+" / "+queue.length;
  document.getElementById("progress-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · WORTARTEN";
  document.getElementById("progress-percent").textContent=percent+" %";document.getElementById("progress-fill").style.width=percent+"%";
@@ -839,46 +842,39 @@ function renderQuestion(){
  const progress=document.getElementById("quiz-progress");progress.setAttribute("aria-valuemax",String(queue.length));progress.setAttribute("aria-valuenow",String(number));
  document.getElementById("question-panel").hidden=false;document.getElementById("question-number").textContent="FRAGE "+String(number).padStart(2,"0");
  document.getElementById("question-category").textContent=q.category;document.getElementById("question-text").textContent=q.prompt;document.getElementById("score-value").textContent=score+" Punkte";
- answerGrid.replaceChildren();
- q.choices.forEach((choice,index)=>{const button=document.createElement("button");button.type="button";button.className="answer-option";button.setAttribute("aria-pressed","false");
- const letter=document.createElement("span");letter.className="answer-letter";letter.textContent=letters[index];const text=document.createElement("span");text.textContent=choice;button.append(letter,text);
- button.addEventListener("click",()=>chooseAnswer(index));answerGrid.append(button);});
+ document.getElementById("question-instruction").textContent=textMode?"Tippe deine Antwort ein und klicke auf „Antwort prüfen“.":"Wähle zuerst eine Antwort. Danach kannst du sie überprüfen.";
+ answerGrid.hidden=textMode;freeAnswerWrap.hidden=!textMode;freeAnswerInput.value="";freeAnswerInput.disabled=false;answerGrid.replaceChildren();
+ if(!textMode)q.choices.forEach((choice,index)=>{
+   const button=document.createElement("button");button.type="button";button.className="answer-option";button.setAttribute("aria-pressed","false");
+   const letter=document.createElement("span");letter.className="answer-letter";letter.textContent=letters[index];
+   const label=document.createElement("span");label.textContent=choice;button.append(letter,label);button.addEventListener("click",()=>chooseAnswer(index));answerGrid.append(button);
+ });
  feedbackPanel.hidden=true;feedbackPanel.className="feedback-panel";document.getElementById("feedback-title").textContent="";document.getElementById("feedback-text").textContent="";
  nextButton.disabled=true;nextButton.textContent="Antwort prüfen";
 }
 function chooseAnswer(selected){
-  if(answered)return;
-  selectedAnswer=selected;
-  [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{
-    const chosen=index===selected;
-    button.classList.toggle("is-selected",chosen);
-    button.setAttribute("aria-pressed",String(chosen));
-  });
-  nextButton.disabled=false;
-  nextButton.textContent="Antwort prüfen";
+ if(answered)return;
+ selectedAnswer=selected;
+ [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{const chosen=index===selected;button.classList.toggle("is-selected",chosen);button.setAttribute("aria-pressed",String(chosen));});
+ nextButton.disabled=false;nextButton.textContent="Antwort prüfen";
+}
+function normalizeTypedAnswer(value){
+ return String(value??"").normalize("NFC").trim().toLocaleLowerCase("de").replace(/\s+/g," ").replace(/[.!?;:,]+$/u,"").trim();
 }
 function selectAnswer(selected){
-  if(answered||selected===null)return;
-  answered=true;
-  const q=queue[currentIndex],correct=selected===q.answer;
-  [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{
-    button.disabled=true;
-    if(index===q.answer)button.classList.add("is-correct");
-    if(index===selected&&!correct)button.classList.add("is-wrong");
-  });
-  if(correct){
-    score++;stats.correct++;feedbackPanel.classList.add("feedback-good");
-    document.getElementById("feedback-title").textContent="Richtig! +1 Punkt";
-  }else{
-    wrongAnswers.push({question:q,selectedIndex:selected});
-    feedbackPanel.classList.add("feedback-bad");
-    document.getElementById("feedback-title").textContent="Noch nicht ganz. Richtig ist: "+q.choices[q.answer];
-  }
-  document.getElementById("feedback-text").textContent=q.explanation;
-  feedbackPanel.hidden=false;document.getElementById("score-value").textContent=score+" Punkte";
-  nextButton.disabled=false;
-  nextButton.innerHTML=currentIndex===queue.length-1
-    ?'Ergebnis ansehen <span aria-hidden="true">→</span>':'Weiter <span aria-hidden="true">→</span>';
+ if(answered||selected===null)return;
+ const q=queue[currentIndex],textMode=q.answerMode==="text",typedResponse=textMode?String(selected).trim():null;
+ const correct=textMode?normalizeTypedAnswer(typedResponse)===normalizeTypedAnswer(q.choices[q.answer]):selected===q.answer;
+ answered=true;
+ if(textMode)freeAnswerInput.disabled=true;
+ else [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{button.disabled=true;if(index===q.answer)button.classList.add("is-correct");if(index===selected&&!correct)button.classList.add("is-wrong");});
+ if(correct){score++;stats.correct++;feedbackPanel.classList.add("feedback-good");document.getElementById("feedback-title").textContent="Richtig! +1 Punkt";}
+ else{
+  if(textMode)wrongAnswers.push({question:q,selectedText:typedResponse});else wrongAnswers.push({question:q,selectedIndex:selected});
+  feedbackPanel.classList.add("feedback-bad");document.getElementById("feedback-title").textContent="Noch nicht ganz. Richtig ist: "+q.choices[q.answer];
+ }
+ document.getElementById("feedback-text").textContent=q.explanation;feedbackPanel.hidden=false;document.getElementById("score-value").textContent=score+" Punkte";
+ nextButton.disabled=false;nextButton.innerHTML=currentIndex===queue.length-1?'Ergebnis ansehen <span aria-hidden="true">→</span>':'Weiter <span aria-hidden="true">→</span>';
 }
 function renderResults(){
  screen("result");const total=queue.length,pct=Math.round(score/total*100),wrong=total-score;
@@ -898,25 +894,33 @@ function renderResults(){
  document.getElementById("recommendation-title").textContent=pct>=90?"Das sitzt richtig gut!":pct>=70?"Eine starke Runde!":pct>=50?"Du bist auf dem Weg.":"Übung macht sicher.";
  document.getElementById("recommendation-text").textContent=(pct>=90?"Du hast fast alle Aufgaben richtig gelöst. ":pct>=70?"Viele Antworten waren richtig. ":pct>=50?"Lies die Erklärungen in Ruhe durch. ":"Fehler sind Teil des Lernens. Lies die Erklärungen und probiere es weiter. ")+"Du hast "+score+" von "+total+" Aufgaben richtig beantwortet.";
  const list=document.getElementById("mistakes-list");list.replaceChildren();document.getElementById("mistakes-section").hidden=wrongAnswers.length===0;
- wrongAnswers.forEach(({question:q,selectedIndex})=>{const item=document.createElement("article");item.className="mistake-item";
+ wrongAnswers.forEach(({question:q,selectedIndex,selectedText})=>{const item=document.createElement("article");item.className="mistake-item";
  const meta=document.createElement("div");meta.className="mistake-meta";meta.textContent=TRACKS[selectedTrack].label+" · "+q.category;
  const prompt=document.createElement("h3");prompt.className="mistake-question";prompt.textContent=q.prompt;
- const selected=document.createElement("p");selected.className="mistake-selected";selected.textContent="Deine Antwort: "+q.choices[selectedIndex];
+ const selected=document.createElement("p");selected.className="mistake-selected";selected.textContent="Deine Antwort: "+(selectedText??q.choices[selectedIndex]);
  const answer=document.createElement("p");answer.className="mistake-answer";answer.textContent="Richtige Antwort: "+q.choices[q.answer];
  const explanation=document.createElement("p");explanation.className="mistake-explanation";explanation.textContent=q.explanation;item.append(meta,prompt,selected,answer,explanation);list.append(item);});
  document.getElementById("retry-button").textContent="Lektion wiederholen ↻";document.getElementById("topbar-progress").innerHTML=total+" / "+total+" <span>FRAGEN</span>";
 }
-const trackOptions=[...document.querySelectorAll(".track-option")];const beginButton=document.getElementById("begin-course-button");
-function updateSetupButton(){beginButton.disabled=selectedTrack===null;}
+const trackOptions=[...document.querySelectorAll(".track-option")];
 trackOptions.forEach(button=>button.addEventListener("click",()=>{
- selectedTrack=button.dataset.track;trackOptions.forEach(option=>{const chosen=option===button;option.classList.toggle("is-selected",chosen);option.setAttribute("aria-pressed",String(chosen));});updateSetupButton();
+ selectedTrack=button.dataset.track;
+ trackOptions.forEach(option=>{const chosen=option===button;option.classList.toggle("is-selected",chosen);option.setAttribute("aria-pressed",String(chosen));});
+ beginCourse();
 }));
-beginButton.addEventListener("click",beginCourse);
-nextButton.addEventListener("click",()=>{if(!answered){if(selectedAnswer===null)return;selectAnswer(selectedAnswer);return;}if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();});
-document.getElementById("lesson-back-button").addEventListener("click",resetCourse);
-document.getElementById("lesson-start-button").addEventListener("click",()=>{if(currentUnit)prepare(currentUnit.questions,currentUnit);});
+freeAnswerInput.addEventListener("input",()=>{if(!answered)nextButton.disabled=freeAnswerInput.value.trim().length===0;});
+freeAnswerInput.addEventListener("keydown",event=>{if(event.key==="Enter"&&!nextButton.disabled){event.preventDefault();nextButton.click();}});
+nextButton.addEventListener("click",()=>{
+ if(!answered){
+  const q=queue[currentIndex];
+  if(q?.answerMode==="text"){const response=freeAnswerInput.value.trim();if(!response)return;selectAnswer(response);}
+  else if(selectedAnswer!==null)selectAnswer(selectedAnswer);
+  return;
+ }
+ if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();
+});
 document.getElementById("back-to-menu").addEventListener("click",resetCourse);
 document.getElementById("result-menu-button").addEventListener("click",resetCourse);
-document.getElementById("retry-button").addEventListener("click",()=>{if(currentUnit)startUnit(currentUnit);});
+document.getElementById("retry-button").addEventListener("click",()=>{if(currentUnit)prepare(currentUnit.questions,currentUnit);});
 document.getElementById("brand-home").addEventListener("click",event=>{event.preventDefault();resetCourse();});
 auditAllTracks();

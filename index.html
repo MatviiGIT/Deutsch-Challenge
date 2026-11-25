@@ -6,28 +6,21 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Quakoo – Deutsch lernen und üben für die 6. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=27">
-  <script src="script.js?v=28" defer></script>
+  <link rel="stylesheet" href="style.css?v=28">
+  <script src="script.js?v=29" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div class="topbar-left">
-        <a class="brand" href="#start-screen" id="brand-home" aria-label="Zur Levelauswahl">
-          <span class="brand-mark" aria-hidden="true">Q</span><span class="brand-words">Quakoo</span>
-        </a>
-      </div>
+      <div class="topbar-left"><a class="brand" href="#start-screen" id="brand-home" aria-label="Zur Levelauswahl"><span class="brand-mark" aria-hidden="true">Q</span><span class="brand-words">Quakoo</span></a></div>
       <div class="topbar-right">
-        <span class="track-chip" id="track-chip" hidden></span>
-        <span class="topbar-progress" id="topbar-progress">LEVEL WÄHLEN</span>
-        <details class="help-menu">
-          <summary aria-label="Hilfe und Regeln" title="Hilfe">?</summary>
-          <div class="help-panel">
-            <h2>Hilfe</h2>
-            <p><strong>1. Schwierigkeitsstufe wählen:</strong> Leicht, Mittel oder Schwer.</p>
-            <p><strong>2. Thema ansehen:</strong> Lies die kurze Erklärung zu den Wortarten.</p>
-            <p><strong>3. Aufgaben lösen:</strong> Wähle eine Antwort und klicke danach auf „Antwort prüfen“.</p>
-            <p><strong>4. Ergebnis ansehen:</strong> Am Ende siehst du deine Punkte und kannst falsche Antworten wiederholen.</p>
+        <span class="track-chip" id="track-chip" hidden></span><span class="topbar-progress" id="topbar-progress">LEVEL WÄHLEN</span>
+        <details class="help-menu"><summary aria-label="Hilfe und Regeln" title="Hilfe">?</summary>
+          <div class="help-panel"><h2>Hilfe</h2>
+            <p><strong>1. Level wählen:</strong> Leicht, Mittel oder Schwer.</p>
+            <p><strong>2. Antworten:</strong> Wähle eine Antwort oder gib das gesuchte Wort ein.</p>
+            <p><strong>3. Prüfen:</strong> Klicke auf „Antwort prüfen“, um deine Antwort auszuwerten.</p>
+            <p><strong>4. Ergebnis:</strong> Am Ende siehst du deine Punkte und kannst falsche Antworten wiederholen.</p>
           </div>
         </details>
       </div>
@@ -39,8 +32,8 @@
           <div class="level-select-heading">
             <div class="level-select-copy">
               <span class="eyebrow">QUAKOO · DEUTSCH · 6. KLASSE</span>
-              <h1 id="setup-title">Bereit für Wortarten?</h1>
-              <p>Wähle eine Schwierigkeitsstufe. Danach bearbeitest du 18 Aufgaben zu Nomen, Verben und Adjektiven.</p>
+              <h1 id="setup-title">Wähle dein Level</h1>
+              <p>Dein Quiz startet sofort nach der Auswahl. Es erwarten dich 10 Fragen zu Nomen, Verben und Adjektiven.</p>
             </div>
             <div class="level-select-mascot frog-avatar frog-avatar-large" role="img" aria-label="Quaki, der Lernfrosch">
               <span class="frog-eye frog-eye-left"><span class="frog-pupil"></span></span>
@@ -49,57 +42,13 @@
             </div>
           </div>
           <div class="track-field">
-            <div class="track-field-heading"><strong>Wähle deine Schwierigkeitsstufe</strong><span>Eine Lektion · 18 Aufgaben</span></div>
+            <div class="track-field-heading"><strong>Wähle deine Schwierigkeitsstufe</strong><span>10 Fragen · Startet sofort</span></div>
             <div class="track-options" role="group" aria-label="Schwierigkeitsstufe auswählen">
               <button class="track-option" type="button" data-track="G" aria-pressed="false"><span class="track-letter">1</span><span class="track-name">Leicht</span><span class="track-description">Grundlagen und einfache Beispiele</span></button>
               <button class="track-option" type="button" data-track="M" aria-pressed="false"><span class="track-letter">2</span><span class="track-name">Mittel</span><span class="track-description">Regeln in Sätzen anwenden</span></button>
               <button class="track-option" type="button" data-track="E" aria-pressed="false"><span class="track-letter">3</span><span class="track-name">Schwer</span><span class="track-description">Anspruchsvolle Aufgaben lösen</span></button>
             </div>
           </div>
-          <button class="primary-button begin-course-button" id="begin-course-button" type="button" disabled>Lektion starten <span aria-hidden="true">→</span></button>
-        </div>
-      </section>
-
-      <section class="screen lesson-screen" id="lesson-screen" hidden aria-labelledby="lesson-title">
-        <div class="lesson-card">
-          <button class="text-button lesson-back-button" id="lesson-back-button" type="button">← Schwierigkeitsstufe ändern</button>
-          <span class="eyebrow">WORTARTEN · LEKTION</span>
-          <h1 id="lesson-title">Wortdetektive</h1>
-          <p class="lesson-lead" id="lesson-focus">Nomen, Verben und Adjektive unterscheiden.</p>
-          <div class="lesson-level" id="lesson-level">LEICHT · 18 AUFGABEN</div>
-          <div class="lesson-explain">
-            <h2>Das lernst du heute</h2>
-            <div class="word-type-grid">
-              <article class="word-type-card noun-card">
-                <span class="word-type-label">NOMEN</span>
-                <h3>Wer oder was?</h3>
-                <p>Nomen benennen Menschen, Tiere, Dinge, Orte und Gefühle. Man schreibt sie groß.</p>
-                <p class="word-example">der <strong>Hund</strong> · die <strong>Schule</strong> · die <strong>Freude</strong></p>
-              </article>
-              <article class="word-type-card verb-card">
-                <span class="word-type-label">VERBEN</span>
-                <h3>Was tut jemand?</h3>
-                <p>Verben sagen, was jemand tut oder was geschieht. Man kann sie verändern.</p>
-                <p class="word-example"><strong>laufen</strong> · <strong>lacht</strong> · <strong>schlafen</strong></p>
-              </article>
-              <article class="word-type-card adjective-card">
-                <span class="word-type-label">ADJEKTIVE</span>
-                <h3>Wie ist etwas?</h3>
-                <p>Adjektive beschreiben, wie etwas ist.</p>
-                <p class="word-example"><strong>klein</strong> · <strong>freundlich</strong> · <strong>weich</strong></p>
-              </article>
-            </div>
-            <div class="lesson-example">
-              <span class="section-kicker">BEISPIEL</span>
-              <p>Der <strong>kleine</strong> <strong>Fuchs</strong> <strong>rennt</strong>.</p>
-              <ul>
-                <li><strong>Fuchs</strong> = Nomen (Wer oder was?)</li>
-                <li><strong>rennt</strong> = Verb (Was tut er?)</li>
-                <li><strong>kleine</strong> = Adjektiv (Wie ist der Fuchs?)</li>
-              </ul>
-            </div>
-          </div>
-          <button class="primary-button lesson-start-button" id="lesson-start-button" type="button">Mit den Aufgaben beginnen <span aria-hidden="true">→</span></button>
         </div>
       </section>
 
@@ -110,14 +59,15 @@
           <span class="question-counter" id="question-counter">1 / 3</span>
         </div>
         <div class="progress-area">
-          <div class="progress-labels"><span id="progress-level">GRUNDLAGEN · WORTARTEN</span><span id="progress-percent">33 %</span></div>
-          <div class="progress-track" id="quiz-progress" role="progressbar" aria-label="Fortschritt in dieser Einheit" aria-valuemin="0" aria-valuemax="3" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="progress-labels"><span id="progress-level">LEICHT · WORTARTEN</span><span id="progress-percent">10 %</span></div>
+          <div class="progress-track" id="quiz-progress" role="progressbar" aria-label="Fortschritt in dieser Einheit" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
         </div>
         <div class="question-panel" id="question-panel">
           <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
           <h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2>
-          <p class="question-instruction">Wähle zuerst eine Antwort. Danach kannst du sie überprüfen.</p>
+          <p class="question-instruction" id="question-instruction">Wähle zuerst eine Antwort. Danach kannst du sie überprüfen.</p>
           <div class="answer-grid" id="answer-grid"></div>
+          <div class="free-answer-wrap" id="free-answer-wrap" hidden><label for="free-answer-input">Deine Antwort</label><input class="free-answer-input" id="free-answer-input" type="text" maxlength="60" autocomplete="off" spellcheck="false" placeholder="Antwort eingeben …"><p class="free-answer-hint">Schreibe das gesuchte Wort oder die Wortart.</p></div>
           <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
             <div class="feedback-title" id="feedback-title"></div>
             <p id="feedback-text"></p>
@@ -139,8 +89,8 @@
         <div class="result-score-card">
           <div class="result-score-main">
             <span class="section-kicker">DEIN ERGEBNIS</span>
-            <div class="score-line"><strong id="score-fraction">0/3</strong><span id="score-percent">0 %</span></div>
-            <div class="result-progress-track" id="result-progress-track" role="progressbar" aria-label="Richtige Antworten" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><div class="result-progress-fill" id="result-progress-fill"></div></div>
+            <div class="score-line"><strong id="score-fraction">0/10</strong><span id="score-percent">0 %</span></div>
+            <div class="result-progress-track" id="result-progress-track" role="progressbar" aria-label="Richtige Antworten" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div class="result-progress-fill" id="result-progress-fill"></div></div>
           </div>
           <div class="result-score-side"><span id="result-correct">0</span><small>Richtig</small></div>
           <div class="result-score-side"><span id="result-wrong">0</span><small>Noch üben</small></div>
