@@ -752,116 +752,23 @@ const topics = [
   }
 ];
 
-const EXAM_QUESTION_PLAN = [
-  {topicId:"wortarten",lessonIndex:0,questionIndex:0},
-  {topicId:"wortarten",lessonIndex:2,questionIndex:0},
-  {topicId:"wortarten",lessonIndex:3,questionIndex:0},
-  {topicId:"wortschatz",lessonIndex:0,questionIndex:0},
-  {topicId:"wortschatz",lessonIndex:1,questionIndex:3},
-  {topicId:"wortschatz",lessonIndex:2,questionIndex:6},
-  {topicId:"rechtschreibung",lessonIndex:1,questionIndex:0},
-  {topicId:"rechtschreibung",lessonIndex:2,questionIndex:6},
-  {topicId:"rechtschreibung",lessonIndex:4,questionIndex:0},
-  {topicId:"satzzeichen",lessonIndex:0,questionIndex:0},
-  {topicId:"satzzeichen",lessonIndex:1,questionIndex:3},
-  {topicId:"satzzeichen",lessonIndex:2,questionIndex:6},
-  {topicId:"grammatik",lessonIndex:0,questionIndex:0},
-  {topicId:"grammatik",lessonIndex:1,questionIndex:3},
-  {topicId:"grammatik",lessonIndex:2,questionIndex:6},
-  {topicId:"satzbau",lessonIndex:0,questionIndex:0},
-  {topicId:"satzbau",lessonIndex:1,questionIndex:3},
-  {topicId:"satzbau",lessonIndex:2,questionIndex:6},
-  {topicId:"lesen",lessonIndex:0,questionIndex:2},
-  {topicId:"lesen",lessonIndex:1,questionIndex:0},
-  {topicId:"lesen",lessonIndex:2,questionIndex:0}
-];
-
-function validateExamQuestions(examQuestions,track) {
-  if(examQuestions.length!==EXAM_QUESTION_PLAN.length) {
-    throw new Error("Die Prüfung muss genau 21 Aufgaben enthalten.");
-  }
-  const counts=new Map();
-  examQuestions.forEach((question,index)=>{
-    counts.set(question.topicId,(counts.get(question.topicId)||0)+1);
-    const normalizedChoices=question.choices.map(choice=>choice.trim().toLocaleLowerCase("de"));
-    const validChoices=question.choices.length===3
-      &&new Set(normalizedChoices).size===3
-      &&question.choices.every(choice=>typeof choice==="string"&&choice.trim().length>0);
-    const validAnswer=Number.isInteger(question.answer)&&question.answer>=0&&question.answer<3;
-    if(!validChoices||!validAnswer||!question.prompt?.trim()||!question.explanation?.trim()) {
-      throw new Error("Prüfung / Frage "+(index+1)+": ungültige Frage oder Antwortoptionen.");
-    }
-    if(question.track!==track||!question.topicTitle||!question.lessonTitle) {
-      throw new Error("Prüfung / Frage "+(index+1)+": Thema, Lektion oder Schwierigkeitsstufe fehlt.");
-    }
-  });
-  topics.forEach(topic=>{
-    if(counts.get(topic.id)!==3) {
-      throw new Error("Die Prüfung benötigt genau drei Aufgaben aus: "+topic.title);
-    }
-  });
-}
-
-function buildExamQuestions(track) {
-  if(!TRACKS[track]) throw new Error("Unbekannte Schwierigkeitsstufe für die Prüfung.");
-  const examQuestions=EXAM_QUESTION_PLAN.map(item=>{
-    const topic=topics.find(entry=>entry.id===item.topicId);
-    const lesson=topic?.lessons[item.lessonIndex];
-    if(!topic||!lesson) throw new Error("Ein Prüfungsthema oder eine Lektion fehlt.");
-    const lessonQuestions=ensureUniquePrompts(lesson.build(track,item.lessonIndex+1),topic.id);
-    const selected=lessonQuestions[item.questionIndex];
-    if(!selected) throw new Error("Eine geplante Prüfungsfrage fehlt: "+topic.title);
-    return {...selected,topicId:topic.id,topicTitle:topic.title,lessonTitle:lesson.title};
-  });
-  validateExamQuestions(examQuestions,track);
-  return shuffle(examQuestions);
-}
-
-function practiceGrade(percent) {
-  if(percent>=92) return {value:"1",label:"Sehr gut"};
-  if(percent>=81) return {value:"2",label:"Gut"};
-  if(percent>=67) return {value:"3",label:"Befriedigend"};
-  if(percent>=50) return {value:"4",label:"Ausreichend"};
-  if(percent>=30) return {value:"5",label:"Mangelhaft"};
-  return {value:"6",label:"Ungenügend"};
-}
-
-let selectedTrack=null,playerName="",courseStarted=false;
+let selectedTrack=null;
 let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,selectedAnswer=null,wrongAnswers=[],stats={correct:0,total:0};
-let activeQuizStage=-1,pendingQuizStage=-1,currentMode="practice";
-let completed=new Set();
 const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...topic,lessons:topic.lessons.slice(0,1)}));
 const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=18,totalQuestions=totalUnits*questionsPerUnit;
-const profileScreen=document.getElementById("profile-screen");
 const startScreen=document.getElementById("start-screen");
-const pathScreen=document.getElementById("path-screen");
-const mainNav=document.getElementById("main-nav");
 const quizScreen=document.getElementById("quiz-screen");
 const resultScreen=document.getElementById("result-screen");
 const answerGrid=document.getElementById("answer-grid");
 const feedbackPanel=document.getElementById("feedback-panel");
 const nextButton=document.getElementById("next-button");
-const logoutButton=document.getElementById("logout-button");
 function screen(name){
-  profileScreen.hidden=name!=="profile";
-  startScreen.hidden=name!=="start";
-  pathScreen.hidden=name!=="path";
-  document.getElementById("lesson-screen").hidden=name!=="lesson";
-  quizScreen.hidden=name!=="quiz";
-  resultScreen.hidden=name!=="result";
-  mainNav.hidden=!courseStarted||!["start","path","lesson"].includes(name);
-  logoutButton.hidden=!courseStarted;
-  document.querySelectorAll(".nav-button").forEach(button=>{
-    const active=name==="lesson"?button.dataset.screen==="path":button.dataset.screen===name;
-    button.classList.toggle("is-active",active);
-    if(active)button.setAttribute("aria-current","page");
-    else button.removeAttribute("aria-current");
-  });
-  if(name==="start"||name==="path")renderPath();
-  window.scrollTo({top:0,behavior:"smooth"});
+ startScreen.hidden=name!=="start";
+ document.getElementById("lesson-screen").hidden=name!=="lesson";
+ quizScreen.hidden=name!=="quiz";
+ resultScreen.hidden=name!=="result";
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-function completedCount(){return units.filter(unit=>completed.has(unit.id)).reduce((sum,unit)=>sum+unit.questions.length,0);}
-function nextUnit(){return units.find(u=>!completed.has(u.id))||null;}
 function validateUnitQuestions(topic,lesson,questions,track){
   const expected=lesson.questionCount||10;
   if(questions.length!==expected){
@@ -882,7 +789,7 @@ function validateUnitQuestions(topic,lesson,questions,track){
 }
 function auditAllTracks(){
   Object.keys(TRACKS).forEach(track=>{
-    topics.forEach(topic=>{
+    courseTopics.forEach(topic=>{
       topic.lessons.forEach((lesson,index)=>{
         const questions=ensureUniquePrompts(lesson.build(track,index+1),topic.id);
         validateUnitQuestions(topic,lesson,questions,track);
@@ -904,200 +811,40 @@ function buildCourse(track){
   if(units.length!==totalUnits||questions.length!==totalQuestions)throw new Error("Kursumfang stimmt nicht.");
 }
 function updateHeader(){
-  document.getElementById("topbar-player").textContent=playerName;
-  document.getElementById("topbar-player").hidden=false;
-  document.getElementById("track-chip").textContent=TRACKS[selectedTrack].label.toUpperCase();
-  document.getElementById("track-chip").hidden=false;
-  document.getElementById("topbar-progress").innerHTML="0 / "+totalQuestions+" <span>FRAGEN</span>";
-  document.getElementById("course-player-name").textContent=playerName;
-  document.getElementById("home-track-value").textContent=TRACKS[selectedTrack].name;
-  document.getElementById("course-progress").setAttribute("aria-valuemax",String(totalQuestions));
-  document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
-  document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
+ const chip=document.getElementById("track-chip");chip.textContent=TRACKS[selectedTrack].label.toUpperCase();chip.hidden=false;
+ document.getElementById("topbar-progress").innerHTML="0 / "+totalQuestions+" <span>FRAGEN</span>";
 }
-function beginCourse(){
-  const input=document.getElementById("player-name");
-  playerName=input.value.trim().replace(/\s+/g," ").slice(0,18);
-  if(!playerName||!selectedTrack)return;
-  buildCourse(selectedTrack);courseStarted=true;completed=new Set();
-  updateHeader();screen("start");
+function beginCourse(){if(!selectedTrack)return;buildCourse(selectedTrack);updateHeader();startUnit(units[0]);}
+function resetCourse(){
+ selectedTrack=null;units=[];questions=[];currentUnit=null;queue=[];currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:0};
+ document.querySelectorAll(".track-option").forEach(option=>{option.classList.remove("is-selected");option.setAttribute("aria-pressed","false");});
+ beginButton.disabled=true;const chip=document.getElementById("track-chip");chip.textContent="";chip.hidden=true;
+ document.getElementById("topbar-progress").textContent="LEVEL WÄHLEN";screen("start");
 }
-function endSession(){
-  courseStarted=false;selectedTrack=null;playerName="";
-  units=[];questions=[];currentUnit=null;queue=[];currentIndex=0;
-  score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:0};
-  activeQuizStage=-1;pendingQuizStage=-1;currentMode="practice";completed=new Set();
-
-  const input=document.getElementById("player-name");
-  input.value="";
-  document.querySelectorAll(".track-option").forEach(option=>{
-    option.classList.remove("is-selected");
-    option.setAttribute("aria-pressed","false");
-  });
-  document.getElementById("begin-course-button").disabled=true;
-  document.getElementById("name-generator-status").textContent="";
-
-  document.getElementById("topbar-player").textContent="";
-  document.getElementById("topbar-player").hidden=true;
-  document.getElementById("track-chip").textContent="";
-  document.getElementById("track-chip").hidden=true;
-  document.getElementById("topbar-progress").textContent="DEIN KURS";
-  document.getElementById("home-track-value").textContent="Noch nicht gewählt";
-  document.getElementById("home-progress-stat").textContent="0 / "+totalQuestions;
-  document.getElementById("course-progress").setAttribute("aria-valuenow","0");
-  document.getElementById("course-progress-fill").style.width="0%";
-  document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
-  document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";
-  document.getElementById("learning-path").replaceChildren();
-  screen("profile");
-}
-function renderPath(){
-  if(!courseStarted)return;
-  const done=completedCount(),pct=Math.round(done/totalQuestions*100),next=nextUnit();
-  const bar=document.getElementById("course-progress");
-  bar.setAttribute("aria-valuemax",String(totalQuestions));bar.setAttribute("aria-valuenow",String(done));
-  document.getElementById("course-progress-fill").style.width=pct+"%";
-  document.getElementById("course-progress-count").textContent=done+" / "+totalQuestions;
-  document.getElementById("home-progress-stat").textContent=done+" / "+totalQuestions;
-  document.getElementById("topbar-progress").innerHTML=done+" / "+totalQuestions+" <span>FRAGEN</span>";
-  document.getElementById("course-progress-title").textContent=done===totalQuestions?"Du hast den Kurs geschafft!":done?"Du bist auf deinem Weg!":"Dein Kurs beginnt hier";
-  const path=document.getElementById("learning-path");path.replaceChildren();
-  courseTopics.forEach(topic=>{
-    const topicUnits=units.filter(u=>u.topic.id===topic.id);
-    const topicDone=topicUnits.filter(u=>completed.has(u.id)).reduce((sum,u)=>sum+u.questions.length,0);
-    const topicTotal=topicUnits.reduce((sum,u)=>sum+u.questions.length,0);
-    const section=document.createElement("section");section.className="topic-section";section.dataset.topic=topic.id;
-    const head=document.createElement("div");head.className="topic-header";
-    const icon=document.createElement("div");icon.className="topic-icon";icon.textContent=topic.icon;
-    const copy=document.createElement("div");copy.className="topic-copy";
-    const title=document.createElement("h3");title.textContent=topic.title;
-    const sub=document.createElement("p");sub.textContent=topic.subtitle;copy.append(title,sub);
-    const count=document.createElement("span");count.className="topic-count";count.textContent=topicDone+"/"+topicTotal;
-    head.append(icon,copy,count);
-    const track=document.createElement("div");track.className="topic-progress-track";
-    track.setAttribute("role","progressbar");track.setAttribute("aria-label",topic.title+": "+topicDone+" von "+topicTotal);
-    track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(topicTotal));track.setAttribute("aria-valuenow",String(topicDone));
-    const fill=document.createElement("span");fill.style.width=Math.round(topicDone/topicTotal*100)+"%";track.append(fill);
-    const nodes=document.createElement("div");nodes.className="topic-nodes";
-    topicUnits.forEach(unit=>{
-      const doneUnit=completed.has(unit.id),open=doneUnit||next&&next.id===unit.id;
-      const button=document.createElement("button");button.type="button";
-      button.className="lesson-node "+(doneUnit?"is-done":open?"is-open":"is-locked");
-      button.disabled=!open;
-      button.setAttribute("aria-label",topic.title+", "+unit.title+", "+(doneUnit?"abgeschlossen":open?"starten":"gesperrt"));
-      const orb=document.createElement("span");orb.className="node-orb";orb.textContent=doneUnit?"✓":open?"▶":String(unit.stage);
-      const label=document.createElement("span");label.className="node-label";label.textContent=""+unit.stage+". "+unit.title;
-      const meta=document.createElement("span");meta.className="node-meta";meta.textContent=unit.questions.length+" Fragen";
-      button.append(orb,label,meta);button.addEventListener("click",()=>startUnit(unit));nodes.append(button);
-    });
-    const description=document.createElement("p");description.className="topic-description";description.textContent=topic.description;
-    section.append(head,track,nodes,description);path.append(section);
-  });
-  document.getElementById("next-icon").textContent=next?next.topic.icon:"✓";
-  document.getElementById("next-title").textContent=next?next.topic.title+" · "+next.title:"Alles geschafft!";
-  document.getElementById("next-meta").textContent=next?next.stageInfo.tag+" · "+next.questions.length+" FRAGEN":"18 / 18 FRAGEN";
-  const button=document.getElementById("next-unit-button");button.disabled=!next;
-  button.innerHTML=next?'Weiterlernen <span aria-hidden="true">→</span>':'Kurs geschafft <span aria-hidden="true">✓</span>';
-}
-function prepare(items,unit=null,mode="practice"){
-  currentUnit=unit;currentMode=mode;queue=items;currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:items.length};
-  activeQuizStage=-1;pendingQuizStage=-1;
-  document.getElementById("score-value").textContent="0 Punkte";
-  document.getElementById("quiz-topic").textContent=mode==="exam"?"PRÜFUNG":unit?unit.topic.title.toUpperCase():"FREIES TRAINING";
-  document.getElementById("back-to-menu").textContent=mode==="exam"?"← Prüfung verlassen":"← Lernpfad";
-  document.getElementById("stage-intro").hidden=true;
-  document.getElementById("question-panel").hidden=false;
-  screen("quiz");renderQuestion();
-}
-function learningStageFor(index){
-  const questionNumber=index+1;
-  const stage=STAGES.findIndex(item=>questionNumber<=item.endQuestion);
-  return stage===-1?STAGES.length-1:stage;
-}
-function showStageIntro(stageNumber){
-  const stage=STAGES[stageNumber];
-  const intro=document.getElementById("stage-intro");
-  document.getElementById("stage-intro-kicker").textContent=
-    "LERNPHASE "+(stageNumber+1)+" VON "+STAGES.length+" · FRAGEN "+stage.firstQuestion+"–"+stage.endQuestion;
-  document.getElementById("stage-intro-count").textContent=
-    String(stageNumber+1).padStart(2,"0")+" / "+String(STAGES.length).padStart(2,"0");
-  document.getElementById("stage-intro-title").textContent=stage.name;
-  document.getElementById("stage-intro-description").textContent=stage.hint;
-  document.getElementById("stage-intro-tip").textContent=stage.tip;
-  intro.hidden=false;
-  document.getElementById("question-panel").hidden=true;
-}
-function renderLessonStages(unit){
-  const container=document.getElementById("lesson-stages");
-  container.replaceChildren();
-  const ranges=["Fragen 1–3","Fragen 4–7","Fragen 8–12","Fragen 13–16","Fragen 17–18"];
-  STAGES.forEach((stage,index)=>{
-    const item=document.createElement("div");
-    item.className="lesson-stage-item";
-    const number=document.createElement("span");
-    number.className="lesson-stage-number";
-    number.textContent=String(index+1);
-    const copy=document.createElement("span");
-    copy.className="lesson-stage-copy";
-    const name=document.createElement("strong");
-    name.textContent=stage.name;
-    const detail=document.createElement("small");
-    detail.textContent=ranges[index]+" · "+stage.hint;
-    copy.append(name,detail);
-    item.append(number,copy);
-    container.append(item);
-  });
+function prepare(items,unit=null){
+ currentUnit=unit;queue=items;currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:items.length};
+ document.getElementById("score-value").textContent="0 Punkte";document.getElementById("quiz-topic").textContent="WORTARTEN";document.getElementById("question-panel").hidden=false;
+ screen("quiz");renderQuestion();
 }
 function startUnit(unit){
-  currentUnit=unit;
-  document.getElementById("lesson-title").textContent=unit.title;
-  document.getElementById("lesson-focus").textContent=unit.focus;
-  document.getElementById("lesson-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · 45 MINUTEN · "+unit.questions.length+" AUFGABEN";
-  renderLessonStages(unit);
-  screen("lesson");
+ currentUnit=unit;document.getElementById("lesson-title").textContent=unit.title;document.getElementById("lesson-focus").textContent=unit.focus;
+ document.getElementById("lesson-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · "+unit.questions.length+" AUFGABEN";screen("lesson");
 }
-function startFree(){prepare(shuffle(questions),null,"practice");}
-function startExam(){prepare(buildExamQuestions(selectedTrack),null,"exam");}
 function renderQuestion(){
-  const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100);
-  answered=false;selectedAnswer=null;
-  const stageNumber=currentUnit?learningStageFor(currentIndex):-1;
-  document.getElementById("question-counter").textContent=number+" / "+queue.length;
-  document.getElementById("progress-level").textContent=currentUnit
-    ?TRACKS[selectedTrack].label.toUpperCase()+" · "+STAGES[stageNumber].name.toUpperCase()+" · "+currentUnit.title.toUpperCase()
-    :currentMode==="exam"
-      ?TRACKS[selectedTrack].label.toUpperCase()+" · PRÜFUNG · "+q.topicTitle.toUpperCase()
-      :TRACKS[selectedTrack].label.toUpperCase()+" · FREIES TRAINING";
-  document.getElementById("progress-percent").textContent=percent+" %";
-  document.getElementById("progress-fill").style.width=percent+"%";
-  const progress=document.getElementById("quiz-progress");
-  progress.setAttribute("aria-valuemax",String(queue.length));progress.setAttribute("aria-valuenow",String(number));
-
-  if(currentUnit&&stageNumber!==activeQuizStage){
-    pendingQuizStage=stageNumber;
-    showStageIntro(stageNumber);
-    return;
-  }
-  pendingQuizStage=-1;
-  document.getElementById("stage-intro").hidden=true;
-  document.getElementById("question-panel").hidden=false;
-  document.getElementById("question-number").textContent="FRAGE "+String(number).padStart(2,"0");
-  document.getElementById("question-category").textContent=q.category;
-  document.getElementById("question-text").textContent=q.prompt;
-  document.getElementById("score-value").textContent=score+" Punkte";
-  answerGrid.replaceChildren();
-  q.choices.forEach((choice,index)=>{
-    const button=document.createElement("button");button.type="button";button.className="answer-option";
-    button.setAttribute("aria-pressed","false");
-    const letter=document.createElement("span");letter.className="answer-letter";letter.textContent=letters[index];
-    const text=document.createElement("span");text.textContent=choice;button.append(letter,text);
-    button.addEventListener("click",()=>chooseAnswer(index));answerGrid.append(button);
-  });
-  feedbackPanel.hidden=true;feedbackPanel.className="feedback-panel";
-  document.getElementById("feedback-title").textContent="";
-  document.getElementById("feedback-text").textContent="";
-  nextButton.disabled=true;
-  nextButton.textContent="Antwort prüfen";
+ const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100);answered=false;selectedAnswer=null;
+ document.getElementById("question-counter").textContent=number+" / "+queue.length;
+ document.getElementById("progress-level").textContent=TRACKS[selectedTrack].label.toUpperCase()+" · WORTARTEN";
+ document.getElementById("progress-percent").textContent=percent+" %";document.getElementById("progress-fill").style.width=percent+"%";
+ document.getElementById("topbar-progress").innerHTML=number+" / "+queue.length+" <span>FRAGEN</span>";
+ const progress=document.getElementById("quiz-progress");progress.setAttribute("aria-valuemax",String(queue.length));progress.setAttribute("aria-valuenow",String(number));
+ document.getElementById("question-panel").hidden=false;document.getElementById("question-number").textContent="FRAGE "+String(number).padStart(2,"0");
+ document.getElementById("question-category").textContent=q.category;document.getElementById("question-text").textContent=q.prompt;document.getElementById("score-value").textContent=score+" Punkte";
+ answerGrid.replaceChildren();
+ q.choices.forEach((choice,index)=>{const button=document.createElement("button");button.type="button";button.className="answer-option";button.setAttribute("aria-pressed","false");
+ const letter=document.createElement("span");letter.className="answer-letter";letter.textContent=letters[index];const text=document.createElement("span");text.textContent=choice;button.append(letter,text);
+ button.addEventListener("click",()=>chooseAnswer(index));answerGrid.append(button);});
+ feedbackPanel.hidden=true;feedbackPanel.className="feedback-panel";document.getElementById("feedback-title").textContent="";document.getElementById("feedback-text").textContent="";
+ nextButton.disabled=true;nextButton.textContent="Antwort prüfen";
 }
 function chooseAnswer(selected){
   if(answered)return;
@@ -1134,178 +881,42 @@ function selectAnswer(selected){
     ?'Ergebnis ansehen <span aria-hidden="true">→</span>':'Weiter <span aria-hidden="true">→</span>';
 }
 function renderResults(){
-  screen("result");
-  const total=queue.length,pct=Math.round(score/total*100),wrong=total-score;
-  const isExam=currentMode==="exam";
-  const grade=isExam?practiceGrade(pct):null;
-  if(currentUnit)completed.add(currentUnit.id);
-  resultScreen.classList.toggle("is-exam-result",isExam);
-  document.getElementById("exam-grade-card").hidden=!isExam;
-  if(isExam){
-    document.getElementById("exam-grade-value").textContent=grade.value;
-    document.getElementById("exam-grade-label").textContent=grade.label;
-    document.getElementById("exam-grade-description").textContent=
-      "Ungefähre Orientierung anhand des Ergebnisses. Keine offizielle Schulnote.";
-  }
-  document.getElementById("score-fraction").textContent=score+"/"+total;
-  document.getElementById("score-percent").textContent=pct+" %";
-  document.getElementById("result-correct").textContent=score;
-  document.getElementById("result-wrong").textContent=wrong;
-  document.getElementById("result-progress-fill").style.width=pct+"%";
-  document.getElementById("result-progress-track").setAttribute("aria-valuemax",String(total));
-  document.getElementById("result-progress-track").setAttribute("aria-valuenow",String(score));
-  document.getElementById("result-subheading").textContent=isExam
-    ?playerName+" · Du hast die Prüfung mit 21 Fragen abgeschlossen."
-    :currentUnit
-      ?playerName+" · "+currentUnit.topic.title+" · "+currentUnit.title+" abgeschlossen."
-      :playerName+" · Du hast "+score+" von "+total+" Fragen richtig beantwortet.";
-  document.querySelector(".result-header .eyebrow").textContent=
-    isExam?"PRÜFUNG ABGESCHLOSSEN":currentUnit?"EINHEIT ABGESCHLOSSEN":"FREIES TRAINING BEENDET";
-  let heading=pct>=90?"Hervorragend!":pct>=70?"Gut gemacht!":pct>=50?"Weiter so!":"Guter Anfang!";
-  if(currentUnit&&completedCount()===totalQuestions)heading="Lernpfad geschafft!";
-  if(isExam&&pct<50)heading="Prüfung abgeschlossen";
-  document.getElementById("result-heading").textContent=heading;
-  document.getElementById("result-medal").textContent=pct>=90?"★":pct>=50?"✦":"◆";
-
-  const resultList=document.getElementById("level-results");resultList.replaceChildren();
-  document.getElementById("results-breakdown-title").textContent=
-    isExam?"Dein Ergebnis in den sieben Themen":"So lief es in dieser Einheit";
-  const incorrectQuestions=new Set(wrongAnswers.map(item=>item.question));
-  const breakdown=isExam
-    ?topics.map(topic=>{
-        const topicQuestions=queue.filter(question=>question.topicId===topic.id);
-        const correct=topicQuestions.filter(question=>!incorrectQuestions.has(question)).length;
-        return {title:topic.title,correct,total:topicQuestions.length};
-      })
-    :[{title:currentUnit?currentUnit.title:"Freies Training",correct:score,total}];
-  breakdown.forEach(entry=>{
-    const card=document.createElement("div");card.className="level-result";
-    const row=document.createElement("div");row.className="level-result-head";
-    const name=document.createElement("span");name.textContent=entry.title;
-    const value=document.createElement("strong");value.textContent=entry.correct+" / "+entry.total;
-    const percent=document.createElement("span");percent.className="level-result-percent";
-    const topicPercent=Math.round(entry.correct/entry.total*100);
-    percent.textContent=topicPercent+" %";
-    row.append(name,value,percent);
-    const track=document.createElement("div");track.className="level-result-track";
-    track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");
-    track.setAttribute("aria-valuemax",String(entry.total));track.setAttribute("aria-valuenow",String(entry.correct));
-    const fill=document.createElement("span");fill.className="level-result-fill";fill.style.width=topicPercent+"%";track.append(fill);
-    card.append(row,track);resultList.append(card);
-  });
-
-  document.getElementById("recommendation-title").textContent=isExam
-    ?"Deine Übungsnote: "+grade.value
-    :pct>=90?"Das sitzt richtig gut!":pct>=70?"Eine starke Runde!":pct>=50?"Du bist auf dem Weg.":"Übung macht sicher.";
-  document.getElementById("recommendation-text").textContent=isExam
-    ?"Du hast "+score+" von "+total+" Fragen richtig beantwortet. Wiederhole die Themen, bei denen du noch Fehler gemacht hast."
-    :(pct>=90?"Du hast fast alle Aufgaben richtig gelöst. "
-    :pct>=70?"Viele Antworten waren richtig. "
-    :pct>=50?"Lies die Erklärungen in Ruhe durch. "
-    :"Fehler sind Teil des Lernens. Lies die Erklärungen und probiere es weiter. ")+
-    (currentUnit?"Du hast "+currentUnit.title+" in "+currentUnit.topic.title+" abgeschlossen.":"Du kannst jetzt eine Lektion im Lernpfad starten.");
-
-  const list=document.getElementById("mistakes-list");list.replaceChildren();
-  document.getElementById("mistakes-section").hidden=wrongAnswers.length===0;
-  wrongAnswers.forEach(({question:q,selectedIndex})=>{
-    const item=document.createElement("article");item.className="mistake-item";
-    const meta=document.createElement("div");meta.className="mistake-meta";
-    meta.textContent=TRACKS[selectedTrack].label+" · "+(isExam?q.topicTitle:q.category);
-    const prompt=document.createElement("h3");prompt.className="mistake-question";prompt.textContent=q.prompt;
-    const selected=document.createElement("p");selected.className="mistake-selected";selected.textContent="Deine Antwort: "+q.choices[selectedIndex];
-    const answer=document.createElement("p");answer.className="mistake-answer";answer.textContent="Richtige Antwort: "+q.choices[q.answer];
-    const explanation=document.createElement("p");explanation.className="mistake-explanation";explanation.textContent=q.explanation;
-    item.append(meta,prompt,selected,answer,explanation);list.append(item);
-  });
-  const following=nextUnit(),nextLevelButton=document.getElementById("next-level-button");
-  nextLevelButton.hidden=isExam||!currentUnit||!following;
-  if(following)nextLevelButton.innerHTML="Weiter: "+following.topic.title+" · "+following.title+' <span aria-hidden="true">→</span>';
-  document.getElementById("retry-button").textContent=
-    isExam?"Prüfung wiederholen ↻":currentUnit?"Lektion wiederholen ↻":"Training wiederholen ↻";
-  document.getElementById("result-menu-button").textContent=
-    isExam?"Zur Home-Seite":"Zurück zum Lernpfad";
-  renderPath();
+ screen("result");const total=queue.length,pct=Math.round(score/total*100),wrong=total-score;
+ document.getElementById("score-fraction").textContent=score+"/"+total;document.getElementById("score-percent").textContent=pct+" %";
+ document.getElementById("result-correct").textContent=score;document.getElementById("result-wrong").textContent=wrong;
+ document.getElementById("result-progress-fill").style.width=pct+"%";
+ document.getElementById("result-progress-track").setAttribute("aria-valuemax",String(total));document.getElementById("result-progress-track").setAttribute("aria-valuenow",String(score));
+ document.getElementById("result-subheading").textContent=TRACKS[selectedTrack].label+" · "+currentUnit.topic.title+" · "+currentUnit.title;
+ document.querySelector(".result-header .eyebrow").textContent="LEKTION ABGESCHLOSSEN";
+ document.getElementById("result-heading").textContent=pct>=90?"Hervorragend!":pct>=70?"Gut gemacht!":pct>=50?"Weiter so!":"Guter Anfang!";
+ document.getElementById("result-medal").textContent=pct>=90?"★":pct>=50?"✦":"◆";
+ const results=document.getElementById("level-results");results.replaceChildren();const card=document.createElement("div");card.className="level-result";
+ const row=document.createElement("div");row.className="level-result-head";const name=document.createElement("span");name.textContent=currentUnit.title+" · "+TRACKS[selectedTrack].label;
+ const value=document.createElement("strong");value.textContent=score+" / "+total;const percent=document.createElement("span");percent.className="level-result-percent";percent.textContent=pct+" %";row.append(name,value,percent);
+ const track=document.createElement("div");track.className="level-result-track";track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(total));track.setAttribute("aria-valuenow",String(score));
+ const fill=document.createElement("span");fill.className="level-result-fill";fill.style.width=pct+"%";track.append(fill);card.append(row,track);results.append(card);
+ document.getElementById("recommendation-title").textContent=pct>=90?"Das sitzt richtig gut!":pct>=70?"Eine starke Runde!":pct>=50?"Du bist auf dem Weg.":"Übung macht sicher.";
+ document.getElementById("recommendation-text").textContent=(pct>=90?"Du hast fast alle Aufgaben richtig gelöst. ":pct>=70?"Viele Antworten waren richtig. ":pct>=50?"Lies die Erklärungen in Ruhe durch. ":"Fehler sind Teil des Lernens. Lies die Erklärungen und probiere es weiter. ")+"Du hast "+score+" von "+total+" Aufgaben richtig beantwortet.";
+ const list=document.getElementById("mistakes-list");list.replaceChildren();document.getElementById("mistakes-section").hidden=wrongAnswers.length===0;
+ wrongAnswers.forEach(({question:q,selectedIndex})=>{const item=document.createElement("article");item.className="mistake-item";
+ const meta=document.createElement("div");meta.className="mistake-meta";meta.textContent=TRACKS[selectedTrack].label+" · "+q.category;
+ const prompt=document.createElement("h3");prompt.className="mistake-question";prompt.textContent=q.prompt;
+ const selected=document.createElement("p");selected.className="mistake-selected";selected.textContent="Deine Antwort: "+q.choices[selectedIndex];
+ const answer=document.createElement("p");answer.className="mistake-answer";answer.textContent="Richtige Antwort: "+q.choices[q.answer];
+ const explanation=document.createElement("p");explanation.className="mistake-explanation";explanation.textContent=q.explanation;item.append(meta,prompt,selected,answer,explanation);list.append(item);});
+ document.getElementById("retry-button").textContent="Lektion wiederholen ↻";document.getElementById("topbar-progress").innerHTML=total+" / "+total+" <span>FRAGEN</span>";
 }
-const playerInput=document.getElementById("player-name");
-const trackOptions=[...document.querySelectorAll(".track-option")];
-const beginButton=document.getElementById("begin-course-button");
-function updateSetupButton(){
-  const valid=playerInput.value.trim().length>0&&selectedTrack!==null;
-  beginButton.disabled=!valid;
-}
-const generatedNameBases=[
-  "FlotterFuchs","KlugeEule","MutigerDachs","WacherFrosch",
-  "SchnelleMaus","RuhigerBiber","KleinerLuchs","LustigerHase",
-  "StarkerOtter","SmarteKrähe","FrecherPanda","FlinkerIgel"
-];
-function generatePlayerName(){
-  const base=generatedNameBases[Math.floor(Math.random()*generatedNameBases.length)];
-  const number=String(Math.floor(Math.random()*90)+10);
-  playerInput.value=base+"-"+number;
-  updateSetupButton();
-  document.getElementById("name-generator-status").textContent=
-    "Zufälliger Name erstellt. Du kannst ihn noch ändern.";
-}
-playerInput.addEventListener("input",()=>{
-  playerInput.value=playerInput.value.slice(0,18);
-  document.getElementById("name-generator-status").textContent="";
-  updateSetupButton();
-});
-document.getElementById("generate-name-button").addEventListener("click",generatePlayerName);
+const trackOptions=[...document.querySelectorAll(".track-option")];const beginButton=document.getElementById("begin-course-button");
+function updateSetupButton(){beginButton.disabled=selectedTrack===null;}
 trackOptions.forEach(button=>button.addEventListener("click",()=>{
-  selectedTrack=button.dataset.track;
-  trackOptions.forEach(option=>{
-    const chosen=option===button;
-    option.classList.toggle("is-selected",chosen);
-    option.setAttribute("aria-pressed",String(chosen));
-  });
-  updateSetupButton();
+ selectedTrack=button.dataset.track;trackOptions.forEach(option=>{const chosen=option===button;option.classList.toggle("is-selected",chosen);option.setAttribute("aria-pressed",String(chosen));});updateSetupButton();
 }));
-document.getElementById("profile-form").addEventListener("submit",event=>{
-  event.preventDefault();if(!beginButton.disabled)beginCourse();
-});
-document.getElementById("free-practice-button").addEventListener("click",startFree);
-document.getElementById("exam-start-button").addEventListener("click",startExam);
-document.querySelectorAll(".nav-button").forEach(button=>{
-  button.addEventListener("click",()=>screen(button.dataset.screen));
-});
-document.querySelectorAll("[data-go-screen]").forEach(button=>{
-  button.addEventListener("click",()=>screen(button.dataset.goScreen));
-});
-document.getElementById("path-free-practice-button").addEventListener("click",startFree);
-
-document.getElementById("next-unit-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
-document.getElementById("next-level-button").addEventListener("click",()=>{const next=nextUnit();if(next)startUnit(next);});
-nextButton.addEventListener("click",()=>{
-  if(!answered){
-    if(selectedAnswer===null)return;
-    selectAnswer(selectedAnswer);
-    return;
-  }
-  if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();
-});
-document.getElementById("lesson-back-button").addEventListener("click",()=>screen("path"));
+beginButton.addEventListener("click",beginCourse);
+nextButton.addEventListener("click",()=>{if(!answered){if(selectedAnswer===null)return;selectAnswer(selectedAnswer);return;}if(currentIndex<queue.length-1){currentIndex++;renderQuestion();}else renderResults();});
+document.getElementById("lesson-back-button").addEventListener("click",resetCourse);
 document.getElementById("lesson-start-button").addEventListener("click",()=>{if(currentUnit)prepare(currentUnit.questions,currentUnit);});
-document.getElementById("stage-intro-start-button").addEventListener("click",()=>{
-  if(!currentUnit||pendingQuizStage<0)return;
-  activeQuizStage=pendingQuizStage;
-  pendingQuizStage=-1;
-  renderQuestion();
-});
-document.getElementById("back-to-menu").addEventListener("click",()=>screen(currentMode==="exam"?"start":"path"));
-document.getElementById("result-menu-button").addEventListener("click",()=>screen(currentMode==="exam"?"start":"path"));
-document.getElementById("retry-button").addEventListener("click",()=>{
-  if(currentMode==="exam")startExam();
-  else if(currentUnit)startUnit(currentUnit);
-  else startFree();
-});
-document.getElementById("brand-home").addEventListener("click",event=>{
-  event.preventDefault();
-  screen(courseStarted?"start":"profile");
-});
-logoutButton.addEventListener("click",()=>{
-  const confirmed=window.confirm("Möchtest du dich abmelden? Dein Fortschritt in dieser Sitzung wird gelöscht.");
-  if(confirmed)endSession();
-});
+document.getElementById("back-to-menu").addEventListener("click",resetCourse);
+document.getElementById("result-menu-button").addEventListener("click",resetCourse);
+document.getElementById("retry-button").addEventListener("click",()=>{if(currentUnit)startUnit(currentUnit);});
+document.getElementById("brand-home").addEventListener("click",event=>{event.preventDefault();resetCourse();});
 auditAllTracks();
-renderPath();
