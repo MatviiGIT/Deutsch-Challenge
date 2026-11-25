@@ -134,12 +134,15 @@ Der Fortschritt wird nur im Arbeitsspeicher der aktuellen Browser-Sitzung gehalt
 
 ## 5. Aktueller Funktionsumfang
 
-Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen Wortarten-Lektion. Beim Start wird einmalig **Leicht, Mittel oder Schwer** gewählt. Die gewählte Variante gilt für die gesamte Probestunde.
+Der Lernpfad enthält weiterhin **18 Aufgaben pro Niveau** zu einer 45-minütigen Wortarten-Lektion. Zusätzlich gibt es eine allgemeine **Prüfung mit 21 Aufgaben aus sieben Themenbereichen**. Beim Start wird einmalig **Leicht, Mittel oder Schwer** gewählt. Diese Stufe gilt sowohl für die Probestunde als auch für die Prüfung.
 
 | Funktion | Aktueller Stand |
 |---|---|
 | Themenkarte mit einer Pilot-Themenwelt | Vorhanden |
 | Eine 45-minütige Probestunde mit 18 Aufgaben je Niveau | Vorhanden |
+| Allgemeine Prüfung mit 21 Aufgaben aus sieben Themen | Vorhanden; drei Aufgaben je Thema |
+| Ergebnisübersicht der Prüfung nach Themen | Vorhanden |
+| Ungefähre Übungsnote nach der Prüfung | Vorhanden; keine offizielle Schulnote |
 | Freischaltung weiterer Lektionen | Im Pilotkurs nicht aktiv |
 | Wiederholung der Pilotlektion | Vorhanden |
 | Freies Training | Vorhanden; Verhalten im Browser noch manuell prüfen |
@@ -299,7 +302,7 @@ Der bisherige Umfang von 350 Fragen wurde für die nächste Entwicklungsrunde be
 
 Die Schwierigkeitsstufen unterscheiden sich in den Aufgabenstellungen und im erforderlichen Denken: Leicht übt vor allem das Erkennen einfacher Beispiele, Mittel bestimmt Wortarten in vollständigen Sätzen, Schwer untersucht Wortarten im Kontext und bearbeitet anspruchsvollere Fälle. Die Reihenfolge der Fragen bleibt bewusst erhalten, damit der Schwierigkeitsgrad innerhalb der Lektion schrittweise steigt. Die drei Kerninhalte dieser Pilotstunde sind Nomen, Verben und Adjektive.
 
-Beim Laden prüft die Anwendung die 18 Fragen aller drei Varianten auf Anzahl, drei unterschiedliche Antwortoptionen, gültigen Antwortindex, Aufgabenstellung, Erklärung und Level-Zuordnung. Diese technische Prüfung wird beim tatsächlichen Browser-Test noch einmal kontrolliert.
+Beim Laden prüft die Anwendung den gespeicherten Fragenbestand aus 35 Lektionen in allen drei Schwierigkeitsstufen (insgesamt 105 Varianten) auf Aufgabenanzahl, Antwortmöglichkeiten, Antwortindex, Aufgabenstellung, Erklärung und Level-Zuordnung. Die 21 ausgewählten Prüfungsaufgaben werden zusätzlich auf drei unterschiedliche Antwortmöglichkeiten, gültige Antwortindizes und genau drei Aufgaben pro Themenbereich geprüft. Diese technischen Prüfungen ersetzen keine fachliche Kontrolle.
 
 **Wichtig:** Die automatische Prüfung bestätigt nicht die fachliche Richtigkeit oder die pädagogische Qualität. Die Aufgaben müssen weiterhin manuell geprüft und möglichst mit einer Lehrkraft abgestimmt werden. Erst nach erfolgreichem Test der Pilotstunde wird entschieden, wie viele Lektionen und Aufgaben die übrigen Themen wirklich benötigen.
 
@@ -483,12 +486,14 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [x] Eine 45-minütige Pilotlektion zu Nomen, Verben und Adjektiven mit Lernseite und Zeitplan
 - [x] 18 Aufgaben je Schwierigkeitsstufe (54 erzeugte Fragen im Pilotkurs)
 - [x] Drei inhaltlich unterschiedliche Aufgabenvarianten für Leicht, Mittel und Schwer
-- [ ] Weitere Themen und Lektionen werden erst nach der Prüfung der Pilotlektion ergänzt
+- [x] Allgemeine Prüfung mit 21 Aufgaben aus sieben Themenbereichen
+- [ ] Weitere Lektionen im Lernpfad werden nach der fachlichen Prüfung der Pilotlektion ergänzt
 - [x] Themenkarte mit schrittweiser Freischaltung
 - [x] Wiederholung bereits abgeschlossener Lektionen
 - [x] Fünf Lernphasen mit eigener Einführung, Lernziel und Quaki-Tipp
 - [x] Sofortige Rückmeldung und Erklärungen zu Antworten
 - [x] Fehlerübersicht mit eigener Antwort, richtiger Lösung und Erklärung
+- [x] Ergebnisübersicht nach Themen und ungefähre Übungsnote für die Prüfung
 - [x] Kursfortschritt während der Browser-Sitzung
 - [x] Responsive Gestaltung für verschiedene Bildschirmgrößen
 - [x] Tastatur-Fokus, ARIA-Fortschrittsanzeigen und Reduced-Motion-Unterstützung
@@ -506,6 +511,8 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [ ] Prüfen, dass das Niveau im Header dieselbe weiße, neutrale Gestaltung wie die übrigen Chips hat und „Deutsch · Klasse 5“ nicht mehr erscheint
 - [ ] Hilfemenü auf Desktop und Smartphone öffnen und die aktualisierten Hinweise prüfen
 - [ ] Vollständiger manueller Funktionstest der Pilotlektion
+- [ ] Manueller Test der allgemeinen Prüfung: 21 Fragen, alle sieben Themen und drei Schwierigkeitsstufen
+- [ ] Übungsnote und Ergebnisübersicht nach Themen auf Desktop und Smartphone prüfen
 - [ ] Test über das Schul-WLAN
 - [ ] Praxistest mit einer Lerngruppe der 6. Klasse
 - [ ] Anonyme Auswertung des Feedbacks
@@ -526,7 +533,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 - Inhalt: **Deutsch — Grammatik, Rechtschreibung, Wortschatz und Textverständnis**
 - Einmalige Auswahl der Schwierigkeitsstufe: **Leicht / Mittel / Schwer**
 - Die internen Kennungen G/M/E werden vorerst nur im JavaScript für die vorhandenen Aufgabenvarianten verwendet; sie erscheinen nicht mehr in der Benutzeroberfläche.
-- Aktueller Entwicklungsstand: **eine 45-minütige Pilotlektion zu Wortarten, 18 Aufgaben je Schwierigkeitsstufe**
+- Aktueller Entwicklungsstand: **eine 45-minütige Pilotlektion zu Wortarten (18 Aufgaben je Schwierigkeitsstufe) sowie eine allgemeine Prüfung mit 21 Aufgaben aus sieben Themen**
 - Künftiger Umfang wird nach einem Praxistest festgelegt; 350 Fragen sind kein festes Ziel mehr
 - Kein Login und keine Registrierung
 - Keine Speicherung individueller Antworten oder Ergebnisse
@@ -571,6 +578,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 | Datum | Änderung |
 |---|---|
 | 25.11.2026 | Zielgruppe auf Klasse 6 aktualisiert und die sichtbare Auswahl von G/M/E auf Leicht/Mittel/Schwer umgestellt. Die bisherigen drei Aufgabenvarianten bleiben technisch erhalten; ihre internen Kennungen werden nur noch im Code verwendet. |
+| 25.11.2026 | Die Aufgaben der Pilotlektion geprüft und einige unpassende Steigerungsformen als falsche Antwortmöglichkeiten verbessert. Allgemeine Prüfung mit 21 Aufgaben aus sieben Themen, thematischer Ergebnisauswertung und ungefähren Übungsnote ergänzt. Die automatische Inhaltsprüfung umfasst jetzt alle 35 gespeicherten Lektionen in drei Schwierigkeitsstufen. |
 | 06.11.2026 | GitHub-Actions-Prüfung erweitert: zusätzlich zu JavaScript-Syntax werden doppelte HTML-IDs, JavaScript-Verweise auf HTML-IDs, zentrale Ansichten, Navigation, G/M/E-Auswahl und grundlegende Aufgabenregeln geprüft. Die Prüfung liegt in `scripts/validate-project.mjs` und wird über `.github/workflows/validate.yml` gestartet. Ein erfolgreicher statischer Check ersetzt keinen manuellen Browser- und Gerätetest. |
 
 

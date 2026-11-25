@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Quakoo – Deutsch lernen und üben für die 6. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=25">
-  <script src="script.js?v=26" defer></script>
+  <link rel="stylesheet" href="style.css?v=26">
+  <script src="script.js?v=27" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -169,6 +169,16 @@
           </aside>
         </div>
 
+        <section class="exam-card" aria-labelledby="exam-card-title">
+          <div class="exam-card-copy">
+            <span class="section-kicker">GROSSE WISSENSPROBE</span>
+            <h2 id="exam-card-title">Prüfung</h2>
+            <p>Teste dein Wissen in allen sieben Themen. Die Prüfung enthält 21 gemischte Aufgaben und richtet sich nach deiner gewählten Schwierigkeitsstufe.</p>
+            <div class="exam-card-meta"><span>21 Fragen</span><span>7 Themen</span><span>Ergebnis mit Übungsnote</span></div>
+          </div>
+          <button class="primary-button exam-start-button" id="exam-start-button" type="button">Prüfung starten <span aria-hidden="true">→</span></button>
+        </section>
+
         <div class="free-practice">
           <div><strong>Schon sicher? Zeit zum Wiederholen.</strong><span>Übe gemischte Aufgaben unabhängig vom Lernpfad.</span></div>
           <button class="text-button" id="free-practice-button" type="button">Freies Training <span aria-hidden="true">→</span></button>
@@ -303,7 +313,15 @@
           <div class="result-score-side"><span id="result-correct">0</span><small>Richtig</small></div>
           <div class="result-score-side"><span id="result-wrong">0</span><small>Noch üben</small></div>
         </div>
-        <div class="level-results-heading"><span class="section-kicker">DEINE ERGEBNISSE</span><h2>So lief es in dieser Einheit</h2></div>
+        <div class="exam-grade-card" id="exam-grade-card" hidden>
+          <div class="exam-grade-main">
+            <span class="section-kicker">DEINE ÜBUNGSNOTE</span>
+            <strong id="exam-grade-value">–</strong>
+            <span id="exam-grade-label">Noch kein Ergebnis</span>
+          </div>
+          <p id="exam-grade-description">Die Note ist eine ungefähre Orientierung und keine offizielle Schulnote.</p>
+        </div>
+        <div class="level-results-heading"><span class="section-kicker">DEINE ERGEBNISSE</span><h2 id="results-breakdown-title">So lief es in dieser Einheit</h2></div>
         <div class="level-results" id="level-results"></div>
         <div class="recommendation-card">
           <span class="section-kicker">DEIN NÄCHSTER SCHRITT</span>

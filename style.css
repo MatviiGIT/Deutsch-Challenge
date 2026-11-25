@@ -817,3 +817,38 @@ body{font-size:var(--font-body);line-height:1.5}
   .session-exit-button{width:35px;height:35px;flex-basis:35px}
   .generate-name-button{min-height:46px;padding:0 12px}
 }
+
+
+/* General examination and its topic-by-topic result. */
+.exam-card{
+  margin-top:18px;padding:21px 23px;display:flex;align-items:center;justify-content:space-between;
+  gap:22px;border:1px solid #e7d9ae;border-radius:19px;background:#fffaf0;
+  box-shadow:0 3px 0 #eee5d0;
+}
+.exam-card-copy{min-width:0;max-width:700px}
+.exam-card h2{margin:6px 0 7px;font:900 1.55rem/1.15 Georgia,"Times New Roman",serif;letter-spacing:-.035em}
+.exam-card p{margin:0;color:var(--ink-soft);font-size:var(--font-support);line-height:1.55}
+.exam-card-meta{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.exam-card-meta span{padding:5px 9px;border:1px solid #eadfbd;border-radius:999px;background:#fff;color:#76643a;font-size:var(--font-caption);font-weight:900}
+.exam-start-button{min-width:190px;flex:0 0 auto}
+.exam-grade-card{
+  margin-top:15px;padding:17px 20px;display:flex;align-items:center;gap:18px;
+  border:1px solid #e7d9ae;border-radius:16px;background:#fffaf0;
+}
+.exam-grade-main{min-width:110px;display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:11px}
+.exam-grade-main .section-kicker{grid-column:1/-1}
+.exam-grade-main strong{font:900 2.2rem/1 Georgia,serif;color:#80601a}
+.exam-grade-main>span:last-child{color:var(--ink);font-size:var(--font-body);font-weight:900}
+.exam-grade-card>p{margin:0;color:var(--ink-soft);font-size:var(--font-support);line-height:1.5}
+.result-screen.is-exam-result .level-results{grid-template-columns:repeat(2,minmax(0,1fr))}
+.result-screen.is-exam-result .level-result:last-child:nth-child(odd){grid-column:1/-1}
+@media(max-width:650px){
+  .exam-card{align-items:stretch;flex-direction:column;padding:18px}
+  .exam-start-button{width:100%;min-width:0}
+}
+@media(max-width:480px){
+  .exam-grade-card{align-items:flex-start;flex-direction:column;gap:9px;padding:15px}
+  .result-screen.is-exam-result .level-results{grid-template-columns:1fr}
+  .result-screen.is-exam-result .level-result:last-child:nth-child(odd){grid-column:auto}
+  .result-screen.is-exam-result .level-result+.level-result{border-left:0;border-top:1px solid var(--line)}
+}

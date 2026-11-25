@@ -228,11 +228,11 @@ const topics = [
       }},
       {title:"Adjektive beschreiben",focus:"Eigenschaften und Steigerung",build(track,stage){
         const rows=[
-          ["Ergänze: „warm – wärmer – ___“","am wärmsten",["am warmsten","wärmste","wärmer","am wärmlicher","wärmsten"],"Die Höchststufe lautet „am wärmsten“."],
+          ["Ergänze: „warm – wärmer – ___“","am wärmsten",["am warmsten","wärmste","wärmer","am wärmersten","wärmsten"],"Die Höchststufe lautet „am wärmsten“."],
           ["Ergänze: „schnell – schneller – ___“","am schnellsten",["am schnellsten","schnellste","schneller","am schnelligsten","schnellsten"],"Die Höchststufe von „schnell“ heißt „am schnellsten“."],
           ["Ergänze: „gut – besser – ___“","am besten",["am gutesten","am besten","bessersten","am bestesten","am bestensten"],"„Gut“ wird unregelmäßig gesteigert: gut – besser – am besten."],
-          ["Ergänze: „hoch – höher – ___“","am höchsten",["am hochsten","am höchsten","höchster","am höhesten","am höchstens"],"Die Höchststufe lautet „am höchsten“."],
-          ["Welche Steigerungsform ist richtig? „nah – näher – ___“","am nächsten",["am nähesten","am nächsten","am nahsten","nächster","am nächstens"],"„Nah“ wird unregelmäßig gesteigert: nah – näher – am nächsten."],
+          ["Ergänze: „hoch – höher – ___“","am höchsten",["am hochsten","am höchsten","höchster","am höhesten","am hochesten"],"Die Höchststufe lautet „am höchsten“."],
+          ["Welche Steigerungsform ist richtig? „nah – näher – ___“","am nächsten",["am nähesten","am nächsten","am nahsten","nächster","am nahesten"],"„Nah“ wird unregelmäßig gesteigert: nah – näher – am nächsten."],
           ["Ergänze: „teuer – teurer – ___“","am teuersten",["am teuersten","am teuerstensten","am teuerersten","teuerste","am teuern"],"Die Höchststufe von „teuer“ lautet „am teuersten“."],
           ["Welche Form passt? „Der Zug ist ___ als der Bus.“","schneller",["am schnellsten","schnell","schneller","schnellste","schnelleren"],"Nach „als“ verwendet man hier die Vergleichsform „schneller“."],
           ["Welche Form passt? „Das ist die ___ Aufgabe.“","schwierigste",["schwieriger","am schwierigsten","schwierigste","schwerigste","schwierig"],"Vor einem Nomen steht hier die gebeugte Höchstform „schwierigste“."],
@@ -751,9 +751,84 @@ const topics = [
     ]
   }
 ];
+
+const EXAM_QUESTION_PLAN = [
+  {topicId:"wortarten",lessonIndex:0,questionIndex:0},
+  {topicId:"wortarten",lessonIndex:2,questionIndex:0},
+  {topicId:"wortarten",lessonIndex:3,questionIndex:0},
+  {topicId:"wortschatz",lessonIndex:0,questionIndex:0},
+  {topicId:"wortschatz",lessonIndex:1,questionIndex:3},
+  {topicId:"wortschatz",lessonIndex:2,questionIndex:6},
+  {topicId:"rechtschreibung",lessonIndex:1,questionIndex:0},
+  {topicId:"rechtschreibung",lessonIndex:2,questionIndex:6},
+  {topicId:"rechtschreibung",lessonIndex:4,questionIndex:0},
+  {topicId:"satzzeichen",lessonIndex:0,questionIndex:0},
+  {topicId:"satzzeichen",lessonIndex:1,questionIndex:3},
+  {topicId:"satzzeichen",lessonIndex:2,questionIndex:6},
+  {topicId:"grammatik",lessonIndex:0,questionIndex:0},
+  {topicId:"grammatik",lessonIndex:1,questionIndex:3},
+  {topicId:"grammatik",lessonIndex:2,questionIndex:6},
+  {topicId:"satzbau",lessonIndex:0,questionIndex:0},
+  {topicId:"satzbau",lessonIndex:1,questionIndex:3},
+  {topicId:"satzbau",lessonIndex:2,questionIndex:6},
+  {topicId:"lesen",lessonIndex:0,questionIndex:2},
+  {topicId:"lesen",lessonIndex:1,questionIndex:0},
+  {topicId:"lesen",lessonIndex:2,questionIndex:0}
+];
+
+function validateExamQuestions(examQuestions,track) {
+  if(examQuestions.length!==EXAM_QUESTION_PLAN.length) {
+    throw new Error("Die Prüfung muss genau 21 Aufgaben enthalten.");
+  }
+  const counts=new Map();
+  examQuestions.forEach((question,index)=>{
+    counts.set(question.topicId,(counts.get(question.topicId)||0)+1);
+    const normalizedChoices=question.choices.map(choice=>choice.trim().toLocaleLowerCase("de"));
+    const validChoices=question.choices.length===3
+      &&new Set(normalizedChoices).size===3
+      &&question.choices.every(choice=>typeof choice==="string"&&choice.trim().length>0);
+    const validAnswer=Number.isInteger(question.answer)&&question.answer>=0&&question.answer<3;
+    if(!validChoices||!validAnswer||!question.prompt?.trim()||!question.explanation?.trim()) {
+      throw new Error("Prüfung / Frage "+(index+1)+": ungültige Frage oder Antwortoptionen.");
+    }
+    if(question.track!==track||!question.topicTitle||!question.lessonTitle) {
+      throw new Error("Prüfung / Frage "+(index+1)+": Thema, Lektion oder Schwierigkeitsstufe fehlt.");
+    }
+  });
+  topics.forEach(topic=>{
+    if(counts.get(topic.id)!==3) {
+      throw new Error("Die Prüfung benötigt genau drei Aufgaben aus: "+topic.title);
+    }
+  });
+}
+
+function buildExamQuestions(track) {
+  if(!TRACKS[track]) throw new Error("Unbekannte Schwierigkeitsstufe für die Prüfung.");
+  const examQuestions=EXAM_QUESTION_PLAN.map(item=>{
+    const topic=topics.find(entry=>entry.id===item.topicId);
+    const lesson=topic?.lessons[item.lessonIndex];
+    if(!topic||!lesson) throw new Error("Ein Prüfungsthema oder eine Lektion fehlt.");
+    const lessonQuestions=ensureUniquePrompts(lesson.build(track,item.lessonIndex+1),topic.id);
+    const selected=lessonQuestions[item.questionIndex];
+    if(!selected) throw new Error("Eine geplante Prüfungsfrage fehlt: "+topic.title);
+    return {...selected,topicId:topic.id,topicTitle:topic.title,lessonTitle:lesson.title};
+  });
+  validateExamQuestions(examQuestions,track);
+  return shuffle(examQuestions);
+}
+
+function practiceGrade(percent) {
+  if(percent>=92) return {value:"1",label:"Sehr gut"};
+  if(percent>=81) return {value:"2",label:"Gut"};
+  if(percent>=67) return {value:"3",label:"Befriedigend"};
+  if(percent>=50) return {value:"4",label:"Ausreichend"};
+  if(percent>=30) return {value:"5",label:"Mangelhaft"};
+  return {value:"6",label:"Ungenügend"};
+}
+
 let selectedTrack=null,playerName="",courseStarted=false;
 let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,selectedAnswer=null,wrongAnswers=[],stats={correct:0,total:0};
-let activeQuizStage=-1,pendingQuizStage=-1;
+let activeQuizStage=-1,pendingQuizStage=-1,currentMode="practice";
 let completed=new Set();
 const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...topic,lessons:topic.lessons.slice(0,1)}));
 const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=18,totalQuestions=totalUnits*questionsPerUnit;
@@ -807,7 +882,7 @@ function validateUnitQuestions(topic,lesson,questions,track){
 }
 function auditAllTracks(){
   Object.keys(TRACKS).forEach(track=>{
-    courseTopics.forEach(topic=>{
+    topics.forEach(topic=>{
       topic.lessons.forEach((lesson,index)=>{
         const questions=ensureUniquePrompts(lesson.build(track,index+1),topic.id);
         validateUnitQuestions(topic,lesson,questions,track);
@@ -851,7 +926,7 @@ function endSession(){
   courseStarted=false;selectedTrack=null;playerName="";
   units=[];questions=[];currentUnit=null;queue=[];currentIndex=0;
   score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:0};
-  activeQuizStage=-1;pendingQuizStage=-1;completed=new Set();
+  activeQuizStage=-1;pendingQuizStage=-1;currentMode="practice";completed=new Set();
 
   const input=document.getElementById("player-name");
   input.value="";
@@ -924,11 +999,12 @@ function renderPath(){
   const button=document.getElementById("next-unit-button");button.disabled=!next;
   button.innerHTML=next?'Weiterlernen <span aria-hidden="true">→</span>':'Kurs geschafft <span aria-hidden="true">✓</span>';
 }
-function prepare(items,unit=null){
-  currentUnit=unit;queue=items;currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:items.length};
+function prepare(items,unit=null,mode="practice"){
+  currentUnit=unit;currentMode=mode;queue=items;currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:items.length};
   activeQuizStage=-1;pendingQuizStage=-1;
   document.getElementById("score-value").textContent="0 Punkte";
-  document.getElementById("quiz-topic").textContent=unit?unit.topic.title.toUpperCase(): "FREIES TRAINING";
+  document.getElementById("quiz-topic").textContent=mode==="exam"?"PRÜFUNG":unit?unit.topic.title.toUpperCase():"FREIES TRAINING";
+  document.getElementById("back-to-menu").textContent=mode==="exam"?"← Prüfung verlassen":"← Lernpfad";
   document.getElementById("stage-intro").hidden=true;
   document.getElementById("question-panel").hidden=false;
   screen("quiz");renderQuestion();
@@ -980,7 +1056,8 @@ function startUnit(unit){
   renderLessonStages(unit);
   screen("lesson");
 }
-function startFree(){prepare(shuffle(questions),null);}
+function startFree(){prepare(shuffle(questions),null,"practice");}
+function startExam(){prepare(buildExamQuestions(selectedTrack),null,"exam");}
 function renderQuestion(){
   const q=queue[currentIndex],number=currentIndex+1,percent=Math.round(number/queue.length*100);
   answered=false;selectedAnswer=null;
@@ -988,7 +1065,9 @@ function renderQuestion(){
   document.getElementById("question-counter").textContent=number+" / "+queue.length;
   document.getElementById("progress-level").textContent=currentUnit
     ?TRACKS[selectedTrack].label.toUpperCase()+" · "+STAGES[stageNumber].name.toUpperCase()+" · "+currentUnit.title.toUpperCase()
-    :TRACKS[selectedTrack].label.toUpperCase()+" · FREIES TRAINING";
+    :currentMode==="exam"
+      ?TRACKS[selectedTrack].label.toUpperCase()+" · PRÜFUNG · "+q.topicTitle.toUpperCase()
+      :TRACKS[selectedTrack].label.toUpperCase()+" · FREIES TRAINING";
   document.getElementById("progress-percent").textContent=percent+" %";
   document.getElementById("progress-fill").style.width=percent+"%";
   const progress=document.getElementById("quiz-progress");
@@ -1057,7 +1136,17 @@ function selectAnswer(selected){
 function renderResults(){
   screen("result");
   const total=queue.length,pct=Math.round(score/total*100),wrong=total-score;
+  const isExam=currentMode==="exam";
+  const grade=isExam?practiceGrade(pct):null;
   if(currentUnit)completed.add(currentUnit.id);
+  resultScreen.classList.toggle("is-exam-result",isExam);
+  document.getElementById("exam-grade-card").hidden=!isExam;
+  if(isExam){
+    document.getElementById("exam-grade-value").textContent=grade.value;
+    document.getElementById("exam-grade-label").textContent=grade.label;
+    document.getElementById("exam-grade-description").textContent=
+      "Ungefähre Orientierung anhand des Ergebnisses. Keine offizielle Schulnote.";
+  }
   document.getElementById("score-fraction").textContent=score+"/"+total;
   document.getElementById("score-percent").textContent=pct+" %";
   document.getElementById("result-correct").textContent=score;
@@ -1065,37 +1154,63 @@ function renderResults(){
   document.getElementById("result-progress-fill").style.width=pct+"%";
   document.getElementById("result-progress-track").setAttribute("aria-valuemax",String(total));
   document.getElementById("result-progress-track").setAttribute("aria-valuenow",String(score));
-  document.getElementById("result-subheading").textContent=currentUnit
-    ?playerName+" · "+currentUnit.topic.title+" · "+currentUnit.title+" abgeschlossen."
-    :playerName+" · Du hast "+score+" von "+total+" Fragen richtig beantwortet.";
-  document.querySelector(".result-header .eyebrow").textContent=currentUnit?"EINHEIT ABGESCHLOSSEN":"FREIES TRAINING BEENDET";
+  document.getElementById("result-subheading").textContent=isExam
+    ?playerName+" · Du hast die Prüfung mit 21 Fragen abgeschlossen."
+    :currentUnit
+      ?playerName+" · "+currentUnit.topic.title+" · "+currentUnit.title+" abgeschlossen."
+      :playerName+" · Du hast "+score+" von "+total+" Fragen richtig beantwortet.";
+  document.querySelector(".result-header .eyebrow").textContent=
+    isExam?"PRÜFUNG ABGESCHLOSSEN":currentUnit?"EINHEIT ABGESCHLOSSEN":"FREIES TRAINING BEENDET";
   let heading=pct>=90?"Hervorragend!":pct>=70?"Gut gemacht!":pct>=50?"Weiter so!":"Guter Anfang!";
   if(currentUnit&&completedCount()===totalQuestions)heading="Lernpfad geschafft!";
+  if(isExam&&pct<50)heading="Prüfung abgeschlossen";
   document.getElementById("result-heading").textContent=heading;
   document.getElementById("result-medal").textContent=pct>=90?"★":pct>=50?"✦":"◆";
+
   const resultList=document.getElementById("level-results");resultList.replaceChildren();
-  const card=document.createElement("div");card.className="level-result";
-  const row=document.createElement("div");row.className="level-result-head";
-  const name=document.createElement("span");name.textContent=currentUnit?currentUnit.title:"Freies Training";
-  const value=document.createElement("strong");value.textContent=score+" / "+total;
-  const percent=document.createElement("span");percent.className="level-result-percent";percent.textContent=pct+" %";
-  row.append(name,value,percent);
-  const track=document.createElement("div");track.className="level-result-track";
-  track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(total));track.setAttribute("aria-valuenow",String(score));
-  const fill=document.createElement("span");fill.className="level-result-fill";fill.style.width=pct+"%";track.append(fill);
-  card.append(row,track);resultList.append(card);
-  document.getElementById("recommendation-title").textContent=pct>=90?"Das sitzt richtig gut!":pct>=70?"Eine starke Runde!":pct>=50?"Du bist auf dem Weg.":"Übung macht sicher.";
-  document.getElementById("recommendation-text").textContent=
-    (pct>=90?"Du hast fast alle Aufgaben richtig gelöst. "
+  document.getElementById("results-breakdown-title").textContent=
+    isExam?"Dein Ergebnis in den sieben Themen":"So lief es in dieser Einheit";
+  const incorrectQuestions=new Set(wrongAnswers.map(item=>item.question));
+  const breakdown=isExam
+    ?topics.map(topic=>{
+        const topicQuestions=queue.filter(question=>question.topicId===topic.id);
+        const correct=topicQuestions.filter(question=>!incorrectQuestions.has(question)).length;
+        return {title:topic.title,correct,total:topicQuestions.length};
+      })
+    :[{title:currentUnit?currentUnit.title:"Freies Training",correct:score,total}];
+  breakdown.forEach(entry=>{
+    const card=document.createElement("div");card.className="level-result";
+    const row=document.createElement("div");row.className="level-result-head";
+    const name=document.createElement("span");name.textContent=entry.title;
+    const value=document.createElement("strong");value.textContent=entry.correct+" / "+entry.total;
+    const percent=document.createElement("span");percent.className="level-result-percent";
+    const topicPercent=Math.round(entry.correct/entry.total*100);
+    percent.textContent=topicPercent+" %";
+    row.append(name,value,percent);
+    const track=document.createElement("div");track.className="level-result-track";
+    track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");
+    track.setAttribute("aria-valuemax",String(entry.total));track.setAttribute("aria-valuenow",String(entry.correct));
+    const fill=document.createElement("span");fill.className="level-result-fill";fill.style.width=topicPercent+"%";track.append(fill);
+    card.append(row,track);resultList.append(card);
+  });
+
+  document.getElementById("recommendation-title").textContent=isExam
+    ?"Deine Übungsnote: "+grade.value
+    :pct>=90?"Das sitzt richtig gut!":pct>=70?"Eine starke Runde!":pct>=50?"Du bist auf dem Weg.":"Übung macht sicher.";
+  document.getElementById("recommendation-text").textContent=isExam
+    ?"Du hast "+score+" von "+total+" Fragen richtig beantwortet. Wiederhole die Themen, bei denen du noch Fehler gemacht hast."
+    :(pct>=90?"Du hast fast alle Aufgaben richtig gelöst. "
     :pct>=70?"Viele Antworten waren richtig. "
     :pct>=50?"Lies die Erklärungen in Ruhe durch. "
     :"Fehler sind Teil des Lernens. Lies die Erklärungen und probiere es weiter. ")+
     (currentUnit?"Du hast "+currentUnit.title+" in "+currentUnit.topic.title+" abgeschlossen.":"Du kannst jetzt eine Lektion im Lernpfad starten.");
+
   const list=document.getElementById("mistakes-list");list.replaceChildren();
   document.getElementById("mistakes-section").hidden=wrongAnswers.length===0;
   wrongAnswers.forEach(({question:q,selectedIndex})=>{
     const item=document.createElement("article");item.className="mistake-item";
-    const meta=document.createElement("div");meta.className="mistake-meta";meta.textContent=TRACKS[selectedTrack].label+" · "+q.category;
+    const meta=document.createElement("div");meta.className="mistake-meta";
+    meta.textContent=TRACKS[selectedTrack].label+" · "+(isExam?q.topicTitle:q.category);
     const prompt=document.createElement("h3");prompt.className="mistake-question";prompt.textContent=q.prompt;
     const selected=document.createElement("p");selected.className="mistake-selected";selected.textContent="Deine Antwort: "+q.choices[selectedIndex];
     const answer=document.createElement("p");answer.className="mistake-answer";answer.textContent="Richtige Antwort: "+q.choices[q.answer];
@@ -1103,9 +1218,12 @@ function renderResults(){
     item.append(meta,prompt,selected,answer,explanation);list.append(item);
   });
   const following=nextUnit(),nextLevelButton=document.getElementById("next-level-button");
-  nextLevelButton.hidden=!currentUnit||!following;
+  nextLevelButton.hidden=isExam||!currentUnit||!following;
   if(following)nextLevelButton.innerHTML="Weiter: "+following.topic.title+" · "+following.title+' <span aria-hidden="true">→</span>';
-  document.getElementById("retry-button").textContent=currentUnit?"Lektion wiederholen ↻":"Training wiederholen ↻";
+  document.getElementById("retry-button").textContent=
+    isExam?"Prüfung wiederholen ↻":currentUnit?"Lektion wiederholen ↻":"Training wiederholen ↻";
+  document.getElementById("result-menu-button").textContent=
+    isExam?"Zur Home-Seite":"Zurück zum Lernpfad";
   renderPath();
 }
 const playerInput=document.getElementById("player-name");
@@ -1147,6 +1265,7 @@ document.getElementById("profile-form").addEventListener("submit",event=>{
   event.preventDefault();if(!beginButton.disabled)beginCourse();
 });
 document.getElementById("free-practice-button").addEventListener("click",startFree);
+document.getElementById("exam-start-button").addEventListener("click",startExam);
 document.querySelectorAll(".nav-button").forEach(button=>{
   button.addEventListener("click",()=>screen(button.dataset.screen));
 });
@@ -1173,9 +1292,13 @@ document.getElementById("stage-intro-start-button").addEventListener("click",()=
   pendingQuizStage=-1;
   renderQuestion();
 });
-document.getElementById("back-to-menu").addEventListener("click",()=>screen("path"));
-document.getElementById("result-menu-button").addEventListener("click",()=>screen("path"));
-document.getElementById("retry-button").addEventListener("click",()=>currentUnit?startUnit(currentUnit):startFree());
+document.getElementById("back-to-menu").addEventListener("click",()=>screen(currentMode==="exam"?"start":"path"));
+document.getElementById("result-menu-button").addEventListener("click",()=>screen(currentMode==="exam"?"start":"path"));
+document.getElementById("retry-button").addEventListener("click",()=>{
+  if(currentMode==="exam")startExam();
+  else if(currentUnit)startUnit(currentUnit);
+  else startFree();
+});
 document.getElementById("brand-home").addEventListener("click",event=>{
   event.preventDefault();
   screen(courseStarted?"start":"profile");

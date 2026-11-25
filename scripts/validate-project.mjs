@@ -23,6 +23,8 @@ const requiredIds = [
   "lesson-screen", "quiz-screen", "result-screen",
   "logout-button", "generate-name-button", "name-generator-status",
   "lesson-start-button", "stage-intro", "stage-intro-title",
+  "exam-start-button", "exam-grade-card", "exam-grade-value",
+  "exam-grade-label", "exam-grade-description", "results-breakdown-title",
   "stage-intro-description", "stage-intro-tip", "stage-intro-count", "stage-intro-start-button",
   "question-panel", "answer-grid", "next-button"
 ];
@@ -53,6 +55,22 @@ if (html.includes("G, M oder E") || html.includes("G-Niveau") ||
 
 if (!/auditAllTracks\(\);/.test(js)) {
   errors.push("Automatische Prüfung der Aufgaben beim Start fehlt.");
+}
+if (!/const EXAM_QUESTION_PLAN = \[/.test(js) ||
+    !/function buildExamQuestions\(track\)/.test(js) ||
+    !/function validateExamQuestions\(examQuestions,track\)/.test(js) ||
+    !/EXAM_QUESTION_PLAN\.length/.test(js)) {
+  errors.push("Die allgemeine Prüfung mit geprüfter Aufgabenplanung fehlt.");
+}
+if (!/function practiceGrade\(percent\)/.test(js) ||
+    !html.includes("21 Fragen") || !html.includes("7 Themen") ||
+    !html.includes("DEINE ÜBUNGSNOTE")) {
+  errors.push("Prüfungsergebnis oder ungefähre Übungsnote fehlt.");
+}
+for (const topic of ["wortarten", "wortschatz", "rechtschreibung", "satzzeichen", "grammatik", "satzbau", "lesen"]) {
+  if (!js.includes('topicId:"' + topic + '"')) {
+    errors.push("Prüfungsthema fehlt: " + topic);
+  }
 }
 if (!/function generatePlayerName\(/.test(js) || !html.includes('id="generate-name-button"')) {
   errors.push("Generator für zufällige Spielnamen fehlt.");
@@ -112,4 +130,5 @@ console.log("- " + ids.length + " HTML-IDs geprüft (keine Duplikate)");
 console.log("- " + new Set(jsIds).size + " JavaScript-ID-Verweise geprüft");
 console.log("- Home, Lernpfad, Lektion, Quiz und Ergebnisse vorhanden");
 console.log("- Leicht/Mittel/Schwer und Aufgaben-Grundregeln vorhanden");
+console.log("- Prüfung mit 21 Aufgaben aus sieben Themen und Übungsnote vorhanden");
 console.log("- Fünf Lernphasen, Phasengrenzen und Einführungsansichten vorhanden");
