@@ -1,6 +1,6 @@
 # Quakoo — Deutsch-Challenge
 
-**Eine spielerische Lernplattform für Deutsch in der 5. Klasse**  
+**Eine spielerische Lernplattform für Deutsch in der 6. Klasse**  
 Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 
 | Information | Stand |
@@ -8,19 +8,19 @@ Schulprojekt im Rahmen von **„Zeig, was du kannst“**.
 | Schulprojekt / Repository | Deutsch-Challenge |
 | Name der Lernplattform | **Quakoo** |
 | Lernbegleiter | Quaki, der Frosch |
-| Zielgruppe | Schülerinnen und Schüler der 5. Klasse |
+| Zielgruppe | Schülerinnen und Schüler der 6. Klasse |
 | Sprache der Anwendung | Deutsch |
 | Technische Basis | HTML, CSS und JavaScript |
 | Hosting | GitHub Pages |
 | Repository | [MatviiGIT/Deutsch-Challenge](https://github.com/MatviiGIT/Deutsch-Challenge) |
 | Öffentliche Website | [matviigit.github.io/Deutsch-Challenge](https://matviigit.github.io/Deutsch-Challenge/) |
-| Dokumentationsstand | 10. November 2026 |
+| Dokumentationsstand | 25. November 2026 |
 
 ---
 
 ## 1. Projekt in Kürze
 
-**Quakoo** ist die Lernplattform des Schulprojekts Deutsch-Challenge. Quaki, ein freundlicher Frosch, begleitet Kinder der 5. Klasse beim Wiederholen ausgewählter Inhalte des Deutschunterrichts.
+**Quakoo** ist die Lernplattform des Schulprojekts Deutsch-Challenge. Quaki, ein freundlicher Frosch, begleitet Kinder der 6. Klasse beim Wiederholen ausgewählter Inhalte des Deutschunterrichts.
 
 Die Website bietet drei Schwierigkeitsstufen. Jede Frage hat drei Antwortmöglichkeiten. Nach einer Antwort zeigt das Programm, ob die Auswahl richtig war, und erklärt die Lösung in einfachen Worten. Am Ende erhalten die Lernenden eine Auswertung und Hinweise darauf, welche Inhalte sie noch üben können.
 
@@ -34,7 +34,7 @@ Grammatik, Rechtschreibung und Textverständnis brauchen regelmäßige Übung. B
 
 ### Ziel
 
-Wir entwickeln und erproben ein leicht zugängliches, verständliches und kostenlos nutzbares Lernquiz für die 5. Klasse.
+Wir entwickeln und erproben ein leicht zugängliches, verständliches und kostenlos nutzbares Lernquiz für die 6. Klasse.
 
 Die Anwendung soll:
 
@@ -50,25 +50,25 @@ Ein veröffentlichter Link allein ist noch kein Nachweis für den Lernerfolg. Da
 
 ## 3. Zielgruppe und Umfang
 
-**Primäre Zielgruppe:** Schülerinnen und Schüler der 5. Klasse.
+**Primäre Zielgruppe:** Schülerinnen und Schüler der 6. Klasse.
 
 **Weitere mögliche Nutzer:** Deutschlehrkräfte, die das Quiz als kurze Wiederholung oder zusätzliche Übung einsetzen möchten.
 
 Die Anwendung benötigt kein Benutzerkonto, keine Installation und keine Registrierung. Vor dem Kursstart wird nur ein frei gewählter oder zufällig generierter Spielname (am besten ein Spitzname) eingegeben und ein Lernniveau ausgewählt. Diese Angaben bleiben nur im Arbeitsspeicher der aktuellen Sitzung. Über die kompakte Abmelden-Schaltfläche links vom Quakoo-Logo wird die Sitzung beendet und der aktuelle Fortschritt aus dem Arbeitsspeicher gelöscht. Das Logo bleibt das wichtigste Element links in der Kopfzeile und führt zurück zur Home-Seite. Die Website kann über einen normalen Browser auf einem Computer, Tablet oder Smartphone geöffnet werden.
 
-Die Aufgaben sind ein erster Entwurf für die 5. Klasse. Vor einem Einsatz im Unterricht sollten die Formulierungen, Themen und Schwierigkeitsgrade mit einer Lehrkraft abgeglichen werden.
+Die Aufgaben sind ein erster Entwurf für die 6. Klasse. Vor einem Einsatz im Unterricht sollten die Formulierungen, Themen und Schwierigkeitsgrade mit einer Lehrkraft abgeglichen werden.
 
 ## 4. Pädagogisches Konzept
 
-Vor dem Kurs wählt das Kind einmalig das Niveau für den gesamten Lernweg:
+Vor dem Kurs wählt das Kind eine von drei Schwierigkeitsstufen:
 
-| Niveau | Bezeichnung | Ausrichtung |
-|---|---|---|
-| **G** | Grundlegendes Niveau | Klarere Beispiele und weniger ähnliche Antwortmöglichkeiten |
-| **M** | Mittleres Niveau | Mehr Zusammenhänge und plausiblere Ablenkungsantworten |
-| **E** | Erweitertes Niveau | Anspruchsvollere Beispiele und besonders ähnliche Ablenkungsantworten |
+| Schwierigkeitsstufe | Ausrichtung |
+|---|---|
+| **Leicht** | Grundlagen und einfache Beispiele |
+| **Mittel** | Regeln in Sätzen anwenden und Zusammenhänge erkennen |
+| **Schwer** | Anspruchsvollere Aufgaben und genaues Untersuchen im Kontext |
 
-Die ursprüngliche Planung sah fünf aufeinanderfolgende Lektionen pro Thema vor. Diese Struktur ist derzeit nicht Teil des aktiven Pilotkurses. Zuerst wird eine einzelne 45-minütige Lektion getestet. Erst danach wird entschieden, ob und wie die übrigen Lektionen umgesetzt werden. Das G/M/E-Niveau verändert im Pilotkurs sowohl die Aufgabenstellungen als auch den erforderlichen Denkweg.
+Die ursprüngliche Planung sah fünf aufeinanderfolgende Lektionen pro Thema vor. Diese Struktur ist derzeit nicht Teil des aktiven Pilotkurses. Zuerst wird eine einzelne 45-minütige Lektion getestet. Erst danach wird entschieden, ob und wie die übrigen Lektionen umgesetzt werden. Die drei Schwierigkeitsstufen unterscheiden sich durch die Aufgabenstellungen und den erforderlichen Denkweg.
 
 ### Sieben Themenwelten
 
@@ -89,7 +89,7 @@ Offizielle Grundlagen:
 - [3.1.2.1 Struktur von Äußerungen](https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_SEK1_D.V2_IK_5-6_02_01)
 - [3.1.1.2 Sach- und Gebrauchstexte](https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_SEK1_D.V2_IK_5-6_01_02)
 
-Der Bildungsplan für die Sekundarstufe I beschreibt Kompetenzen für **Klassen 5/6**. Er ist daher eine passende fachliche Orientierung, bestätigt aber nicht automatisch, dass jedes einzelne Thema an jeder Schule bereits in Klasse 5 behandelt wurde. Die konkrete Unterrichtsreihenfolge und der Lernstand müssen mit einer Deutschlehrkraft abgestimmt werden.
+Der Bildungsplan für die Sekundarstufe I beschreibt Kompetenzen für **Klassen 5/6**. Er ist daher eine passende fachliche Orientierung, bestätigt aber nicht automatisch, dass jedes einzelne Thema an jeder Schule bereits in Klasse 6 behandelt wurde. Die konkrete Unterrichtsreihenfolge und der Lernstand müssen mit einer Deutschlehrkraft abgestimmt werden.
 
 ### Themenfelder und inhaltlicher Umfang
 
@@ -105,14 +105,14 @@ Die frühere Kursplanung sah sieben Themen mit jeweils fünf Lektionen vor. Dies
 | Satzbau | Subjekt und Prädikat, Verbposition, Satzglieder, Konjunktionen und Nebensätze |
 | Lesen & Verstehen | Einzelheiten finden, Abläufe ordnen, Schlussfolgerungen, Hauptaussagen und Informationen kombinieren |
 
-Die Fragen sind ein Arbeitsentwurf zur Wiederholung ausgewählter Inhalte aus dem Deutschunterricht. Die Themenauswahl orientiert sich am Bildungsplan Deutsch für die Sekundarstufe I, Klassen 5/6. Daraus folgt **keine** Garantie, dass jede einzelne Aufgabe bereits zum Unterrichtsstand jeder fünften Klasse passt. Vor dem schulischen Einsatz ist eine Prüfung durch eine Deutschlehrkraft erforderlich.
+Die Fragen sind ein Arbeitsentwurf zur Wiederholung ausgewählter Inhalte aus dem Deutschunterricht. Die Themenauswahl orientiert sich am Bildungsplan Deutsch für die Sekundarstufe I, Klassen 5/6. Daraus folgt **keine** Garantie, dass jede einzelne Aufgabe bereits zum Unterrichtsstand jeder sechsten Klasse passt. Vor dem schulischen Einsatz ist eine Prüfung durch eine Deutschlehrkraft erforderlich.
 
-Die Pilotlektion besitzt getrennte Aufgabenstellungen für G, M und E. Die Differenzierung soll sich im Denkweg und im Anwendungsniveau zeigen, nicht nur in schwierigeren falschen Antwortmöglichkeiten.
+Die Pilotlektion besitzt drei Aufgabenvarianten für Leicht, Mittel und Schwer. Die Differenzierung soll sich im Denkweg und im Anwendungsniveau zeigen, nicht nur in schwierigeren falschen Antwortmöglichkeiten.
 ### Themenkarte und Lernablauf
 
-Die Anwendung besitzt getrennte Ansichten für **Home** und **Lernpfad**. Home zeigt den persönlichen Einstieg, das gewählte Lernniveau, den sitzungsbasierten Fortschritt und den nächsten Lernschritt. Der Lernpfad zeigt Themenkarten, Lektionen und eine Legende für offene, abgeschlossene und gesperrte Einheiten. Die Lektion bleibt eine eigene Ansicht mit Erklärungen und anschließendem Aufgabenablauf.
+Die Anwendung besitzt getrennte Ansichten für **Home** und **Lernpfad**. Home zeigt den persönlichen Einstieg, die gewählte Schwierigkeitsstufe, den sitzungsbasierten Fortschritt und den nächsten Lernschritt. Der Lernpfad zeigt Themenkarten, Lektionen und eine Legende für offene, abgeschlossene und gesperrte Einheiten. Die Lektion bleibt eine eigene Ansicht mit Erklärungen und anschließendem Aufgabenablauf.
 
-Die aktuelle Lernpfad-Ansicht zeigt im Pilotstand nur die Themenwelt **Wortarten** mit einer Lektion. Vor den Aufgaben erscheint eine Lernseite mit Definitionen, Beispielen und einem Ablauf für 45 Minuten. Die Aufgaben werden passend zum einmal gewählten G-, M- oder E-Niveau erzeugt.
+Die aktuelle Lernpfad-Ansicht zeigt im Pilotstand nur die Themenwelt **Wortarten** mit einer Lektion. Vor den Aufgaben erscheint eine Lernseite mit Definitionen, Beispielen und einem Ablauf für 45 Minuten. Die Aufgaben werden passend zur gewählten Schwierigkeitsstufe Leicht, Mittel oder Schwer erzeugt.
 
 Die 18 Aufgaben sind zusätzlich in fünf aufeinanderfolgende Lernphasen gegliedert. Vor jeder Phase erscheint eine kurze Zwischenansicht mit ihrem Lernziel und einem passenden Tipp von Quaki. Erst nach dem Klick auf „Mit dieser Phase beginnen“ werden die Aufgaben dieser Phase freigegeben. Während der Fragen bleibt der aktuelle Phasenname im Fortschrittsbereich sichtbar. Im freien Training werden diese Zwischenansichten nicht eingeblendet:
 
@@ -134,7 +134,7 @@ Der Fortschritt wird nur im Arbeitsspeicher der aktuellen Browser-Sitzung gehalt
 
 ## 5. Aktueller Funktionsumfang
 
-Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen Wortarten-Lektion. Beim Start wird einmalig **G-, M- oder E-Niveau** gewählt. Die gewählte Variante gilt für die gesamte Probestunde.
+Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen Wortarten-Lektion. Beim Start wird einmalig **Leicht, Mittel oder Schwer** gewählt. Die gewählte Variante gilt für die gesamte Probestunde.
 
 | Funktion | Aktueller Stand |
 |---|---|
@@ -143,7 +143,7 @@ Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen
 | Freischaltung weiterer Lektionen | Im Pilotkurs nicht aktiv |
 | Wiederholung der Pilotlektion | Vorhanden |
 | Freies Training | Vorhanden; Verhalten im Browser noch manuell prüfen |
-| Drei getrennte G/M/E-Aufgabenvarianten | Im Pilotstand vorhanden |
+| Drei getrennte Aufgabenvarianten für Leicht, Mittel und Schwer | Im Pilotstand vorhanden |
 | Feste, didaktisch geordnete Reihenfolge in der Pilotlektion | Vorhanden |
 | Kurze Einführung mit Lernziel und Quaki-Tipp vor jeder der fünf Phasen | Vorhanden |
 | Sichtbarer Phasenwechsel vor dem nächsten Aufgabenabschnitt | Vorhanden |
@@ -157,7 +157,7 @@ Der aktuelle Testkurs enthält **18 Aufgaben pro Niveau** zu einer 45-minütigen
 | Dauerhafte Speicherung persönlicher Ergebnisse | Nicht implementiert |
 | Lehrer-Dashboard oder Klassenstatistik | Nicht implementiert |
 
-**Wichtige Einschränkung:** Spielname, gewähltes Niveau und abgeschlossene Lektionen werden nur während der aktuellen Sitzung im Arbeitsspeicher gehalten. Ein Neuladen oder Schließen der Seite setzt den Lernweg zurück.
+**Wichtige Einschränkung:** Spielname, gewählte Schwierigkeitsstufe und abgeschlossene Lektionen werden nur während der aktuellen Sitzung im Arbeitsspeicher gehalten. Ein Neuladen oder Schließen der Seite setzt den Lernweg zurück.
 
 ## 6. Gestaltung und Bedienung
 
@@ -260,7 +260,7 @@ Zum Beenden des lokalen Servers im Terminal **Ctrl + C** drücken.
 
 ## 9. Eine neue Frage oder Lektion hinzufügen
 
-Die Kursstruktur und die Generatoren für Aufgaben befinden sich in `script.js`. Das Array `topics` enthält auch ältere beziehungsweise vorläufige Inhalte. Für den aktuellen Pilotkurs wird daraus ausschließlich die erste Lektion der Themenwelt Wortarten geladen. Diese Pilotlektion erzeugt 18 eigenständige Aufgaben für das ausgewählte G/M/E-Niveau. Andere Themen und Lektionen sind derzeit nicht Teil des aktiven Lernpfads.
+Die Kursstruktur und die Generatoren für Aufgaben befinden sich in `script.js`. Das Array `topics` enthält auch ältere beziehungsweise vorläufige Inhalte. Für den aktuellen Pilotkurs wird daraus ausschließlich die erste Lektion der Themenwelt Wortarten geladen. Diese Pilotlektion erzeugt 18 eigenständige Aufgaben für jede Schwierigkeitsstufe. Die technischen Kennungen G/M/E bleiben vorerst intern erhalten. Andere Themen und Lektionen sind derzeit nicht Teil des aktiven Lernpfads.
 
 ### Aufbau einer fertigen Frage
 
@@ -278,11 +278,11 @@ Die Kursstruktur und die Generatoren für Aufgaben befinden sich in `script.js`.
 ### Regeln für den Kursaufbau
 
 1. Der Pilotkurs enthält vorerst nur eine Lektion.
-2. Die Pilotlektion erzeugt genau 18 Fragen je G/M/E-Niveau.
+2. Die Pilotlektion erzeugt genau 18 Fragen je Schwierigkeitsstufe (Leicht, Mittel und Schwer).
 3. Jede Frage hat genau drei unterschiedliche Antwortmöglichkeiten.
 4. answer ist der Index der richtigen Antwort und beginnt bei 0.
 5. Jede Frage enthält eine verständliche Erklärung.
-6. Die Antwortmöglichkeiten werden passend zu G, M oder E ausgewählt.
+6. Die Antwortmöglichkeiten werden passend zur gewählten Schwierigkeitsstufe ausgewählt.
 7. Die Fragen der späteren Lektionen sollen zusätzliche Regeln oder Zusammenhänge verlangen.
 8. Vor einer Veröffentlichung müssen fachliche Richtigkeit, eindeutige Lösungen und Altersangemessenheit kontrolliert werden.
 ## 9.1 Qualitätssicherung und Pilotlektion
@@ -292,12 +292,12 @@ Der bisherige Umfang von 350 Fragen wurde für die nächste Entwicklungsrunde be
 - ein Thema: Wortarten;
 - eine Lektion: „Wortdetektive“;
 - 18 Aufgaben je Niveau;
-- drei getrennte Aufgabenvarianten für G, M und E (insgesamt 54 erzeugte Fragen);
+- drei getrennte Aufgabenvarianten für Leicht, Mittel und Schwer (insgesamt 54 erzeugte Fragen);
 - drei Antwortmöglichkeiten und eine Erklärung pro Aufgabe;
 - eine vorgeschaltete Lernseite mit kurzen Definitionen, Beispielen und einem 45-Minuten-Ablauf;
 - eine bewusst geordnete Aufgabenfolge: Einstieg, Übung, Anwendung und kurzer Wissenstest.
 
-Die Niveaus unterscheiden sich in den Aufgabenstellungen und im erforderlichen Denken: G übt vor allem das Erkennen einfacher Beispiele, M bestimmt Wortarten in vollständigen Sätzen, E untersucht Wortarten im Kontext und bearbeitet anspruchsvollere Fälle. Die Reihenfolge der Fragen bleibt bewusst erhalten, damit der Schwierigkeitsgrad innerhalb der Lektion schrittweise steigt. Die drei Kerninhalte dieser Pilotstunde sind Nomen, Verben und Adjektive.
+Die Schwierigkeitsstufen unterscheiden sich in den Aufgabenstellungen und im erforderlichen Denken: Leicht übt vor allem das Erkennen einfacher Beispiele, Mittel bestimmt Wortarten in vollständigen Sätzen, Schwer untersucht Wortarten im Kontext und bearbeitet anspruchsvollere Fälle. Die Reihenfolge der Fragen bleibt bewusst erhalten, damit der Schwierigkeitsgrad innerhalb der Lektion schrittweise steigt. Die drei Kerninhalte dieser Pilotstunde sind Nomen, Verben und Adjektive.
 
 Beim Laden prüft die Anwendung die 18 Fragen aller drei Varianten auf Anzahl, drei unterschiedliche Antwortoptionen, gültigen Antwortindex, Aufgabenstellung, Erklärung und Level-Zuordnung. Diese technische Prüfung wird beim tatsächlichen Browser-Test noch einmal kontrolliert.
 
@@ -310,9 +310,9 @@ Jede größere Änderung sollte vor der Präsentation mindestens mit dieser Chec
 ### Funktionstest
 
 - [ ] Die Themenkarte wird ohne sichtbare Fehler geladen.
-- [ ] Vor dem Hauptmenü erscheint die Spielname- und G/M/E-Auswahl.
-- [ ] Ohne Spielname und Niveau lässt sich der Kurs nicht starten.
-- [ ] Das gewählte Niveau bleibt während des gesamten Kurses gleich.
+- [ ] Vor dem Hauptmenü erscheint die Spielname- und Schwierigkeitsauswahl.
+- [ ] Ohne Spielname und Schwierigkeitsstufe lässt sich der Kurs nicht starten.
+- [ ] Die gewählte Schwierigkeitsstufe bleibt während des gesamten Kurses gleich.
 - [ ] Im aktuellen Pilotstand wird genau eine Wortarten-Lektion angezeigt.
 - [ ] Die Pilotlektion enthält genau 18 Aufgaben für das gewählte Niveau.
 - [ ] Vor der ersten Frage erscheint die Einführung zu „Entdecken“ mit Lernziel und Quaki-Tipp.
@@ -349,12 +349,12 @@ Der Workflow `Validate quiz` prüft derzeit nur JavaScript-Syntax und zwei erfor
 ### Inhaltlicher Qualitätstest
 
 - [ ] Alle 54 Aufgaben der Pilotlektion sind sprachlich klar und altersgerecht.
-- [ ] Die G-, M- und E-Aufgaben unterscheiden sich sinnvoll im Anspruch und sind fachlich korrekt.
+- [ ] Die Aufgaben für Leicht, Mittel und Schwer unterscheiden sich sinnvoll im Anspruch und sind fachlich korrekt.
 - [ ] Jede Aufgabe hat genau eine fachlich richtige Antwort.
 - [ ] Die Erklärung erklärt auch den entscheidenden sprachlichen Hinweis oder die Regel.
 - [ ] Die Fragen passen zu den im Unterricht bereits behandelten Themen.
 - [ ] Die Schwierigkeit steigt nachvollziehbar innerhalb der 18 Aufgaben jeder Variante.
-- [ ] Die drei G/M/E-Kursvarianten sind fachlich sinnvoll voneinander abgestuft.
+- [ ] Die drei Schwierigkeitsstufen sind fachlich sinnvoll voneinander abgestuft.
 - [ ] Eine Deutschlehrkraft hat die Aufgaben fachlich geprüft.
 
 ### Darstellungstest
@@ -442,10 +442,10 @@ Die folgenden Phasen helfen, die Arbeit zu strukturieren und den Projektfortschr
 
 1. Den Profilablauf im Browser prüfen: eigene Namen eingeben, den vollbreiten Zufallsnamen-Button verwenden und Namen bearbeiten, über das Logo zu Home zurückkehren und über das Quakoo-Abmeldesymbol rechts vom Logo die Sitzung zurücksetzen.
 2. Den neuen zweistufigen Antwortablauf testen: erst eine Antwort auswählen, danach „Antwort prüfen“ betätigen, Feedback kontrollieren und erst anschließend zur nächsten Frage wechseln.
-3. Prüfen, ob die Auswahl der G/M/E-Stufe ohne grüne Hervorhebung der gesamten Karte verständlich bleibt und die neutrale Markierung auf Desktop und Smartphone korrekt erscheint.
+3. Prüfen, ob die Auswahl von Leicht, Mittel und Schwer ohne grüne Hervorhebung der gesamten Karte verständlich bleibt und die neutrale Markierung auf Desktop und Smartphone korrekt erscheint.
 4. Den Ablauf mit den fünf Phasen vollständig testen: Einführungen, Quaki-Tipps, Phasenzähler und Übergänge nach den Fragen 3, 7, 12 und 16 kontrollieren.
-3. Alle 54 Aufgaben (18 je G/M/E-Niveau) systematisch sprachlich und fachlich prüfen: eindeutige richtige Antwort, plausible Ablenkungsantworten, verständliche Erklärung und altersgerechte Formulierung.
-4. Die drei Niveaus miteinander vergleichen: G soll grundlegendes Erkennen, M das Anwenden in Sätzen und E das genauere Untersuchen im Kontext verlangen. Die Unterschiede dürfen nicht nur in schwierigeren Antwortoptionen bestehen.
+3. Alle 54 Aufgaben (18 je Schwierigkeitsstufe) systematisch sprachlich und fachlich prüfen: eindeutige richtige Antwort, plausible Ablenkungsantworten, verständliche Erklärung und altersgerechte Formulierung.
+4. Die drei Schwierigkeitsstufen vergleichen: Leicht soll grundlegendes Erkennen, Mittel das Anwenden in Sätzen und Schwer das genauere Untersuchen im Kontext verlangen. Die Unterschiede dürfen nicht nur in schwierigeren Antwortoptionen bestehen.
 5. Home, Lernpfad und Lektion auf Desktop, Tablet und Smartphone manuell prüfen; Lesbarkeit, Abstände, Navigation und Tastaturbedienung kontrollieren.
 6. Die Aufgaben mit einer Deutschlehrkraft abstimmen und danach einen kleinen Praxistest vorbereiten.
 7. Rückmeldungen auswerten und die Pilotlektion gezielt verbessern, bevor neue Themen ergänzt werden.
@@ -477,12 +477,12 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 
 - [x] Öffentliches GitHub-Repository eingerichtet
 - [x] GitHub Pages als Hosting eingerichtet
-- [x] Startbildschirm mit Spielname, optionalem Zufallsgenerator und einmaliger G/M/E-Auswahl
+- [x] Startbildschirm mit Spielname, optionalem Zufallsgenerator und Auswahl einer Schwierigkeitsstufe
 - [x] Quakoo-Logo führt aus allen Ansichten zurück zur Home-Ansicht
 - [x] Abmelden setzt die aktuelle Sitzung und den Fortschritt im Arbeitsspeicher zurück
 - [x] Eine 45-minütige Pilotlektion zu Nomen, Verben und Adjektiven mit Lernseite und Zeitplan
-- [x] 18 Aufgaben je Niveau G/M/E (54 erzeugte Fragen im Pilotkurs)
-- [x] Drei inhaltlich unterschiedliche Aufgabenvarianten für G, M und E
+- [x] 18 Aufgaben je Schwierigkeitsstufe (54 erzeugte Fragen im Pilotkurs)
+- [x] Drei inhaltlich unterschiedliche Aufgabenvarianten für Leicht, Mittel und Schwer
 - [ ] Weitere Themen und Lektionen werden erst nach der Prüfung der Pilotlektion ergänzt
 - [x] Themenkarte mit schrittweiser Freischaltung
 - [x] Wiederholung bereits abgeschlossener Lektionen
@@ -502,12 +502,12 @@ Ein solcher kurzer Vergleich kann Hinweise geben, ob die Übung hilfreich war. E
 - [ ] Fachliche Prüfung aller Fragen durch eine Lehrkraft
 - [ ] Visuelle Kontrolle der neuen Header-Hierarchie (Logo ganz links, Abmelden direkt rechts daneben), vollbreiten Namensgenerator-Schaltfläche und kleineren Quaki-Mundform auf Desktop und Smartphone
 - [ ] Manueller Test von Namensgenerator, Logo-Navigation und Abmelden auf Desktop und Smartphone
-- [ ] Manueller Funktionstest des zweistufigen Antwortablaufs und der neutralen G/M/E-Auswahl
+- [ ] Manueller Funktionstest des zweistufigen Antwortablaufs und der neutralen Schwierigkeitsauswahl
 - [ ] Prüfen, dass das Niveau im Header dieselbe weiße, neutrale Gestaltung wie die übrigen Chips hat und „Deutsch · Klasse 5“ nicht mehr erscheint
 - [ ] Hilfemenü auf Desktop und Smartphone öffnen und die aktualisierten Hinweise prüfen
 - [ ] Vollständiger manueller Funktionstest der Pilotlektion
 - [ ] Test über das Schul-WLAN
-- [ ] Praxistest mit einer Lerngruppe der 5. Klasse
+- [ ] Praxistest mit einer Lerngruppe der 6. Klasse
 - [ ] Anonyme Auswertung des Feedbacks
 - [ ] Dokumentation der tatsächlichen Projektergebnisse
 - [ ] Vorbereitung der Abschlusspräsentation und Reflexion
@@ -522,10 +522,11 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 
 - Projektname: **Quakoo** (Lernplattform) / **Deutsch-Challenge** (Schulprojekt und Repository)
 - Schulischer Rahmen: **„Zeig, was du kannst“**
-- Zielgruppe: **5. Klasse**
+- Zielgruppe: **6. Klasse**
 - Inhalt: **Deutsch — Grammatik, Rechtschreibung, Wortschatz und Textverständnis**
-- Einmalige Niveaustufen-Auswahl: **G / M / E**
-- Aktueller Entwicklungsstand: **eine 45-minütige Pilotlektion zu Wortarten, 18 Aufgaben je G/M/E-Niveau**
+- Einmalige Auswahl der Schwierigkeitsstufe: **Leicht / Mittel / Schwer**
+- Die internen Kennungen G/M/E werden vorerst nur im JavaScript für die vorhandenen Aufgabenvarianten verwendet; sie erscheinen nicht mehr in der Benutzeroberfläche.
+- Aktueller Entwicklungsstand: **eine 45-minütige Pilotlektion zu Wortarten, 18 Aufgaben je Schwierigkeitsstufe**
 - Künftiger Umfang wird nach einem Praxistest festgelegt; 350 Fragen sind kein festes Ziel mehr
 - Kein Login und keine Registrierung
 - Keine Speicherung individueller Antworten oder Ergebnisse
@@ -569,6 +570,7 @@ Dieses Kapitel dient als kompakte technische und inhaltliche Übergabe, damit di
 
 | Datum | Änderung |
 |---|---|
+| 25.11.2026 | Zielgruppe auf Klasse 6 aktualisiert und die sichtbare Auswahl von G/M/E auf Leicht/Mittel/Schwer umgestellt. Die bisherigen drei Aufgabenvarianten bleiben technisch erhalten; ihre internen Kennungen werden nur noch im Code verwendet. |
 | 06.11.2026 | GitHub-Actions-Prüfung erweitert: zusätzlich zu JavaScript-Syntax werden doppelte HTML-IDs, JavaScript-Verweise auf HTML-IDs, zentrale Ansichten, Navigation, G/M/E-Auswahl und grundlegende Aufgabenregeln geprüft. Die Prüfung liegt in `scripts/validate-project.mjs` und wird über `.github/workflows/validate.yml` gestartet. Ein erfolgreicher statischer Check ersetzt keinen manuellen Browser- und Gerätetest. |
 
 

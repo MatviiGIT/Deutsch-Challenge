@@ -1,8 +1,8 @@
 const letters = ["A","B","C"];
 const TRACKS = {
-  G: {label:"G-Niveau",name:"Grundlegendes Niveau",short:"G"},
-  M: {label:"M-Niveau",name:"Mittleres Niveau",short:"M"},
-  E: {label:"E-Niveau",name:"Erweitertes Niveau",short:"E"}
+  G: {label:"Leicht",name:"Leicht",short:"1"},
+  M: {label:"Mittel",name:"Mittel",short:"2"},
+  E: {label:"Schwer",name:"Schwer",short:"3"}
 };
 const STAGES = [
   {name:"Entdecken",tag:"STUFE 1",firstQuestion:1,endQuestion:3,
@@ -835,7 +835,7 @@ function updateHeader(){
   document.getElementById("track-chip").hidden=false;
   document.getElementById("topbar-progress").innerHTML="0 / "+totalQuestions+" <span>FRAGEN</span>";
   document.getElementById("course-player-name").textContent=playerName;
-  document.getElementById("home-track-value").textContent=selectedTrack+" · "+TRACKS[selectedTrack].name;
+  document.getElementById("home-track-value").textContent=TRACKS[selectedTrack].name;
   document.getElementById("course-progress").setAttribute("aria-valuemax",String(totalQuestions));
   document.getElementById("course-progress-count").textContent="0 / "+totalQuestions;
   document.getElementById("course-progress-title").textContent="Dein Kurs beginnt hier";

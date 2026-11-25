@@ -37,8 +37,18 @@ for (const screen of ["start", "path"]) {
 }
 for (const track of ["G", "M", "E"]) {
   if (!html.includes('data-track="' + track + '"')) {
-    errors.push("Lernniveau fehlt: " + track);
+    errors.push("Interne Aufgabenvariante fehlt: " + track);
   }
+}
+for (const level of ["Leicht", "Mittel", "Schwer"]) {
+  if (!html.includes('<span class="track-name">' + level + '</span>') ||
+      !js.includes('label:"' + level + '"')) {
+    errors.push("Schwierigkeitsstufe fehlt: " + level);
+  }
+}
+if (html.includes("G, M oder E") || html.includes("G-Niveau") ||
+    html.includes("M-Niveau") || html.includes("E-Niveau")) {
+  errors.push("Alte G/M/E-Bezeichnungen sind noch in der Benutzeroberfläche vorhanden.");
 }
 
 if (!/auditAllTracks\(\);/.test(js)) {
@@ -101,5 +111,5 @@ console.log("Projektprüfung erfolgreich:");
 console.log("- " + ids.length + " HTML-IDs geprüft (keine Duplikate)");
 console.log("- " + new Set(jsIds).size + " JavaScript-ID-Verweise geprüft");
 console.log("- Home, Lernpfad, Lektion, Quiz und Ergebnisse vorhanden");
-console.log("- G/M/E-Niveaus und Aufgaben-Grundregeln vorhanden");
+console.log("- Leicht/Mittel/Schwer und Aufgaben-Grundregeln vorhanden");
 console.log("- Fünf Lernphasen, Phasengrenzen und Einführungsansichten vorhanden");

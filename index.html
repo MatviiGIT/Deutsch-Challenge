@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8f3">
-  <meta name="description" content="Quakoo – Deutsch üben, Aufgaben lösen und den eigenen Lernfortschritt entdecken.">
+  <meta name="description" content="Quakoo – Deutsch lernen und üben für die 6. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
   <link rel="stylesheet" href="style.css?v=25">
   <script src="script.js?v=25" defer></script>
@@ -37,7 +37,7 @@
           <summary aria-label="Hilfe und Regeln" title="Hilfe">?</summary>
           <div class="help-panel">
             <h2>Hilfe &amp; Tipps</h2>
-            <p><strong>1. Niveau wählen:</strong> G, M oder E. Dein Niveau kannst du bei einer neuen Sitzung ändern.</p>
+            <p><strong>1. Schwierigkeitsstufe wählen:</strong> Leicht, Mittel oder Schwer. Du kannst sie bei einer neuen Sitzung ändern.</p>
             <p><strong>2. Antwort auswählen:</strong> Lies die Aufgabe und tippe auf eine der drei Möglichkeiten.</p>
             <p><strong>3. Antwort prüfen:</strong> Erst mit „Antwort prüfen“ wird deine Auswahl ausgewertet. Danach erhältst du eine Erklärung.</p>
             <p><strong>4. Weiterlernen:</strong> Arbeite dich durch die fünf Lernphasen. Am Ende kannst du deine Fehler wiederholen.</p>
@@ -81,20 +81,23 @@
             </div>
             <div class="track-field">
               <div class="track-field-heading">
-                <strong>Wähle dein Lernniveau</strong>
+                <strong>Wähle deine Schwierigkeitsstufe</strong>
               </div>
-              <div class="track-options" role="group" aria-label="Lernniveau auswählen">
+              <div class="track-options" role="group" aria-label="Schwierigkeitsstufe auswählen">
                 <button class="track-option" type="button" data-track="G" aria-pressed="false">
-                  <span class="track-letter">G</span>
-                  <span class="track-name">Grundlagen</span>
+                  <span class="track-letter">1</span>
+                  <span class="track-name">Leicht</span>
+                  <span class="track-description">Grundlagen und einfache Beispiele</span>
                 </button>
                 <button class="track-option" type="button" data-track="M" aria-pressed="false">
-                  <span class="track-letter">M</span>
-                  <span class="track-name">Mittelstufe</span>
+                  <span class="track-letter">2</span>
+                  <span class="track-name">Mittel</span>
+                  <span class="track-description">Regeln in Sätzen anwenden</span>
                 </button>
                 <button class="track-option" type="button" data-track="E" aria-pressed="false">
-                  <span class="track-letter">E</span>
-                  <span class="track-name">Erweitert</span>
+                  <span class="track-letter">3</span>
+                  <span class="track-name">Schwer</span>
+                  <span class="track-description">Anspruchsvolle Aufgaben lösen</span>
                 </button>
               </div>
             </div>
@@ -130,7 +133,7 @@
         </section>
 
         <div class="home-stat-grid" aria-label="Dein Kurs auf einen Blick">
-          <article class="home-stat-card"><span>DEIN LERNNIVEAU</span><strong id="home-track-value">Noch nicht gewählt</strong></article>
+          <article class="home-stat-card"><span>DEINE SCHWIERIGKEITSSTUFE</span><strong id="home-track-value">Noch nicht gewählt</strong></article>
           <article class="home-stat-card"><span>BEARBEITETE FRAGEN</span><strong id="home-progress-stat">0 / 18</strong></article>
           <article class="home-stat-card"><span>AKTUELLE THEMENWELT</span><strong>Wortarten</strong></article>
         </div>
