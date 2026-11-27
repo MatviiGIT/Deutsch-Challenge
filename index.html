@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Quakoo – Deutsch lernen und üben für die 6. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=28">
-  <script src="script.js?v=29" defer></script>
+  <link rel="stylesheet" href="style.css?v=29">
+  <script src="script.js?v=30" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -33,7 +33,6 @@
             <div class="level-select-copy">
               <span class="eyebrow">QUAKOO · DEUTSCH · 6. KLASSE</span>
               <h1 id="setup-title">Wähle dein Level</h1>
-              <p>Dein Quiz startet sofort nach der Auswahl. Es erwarten dich 10 Fragen zu Nomen, Verben und Adjektiven.</p>
             </div>
             <div class="level-select-mascot frog-avatar frog-avatar-large" role="img" aria-label="Quaki, der Lernfrosch">
               <span class="frog-eye frog-eye-left"><span class="frog-pupil"></span></span>
@@ -42,11 +41,11 @@
             </div>
           </div>
           <div class="track-field">
-            <div class="track-field-heading"><strong>Wähle deine Schwierigkeitsstufe</strong><span>10 Fragen · Startet sofort</span></div>
+            <div class="track-field-heading"><strong>Wähle deine Schwierigkeitsstufe</strong></div>
             <div class="track-options" role="group" aria-label="Schwierigkeitsstufe auswählen">
-              <button class="track-option" type="button" data-track="G" aria-pressed="false"><span class="track-letter">1</span><span class="track-name">Leicht</span><span class="track-description">Grundlagen und einfache Beispiele</span></button>
-              <button class="track-option" type="button" data-track="M" aria-pressed="false"><span class="track-letter">2</span><span class="track-name">Mittel</span><span class="track-description">Regeln in Sätzen anwenden</span></button>
-              <button class="track-option" type="button" data-track="E" aria-pressed="false"><span class="track-letter">3</span><span class="track-name">Schwer</span><span class="track-description">Anspruchsvolle Aufgaben lösen</span></button>
+              <button class="track-option" type="button" data-track="G" aria-pressed="false"><span class="track-letter">1</span><span class="track-name">Leicht</span></button>
+              <button class="track-option" type="button" data-track="M" aria-pressed="false"><span class="track-letter">2</span><span class="track-name">Mittel</span></button>
+              <button class="track-option" type="button" data-track="E" aria-pressed="false"><span class="track-letter">3</span><span class="track-name">Schwer</span></button>
             </div>
           </div>
         </div>
@@ -64,10 +63,9 @@
         </div>
         <div class="question-panel" id="question-panel">
           <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
-          <h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2>
-          <p class="question-instruction" id="question-instruction">Wähle zuerst eine Antwort. Danach kannst du sie überprüfen.</p>
+          <div class="question-heading-row"><div class="question-illustration" id="question-illustration" aria-hidden="true"></div><h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2></div>
           <div class="answer-grid" id="answer-grid"></div>
-          <div class="free-answer-wrap" id="free-answer-wrap" hidden><label for="free-answer-input">Deine Antwort</label><input class="free-answer-input" id="free-answer-input" type="text" maxlength="60" autocomplete="off" spellcheck="false" placeholder="Antwort eingeben …"><p class="free-answer-hint">Schreibe das gesuchte Wort oder die Wortart.</p></div>
+          <div class="free-answer-wrap" id="free-answer-wrap" hidden><label for="free-answer-input">Deine Antwort</label><input class="free-answer-input" id="free-answer-input" type="text" maxlength="60" autocomplete="off" spellcheck="false" placeholder="Antwort eingeben …"></div>
           <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
             <div class="feedback-title" id="feedback-title"></div>
             <p id="feedback-text"></p>
@@ -84,7 +82,6 @@
           <span class="eyebrow"><span class="eyebrow-line"></span> EINHEIT ABGESCHLOSSEN</span>
           <div class="result-medal" id="result-medal">✦</div>
           <h1 id="result-heading">Gut gemacht!</h1>
-          <p id="result-subheading">Du hast diese Einheit abgeschlossen.</p>
         </div>
         <div class="result-score-card">
           <div class="result-score-main">
@@ -95,6 +92,7 @@
           <div class="result-score-side"><span id="result-correct">0</span><small>Richtig</small></div>
           <div class="result-score-side"><span id="result-wrong">0</span><small>Noch üben</small></div>
         </div>
+        <div class="achievement-badges" id="achievement-badges" aria-live="polite"></div>
         <div class="level-results-heading"><span class="section-kicker">DEINE ERGEBNISSE</span><h2>So lief es in dieser Einheit</h2></div>
         <div class="level-results" id="level-results"></div>
         <div class="recommendation-card">
@@ -110,7 +108,6 @@
           <button class="secondary-button" id="retry-button" type="button">Einheit wiederholen <span aria-hidden="true">↻</span></button>
           <button class="secondary-button" id="result-menu-button" type="button">Anderes Level wählen</button>
         </div>
-        <p class="start-footnote">Du kannst die Lektion wiederholen oder ein anderes Level wählen.</p>
       </section>
     </main>
 

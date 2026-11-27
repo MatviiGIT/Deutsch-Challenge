@@ -30,7 +30,7 @@ Die Lektion behandelt drei Wortarten:
 | **Mittel** | Wortarten in Sätzen bestimmen und Regeln anwenden |
 | **Schwer** | Anspruchsvollere Beispiele und schwierigere Satzkontexte untersuchen |
 
-Jede Stufe enthält genau 10 Fragen. Zwei Fragen pro Stufe verlangen eine eigene Texteingabe; die übrigen bieten drei Antwortmöglichkeiten.
+Jede Stufe enthält genau 10 Fragen. Zwei Fragen pro Stufe verlangen eine eigene Texteingabe; die übrigen bieten drei Antwortmöglichkeiten. Die Freitextfragen enthalten einen vollständigen Satz als Kontext. Zu den Fragen erscheinen passende Illustrationen für Nomen, Verben und Adjektive.
 
 ## Ablauf in der Anwendung
 
@@ -40,7 +40,7 @@ Jede Stufe enthält genau 10 Fragen. Zwei Fragen pro Stufe verlangen eine eigene
 - Bei Texteingaben das gesuchte Wort oder die Wortart selbst eintippen.
 - Mit **„Antwort prüfen“** die Antwort auswerten lassen.
 - Rückmeldung und Erklärung lesen.
-- Am Ende Punkte und Prozentwert ansehen. Falsche Antworten können wiederholt werden.
+- Am Ende Punkte, Abzeichen und die Übersicht falscher Antworten ansehen. Falsche Antworten können wiederholt werden.
 
 Bei freien Antworten werden Groß- und Kleinschreibung sowie Satzzeichen am Ende nicht gewertet. Die Schreibweise des Wortes muss ansonsten stimmen.
 
@@ -61,7 +61,8 @@ Die Anwendung ist für eine gemeinsame Vorführung mit einem Tablet gedacht. Sie
 - [ ] Bei jeder Frage funktionieren Auswahl oder Texteingabe passend zur Aufgabe.
 - [ ] Eine Antwort wird erst nach „Antwort prüfen“ ausgewertet.
 - [ ] Rückmeldungen und Erklärungen erscheinen korrekt.
-- [ ] Ergebnis und Fehlerübersicht werden richtig angezeigt.
+- [ ] Ergebnis, Auszeichnungen und Fehlerübersicht werden richtig angezeigt.
+- [ ] Die Illustrationen neben den Fragen passen zum behandelten Worttyp.
 - [ ] Die Website ist auf dem verwendeten Tablet gut lesbar und bedienbar.
 
 Ein automatischer technischer Test ersetzt nicht die inhaltliche Prüfung durch die Gruppe und die Lehrkraft.
@@ -78,7 +79,7 @@ Bei Änderungen an index.html, script.js oder style.css müssen die Versionspara
 
 ## Aktueller Umfang
 
-**Enthalten:** eine Wortarten-Lektion, drei Schwierigkeitsstufen, 10 Fragen pro Stufe, zwei Freitextfragen pro Stufe, Feedback nach jeder Antwort, Ergebnisanzeige und Wiederholung falscher Antworten.
+**Enthalten:** eine Wortarten-Lektion, drei Schwierigkeitsstufen, 10 Fragen pro Stufe, zwei Freitextfragen pro Stufe, thematische Illustrationen, Ergebnis-Abzeichen, Feedback nach jeder Antwort und Wiederholung falscher Antworten.
 
 **Bewusst nicht enthalten:** Namensgenerator, Spielprofile, Lernpfad, weitere Themen und Lektionen, allgemeine Prüfung, freies Training, Datenbank, Klassenkonto, Lehrer-Dashboard oder dauerhafte Ergebnisspeicherung.
 
@@ -86,6 +87,7 @@ Bei Änderungen an index.html, script.js oder style.css müssen die Versionspara
 
 | Datum | Änderung |
 |---|---|
+| 27.11.2026 | Illustrationen zu Nomen, Verben und Adjektiven ergänzt. Ergebnis-Abzeichen hinzugefügt, Quaki-Proportionen angepasst, Hilfstexte reduziert und rote Fehler-Markierungen neutral gestaltet. Freitextfragen enthalten jetzt Satzkontext. |
 | 25.11.2026 | Jede Stufe auf 10 Fragen gekürzt. Nach der Levelauswahl startet das Quiz direkt. Zwei Freitextfragen pro Stufe ergänzt; Antworten werden ohne Beachtung der Groß- und Kleinschreibung geprüft. |
 | 25.11.2026 | Umfang auf eine Präsentation mit anschließender Tablet-Demo reduziert. Eine Wortarten-Lektion und drei Schwierigkeitsstufen bleiben erhalten. |
 | 25.11.2026 | Sichtbare Bezeichnungen der Schwierigkeitsstufen auf Leicht, Mittel und Schwer umgestellt. |

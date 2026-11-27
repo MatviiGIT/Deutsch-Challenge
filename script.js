@@ -141,7 +141,7 @@ const topics = [
             ["Finde das Adjektiv: „Der kleine Fuchs schläft.“","kleine",["Fuchs","schläft"],"„Kleine“ beschreibt den Fuchs."],
             ["Welches Wort ist ein Nomen?","Schule",["lernen","schnell"],"„Schule“ bezeichnet einen Ort und wird großgeschrieben."],
             ["Welches Wort ist ein Verb?","malen",["Bild","bunt"],"„Malen“ beschreibt eine Tätigkeit."],
-            ["Welches Wort ist ein Adjektiv?","weich",["Kissen","liegen"],"„Weich“ beschreibt eine Eigenschaft."],
+            ["Welches Wort beschreibt das Kissen? „Das Kissen ist weich.“","weich",["Kissen","liegen"],"„Weich“ ist ein Adjektiv und beschreibt eine Eigenschaft des Kissens."],
             ["Welches Wort wird großgeschrieben, weil es ein Nomen ist?","Tisch",["decken","sauber"],"Nomen werden im Deutschen großgeschrieben."],
             ["Was tut der Vogel? „Der Vogel singt laut.“","singt",["Vogel","laut"],"„Singt“ ist das Verb und beschreibt die Handlung."],
             ["Wie ist die Blume? „Die Blume ist gelb.“","gelb",["Blume","ist"],"„Gelb“ beschreibt die Blume und ist ein Adjektiv."],
@@ -161,7 +161,7 @@ const topics = [
             ["Welches Wort ist das Adjektiv? „Der Weg ist steinig.“","steinig",["Weg","ist"],"„Steinig“ beschreibt die Beschaffenheit des Weges."],
             ["Welche Wortart hat „leise“? „Die Musik ist leise.“","Adjektiv",["Nomen","Verb"],"„Leise“ beschreibt die Musik und ist ein Adjektiv."],
             ["Welche Wortart hat „Antwort“?","Nomen",["Verb","Adjektiv"],"„Antwort“ bezeichnet etwas und ist ein Nomen."],
-            ["Welche Wortart hat „verstecken“?","Verb",["Nomen","Adjektiv"],"„Verstecken“ bezeichnet eine Handlung."],
+            ["Welche Wortart hat das Wort „verstecken“ im Satz: „Wir wollen uns im Garten verstecken.“?","Verb",["Nomen","Adjektiv"],"„Verstecken“ beschreibt hier die Handlung. Es ist ein Verb."],
             ["Welches Wort ist das Nomen? „Unser Nachbar repariert das Fahrrad.“","Nachbar",["repariert","Unser"],"„Nachbar“ bezeichnet eine Person."],
             ["Welches Wort ist das Verb? „Am Morgen glitzert der See.“","glitzert",["Morgen","See"],"„Glitzert“ beschreibt, was der See tut."],
             ["Welches Wort ist das Adjektiv? „Die Aufgabe war schwierig.“","schwierig",["Aufgabe","war"],"„Schwierig“ beschreibt die Aufgabe."],
@@ -181,7 +181,7 @@ const topics = [
             ["Welches Wort beschreibt den Stern? „Der helle Stern leuchtete am Himmel.“","helle",["Stern","leuchtete"],"„Helle“ beschreibt den Stern und ist ein Adjektiv."],
             ["Welche Wortart hat „schnelle“? „Der schnelle Läufer gewinnt.“","Adjektiv",["Nomen","Verb"],"„Schnelle“ beschreibt den Läufer und ist ein Adjektiv."],
             ["Welche Wortart hat „Reise“? „Die Reise beginnt morgen.“","Nomen",["Verb","Adjektiv"],"„Reise“ bezeichnet ein Ereignis und ist ein Nomen."],
-            ["Welche Wortart hat „erforschen“?","Verb",["Nomen","Adjektiv"],"„Erforschen“ beschreibt eine Tätigkeit."],
+            ["Welche Wortart hat das Wort „erforschen“ im Satz: „Die Kinder erforschen den Wald.“?","Verb",["Nomen","Adjektiv"],"„Erforschen“ beschreibt die Tätigkeit der Kinder. Es ist ein Verb."],
             ["Welche Wortart hat „dunkel“? „Der Himmel wird dunkel.“","Adjektiv",["Nomen","Verb"],"„Dunkel“ beschreibt den Zustand des Himmels."],
             ["Welches Wort ist das Nomen? „Nach dem Sturm wurde es still.“","Sturm",["wurde","still"],"„Sturm“ bezeichnet ein Naturereignis und ist das Nomen im Satz."],
             ["Welches Wort ist das Verb? „Die mutige Forscherin untersucht den Stein.“","untersucht",["mutige","Forscherin"],"„Untersucht“ beschreibt die Tätigkeit der Forscherin."],
@@ -752,8 +752,30 @@ const topics = [
   }
 ];
 
+
+const WORD_ART = {
+  nomen: '<svg viewBox="0 0 100 76" role="presentation" focusable="false"><path d="M12 35 50 8 88 35" fill="#74a95b" stroke="#477a3f" stroke-width="4" stroke-linejoin="round"/><rect x="22" y="34" width="56" height="36" rx="5" fill="#f2bd72" stroke="#b97842" stroke-width="2"/><rect x="43" y="48" width="15" height="22" rx="2" fill="#6f8fbd"/><rect x="29" y="43" width="10" height="10" rx="2" fill="#fff4cd"/><rect x="62" y="43" width="10" height="10" rx="2" fill="#fff4cd"/><path d="M7 70h86" stroke="#7ea56b" stroke-width="3" stroke-linecap="round"/></svg>',
+  verb: '<svg viewBox="0 0 100 76" role="presentation" focusable="false"><path d="M8 25h15M3 34h18M10 43h12" stroke="#e6a84c" stroke-width="4" stroke-linecap="round"/><circle cx="53" cy="13" r="8" fill="#f2bd9d"/><path d="M49 23 42 42l15 7 10-17" fill="none" stroke="#4d86c8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="m46 31-17 8M60 46l-14 17M59 47l20 13" fill="none" stroke="#4d86c8" stroke-width="7" stroke-linecap="round"/><path d="m42 42-15 11M78 60l8 5" fill="none" stroke="#e5a36c" stroke-width="5" stroke-linecap="round"/><path d="M36 68h20M77 69h15" stroke="#d8e3ef" stroke-width="4" stroke-linecap="round"/></svg>',
+  adjektiv: '<svg viewBox="0 0 100 76" role="presentation" focusable="false"><path d="M51 8C27 8 10 23 10 43c0 16 12 26 28 26h7c5 0 8-4 7-9-1-5 2-8 7-8h10c13 0 22-9 20-21C87 18 70 8 51 8Z" fill="#f4c9a4" stroke="#b98564" stroke-width="2.5"/><circle cx="31" cy="29" r="7" fill="#e77d72"/><circle cx="52" cy="22" r="7" fill="#efc65d"/><circle cx="72" cy="31" r="7" fill="#7db7d8"/><circle cx="31" cy="49" r="7" fill="#83b967"/><path d="m66 54 18-15" stroke="#8b6ab1" stroke-width="5" stroke-linecap="round"/><path d="m80 36 8 1-2 8" fill="none" stroke="#8b6ab1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  mix: '<svg viewBox="0 0 100 76" role="presentation" focusable="false"><circle cx="27" cy="38" r="13" fill="#f2bd72"/><path d="M50 21 64 48H36Z" fill="#7db7d8"/><path d="M76 25c-12 0-18 9-18 20 0 8 6 13 13 13h5c7 0 12-5 12-12 0-12-5-21-12-21Z" fill="#83b967"/></svg>'
+};
+function getQuestionKind(question) {
+  const correct=String(question.choices[question.answer]??"").trim().toLocaleLowerCase("de");
+  if(correct==="nomen"||correct==="verb"||correct==="adjektiv")return correct;
+  const prompt=String(question.prompt??"").toLocaleLowerCase("de");
+  if(/\bnomen\b/.test(prompt))return "nomen";
+  if(/\bverben?\b/.test(prompt))return "verb";
+  if(/\badjektiv(?:e|en)?\b/.test(prompt))return "adjektiv";
+  const explanation=String(question.explanation??"").toLocaleLowerCase("de");
+  if(/\b(?:ist ein|ist das|ein) nomen\b/.test(explanation)||/\bnomen werden\b/.test(explanation))return "nomen";
+  if(/\b(?:ist ein|ist das|ein) verb\b/.test(explanation)||/\bverb(?:en)?\b/.test(explanation))return "verb";
+  if(/\b(?:ist ein|ist das|ein) adjektiv\b/.test(explanation)||/\badjektiv\b/.test(explanation)||/eigenschaft/.test(explanation))return "adjektiv";
+  return "mix";
+}
+
 let selectedTrack=null;
 let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,selectedAnswer=null,wrongAnswers=[],stats={correct:0,total:0};
+let wordTypeStats={nomen:{correct:0,total:0},verb:{correct:0,total:0},adjektiv:{correct:0,total:0}};
 const courseTopics=topics.filter(topic=>topic.id==="wortarten").map(topic=>({...topic,lessons:topic.lessons.slice(0,1)}));
 const totalUnits=courseTopics.reduce((sum,topic)=>sum+topic.lessons.length,0),questionsPerUnit=10,totalQuestions=totalUnits*questionsPerUnit;
 const startScreen=document.getElementById("start-screen");
@@ -828,7 +850,7 @@ function resetCourse(){
  document.getElementById("topbar-progress").textContent="LEVEL WÄHLEN";screen("start");
 }
 function prepare(items,unit=null){
- currentUnit=unit;queue=items;currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:items.length};
+ currentUnit=unit;queue=items;currentIndex=0;score=0;answered=false;selectedAnswer=null;wrongAnswers=[];stats={correct:0,total:items.length};wordTypeStats={nomen:{correct:0,total:0},verb:{correct:0,total:0},adjektiv:{correct:0,total:0}};
  document.getElementById("score-value").textContent="0 Punkte";document.getElementById("quiz-topic").textContent="WORTARTEN";document.getElementById("question-panel").hidden=false;
  screen("quiz");renderQuestion();
 }
@@ -842,7 +864,7 @@ function renderQuestion(){
  const progress=document.getElementById("quiz-progress");progress.setAttribute("aria-valuemax",String(queue.length));progress.setAttribute("aria-valuenow",String(number));
  document.getElementById("question-panel").hidden=false;document.getElementById("question-number").textContent="FRAGE "+String(number).padStart(2,"0");
  document.getElementById("question-category").textContent=q.category;document.getElementById("question-text").textContent=q.prompt;document.getElementById("score-value").textContent=score+" Punkte";
- document.getElementById("question-instruction").textContent=textMode?"Tippe deine Antwort ein und klicke auf „Antwort prüfen“.":"Wähle zuerst eine Antwort. Danach kannst du sie überprüfen.";
+ const visual=document.getElementById("question-illustration");const kind=getQuestionKind(q);visual.dataset.kind=kind;visual.innerHTML=WORD_ART[kind]||WORD_ART.mix;
  answerGrid.hidden=textMode;freeAnswerWrap.hidden=!textMode;freeAnswerInput.value="";freeAnswerInput.disabled=false;answerGrid.replaceChildren();
  if(!textMode)q.choices.forEach((choice,index)=>{
    const button=document.createElement("button");button.type="button";button.className="answer-option";button.setAttribute("aria-pressed","false");
@@ -865,6 +887,7 @@ function selectAnswer(selected){
  if(answered||selected===null)return;
  const q=queue[currentIndex],textMode=q.answerMode==="text",typedResponse=textMode?String(selected).trim():null;
  const correct=textMode?normalizeTypedAnswer(typedResponse)===normalizeTypedAnswer(q.choices[q.answer]):selected===q.answer;
+ const kind=getQuestionKind(q);if(wordTypeStats[kind]){wordTypeStats[kind].total++;if(correct)wordTypeStats[kind].correct++;}
  answered=true;
  if(textMode)freeAnswerInput.disabled=true;
  else [...answerGrid.querySelectorAll(".answer-option")].forEach((button,index)=>{button.disabled=true;if(index===q.answer)button.classList.add("is-correct");if(index===selected&&!correct)button.classList.add("is-wrong");});
@@ -882,10 +905,9 @@ function renderResults(){
  document.getElementById("result-correct").textContent=score;document.getElementById("result-wrong").textContent=wrong;
  document.getElementById("result-progress-fill").style.width=pct+"%";
  document.getElementById("result-progress-track").setAttribute("aria-valuemax",String(total));document.getElementById("result-progress-track").setAttribute("aria-valuenow",String(score));
- document.getElementById("result-subheading").textContent=TRACKS[selectedTrack].label+" · "+currentUnit.topic.title+" · "+currentUnit.title;
- document.querySelector(".result-header .eyebrow").textContent="LEKTION ABGESCHLOSSEN";
+  document.querySelector(".result-header .eyebrow").textContent="LEKTION ABGESCHLOSSEN";
  document.getElementById("result-heading").textContent=pct>=90?"Hervorragend!":pct>=70?"Gut gemacht!":pct>=50?"Weiter so!":"Guter Anfang!";
- document.getElementById("result-medal").textContent=pct>=90?"★":pct>=50?"✦":"◆";
+ document.getElementById("result-medal").textContent=pct>=90?"★":pct>=50?"✦":"◆";renderAchievementBadges(pct);
  const results=document.getElementById("level-results");results.replaceChildren();const card=document.createElement("div");card.className="level-result";
  const row=document.createElement("div");row.className="level-result-head";const name=document.createElement("span");name.textContent=currentUnit.title+" · "+TRACKS[selectedTrack].label;
  const value=document.createElement("strong");value.textContent=score+" / "+total;const percent=document.createElement("span");percent.className="level-result-percent";percent.textContent=pct+" %";row.append(name,value,percent);
@@ -902,6 +924,34 @@ function renderResults(){
  const explanation=document.createElement("p");explanation.className="mistake-explanation";explanation.textContent=q.explanation;item.append(meta,prompt,selected,answer,explanation);list.append(item);});
  document.getElementById("retry-button").textContent="Lektion wiederholen ↻";document.getElementById("topbar-progress").innerHTML=total+" / "+total+" <span>FRAGEN</span>";
 }
+
+function renderAchievementBadges(percent) {
+  const container=document.getElementById("achievement-badges");container.replaceChildren();
+  const main=percent>=90
+    ?{title:"Wortarten-Meister",detail:"Fast alles richtig",symbol:"★",variant:"gold"}
+    :percent>=70
+      ?{title:"Wortarten-Profi",detail:"Starke Leistung",symbol:"✦",variant:"silver"}
+      :percent>=50
+        ?{title:"Wortarten-Entdecker",detail:"Gute Fortschritte",symbol:"◆",variant:"green"}
+        :{title:"Übungsheld",detail:"Jede Runde zählt",symbol:"●",variant:"plain"};
+  const award=document.createElement("div");award.className="achievement-badge achievement-main achievement-"+main.variant;
+  const awardIcon=document.createElement("span");awardIcon.className="achievement-icon";awardIcon.textContent=main.symbol;
+  const awardCopy=document.createElement("span");awardCopy.className="achievement-copy";
+  const awardTitle=document.createElement("strong");awardTitle.textContent=main.title;
+  const awardDetail=document.createElement("small");awardDetail.textContent=main.detail;
+  awardCopy.append(awardTitle,awardDetail);award.append(awardIcon,awardCopy);container.append(award);
+  const labels={nomen:"Nomen-Kenner",verb:"Verb-Finder",adjektiv:"Adjektiv-Profi"};
+  Object.entries(wordTypeStats).forEach(([kind,value])=>{
+    if(value.total<2||value.correct/value.total<0.8)return;
+    const badge=document.createElement("div");badge.className="achievement-badge achievement-skill";
+    const icon=document.createElement("span");icon.className="achievement-icon achievement-icon-skill";icon.innerHTML=WORD_ART[kind];
+    const copy=document.createElement("span");copy.className="achievement-copy";
+    const title=document.createElement("strong");title.textContent=labels[kind];
+    const detail=document.createElement("small");detail.textContent=value.correct+" von "+value.total+" richtig";
+    copy.append(title,detail);badge.append(icon,copy);container.append(badge);
+  });
+}
+
 const trackOptions=[...document.querySelectorAll(".track-option")];
 trackOptions.forEach(button=>button.addEventListener("click",()=>{
  selectedTrack=button.dataset.track;
