@@ -8,7 +8,7 @@ const counts=new Map();for(const id of ids)counts.set(id,(counts.get(id)||0)+1);
 for(const [id,count] of counts)if(count>1)errors.push("Doppelte HTML-ID: "+id);
 const jsIds=[...js.matchAll(/getElementById\(\s*["'\x60]([^"'\x60]+)["'\x60]\s*\)/g)].map(m=>m[1]);
 for(const id of new Set(jsIds))if(!counts.has(id))errors.push("JavaScript verweist auf fehlende HTML-ID: "+id);
-const required=["start-screen","quiz-screen","result-screen","track-chip","topbar-progress","question-panel","question-illustration","answer-grid","free-answer-wrap","free-answer-input","achievement-badges","next-button","score-fraction","score-percent","mistakes-list","result-menu-button"];
+const required=["start-screen","quiz-screen","result-screen","track-chip","topbar-progress","question-panel","question-illustration","question-help-button","question-help-panel","answer-grid","free-answer-wrap","free-answer-input","achievement-badges","next-button","score-fraction","score-percent","mistakes-list","result-menu-button"];
 for(const id of required)if(!counts.has(id))errors.push("Erforderliche HTML-ID fehlt: "+id);
 const removed=["profile-screen","player-name","generate-name-button","name-generator-status","topbar-player","logout-button","main-nav","path-screen","learning-path","free-practice-button","path-free-practice-button","next-unit-button","next-level-button","stage-intro","lesson-stages","exam-start-button","exam-grade-card","lesson-screen","lesson-start-button","lesson-back-button","begin-course-button"];
 for(const id of removed)if(counts.has(id))errors.push("Entfernte Funktion noch vorhanden: "+id);
@@ -24,11 +24,13 @@ if(!js.includes("beginCourse();")||!/prepare\(units\[0\]\.questions,units\[0\]\)
 if(!js.includes("function chooseAnswer(")||!js.includes("function selectAnswer(")||!html.includes("Antwort prüfen"))errors.push("Antwortprüfung fehlt.");
 if(!/choices\.length\s*===\s*3/.test(js))errors.push("Prüfung auf drei Antwortmöglichkeiten fehlt.");
 if(!css.includes(".level-select-screen")||!css.includes(".free-answer-input")||!css.includes(".question-illustration")||!css.includes(".achievement-badge"))errors.push("Gestaltungsregeln für Levelauswahl, Freitextfeld oder neue Visuals fehlen.");
-if(!js.includes("function getQuestionKind(question)")||!js.includes("function renderAchievementBadges(percent)")||!js.includes("wordTypeStats"))errors.push("Fragen-Illustrationen oder Ergebnis-Abzeichen fehlen.");
+if(!js.includes("function getQuestionKind(question)")||!js.includes("function renderAchievementBadges(percent)")||!js.includes("function getQuestionHint(question)")||!js.includes("wordTypeStats"))errors.push("Fragen-Illustrationen, Hilfstipps oder Ergebnis-Abzeichen fehlen.");
+if(!js.includes('questionHelpButton.addEventListener("click"')||!js.includes("questionHelpPanel.hidden=true"))errors.push("Die Hilfe-Schaltfläche funktioniert nicht auf jeder Frage.");
+if(!html.includes('class="is-start-screen"')||!css.includes("body.is-start-screen .level-select-card")||!css.includes("height:100svh"))errors.push("Die Startseite nutzt nicht den gesamten Bildschirm.");
 if(!js.includes("Das Kissen ist weich.")||!js.includes("Wir wollen uns im Garten verstecken.")||!js.includes("Die Kinder erforschen den Wald."))errors.push("Freitextfragen enthalten nicht alle einen Satzkontext.");
 if(!js.includes("verb(?:en)?")||!js.includes("test(prompt)"))errors.push("Wortart-Erkennung für Verben fehlt.");
 if(!css.includes(".answer-option.is-wrong{border-color:#d9dfd6;background:#f2f4f0"))errors.push("Falsche Antwort wird nicht neutral markiert.");
 if(ids.includes("question-instruction")||ids.includes("result-subheading")||html.includes("free-answer-hint")||html.includes("track-description")||html.includes("start-footnote"))errors.push("Entfernte Hilfstexte sind noch in der Benutzeroberfläche.");
-if(!html.includes("style.css?v=29")||!html.includes("script.js?v=30"))errors.push("Cache-Versionen nicht aktualisiert.");
+if(!html.includes("style.css?v=30")||!html.includes("script.js?v=31"))errors.push("Cache-Versionen nicht aktualisiert.");
 if(errors.length){console.error("Projektprüfung fehlgeschlagen:");for(const e of errors)console.error("- "+e);process.exit(1);}
 console.log("Projektprüfung erfolgreich: "+ids.length+" HTML-IDs, "+new Set(jsIds).size+" JavaScript-Verweise, drei Level, je zehn Fragen und zwei Freitextfragen.");

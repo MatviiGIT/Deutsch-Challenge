@@ -38,6 +38,7 @@ Jede Stufe enthält genau 10 Fragen. Zwei Fragen pro Stufe verlangen eine eigene
 - 10 Fragen beantworten.
 - Bei Auswahlfragen eine von drei Antworten auswählen.
 - Bei Texteingaben das gesuchte Wort oder die Wortart selbst eintippen.
+- Über die Schaltfläche **„Hilfe“** kann zu jeder Frage ein Tipp eingeblendet werden.
 - Mit **„Antwort prüfen“** die Antwort auswerten lassen.
 - Rückmeldung und Erklärung lesen.
 - Am Ende Punkte, Abzeichen und die Übersicht falscher Antworten ansehen. Falsche Antworten können wiederholt werden.
@@ -87,7 +88,8 @@ Bei Änderungen an index.html, script.js oder style.css müssen die Versionspara
 
 | Datum | Änderung |
 |---|---|
-| 27.11.2026 | Illustrationen zu Nomen, Verben und Adjektiven ergänzt. Ergebnis-Abzeichen hinzugefügt, Quaki-Proportionen angepasst, Hilfstexte reduziert und rote Fehler-Markierungen neutral gestaltet. Freitextfragen enthalten jetzt Satzkontext. |
+| 27.11.2026 | Illustrationen zu Nomen, Verben und Adjektiven ergänzt und überarbeitet. Ergebnis-Abzeichen hinzugefügt, Quaki-Proportionen angepasst, Hilfstexte reduziert und rote Fehler-Markierungen neutral gestaltet. Freitextfragen enthalten jetzt Satzkontext. |
+| 27.11.2026 | Startbildschirm auf die gesamte Bildschirmfläche erweitert. Jeder Frage eine eigene Hilfe-Schaltfläche mit passendem Tipp hinzugefügt. |
 | 25.11.2026 | Jede Stufe auf 10 Fragen gekürzt. Nach der Levelauswahl startet das Quiz direkt. Zwei Freitextfragen pro Stufe ergänzt; Antworten werden ohne Beachtung der Groß- und Kleinschreibung geprüft. |
 | 25.11.2026 | Umfang auf eine Präsentation mit anschließender Tablet-Demo reduziert. Eine Wortarten-Lektion und drei Schwierigkeitsstufen bleiben erhalten. |
 | 25.11.2026 | Sichtbare Bezeichnungen der Schwierigkeitsstufen auf Leicht, Mittel und Schwer umgestellt. |

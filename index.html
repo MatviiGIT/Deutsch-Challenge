@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#f7f8f3">
   <meta name="description" content="Quakoo – Deutsch lernen und üben für die 6. Klasse.">
   <title>Quakoo — Deutsch lernen mit Quaki</title>
-  <link rel="stylesheet" href="style.css?v=29">
-  <script src="script.js?v=30" defer></script>
+  <link rel="stylesheet" href="style.css?v=30">
+  <script src="script.js?v=31" defer></script>
 </head>
-<body>
+<body class="is-start-screen">
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-left"><a class="brand" href="#start-screen" id="brand-home" aria-label="Zur Levelauswahl"><span class="brand-mark" aria-hidden="true">Q</span><span class="brand-words">Quakoo</span></a></div>
@@ -62,8 +62,9 @@
           <div class="progress-track" id="quiz-progress" role="progressbar" aria-label="Fortschritt in dieser Einheit" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
         </div>
         <div class="question-panel" id="question-panel">
-          <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span></div>
+          <div class="question-meta"><span class="question-number" id="question-number">FRAGE 01</span><span class="question-category" id="question-category">WORTARTEN</span><button class="question-help-button" id="question-help-button" type="button" aria-expanded="false" aria-controls="question-help-panel"><span aria-hidden="true">?</span> Hilfe</button></div>
           <div class="question-heading-row"><div class="question-illustration" id="question-illustration" aria-hidden="true"></div><h2 id="question-text" aria-live="polite">Welches Wort ist ein Nomen?</h2></div>
+          <div class="question-help-panel" id="question-help-panel" role="status" hidden></div>
           <div class="answer-grid" id="answer-grid"></div>
           <div class="free-answer-wrap" id="free-answer-wrap" hidden><label for="free-answer-input">Deine Antwort</label><input class="free-answer-input" id="free-answer-input" type="text" maxlength="60" autocomplete="off" spellcheck="false" placeholder="Antwort eingeben …"></div>
           <div class="feedback-panel" id="feedback-panel" hidden aria-live="polite">
