@@ -764,7 +764,7 @@ function getQuestionKind(question) {
   if(correct==="nomen"||correct==="verb"||correct==="adjektiv")return correct;
   const prompt=String(question.prompt??"").toLocaleLowerCase("de");
   if(/\bnomen\b/.test(prompt))return "nomen";
-  if(/\bverben?\b/.test(prompt))return "verb";
+  if(/\bverb(?:en)?\b/.test(prompt))return "verb";
   if(/\badjektiv(?:e|en)?\b/.test(prompt))return "adjektiv";
   const explanation=String(question.explanation??"").toLocaleLowerCase("de");
   if(/\b(?:ist ein|ist das|ein) nomen\b/.test(explanation)||/\bnomen werden\b/.test(explanation))return "nomen";

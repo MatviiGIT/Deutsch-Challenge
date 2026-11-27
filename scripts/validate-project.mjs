@@ -25,6 +25,9 @@ if(!js.includes("function chooseAnswer(")||!js.includes("function selectAnswer("
 if(!/choices\.length\s*===\s*3/.test(js))errors.push("Prüfung auf drei Antwortmöglichkeiten fehlt.");
 if(!css.includes(".level-select-screen")||!css.includes(".free-answer-input")||!css.includes(".question-illustration")||!css.includes(".achievement-badge"))errors.push("Gestaltungsregeln für Levelauswahl, Freitextfeld oder neue Visuals fehlen.");
 if(!js.includes("function getQuestionKind(question)")||!js.includes("function renderAchievementBadges(percent)")||!js.includes("wordTypeStats"))errors.push("Fragen-Illustrationen oder Ergebnis-Abzeichen fehlen.");
+if(!js.includes("Das Kissen ist weich.")||!js.includes("Wir wollen uns im Garten verstecken.")||!js.includes("Die Kinder erforschen den Wald."))errors.push("Freitextfragen enthalten nicht alle einen Satzkontext.");
+if(!js.includes(String.raw`/\\bverb(?:en)?\\b/.test(prompt)`))errors.push("Wortart-Erkennung für Verben fehlt.");
+if(!css.includes(".answer-option.is-wrong{border-color:#d9dfd6;background:#f2f4f0"))errors.push("Falsche Antwort wird nicht neutral markiert.");
 if(ids.includes("question-instruction")||ids.includes("result-subheading")||html.includes("free-answer-hint")||html.includes("track-description")||html.includes("start-footnote"))errors.push("Entfernte Hilfstexte sind noch in der Benutzeroberfläche.");
 if(!html.includes("style.css?v=29")||!html.includes("script.js?v=30"))errors.push("Cache-Versionen nicht aktualisiert.");
 if(errors.length){console.error("Projektprüfung fehlgeschlagen:");for(const e of errors)console.error("- "+e);process.exit(1);}
