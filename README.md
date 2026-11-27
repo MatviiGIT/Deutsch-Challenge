@@ -30,20 +30,20 @@ Die Lektion behandelt drei Wortarten:
 | **Mittel** | Wortarten in Sätzen bestimmen und Regeln anwenden |
 | **Schwer** | Anspruchsvollere Beispiele und schwierigere Satzkontexte untersuchen |
 
-Jede Stufe enthält genau 10 Fragen. Zwei Fragen pro Stufe verlangen eine eigene Texteingabe; die übrigen bieten drei Antwortmöglichkeiten. Die Freitextfragen enthalten einen vollständigen Satz als Kontext. Für jede der 30 Fragen gibt es eine eigene Illustration, die zum Wort oder zur beschriebenen Szene passt.
+Jede Stufe enthält genau 10 Fragen. In **Leicht** und **Mittel** gibt es jeweils drei offene Fragen mit Texteingabe; **Schwer** behält zwei. Die Auswahlfragen in Leicht und Mittel bieten vier Antwortmöglichkeiten, in Schwer drei. Bei offenen Suchaufgaben werden mehrere passende Antworten akzeptiert. Für jede der 30 Fragen gibt es eine eigene Illustration, die zum Wort oder zur beschriebenen Szene passt.
 
 ## Ablauf in der Anwendung
 
 - Eine Schwierigkeitsstufe auswählen. Das Quiz startet sofort.
 - 10 Fragen beantworten.
-- Bei Auswahlfragen eine von drei Antworten auswählen.
+- Bei Auswahlfragen eine der drei oder vier Antworten auswählen.
 - Bei Texteingaben das gesuchte Wort oder die Wortart selbst eintippen.
 - Über die Schaltfläche **„Hilfe“** kann zu jeder Frage ein Tipp eingeblendet werden.
 - Mit **„Antwort prüfen“** die Antwort auswerten lassen.
 - Rückmeldung und Erklärung lesen.
 - Am Ende Punkte, Abzeichen und die Übersicht falscher Antworten ansehen. Falsche Antworten können wiederholt werden.
 
-Bei freien Antworten werden Groß- und Kleinschreibung sowie Satzzeichen am Ende nicht gewertet. Die Schreibweise des Wortes muss ansonsten stimmen.
+Bei freien Antworten werden Groß- und Kleinschreibung sowie Satzzeichen am Ende nicht gewertet. Bei offenen Suchaufgaben sind mehrere passende Antworten hinterlegt; bei Aufgaben mit einem bestimmten Satz muss das gesuchte Wort stimmen.
 
 ## Technischer Aufbau
 
@@ -51,7 +51,7 @@ Das Projekt verwendet HTML, CSS und JavaScript. Die Website wird über GitHub Pa
 
 ## Bildnachweise
 
-Die meisten Frage-Illustrationen verwenden **Twemoji 17.0.2** von [jdecked/twemoji](https://github.com/jdecked/twemoji). Die Grafiken stehen unter [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). Die Original-SVGs werden lokal verwendet und passend zu den Fragen zusammengestellt. Die Tisch-Illustration wurde für Quakoo selbst erstellt.
+Die meisten Frage-Illustrationen verwenden **Twemoji 17.0.2** von [jdecked/twemoji](https://github.com/jdecked/twemoji). Die Grafiken stehen unter [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). Die Original-SVGs werden lokal verwendet und passend zu den Fragen zusammengestellt. Die Tisch-Illustration und die Positionsgrafik zu „neben“ wurden für Quakoo selbst erstellt.
 
 ## Datenschutz und Grenzen
 
@@ -84,7 +84,7 @@ Bei Änderungen an index.html, script.js oder style.css müssen die Versionspara
 
 ## Aktueller Umfang
 
-**Enthalten:** eine Wortarten-Lektion, drei Schwierigkeitsstufen, 10 Fragen pro Stufe, zwei Freitextfragen pro Stufe, thematische Illustrationen, Ergebnis-Abzeichen, Feedback nach jeder Antwort und Wiederholung falscher Antworten.
+**Enthalten:** eine Wortarten-Lektion, drei Schwierigkeitsstufen, 10 Fragen pro Stufe, drei Freitextfragen in Leicht und Mittel sowie zwei in Schwer, thematische Illustrationen, Ergebnis-Abzeichen, Feedback nach jeder Antwort und Wiederholung falscher Antworten.
 
 **Bewusst nicht enthalten:** Namensgenerator, Spielprofile, Lernpfad, weitere Themen und Lektionen, allgemeine Prüfung, freies Training, Datenbank, Klassenkonto, Lehrer-Dashboard oder dauerhafte Ergebnisspeicherung.
 
@@ -94,6 +94,7 @@ Bei Änderungen an index.html, script.js oder style.css müssen die Versionspara
 |---|---|
 | 27.11.2026 | Illustrationen zu Nomen, Verben und Adjektiven ergänzt und überarbeitet. Ergebnis-Abzeichen hinzugefügt, Quaki-Proportionen angepasst, Hilfstexte reduziert und rote Fehler-Markierungen neutral gestaltet. Freitextfragen enthalten jetzt Satzkontext. |
 | 27.11.2026 | Startbildschirm auf die gesamte Bildschirmfläche erweitert. Jeder Frage eine eigene Hilfe-Schaltfläche mit passendem Tipp hinzugefügt. |
+| 27.11.2026 | Fragen in Leicht und Mittel ersetzt. Vier Antwortmöglichkeiten, drei offene Fragen je Level und mehrere gültige Antworten für Suchaufgaben ergänzt. Fehler in Formulierungen korrigiert; Illustrationen angepasst. Schwer bleibt unverändert. |
 | 27.11.2026 | 30 fragebezogene, lokale SVG-Illustrationen ergänzt. Die Motive passen direkt zu Gegenständen und Handlungen in den jeweiligen Sätzen. |
 | 25.11.2026 | Jede Stufe auf 10 Fragen gekürzt. Nach der Levelauswahl startet das Quiz direkt. Zwei Freitextfragen pro Stufe ergänzt; Antworten werden ohne Beachtung der Groß- und Kleinschreibung geprüft. |
 | 25.11.2026 | Umfang auf eine Präsentation mit anschließender Tablet-Demo reduziert. Eine Wortarten-Lektion und drei Schwierigkeitsstufen bleiben erhalten. |

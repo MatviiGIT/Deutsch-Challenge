@@ -1,4 +1,4 @@
-const letters = ["A","B","C"];
+const letters = ["A","B","C","D"];
 const TRACKS = {
   G: {label:"Leicht",name:"Leicht",short:"1"},
   M: {label:"Mittel",name:"Mittel",short:"2"},
@@ -30,18 +30,19 @@ function shuffle(items) {
   }
   return copy;
 }
-function makeQuestion(prompt,answer,wrongOptions,explanation,track,category,stage) {
-  // Prefer distractors from the selected difficulty band, then fill from
-  // the remaining pool without ever creating duplicate answer choices.
+function makeQuestion(prompt,answer,wrongOptions,explanation,track,category,stage,metadata={}) {
   const offset=track==="G"?0:track==="M"?2:4;
   const uniqueWrong=[...new Set(wrongOptions.map(option=>String(option).trim()).filter(option=>option&&option!==String(answer).trim()))];
-  const preferred=uniqueWrong.slice(offset,offset+2);
-  const distractors=[...new Set([...preferred,...uniqueWrong])].slice(0,2);
-  if(distractors.length!==2){
-    throw new Error("Aufgabe benötigt zwei unterschiedliche falsche Antworten: "+prompt);
+  const neededWrong=uniqueWrong.length>=3?3:2;
+  const preferred=uniqueWrong.slice(offset,offset+neededWrong);
+  const distractors=[...new Set([...preferred,...uniqueWrong])].slice(0,neededWrong);
+  if(distractors.length!==neededWrong){
+    throw new Error("Aufgabe benötigt unterschiedliche falsche Antworten: "+prompt);
   }
   const correct=String(answer).trim();
   const choices=shuffle([correct,...distractors]);
+  const acceptedAnswers=[...new Set([correct,...(Array.isArray(metadata.acceptedAnswers)?metadata.acceptedAnswers:[])]
+    .map(value=>String(value).trim()).filter(Boolean))];
   return {
     category:category,
     stage:stage,
@@ -49,7 +50,9 @@ function makeQuestion(prompt,answer,wrongOptions,explanation,track,category,stag
     prompt:prompt,
     choices:choices,
     answer:choices.indexOf(correct),
-    explanation:explanation
+    explanation:explanation,
+    acceptedAnswers:acceptedAnswers,
+    hint:typeof metadata.hint==="string"?metadata.hint.trim():""
   };
 }
 function qRows(rows,track,category,stage) {
@@ -133,44 +136,28 @@ const topics = [
        build(track,stage){
         const sets={
           G:[
-            ["Welche Wortart ist „Hund“?","Nomen",["Verb","Adjektiv"],"„Hund“ bezeichnet ein Lebewesen. Deshalb ist es ein Nomen."],
-            ["Welche Wortart ist „spielen“?","Verb",["Nomen","Adjektiv"],"„Spielen“ beschreibt, was jemand tut. Das ist ein Verb."],
-            ["Welche Wortart ist „lustig“?","Adjektiv",["Nomen","Verb"],"„Lustig“ beschreibt eine Eigenschaft. Das ist ein Adjektiv."],
-            ["Finde das Nomen: „Der Ball rollt.“","Ball",["rollt","Der"],"„Ball“ bezeichnet einen Gegenstand und ist ein Nomen."],
-            ["Finde das Verb: „Mia lacht laut.“","lacht",["Mia","laut"],"„Lacht“ sagt, was Mia tut. Das ist das Verb."],
-            ["Finde das Adjektiv: „Der kleine Fuchs schläft.“","kleine",["Fuchs","schläft"],"„Kleine“ beschreibt den Fuchs."],
-            ["Welches Wort ist ein Nomen?","Schule",["lernen","schnell"],"„Schule“ bezeichnet einen Ort und wird großgeschrieben."],
-            ["Welches Wort ist ein Verb?","malen",["Bild","bunt"],"„Malen“ beschreibt eine Tätigkeit."],
-            ["Welches Wort beschreibt das Kissen? „Das Kissen ist weich.“","weich",["Kissen","liegen"],"„Weich“ ist ein Adjektiv und beschreibt eine Eigenschaft des Kissens."],
-            ["Welches Wort wird großgeschrieben, weil es ein Nomen ist?","Tisch",["decken","sauber"],"Nomen werden im Deutschen großgeschrieben."],
-            ["Was tut der Vogel? „Der Vogel singt laut.“","singt",["Vogel","laut"],"„Singt“ ist das Verb und beschreibt die Handlung."],
-            ["Wie ist die Blume? „Die Blume ist gelb.“","gelb",["Blume","ist"],"„Gelb“ beschreibt die Blume und ist ein Adjektiv."],
-            ["Welches Wort bezeichnet eine Person?","Lehrerin",["erklärt","freundlich"],"„Lehrerin“ bezeichnet eine Person und ist ein Nomen."],
-            ["Welches Wort ist das Verb? „Die Kinder rennen zum Tor.“","rennen",["Kinder","Tor"],"„Rennen“ beschreibt, was die Kinder tun. Es ist das Verb im Satz."],
-            ["Welches Wort beschreibt den Schnee? „Der Schnee ist kalt.“","kalt",["Schnee","liegt"],"„Kalt“ beschreibt eine Eigenschaft des Schnees."],
-            ["In welchem Satz steht ein Nomen?","Der Frosch hüpft.",["Wir hüpfen.","Hüpfe schnell!"],"„Frosch“ ist ein Nomen und steht im ersten Satz."],
-            ["In welchem Satz ist „tanzt“ das Verb?","Das Kind tanzt.",["Der Tanz beginnt.","Der schöne Tanz."],"„Tanzt“ beschreibt, was das Kind tut."],
-            ["Welche Wortart fehlt? „Der ___ Hund schläft.“","müde",["Hund","schläft"],"„Müde“ beschreibt den Hund. Gesucht ist ein Adjektiv."]
+            ["Bestimme die Wortart von „Katze“.","Nomen",["Verb","Adjektiv","Pronomen"],"„Katze“ ist ein Nomen. Nomen werden im Deutschen großgeschrieben.",null,"Nomen werden im Deutschen großgeschrieben."],
+            ["Bestimme die Wortart von „schön“.","Adjektiv",["Verb","Nomen","Artikel"],"„Schön“ ist ein Adjektiv. Die Steigerungsformen sind „schön – schöner – am schönsten“.",null,"Mache die Steigerungsprobe: schön, schöner, am schönsten."],
+            ["Der Satz „Ich spiele Fußball“ steht im …","Präsens",["Präteritum","Perfekt","Futur I"],"„Spiele“ steht im Präsens. Die Handlung findet jetzt oder allgemein statt.",null,"Achte auf die Zeitform: Die Handlung passiert jetzt."],
+            ["Bestimme die Wortart von „laufen“.","Verb",["Präposition","Nomen","Adjektiv"],"„Laufen“ beschreibt eine Tätigkeit und ist ein Verb.",null,"Frage dich: Kann man es tun?"],
+            ["Nenne ein Verb, das mit L beginnt.","laufen",["springen","schlafen","schwimmen"],"Zum Beispiel „laufen“, „lesen“ und „lernen“ sind Verben mit L.",["laufen","lesen","lachen","lernen","liegen","leuchten","lieben","landen","lächeln","lügen","löschen","leihen","loben","leben","lassen","lenken","locken","lösen","läuft","lernt","lacht","liest","lebt","landet","leuchtet","lügt","lächelt"],"Denke an Tätigkeiten, die mit L beginnen."],
+            ["Bestimme die Wortart von „unter“ im Ausdruck „unter dem Tisch“.","Präposition",["Nomen","Adjektiv","Verb"],"„Unter“ ist eine Präposition. Sie beschreibt eine Position, zum Beispiel „unter dem Tisch“.",null,"Das Wort gibt an, wo etwas liegt oder steht."],
+            ["Finde das Nomen im Satz: „Der Baum wächst schnell.“","Baum",["Der","wächst","schnell"],"„Baum“ ist das Nomen. Es benennt eine Pflanze und wird großgeschrieben.",["Baum","der Baum"],"Nomen benennen zum Beispiel Menschen, Tiere oder Dinge."],
+            ["Bestimme die Wortart von „wir“.","Personalpronomen",["Adjektiv","Nomen","Verb"],"„Wir“ ist ein Personalpronomen. Es steht für mehrere Personen, zu denen die sprechende Person gehört.",null,"Das Wort steht für Personen und ersetzt ihre Namen."],
+            ["Der Satz „Ich werde lernen“ steht im …","Futur I",["Perfekt","Präsens","Präteritum"],"„Werde lernen“ bildet das Futur I. Es beschreibt etwas, das in der Zukunft passiert.",null,"Achte auf die Zeitform: Es geht um die Zukunft."],
+            ["Nenne ein Verb, das mit T beginnt.","tanzen",["gehen","schlafen","spielen"],"Zum Beispiel „tanzen“, „trinken“ und „turnen“ sind Verben mit T.",["tanzen","trinken","tragen","turnen","telefonieren","träumen","tauchen","teilen","trommeln","tippen","treffen","testen","tanken","tasten","toben","trösten","trennen","trocknen","täuschen","tanzt","trinkt","trägt","turnt","telefoniert","träumt","taucht","teilt"],"Denke an eine Tätigkeit, deren Verb mit T beginnt."]
           ],
           M:[
-            ["Welche Wortart hat „Freude“ im Satz: „Die Freude war groß.“?","Nomen",["Verb","Adjektiv"],"„Freude“ bezeichnet ein Gefühl und ist ein Nomen."],
-            ["Welche Wortart hat „entdecken“?","Verb",["Nomen","Adjektiv"],"„Entdecken“ beschreibt eine Tätigkeit und ist ein Verb."],
-            ["Welche Wortart hat „mutig“?","Adjektiv",["Nomen","Verb"],"„Mutig“ beschreibt eine Eigenschaft."],
-            ["Welches Wort ist im Satz das Nomen? „Der kleine Drache schläft.“","Drache",["kleine","schläft"],"„Drache“ bezeichnet ein Wesen und ist das Nomen."],
-            ["Welches Wort ist das Verb? „Die Kinder bauen eine Höhle.“","bauen",["Kinder","Höhle"],"„Bauen“ beschreibt die Tätigkeit der Kinder."],
-            ["Welches Wort ist das Adjektiv? „Der Weg ist steinig.“","steinig",["Weg","ist"],"„Steinig“ beschreibt die Beschaffenheit des Weges."],
-            ["Welche Wortart hat „leise“? „Die Musik ist leise.“","Adjektiv",["Nomen","Verb"],"„Leise“ beschreibt die Musik und ist ein Adjektiv."],
-            ["Welche Wortart hat „Antwort“?","Nomen",["Verb","Adjektiv"],"„Antwort“ bezeichnet etwas und ist ein Nomen."],
-            ["Welche Wortart hat das Wort „verstecken“ im Satz: „Wir wollen uns im Garten verstecken.“?","Verb",["Nomen","Adjektiv"],"„Verstecken“ beschreibt hier die Handlung. Es ist ein Verb."],
-            ["Welches Wort ist das Nomen? „Unser Nachbar repariert das Fahrrad.“","Nachbar",["repariert","Unser"],"„Nachbar“ bezeichnet eine Person."],
-            ["Welches Wort ist das Verb? „Am Morgen glitzert der See.“","glitzert",["Morgen","See"],"„Glitzert“ beschreibt, was der See tut."],
-            ["Welches Wort ist das Adjektiv? „Die Aufgabe war schwierig.“","schwierig",["Aufgabe","war"],"„Schwierig“ beschreibt die Aufgabe."],
-            ["Welche Wortart hat „Licht“? „Das Licht blendet mich.“","Nomen",["Verb","Adjektiv"],"„Licht“ bezeichnet etwas und ist ein Nomen."],
-            ["Welche Wortart hat „freundliche“? „Der freundliche Verkäufer grüßt.“","Adjektiv",["Nomen","Verb"],"„Freundliche“ beschreibt den Verkäufer und ist ein Adjektiv."],
-            ["Welche Wortart hat „zittert“? „Das Blatt zittert im Wind.“","Verb",["Nomen","Adjektiv"],"„Zittert“ beschreibt eine Bewegung."],
-            ["Welches Wort ist ein Adjektiv? „Der flinke Hase springt über den Zaun.“","flinke",["Hase","springt"],"„Flinke“ beschreibt den Hasen."],
-            ["In welchem Satz ist „spielen“ ein Verb?","Die Kinder spielen im Hof.",["Das Spielen macht Spaß.","Beim Spielen vergeht die Zeit."],"Im ersten Satz beschreibt „spielen“ eine Handlung. In den anderen Sätzen wird das Wort als Nomen verwendet."],
-            ["Welche Wortart hat „schneller“? „Der Zug ist schneller.“","Adjektiv",["Nomen","Verb"],"„Schneller“ ist eine gesteigerte Eigenschaft und damit ein Adjektiv."]
+            ["Das Wort „der“ in „der Hund“ gehört zur Wortart …","Artikel",["Präposition","unterordnende Konjunktion","Adverb"],"„Der“ begleitet das Nomen „Hund“ und ist ein bestimmter Artikel.",null,"„Der“, „die“ und „das“ stehen als Artikel vor einem Nomen."],
+            ["Das Wort „neben“ in „neben dem Haus“ gehört zur Wortart …","Präposition",["Verb","Pronomen","Adjektiv"],"„Neben“ ist hier eine Präposition. Sie beschreibt die Lage eines Gegenstands.",null,"Das Wort verrät die Position eines Gegenstands."],
+            ["Der Satz „Morgen werde ich meine Oma besuchen“ steht im …","Futur I",["Perfekt","Präsens","Präteritum"],"„Werde besuchen“ bildet das Futur I und beschreibt eine Handlung in der Zukunft.",null,"Achte auf die Zeitform: Die Handlung liegt in der Zukunft."],
+            ["Das Wort „gestern“ im Satz „Gestern war ich krank“ gehört zur Wortart …","Adverb",["Nomen","Adjektiv","Artikel"],"„Gestern“ gibt an, wann etwas passiert ist. Es ist ein zeitliches Adverb.",null,"Das Wort beantwortet die Frage: Wann?"],
+            ["Nenne ein Nomen, in dem der Buchstabe ß vorkommt.","Straße",["laufen","schön","gestern"],"Zum Beispiel „Straße“, „Fuß“ und „Maß“ sind Nomen mit ß.",["Straße","die Straße","Fuß","der Fuß","Maß","das Maß","Spaß","der Spaß","Fleiß","der Fleiß","Schweiß","der Schweiß","Gruß","der Gruß","Stoß","der Stoß","Kloß","der Kloß","Floß","das Floß","Gefäß","das Gefäß","Fußball","der Fußball","Maßband","das Maßband","Straßenbahn","die Straßenbahn","Fußboden","der Fußboden","Schließfach","das Schließfach","Bußgeld","das Bußgeld","Buße","die Buße","Süßigkeit","die Süßigkeit","Fließband","das Fließband"],"Nomen werden großgeschrieben. Suche ein Nomen, in dem ß vorkommt."],
+            ["Der Satz „Wir hatten gespielt“ steht im …","Plusquamperfekt",["Perfekt","Präsens","Futur I"],"„Hatten gespielt“ bildet das Plusquamperfekt. Es beschreibt etwas, das vor einem anderen vergangenen Ereignis passiert war.",null,"Achte auf die Zeitform: Die Handlung liegt vor einem anderen Ereignis in der Vergangenheit."],
+            ["Das Wort „Sie“ im Satz „Sie malt gerne“ ist ein …","Personalpronomen",["Artikel","Adverb","Adjektiv"],"„Sie“ steht hier für eine Person und ist ein Personalpronomen.",null,"Das Wort steht für eine Person und ersetzt ihren Namen."],
+            ["Der Satz „Er wird morgen gehen“ steht im …","Futur I",["Perfekt","Präsens","Präteritum"],"„Wird gehen“ bildet das Futur I. Es beschreibt eine Handlung in der Zukunft.",null,"Achte auf die Zeitform: Es geht um die Zukunft."],
+            ["Nenne ein Adjektiv, das mit S beginnt.","schön",["laufen","Tisch","gestern"],"Zum Beispiel „schön“, „schnell“ und „stark“ sind Adjektive mit S.",["schön","schnell","stark","sauber","süß","sauer","scharf","sicher","sanft","spannend","schwer","still","spät","sonnig","sportlich","sorgfältig","seltsam","schwierig","sinnvoll","sympathisch","stolz","stabil"],"Adjektive beschreiben Eigenschaften. Suche eines mit S."],
+            ["Finde das Verb im Satz: „Leo fährt schnell.“","fährt",["Leo","schnell","der"],"„Fährt“ sagt, was Leo tut. Es ist das Verb im Satz.",["fährt"],"Frage dich: Was tut Leo?"]
           ],
           E:[
             ["Welche Wortart hat „Laufen“ im Satz: „Das Laufen hält fit.“?","Nomen",["Verb","Adjektiv"],"Mit dem Artikel „das“ wird der Infinitiv „Laufen“ hier als Nomen verwendet (Substantivierung)."],
@@ -194,7 +181,8 @@ const topics = [
           ]
         };
         return sets[track].map((row,index)=>makeQuestion(row[0],row[1],row[2],row[3],track,
-          index<3?"START":index<10?"ÜBEN":index<15?"ANWENDEN":"WISSENSCHECK",stage));
+          index<3?"START":index<10?"ÜBEN":index<15?"ANWENDEN":"WISSENSCHECK",stage,
+          {acceptedAnswers:row[4],hint:row[5]}));
       }},
       {title:"Nomen und Begleiter",focus:"Artikel und grammatisches Geschlecht",build(track,stage){
         const rows=[
@@ -769,28 +757,28 @@ function getQuestionKind(question) {
 
 const QUESTION_ART = {
   G: [
-    {main:"1f436",alt:"Ein Hund"},
-    {main:"1f3ae",alt:"Spielen mit einem Controller"},
-    {main:"1f604",alt:"Ein lustiges, lachendes Gesicht"},
-    {main:"26bd",alt:"Ein rollender Fußball"},
-    {main:"1f467",support:"1f602",alt:"Mia lacht laut"},
-    {main:"1f98a",support:"1f4a4",alt:"Ein Fuchs schläft"},
-    {main:"1f3eb",alt:"Ein Schulgebäude"},
-    {main:"1f3a8",alt:"Eine Malpalette mit Farben"},
-    {main:"1f6cf",support:"1f4a4",alt:"Ein weiches Kissen auf einem Bett"},
-    {main:"table",alt:"Ein Holztisch"}
+    {main:"1f431",alt:"Eine Katze"},
+    {main:"2b50",support:"2728",alt:"Ein Stern mit Funkeln für die Eigenschaft schön"},
+    {main:"23f0",alt:"Eine Uhr für die Gegenwart"},
+    {main:"1f3c3",alt:"Eine laufende Person"},
+    {main:"1f4d6",support:"1f3c3",alt:"Ein Buch und eine laufende Person für Verben mit L"},
+    {main:"2b07",alt:"Ein Pfeil nach unten für das Wort unter"},
+    {main:"1f333",alt:"Ein Baum"},
+    {main:"1f465",alt:"Mehrere Personen für das Wort wir"},
+    {main:"1f680",alt:"Eine Rakete für die Zukunft"},
+    {main:"1f483",alt:"Eine tanzende Person für ein Verb mit T"}
   ],
   M: [
-    {main:"1f60a",alt:"Ein fröhliches Gesicht für Freude"},
-    {main:"1f50e",alt:"Eine Lupe zum Entdecken"},
-    {main:"1f981",alt:"Ein mutiger Löwe"},
-    {main:"1f409",support:"1f4a4",alt:"Ein schlafender Drache"},
-    {main:"26fa",support:"1f9f1",accent:"1f467",alt:"Kinder bauen eine Höhle oder ein Versteck"},
-    {main:"1faa8",alt:"Ein großer Stein auf einem steinigen Weg"},
-    {main:"1f3b5",support:"1f507",alt:"Leise Musik"},
-    {main:"1f4ac",alt:"Eine Sprechblase für eine Antwort"},
-    {main:"1f333",support:"1f467",alt:"Ein Kind versteckt sich im Garten hinter einem Baum"},
-    {main:"1f6b2",support:"1f6e0",alt:"Ein Fahrrad und Werkzeug zur Reparatur"}
+    {main:"1f4d6",alt:"Ein aufgeschlagenes Buch für Artikel"},
+    {main:"neben",alt:"Zwei Gegenstände stehen nebeneinander"},
+    {main:"1f680",alt:"Eine Rakete für die Zukunft"},
+    {main:"1f4c5",support:"23f0",alt:"Ein Kalender und eine Uhr für gestern"},
+    {main:"1f6e3",alt:"Eine Straße"},
+    {main:"1f551",support:"1f4c5",alt:"Eine Uhr und ein Kalender für die Vorvergangenheit"},
+    {main:"1f467",alt:"Eine Person für das Personalpronomen sie"},
+    {main:"1f680",alt:"Eine Rakete für die Zukunft"},
+    {main:"2b50",support:"2728",alt:"Ein Stern mit Funkeln für ein Adjektiv"},
+    {main:"1f6b2",alt:"Ein Fahrrad für das Verb fährt"}
   ],
   E: [
     {main:"1f3c3",alt:"Eine Person läuft und bleibt fit"},
@@ -804,6 +792,12 @@ const QUESTION_ART = {
     {main:"1f332",support:"1f50e",accent:"1f467",alt:"Kinder erforschen den Wald mit einer Lupe"},
     {main:"1f311",support:"1f327",alt:"Ein dunkler Himmel mit Mond und Regenwolke"}
   ]
+};
+
+const TEXT_QUESTION_INDEXES = {
+  G:[4,6,9],
+  M:[4,8,9],
+  E:[3,8]
 };
 
 function renderQuestionIllustration(container,art,kind) {
@@ -860,11 +854,16 @@ function validateUnitQuestions(topic,lesson,questions,track){
   questions.forEach((question,index)=>{
     const art=QUESTION_ART[track][index];
     if(!art?.main||!art.alt)throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": Illustration fehlt.");
-    const validChoices=Array.isArray(question.choices)&&question.choices.length===3
-      &&new Set(question.choices).size===3
+    const expectedChoiceCount=track==="E"?3:4;
+    const validChoices=Array.isArray(question.choices)&&question.choices.length===expectedChoiceCount
+      &&new Set(question.choices).size===question.choices.length
       &&question.choices.every(choice=>typeof choice==="string"&&choice.trim().length>0);
-    const validAnswer=Number.isInteger(question.answer)&&question.answer>=0&&question.answer<3;
-    if(!validChoices||!validAnswer||!question.prompt?.trim()||!question.explanation?.trim()){
+    const validAnswer=Number.isInteger(question.answer)&&question.answer>=0&&question.answer<question.choices.length;
+    const expectedText=TEXT_QUESTION_INDEXES[track]||[];
+    const validTextMode=expectedText.includes(index)===(question.answerMode==="text");
+    const validAcceptedAnswers=Array.isArray(question.acceptedAnswers)&&question.acceptedAnswers.length>0
+      &&question.acceptedAnswers.every(answer=>typeof answer==="string"&&answer.trim().length>0);
+    if(!validChoices||!validAnswer||!validTextMode||!validAcceptedAnswers||!question.prompt?.trim()||!question.explanation?.trim()){
       throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": ungültige Frage oder Antwortoptionen.");
     }
     if(question.track!==track||question.choices[question.answer]===undefined){
@@ -877,7 +876,8 @@ function auditAllTracks(){
     courseTopics.forEach(topic=>{
       topic.lessons.forEach((lesson,index)=>{
         const questions=ensureUniquePrompts(lesson.build(track,index+1),topic.id).slice(0,lesson.questionCount||10);
-        questions.forEach((question,questionIndex)=>{if([3,8].includes(questionIndex))question.answerMode="text";});
+        const textIndexes=TEXT_QUESTION_INDEXES[track]||[];
+        questions.forEach((question,questionIndex)=>{if(textIndexes.includes(questionIndex))question.answerMode="text";});
         validateUnitQuestions(topic,lesson,questions,track);
       });
     });
@@ -890,7 +890,8 @@ function buildCourse(track){
       const stage=index+1;
       const unit={id:topic.id+"-"+stage,topic:topic,lesson:lesson,stage:stage,title:lesson.title,focus:lesson.focus,stageInfo:stageIndex(stage)};
       unit.questions=ensureUniquePrompts(lesson.build(track,stage),topic.id).slice(0,lesson.questionCount||10);
-      unit.questions.forEach((question,questionIndex)=>{if([3,8].includes(questionIndex))question.answerMode="text";});
+      const textIndexes=TEXT_QUESTION_INDEXES[track]||[];
+       unit.questions.forEach((question,questionIndex)=>{if(textIndexes.includes(questionIndex))question.answerMode="text";});
       validateUnitQuestions(topic,lesson,unit.questions,track);
       units.push(unit);questions.push(...unit.questions);
     });
@@ -917,6 +918,7 @@ function prepare(items,unit=null){
  screen("quiz");renderQuestion();
 }
 function getQuestionHint(question){
+ if(question?.hint)return "Tipp: "+question.hint;
  const kind=getQuestionKind(question);
  if(kind==="nomen")return "Tipp: Nomen benennen Menschen, Tiere, Dinge oder Gefühle. Häufig passt „der“, „die“ oder „das“ davor.";
  if(kind==="verb")return "Tipp: Verben sagen, was jemand tut oder was geschieht. Frage dich: „Was tut jemand?“";
@@ -953,10 +955,16 @@ function chooseAnswer(selected){
 function normalizeTypedAnswer(value){
  return String(value??"").normalize("NFC").trim().toLocaleLowerCase("de").replace(/\s+/g," ").replace(/[.!?;:,]+$/u,"").trim();
 }
+function isAcceptedTextAnswer(question,value){
+ const accepted=Array.isArray(question.acceptedAnswers)&&question.acceptedAnswers.length
+   ?question.acceptedAnswers:[question.choices[question.answer]];
+ const normalized=normalizeTypedAnswer(value);
+ return accepted.some(answer=>normalizeTypedAnswer(answer)===normalized);
+}
 function selectAnswer(selected){
  if(answered||selected===null)return;
  const q=queue[currentIndex],textMode=q.answerMode==="text",typedResponse=textMode?String(selected).trim():null;
- const correct=textMode?normalizeTypedAnswer(typedResponse)===normalizeTypedAnswer(q.choices[q.answer]):selected===q.answer;
+ const correct=textMode?isAcceptedTextAnswer(q,typedResponse):selected===q.answer;
  const kind=getQuestionKind(q);if(wordTypeStats[kind]){wordTypeStats[kind].total++;if(correct)wordTypeStats[kind].correct++;}
  answered=true;
  if(textMode)freeAnswerInput.disabled=true;
@@ -964,7 +972,7 @@ function selectAnswer(selected){
  if(correct){score++;stats.correct++;feedbackPanel.classList.add("feedback-good");document.getElementById("feedback-title").textContent="Richtig! +1 Punkt";}
  else{
   if(textMode)wrongAnswers.push({question:q,selectedText:typedResponse});else wrongAnswers.push({question:q,selectedIndex:selected});
-  feedbackPanel.classList.add("feedback-bad");document.getElementById("feedback-title").textContent="Noch nicht ganz. Richtig ist: "+q.choices[q.answer];
+  feedbackPanel.classList.add("feedback-bad");document.getElementById("feedback-title").textContent=(textMode&&q.acceptedAnswers.length>1?"Noch nicht ganz. Eine mögliche Antwort ist: ":"Noch nicht ganz. Richtig ist: ")+q.choices[q.answer];
  }
  document.getElementById("feedback-text").textContent=q.explanation;feedbackPanel.hidden=false;document.getElementById("score-value").textContent=score+" Punkte";
  nextButton.disabled=false;nextButton.innerHTML=currentIndex===queue.length-1?'Ergebnis ansehen <span aria-hidden="true">→</span>':'Weiter <span aria-hidden="true">→</span>';
@@ -990,7 +998,7 @@ function renderResults(){
  const meta=document.createElement("div");meta.className="mistake-meta";meta.textContent=TRACKS[selectedTrack].label+" · "+q.category;
  const prompt=document.createElement("h3");prompt.className="mistake-question";prompt.textContent=q.prompt;
  const selected=document.createElement("p");selected.className="mistake-selected";selected.textContent="Deine Antwort: "+(selectedText??q.choices[selectedIndex]);
- const answer=document.createElement("p");answer.className="mistake-answer";answer.textContent="Richtige Antwort: "+q.choices[q.answer];
+ const answer=document.createElement("p");answer.className="mistake-answer";answer.textContent=(q.answerMode==="text"&&q.acceptedAnswers.length>1?"Beispielantwort: ":"Richtige Antwort: ")+q.choices[q.answer];
  const explanation=document.createElement("p");explanation.className="mistake-explanation";explanation.textContent=q.explanation;item.append(meta,prompt,selected,answer,explanation);list.append(item);});
  document.getElementById("retry-button").textContent="Lektion wiederholen ↻";document.getElementById("topbar-progress").innerHTML=total+" / "+total+" <span>FRAGEN</span>";
 }

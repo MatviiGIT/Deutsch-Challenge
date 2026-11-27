@@ -17,12 +17,14 @@ for(const level of ["Leicht","Mittel","Schwer"])if(!html.includes('<span class="
 if(/playerName|player-name|generatePlayerName|generate-name-button|logoutButton|endSession|currentMode|EXAM_QUESTION_PLAN|buildExamQuestions|practiceGrade|startExam|lesson-screen|startUnit\(/.test(js))errors.push("Alte Profil-, Prüfungs- oder Zwischenseiten-Funktionen in JavaScript.");
 if(/profile-screen|path-screen|Lernpfad|Freies Training|Prüfung starten|Zufälligen Spielnamen|Spielname|21 Fragen|7 Themen|lesson-screen|Das lernst du heute/.test(html))errors.push("Alte Zusatzfunktionen oder Erklärungsseite in der Benutzeroberfläche.");
 if(!/lessons:topic\.lessons\.slice\(0,1\)/.test(js)||!/topic\.id==="wortarten"/.test(js)||!/questionsPerUnit=10/.test(js)||!/questionCount:10/.test(js))errors.push("Es muss eine Wortarten-Lektion mit genau 10 Fragen je Level geben.");
+if(!js.includes('const letters = ["A","B","C","D"]'))errors.push("Die vierte Antwortmöglichkeit fehlt.");
+if(!js.includes("acceptedAnswers")||!js.includes("function isAcceptedTextAnswer("))errors.push("Mehrere gültige Freitextantworten werden nicht geprüft.");
 if(!/\.slice\(0,lesson\.questionCount\|\|10\)/.test(js))errors.push("Fragen werden nicht auf 10 gekürzt.");
-if(!/\[3,8\]\.includes\(questionIndex\)/.test(js))errors.push("Zwei Freitextfragen pro Level fehlen.");
-if(!/function normalizeTypedAnswer\(value\)/.test(js)||!js.includes('freeAnswerInput.addEventListener("input"'))errors.push("Freitextprüfung oder Eingabe-Listener fehlen.");
+if(!js.includes("const TEXT_QUESTION_INDEXES")||!js.includes("G:[4,6,9]")||!js.includes("M:[4,8,9]")||!js.includes("E:[3,8]"))errors.push("Die Freitextfragen sind nicht passend auf die drei Level verteilt.");
+if(!/function normalizeTypedAnswer\(value\)/.test(js)||!js.includes("function isAcceptedTextAnswer(")||!js.includes('freeAnswerInput.addEventListener("input"'))errors.push("Freitextprüfung oder Eingabe-Listener fehlen.");
 if(!js.includes("beginCourse();")||!/prepare\(units\[0\]\.questions,units\[0\]\)/.test(js))errors.push("Das Quiz startet nicht direkt nach der Levelauswahl.");
 if(!js.includes("function chooseAnswer(")||!js.includes("function selectAnswer(")||!html.includes("Antwort prüfen"))errors.push("Antwortprüfung fehlt.");
-if(!/choices\.length\s*===\s*3/.test(js))errors.push("Prüfung auf drei Antwortmöglichkeiten fehlt.");
+if(!js.includes('const expectedChoiceCount=track==="E"?3:4'))errors.push("Leicht und Mittel benötigen vier, Schwer drei Antwortmöglichkeiten.");
 if(!css.includes(".level-select-screen")||!css.includes(".free-answer-input")||!css.includes(".question-illustration")||!css.includes(".scene-main")||!css.includes(".scene-support")||!css.includes(".achievement-badge"))errors.push("Gestaltungsregeln für Levelauswahl, Freitextfeld oder Illustrationen fehlen.");
 if(!js.includes("const QUESTION_ART = {")||!js.includes("function renderQuestionIllustration(")||!js.includes("QUESTION_ART[selectedTrack][currentIndex]"))errors.push("Die einzelnen Fragen sind nicht mit eigenen Illustrationen verbunden.");
 const artRefs=[...js.matchAll(/(?:main|support|accent):"([^"]+)"/g)].map(m=>m[1]);
@@ -31,10 +33,10 @@ if(!/G:\s*\[([\s\S]*?)\],\s*M:/.test(js)||!/M:\s*\[([\s\S]*?)\],\s*E:/.test(js)|
 if(!js.includes("function getQuestionKind(question)")||!js.includes("function renderAchievementBadges(percent)")||!js.includes("function getQuestionHint(question)")||!js.includes("wordTypeStats"))errors.push("Fragen-Illustrationen, Hilfstipps oder Ergebnis-Abzeichen fehlen.");
 if(!js.includes('questionHelpButton.addEventListener("click"')||!js.includes("questionHelpPanel.hidden=true"))errors.push("Die Hilfe-Schaltfläche funktioniert nicht auf jeder Frage.");
 if(!html.includes('class="is-start-screen"')||!css.includes("body.is-start-screen .level-select-card")||!css.includes("height:100svh"))errors.push("Die Startseite nutzt nicht den gesamten Bildschirm.");
-if(!js.includes("Das Kissen ist weich.")||!js.includes("Wir wollen uns im Garten verstecken.")||!js.includes("Die Kinder erforschen den Wald."))errors.push("Freitextfragen enthalten nicht alle einen Satzkontext.");
+if(!js.includes("Der Baum wächst schnell.")||!js.includes("Gestern war ich krank")||!js.includes("Leo fährt schnell."))errors.push("Die neuen Fragen mit Satzkontext fehlen.");
 if(!js.includes("verb(?:en)?")||!js.includes("test(prompt)"))errors.push("Wortart-Erkennung für Verben fehlt.");
 if(!css.includes(".answer-option.is-wrong{border-color:#d9dfd6;background:#f2f4f0"))errors.push("Falsche Antwort wird nicht neutral markiert.");
 if(ids.includes("question-instruction")||ids.includes("result-subheading")||html.includes("free-answer-hint")||html.includes("track-description")||html.includes("start-footnote"))errors.push("Entfernte Hilfstexte sind noch in der Benutzeroberfläche.");
-if(!html.includes("style.css?v=31")||!html.includes("script.js?v=32"))errors.push("Cache-Versionen nicht aktualisiert.");
+if(!html.includes("style.css?v=31")||!html.includes("script.js?v=33"))errors.push("Cache-Versionen nicht aktualisiert.");
 if(errors.length){console.error("Projektprüfung fehlgeschlagen:");for(const e of errors)console.error("- "+e);process.exit(1);}
-console.log("Projektprüfung erfolgreich: "+ids.length+" HTML-IDs, "+new Set(jsIds).size+" JavaScript-Verweise, drei Level, je zehn Fragen und zwei Freitextfragen.");
+console.log("Projektprüfung erfolgreich: "+ids.length+" HTML-IDs, "+new Set(jsIds).size+" JavaScript-Verweise, drei Level, je zehn Fragen und die vorgesehenen Freitextfragen.");
