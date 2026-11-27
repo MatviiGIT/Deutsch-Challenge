@@ -753,12 +753,6 @@ const topics = [
 ];
 
 
-const WORD_ART = {
-  nomen: '<svg viewBox="0 0 140 90" role="presentation" focusable="false"><ellipse cx="70" cy="78" rx="58" ry="5" fill="#dce8d5"/><path d="M26 42c-8-11-4-25 7-27 7-1 12 3 15 7 4-4 10-7 17-4 11 5 12 19 4 29-7 10-13 15-21 15S34 53 26 42Z" fill="#e66c61" stroke="#b64c45" stroke-width="2.5"/><path d="M49 22c-1-8 3-12 8-14" fill="none" stroke="#75543b" stroke-width="4" stroke-linecap="round"/><path d="M53 14c8-8 18-6 20 1-8 7-16 7-20-1Z" fill="#75b45c" stroke="#477f42" stroke-width="2"/><path d="M35 30c-2 5-1 10 2 13" fill="none" stroke="#f8b4a1" stroke-width="3" stroke-linecap="round"/><path d="M84 27Q98 19 116 28V65Q99 57 84 66Z" fill="#6d9fc8" stroke="#4779a4" stroke-width="2.5" stroke-linejoin="round"/><path d="M84 27Q69 19 52 28V65Q69 57 84 66Z" fill="#fffdf3" stroke="#4779a4" stroke-width="2.5" stroke-linejoin="round"/><path d="M84 27V66M60 35h17M60 43h17M94 35h15M94 43h15" stroke="#8ea6b3" stroke-width="2" stroke-linecap="round"/><path d="M70 70h30" stroke="#d3dfd7" stroke-width="2" stroke-linecap="round"/></svg>',
-  verb: '<svg viewBox="0 0 140 90" role="presentation" focusable="false"><path d="M8 24h17M3 34h14M10 44h15" stroke="#e9b55d" stroke-width="3.5" stroke-linecap="round"/><circle cx="76" cy="14" r="9" fill="#f2c1a2" stroke="#c78e70" stroke-width="1.5"/><path d="M70 26 59 47 79 53 88 32Z" fill="#5d94cb" stroke="#3f70a6" stroke-width="2" stroke-linejoin="round"/><path d="M68 31 51 41 39 32M80 31 95 22 105 29" fill="none" stroke="#c78e70" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M65 48 49 64 34 63M77 52 93 65 111 59" fill="none" stroke="#3f70a6" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 63 25 66M111 59 122 61" stroke="#384b58" stroke-width="5" stroke-linecap="round"/><path d="M65 28 57 35M88 34 95 31" stroke="#f2c1a2" stroke-width="4" stroke-linecap="round"/></svg>',
-  adjektiv: '<svg viewBox="0 0 140 90" role="presentation" focusable="false"><path d="m70 5 9 18 20 3-14 14 3 20-18-10-18 10 4-20-15-14 21-3Z" fill="#f3c85e" stroke="#c59b32" stroke-width="2.5" stroke-linejoin="round"/><path d="m70 17 5 10 11 2-8 8 2 11-10-6-10 6 2-11-8-8 11-2Z" fill="#ffe69a"/><path d="m104 13 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="#82b7d8"/><rect x="5" y="67" width="38" height="17" rx="8.5" fill="#f6dddd"/><rect x="50" y="67" width="40" height="17" rx="8.5" fill="#e3edf8"/><rect x="97" y="67" width="38" height="17" rx="8.5" fill="#e3f0dd"/><text x="24" y="78.5" text-anchor="middle" font-size="8" font-weight="800" fill="#9e514c">ROT</text><text x="70" y="78.5" text-anchor="middle" font-size="8" font-weight="800" fill="#4d7294">GROSS</text><text x="116" y="78.5" text-anchor="middle" font-size="7.5" font-weight="800" fill="#4b7e43">WEICH</text></svg>',
-  mix: '<svg viewBox="0 0 140 90" role="presentation" focusable="false"><circle cx="36" cy="42" r="17" fill="#e66c61"/><path d="M36 22c0-6 4-9 8-11" fill="none" stroke="#75543b" stroke-width="3" stroke-linecap="round"/><path d="M54 24h15M54 33h11" stroke="#6e9fc7" stroke-width="3" stroke-linecap="round"/><path d="M77 28 94 59H60Z" fill="#f3c85e" stroke="#c59b32" stroke-width="2"/><path d="M103 25 119 54" stroke="#5c91c7" stroke-width="6" stroke-linecap="round"/><path d="M105 20l7-7 6 6-7 7Z" fill="#edab6b"/></svg>'
-};
 function getQuestionKind(question) {
   const correct=String(question.choices[question.answer]??"").trim().toLocaleLowerCase("de");
   if(correct==="nomen"||correct==="verb"||correct==="adjektiv")return correct;
@@ -767,12 +761,72 @@ function getQuestionKind(question) {
   if(/\bverb(?:en)?\b/.test(prompt))return "verb";
   if(/\badjektiv(?:e|en)?\b/.test(prompt))return "adjektiv";
   const explanation=String(question.explanation??"").toLocaleLowerCase("de");
-  if(/\b(?:ist ein|ist das|ein) nomen\b/.test(explanation)||/\bnomen werden\b/.test(explanation))return "nomen";
-  if(/\b(?:ist ein|ist das|ein) verb\b/.test(explanation)||/\bverb(?:en)?\b/.test(explanation))return "verb";
-  if(/\b(?:ist ein|ist das|ein) adjektiv\b/.test(explanation)||/\badjektiv\b/.test(explanation)||/eigenschaft/.test(explanation))return "adjektiv";
+  if(/\bnomen\b|substantivierung/.test(explanation))return "nomen";
+  if(/\bverb\b/.test(explanation))return "verb";
+  if(/\badjektiv\b|eigenschaft/.test(explanation))return "adjektiv";
   return "mix";
 }
 
+const QUESTION_ART = {
+  G: [
+    {main:"1f436",alt:"Ein Hund"},
+    {main:"1f3ae",alt:"Spielen mit einem Controller"},
+    {main:"1f604",alt:"Ein lustiges, lachendes Gesicht"},
+    {main:"26bd",alt:"Ein rollender Fußball"},
+    {main:"1f467",support:"1f602",alt:"Mia lacht laut"},
+    {main:"1f98a",support:"1f4a4",alt:"Ein Fuchs schläft"},
+    {main:"1f3eb",alt:"Ein Schulgebäude"},
+    {main:"1f3a8",alt:"Eine Malpalette mit Farben"},
+    {main:"1f6cf",support:"1f4a4",alt:"Ein weiches Kissen auf einem Bett"},
+    {main:"table",alt:"Ein Holztisch"}
+  ],
+  M: [
+    {main:"1f60a",alt:"Ein fröhliches Gesicht für Freude"},
+    {main:"1f50e",alt:"Eine Lupe zum Entdecken"},
+    {main:"1f981",alt:"Ein mutiger Löwe"},
+    {main:"1f409",support:"1f4a4",alt:"Ein schlafender Drache"},
+    {main:"26fa",support:"1f9f1",accent:"1f467",alt:"Kinder bauen eine Höhle oder ein Versteck"},
+    {main:"1faa8",alt:"Ein großer Stein auf einem steinigen Weg"},
+    {main:"1f3b5",support:"1f507",alt:"Leise Musik"},
+    {main:"1f4ac",alt:"Eine Sprechblase für eine Antwort"},
+    {main:"1f333",support:"1f467",alt:"Ein Kind versteckt sich im Garten hinter einem Baum"},
+    {main:"1f6b2",support:"1f6e0",alt:"Ein Fahrrad und Werkzeug zur Reparatur"}
+  ],
+  E: [
+    {main:"1f3c3",alt:"Eine Person läuft und bleibt fit"},
+    {main:"1f3c3",support:"26bd",alt:"Eine Person läuft mit einem Fußball zum Sportplatz"},
+    {main:"1f441",support:"1f4d6",alt:"Ein aufmerksamer Blick auf ein Buch"},
+    {main:"1f512",alt:"Ein verschlossenes Schloss für ein Geheimnis"},
+    {main:"1f327",support:"1f3c3",accent:"26bd",alt:"Kinder spielen trotz Regen weiter Fußball"},
+    {main:"2b50",support:"2728",alt:"Ein heller, leuchtender Stern"},
+    {main:"1f3c3",support:"26a1",alt:"Ein schneller Läufer mit einem Blitz"},
+    {main:"1f9f3",support:"1f682",alt:"Ein Koffer und ein Zug für eine Reise"},
+    {main:"1f332",support:"1f50e",accent:"1f467",alt:"Kinder erforschen den Wald mit einer Lupe"},
+    {main:"1f311",support:"1f327",alt:"Ein dunkler Himmel mit Mond und Regenwolke"}
+  ]
+};
+
+function renderQuestionIllustration(container,art,kind) {
+  if(!art||!art.main)throw new Error("Für diese Frage fehlt eine passende Illustration.");
+  container.replaceChildren();
+  container.dataset.kind=kind||"mix";
+  container.setAttribute("role","img");
+  container.setAttribute("aria-label",art.alt||"Illustration zur Frage");
+  const addImage=(code,className)=>{
+    if(!code)return;
+    const image=document.createElement("img");
+    image.className=className;
+    image.src="assets/question-art/"+code+".svg";
+    image.alt="";
+    image.decoding="async";
+    image.loading="eager";
+    image.draggable=false;
+    container.append(image);
+  };
+  addImage(art.main,"scene-main");
+  addImage(art.support,"scene-support");
+  addImage(art.accent,"scene-accent");
+}
 let selectedTrack=null;
 let units=[],questions=[],currentUnit=null,queue=[],currentIndex=0,score=0,answered=false,selectedAnswer=null,wrongAnswers=[],stats={correct:0,total:0};
 let wordTypeStats={nomen:{correct:0,total:0},verb:{correct:0,total:0},adjektiv:{correct:0,total:0}};
@@ -800,7 +854,12 @@ function validateUnitQuestions(topic,lesson,questions,track){
   if(questions.length!==expected){
     throw new Error(topic.title+" / "+lesson.title+": erwartet werden "+expected+" Fragen, gefunden "+questions.length);
   }
+  if(!QUESTION_ART[track]||QUESTION_ART[track].length!==expected){
+    throw new Error(topic.title+" / "+lesson.title+": Für jede Frage muss eine Illustration vorhanden sein.");
+  }
   questions.forEach((question,index)=>{
+    const art=QUESTION_ART[track][index];
+    if(!art?.main||!art.alt)throw new Error(topic.title+" / "+lesson.title+" / Frage "+(index+1)+": Illustration fehlt.");
     const validChoices=Array.isArray(question.choices)&&question.choices.length===3
       &&new Set(question.choices).size===3
       &&question.choices.every(choice=>typeof choice==="string"&&choice.trim().length>0);
@@ -874,7 +933,7 @@ function renderQuestion(){
  const progress=document.getElementById("quiz-progress");progress.setAttribute("aria-valuemax",String(queue.length));progress.setAttribute("aria-valuenow",String(number));
  document.getElementById("question-panel").hidden=false;document.getElementById("question-number").textContent="FRAGE "+String(number).padStart(2,"0");
  document.getElementById("question-category").textContent=q.category;document.getElementById("question-text").textContent=q.prompt;document.getElementById("score-value").textContent=score+" Punkte";
- const visual=document.getElementById("question-illustration");const kind=getQuestionKind(q);visual.dataset.kind=kind;visual.innerHTML=WORD_ART[kind]||WORD_ART.mix;
+ const visual=document.getElementById("question-illustration");renderQuestionIllustration(visual,QUESTION_ART[selectedTrack][currentIndex],getQuestionKind(q));
  questionHelpPanel.hidden=true;questionHelpPanel.textContent="";questionHelpButton.setAttribute("aria-expanded","false");
  answerGrid.hidden=textMode;freeAnswerWrap.hidden=!textMode;freeAnswerInput.value="";freeAnswerInput.disabled=false;answerGrid.replaceChildren();
  if(!textMode)q.choices.forEach((choice,index)=>{

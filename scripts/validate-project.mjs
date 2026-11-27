@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 const html=readFileSync("index.html","utf8");
 const js=readFileSync("script.js","utf8");
 const css=readFileSync("style.css","utf8");
@@ -23,7 +23,11 @@ if(!/function normalizeTypedAnswer\(value\)/.test(js)||!js.includes('freeAnswerI
 if(!js.includes("beginCourse();")||!/prepare\(units\[0\]\.questions,units\[0\]\)/.test(js))errors.push("Das Quiz startet nicht direkt nach der Levelauswahl.");
 if(!js.includes("function chooseAnswer(")||!js.includes("function selectAnswer(")||!html.includes("Antwort prüfen"))errors.push("Antwortprüfung fehlt.");
 if(!/choices\.length\s*===\s*3/.test(js))errors.push("Prüfung auf drei Antwortmöglichkeiten fehlt.");
-if(!css.includes(".level-select-screen")||!css.includes(".free-answer-input")||!css.includes(".question-illustration")||!css.includes(".achievement-badge"))errors.push("Gestaltungsregeln für Levelauswahl, Freitextfeld oder neue Visuals fehlen.");
+if(!css.includes(".level-select-screen")||!css.includes(".free-answer-input")||!css.includes(".question-illustration")||!css.includes(".scene-main")||!css.includes(".scene-support")||!css.includes(".achievement-badge"))errors.push("Gestaltungsregeln für Levelauswahl, Freitextfeld oder Illustrationen fehlen.");
+if(!js.includes("const QUESTION_ART = {")||!js.includes("function renderQuestionIllustration(")||!js.includes("QUESTION_ART[selectedTrack][currentIndex]"))errors.push("Die einzelnen Fragen sind nicht mit eigenen Illustrationen verbunden.");
+const artRefs=[...js.matchAll(/(?:main|support|accent):"([^"]+)"/g)].map(m=>m[1]);
+for(const art of new Set(artRefs))if(!existsSync("assets/question-art/"+art+".svg"))errors.push("SVG-Illustration fehlt: "+art);
+if(!/G:\s*\[([\s\S]*?)\],\s*M:/.test(js)||!/M:\s*\[([\s\S]*?)\],\s*E:/.test(js)||!/E:\s*\[([\s\S]*?)\]\s*\};/.test(js))errors.push("Es müssen für alle drei Level eigene Illustrationslisten vorhanden sein.");
 if(!js.includes("function getQuestionKind(question)")||!js.includes("function renderAchievementBadges(percent)")||!js.includes("function getQuestionHint(question)")||!js.includes("wordTypeStats"))errors.push("Fragen-Illustrationen, Hilfstipps oder Ergebnis-Abzeichen fehlen.");
 if(!js.includes('questionHelpButton.addEventListener("click"')||!js.includes("questionHelpPanel.hidden=true"))errors.push("Die Hilfe-Schaltfläche funktioniert nicht auf jeder Frage.");
 if(!html.includes('class="is-start-screen"')||!css.includes("body.is-start-screen .level-select-card")||!css.includes("height:100svh"))errors.push("Die Startseite nutzt nicht den gesamten Bildschirm.");
@@ -31,6 +35,6 @@ if(!js.includes("Das Kissen ist weich.")||!js.includes("Wir wollen uns im Garten
 if(!js.includes("verb(?:en)?")||!js.includes("test(prompt)"))errors.push("Wortart-Erkennung für Verben fehlt.");
 if(!css.includes(".answer-option.is-wrong{border-color:#d9dfd6;background:#f2f4f0"))errors.push("Falsche Antwort wird nicht neutral markiert.");
 if(ids.includes("question-instruction")||ids.includes("result-subheading")||html.includes("free-answer-hint")||html.includes("track-description")||html.includes("start-footnote"))errors.push("Entfernte Hilfstexte sind noch in der Benutzeroberfläche.");
-if(!html.includes("style.css?v=30")||!html.includes("script.js?v=31"))errors.push("Cache-Versionen nicht aktualisiert.");
+if(!html.includes("style.css?v=31")||!html.includes("script.js?v=32"))errors.push("Cache-Versionen nicht aktualisiert.");
 if(errors.length){console.error("Projektprüfung fehlgeschlagen:");for(const e of errors)console.error("- "+e);process.exit(1);}
 console.log("Projektprüfung erfolgreich: "+ids.length+" HTML-IDs, "+new Set(jsIds).size+" JavaScript-Verweise, drei Level, je zehn Fragen und zwei Freitextfragen.");
